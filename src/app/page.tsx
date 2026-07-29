@@ -177,8 +177,8 @@ export default function EstudioHome() {
 
           <Reveal delay={300}>
             <div className="mt-14 grid grid-cols-2 gap-4 border-t border-white/10 pt-8 sm:grid-cols-4">
-              <HeroStat kpi="8+" label="anos codando" />
-              <HeroStat kpi="40+" label="projetos entregues" />
+              <HeroStat kpi="3+" label="anos codando" />
+              <HeroStat kpi="10+" label="projetos entregues" />
               <HeroStat kpi="3–7" label="semanas por projeto" />
               <HeroStat kpi="24h" label="pra responder" />
             </div>
