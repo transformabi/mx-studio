@@ -38,6 +38,9 @@ export function EstudioNav() {
   }, [open]);
 
   const isDemo = pathname?.startsWith('/demo/');
+  const isCarrossel = pathname?.startsWith('/carrossel');
+
+  if (isCarrossel) return null;
 
   return (
     <header

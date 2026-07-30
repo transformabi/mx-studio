@@ -4,6 +4,7 @@ import './globals.css';
 import { EstudioNav } from '@/components/nav';
 import { EstudioFooter } from '@/components/footer';
 import { ImgFallback } from '@/components/img-fallback';
+import { HideOnCarrossel } from '@/components/hide-on-carrossel';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -59,7 +60,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ImgFallback />
         <EstudioNav />
         <div className="relative">{children}</div>
-        <EstudioFooter />
+        <HideOnCarrossel>
+          <EstudioFooter />
+        </HideOnCarrossel>
       </body>
     </html>
   );
