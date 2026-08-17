@@ -49,9 +49,9 @@ export const demos: Demo[] = [
     year: '2025',
     scope: ['Catálogo dinâmico', 'Carrinho persistente', 'Cupom + total', 'Checkout mockado'],
     metrics: [
-      { label: '+184%', value: 'em conversão' },
-      { label: '2.1s', value: 'LCP no 4G' },
-      { label: 'PIX', value: 'em destaque' },
+      { label: '1.7s', value: 'LCP no 4G' },
+      { label: '726 KB', value: 'a página inteira' },
+      { label: 'PIX', value: 'no checkout' },
     ],
   },
   {
@@ -65,9 +65,9 @@ export const demos: Demo[] = [
     year: '2025',
     scope: ['Menu em tabs', 'Reserva com calendário', 'Modal de confirmação', 'Envio simulado'],
     metrics: [
-      { label: '+68%', value: 'em reservas' },
-      { label: '24/7', value: 'auto-atendimento' },
-      { label: '4.9★', value: 'Google Business' },
+      { label: '1.6s', value: 'LCP no 4G' },
+      { label: '186 KB', value: 'a página inteira' },
+      { label: '24/7', value: 'reserva sem ligação' },
     ],
   },
   {
@@ -81,9 +81,9 @@ export const demos: Demo[] = [
     year: '2025',
     scope: ['Perfis dos profissionais', 'Grade de horários', 'Form validado', 'Confirmação'],
     metrics: [
-      { label: '−52%', value: 'no no-show' },
-      { label: '3.2×', value: 'mais agendamentos' },
-      { label: '100%', value: 'aderente à LGPD' },
+      { label: '1.2s', value: 'LCP no 4G' },
+      { label: '254 KB', value: 'a página inteira' },
+      { label: '0', value: 'de layout shift' },
     ],
   },
   {
@@ -97,9 +97,9 @@ export const demos: Demo[] = [
     year: '2025',
     scope: ['Áreas de atuação', 'Drawer detalhado', 'Triagem em etapas', 'Resumo do caso'],
     metrics: [
-      { label: '+240%', value: 'em leads qualificados' },
-      { label: '5.8min', value: 'tempo médio' },
-      { label: 'OAB', value: 'compliance' },
+      { label: '1.1s', value: 'LCP no 4G' },
+      { label: '279 KB', value: 'a página inteira' },
+      { label: 'OAB', value: 'Prov. 205/2021' },
     ],
   },
   {
@@ -113,9 +113,9 @@ export const demos: Demo[] = [
     year: '2025',
     scope: ['Filtros em tempo real', 'Grid responsivo', 'Ficha do imóvel', 'WhatsApp por imóvel'],
     metrics: [
-      { label: '−58%', value: 'custo por lead' },
-      { label: '+310%', value: 'em contatos diretos' },
-      { label: 'CRM', value: 'integrado' },
+      { label: '1.1s', value: 'LCP no 4G' },
+      { label: '470 KB', value: 'a página inteira' },
+      { label: 'Filtro', value: 'em tempo real' },
     ],
   },
   {
@@ -129,9 +129,9 @@ export const demos: Demo[] = [
     year: '2025',
     scope: ['FAQ acordeão', 'Contador de vagas', 'Seleção de plano', 'Checkout em etapas'],
     metrics: [
-      { label: '+412%', value: 'em conversão' },
-      { label: '92%', value: 'de retenção 30d' },
-      { label: 'R$ 187k', value: 'em 9 dias' },
+      { label: '1.1s', value: 'LCP no 4G' },
+      { label: '525 KB', value: 'a página inteira' },
+      { label: 'Checkout', value: 'em 3 etapas' },
     ],
   },
 ];

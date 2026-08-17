@@ -40,7 +40,7 @@ export const slides: Slide[] = [
     caseMetric: '+184%',
     caseMetricLabel: 'em conversão',
     caseTagline: 'Vendia por WhatsApp com planilha no colo.\nHoje o site vende sozinho.',
-    caseImage: '/heros/moda-arte.png',
+    caseImage: '/heros/moda-arte.webp',
     caseAccent: '#c6ff3b',
   },
   {
@@ -51,7 +51,7 @@ export const slides: Slide[] = [
     caseMetric: '+68%',
     caseMetricLabel: 'em reservas',
     caseTagline: 'Sem contratar\nmais um atendente.',
-    caseImage: '/heros/restaurante-terra.png',
+    caseImage: '/heros/restaurante-terra.webp',
     caseAccent: '#ff8a5c',
   },
   {
@@ -62,7 +62,7 @@ export const slides: Slide[] = [
     caseMetric: '−52%',
     caseMetricLabel: 'no no-show',
     caseTagline: 'Paciente marca sozinho.\nSistema lembra antes.',
-    caseImage: '/heros/clinica-sereno.png',
+    caseImage: '/heros/clinica-sereno.webp',
     caseAccent: '#3be0b3',
   },
   {
@@ -73,7 +73,7 @@ export const slides: Slide[] = [
     caseMetric: '+240%',
     caseMetricLabel: 'leads qualificados',
     caseTagline: 'Cliente já chega pré-triado,\nsabendo quanto vai investir.',
-    caseImage: '/heros/motta-advogados.png',
+    caseImage: '/heros/motta-advogados.webp',
     caseAccent: '#a78bfa',
   },
   {
@@ -84,7 +84,7 @@ export const slides: Slide[] = [
     caseMetric: '−58%',
     caseMetricLabel: 'custo por lead',
     caseTagline: 'Deixou de pagar\nZap e VivaReal.',
-    caseImage: '/heros/costa-imoveis.png',
+    caseImage: '/heros/costa-imoveis.webp',
     caseAccent: '#c6ff3b',
   },
   {
@@ -95,7 +95,7 @@ export const slides: Slide[] = [
     caseMetric: 'R$ 187k',
     caseMetricLabel: 'em 9 dias',
     caseTagline: 'Landing certa, checkout certo,\n92% de retenção em 30 dias.',
-    caseImage: '/heros/rota-clara.png',
+    caseImage: '/heros/rota-clara.webp',
     caseAccent: '#22d3ee',
   },
   {

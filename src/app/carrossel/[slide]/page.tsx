@@ -40,12 +40,12 @@ const serif = { fontFamily: 'var(--font-instrument-serif)' } as const;
 const display = { fontFamily: 'var(--font-space-grotesk)' } as const;
 
 const caseThumbnails = [
-  { src: '/heros/moda-arte.png', accent: '#c6ff3b' },
-  { src: '/heros/restaurante-terra.png', accent: '#ff8a5c' },
-  { src: '/heros/clinica-sereno.png', accent: '#3be0b3' },
-  { src: '/heros/motta-advogados.png', accent: '#a78bfa' },
-  { src: '/heros/costa-imoveis.png', accent: '#c6ff3b' },
-  { src: '/heros/rota-clara.png', accent: '#22d3ee' },
+  { src: '/heros/moda-arte.webp', accent: '#c6ff3b' },
+  { src: '/heros/restaurante-terra.webp', accent: '#ff8a5c' },
+  { src: '/heros/clinica-sereno.webp', accent: '#3be0b3' },
+  { src: '/heros/motta-advogados.webp', accent: '#a78bfa' },
+  { src: '/heros/costa-imoveis.webp', accent: '#c6ff3b' },
+  { src: '/heros/rota-clara.webp', accent: '#22d3ee' },
 ];
 
 function CoverSlide({ s }: { s: Slide }) {

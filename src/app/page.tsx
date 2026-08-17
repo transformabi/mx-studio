@@ -52,30 +52,30 @@ const process = [
 const services = [
   {
     title: 'Site institucional',
-    from: 'a partir de R$ 10.000',
+    from: 'a partir de R$ 4.900',
     bullets: ['4–8 páginas', 'CMS opcional', 'Design system próprio', 'SEO técnico'],
   },
   {
     title: 'E-commerce',
-    from: 'a partir de R$ 22.000',
+    from: 'a partir de R$ 9.900',
     bullets: ['Catálogo + carrinho', 'Checkout PIX + cartão', 'Área do cliente', 'Painel do lojista'],
   },
   {
     title: 'Landing de conversão',
-    from: 'a partir de R$ 8.000',
+    from: 'a partir de R$ 3.500',
     bullets: ['Copywriting-first', 'A/B ready', 'Analytics + pixels', 'Deploy em 10 dias'],
   },
   {
     title: 'Sistema web sob medida',
-    from: 'a partir de R$ 35.000',
+    from: 'a partir de R$ 16.000',
     bullets: ['Login + auth', 'Painel + roles', 'Integrações', 'Escopo customizado'],
   },
 ];
 
 const faq = [
   {
-    q: 'Por que R$ 10 mil e não R$ 2 mil como muito freelancer cobra?',
-    a: 'Porque não é o mesmo produto. R$ 2 mil geralmente é template do Elementor sem estratégia. R$ 10 mil é código próprio em Next.js, design pensado, integrações reais, performance verde no Core Web Vitals e responsabilidade pelo resultado.',
+    q: 'Por que R$ 4.900 e não R$ 1.500 como muito freelancer cobra?',
+    a: 'Porque não é o mesmo produto. R$ 1.500 geralmente é template do Elementor sem estratégia, que trava no celular e você não consegue editar depois. Aqui é código próprio em Next.js, design pensado pro seu negócio, integrações reais, performance verde no Core Web Vitals e o código no seu GitHub no fim.',
   },
   {
     q: 'Em quanto tempo o site fica pronto?',
@@ -177,8 +177,8 @@ export default function EstudioHome() {
 
           <Reveal delay={300}>
             <div className="mt-14 grid grid-cols-2 gap-4 border-t border-white/10 pt-8 sm:grid-cols-4">
-              <HeroStat kpi="3+" label="anos codando" />
-              <HeroStat kpi="10+" label="projetos entregues" />
+              <HeroStat kpi="6" label="demos pra você testar" />
+              <HeroStat kpi="100%" label="código no seu GitHub" />
               <HeroStat kpi="3–7" label="semanas por projeto" />
               <HeroStat kpi="24h" label="pra responder" />
             </div>
@@ -224,6 +224,11 @@ export default function EstudioHome() {
               <p className="mt-4 max-w-xl text-base text-white/60">
                 Clique, teste os botões, adicione ao carrinho, faça uma reserva.
                 Se funciona aqui, funciona no seu.
+              </p>
+              <p className="mt-4 max-w-xl text-sm text-white/40">
+                LCP e peso medidos em 4G com CPU 4× mais lenta, simulando um
+                Android intermediário. Não precisa acreditar: jogue a URL de
+                qualquer demo no PageSpeed Insights do Google e confira.
               </p>
             </div>
           </Reveal>

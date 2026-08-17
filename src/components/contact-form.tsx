@@ -12,10 +12,10 @@ const projects = [
 ];
 
 const budgets = [
-  'Até R$ 10 mil',
+  'Até R$ 5 mil',
+  'R$ 5–10 mil',
   'R$ 10–20 mil',
-  'R$ 20–40 mil',
-  'Acima de R$ 40 mil',
+  'Acima de R$ 20 mil',
 ];
 
 export function ContactForm() {

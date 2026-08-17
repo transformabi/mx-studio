@@ -27,7 +27,7 @@ const areas: Area[] = [
       'Recuperação judicial e falências',
       'Compliance e governança',
     ],
-    cases: '210+ casos · desde 2011',
+    cases: 'Atuação desde 2011',
     icon: <Building2 className="h-5 w-5" />,
   },
   {
@@ -41,7 +41,7 @@ const areas: Area[] = [
       'Ações declaratórias e repetição',
       'Consultoria em ICMS, ISS, PIS/COFINS',
     ],
-    cases: 'R$ 380M em créditos recuperados',
+    cases: 'Contencioso administrativo e judicial',
     icon: <Scale className="h-5 w-5" />,
   },
   {
@@ -55,7 +55,7 @@ const areas: Area[] = [
       'Acordos individuais e coletivos',
       'Auditoria de folha e riscos',
     ],
-    cases: '89% de êxito em 1ª instância',
+    cases: 'Defesa empresarial e prevenção',
     icon: <Users className="h-5 w-5" />,
   },
   {
@@ -206,8 +206,8 @@ export default function MottaDemo() {
 
           <div className="mt-10 grid grid-cols-2 gap-6 border-t border-neutral-200 pt-8 sm:grid-cols-4">
             <Stat kpi="17+" label="anos de banca" />
-            <Stat kpi="R$ 380M" label="em créditos" />
-            <Stat kpi="89%" label="êxito em 1ª" />
+            <Stat kpi="6" label="advogados no time" />
+            <Stat kpi="24h" label="para primeiro retorno" />
             <Stat kpi="4" label="áreas de atuação" />
           </div>
         </div>
@@ -333,12 +333,12 @@ export default function MottaDemo() {
 
           <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { area: 'Tributário', title: 'Repetição de indébito ICMS-ST', result: 'R$ 12M restituídos em 14 meses' },
-              { area: 'Empresarial', title: 'Reestruturação societária', result: 'Split societário sem tributação adicional' },
-              { area: 'Trabalhista', title: 'Rescisão de alto valor', result: 'Acordo em 60 dias com redução de 68%' },
-              { area: 'Cível', title: 'Ação de despejo comercial', result: 'Reintegração em 90 dias' },
-              { area: 'Tributário', title: 'Defesa CARF ISS', result: 'Cancelamento integral de R$ 4,8M' },
-              { area: 'Empresarial', title: 'M&A de médio porte', result: 'Due diligence completa em 45 dias' },
+              { area: 'Tributário', title: 'Repetição de indébito ICMS-ST', scope: 'Levantamento de créditos e ação de repetição' },
+              { area: 'Empresarial', title: 'Reestruturação societária', scope: 'Planejamento societário e redação do acordo' },
+              { area: 'Trabalhista', title: 'Rescisão de alto valor', scope: 'Negociação e formalização do acordo' },
+              { area: 'Cível', title: 'Ação de despejo comercial', scope: 'Ação de despejo e acompanhamento processual' },
+              { area: 'Tributário', title: 'Defesa CARF ISS', scope: 'Defesa administrativa perante o CARF' },
+              { area: 'Empresarial', title: 'M&A de médio porte', scope: 'Due diligence e assessoria na negociação' },
             ].map((c) => (
               <div key={c.title} className="group rounded-2xl border border-neutral-200 bg-[#f8f7f4] p-5 transition-colors hover:border-[#1e1b4b]">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#a78bfa]">
@@ -349,7 +349,7 @@ export default function MottaDemo() {
                 </div>
                 <div className="mt-4 flex items-center gap-2 border-t border-neutral-200 pt-4 text-sm text-neutral-700">
                   <Check className="h-4 w-4 text-[#a78bfa]" />
-                  {c.result}
+                  {c.scope}
                 </div>
               </div>
             ))}
@@ -357,8 +357,8 @@ export default function MottaDemo() {
 
           <div className="mt-8 rounded-2xl border border-dashed border-neutral-300 bg-[#f8f7f4]/50 p-5 text-xs text-neutral-600">
             <ShieldCheck className="mr-2 inline h-4 w-4 text-[#1e1b4b]" />
-            Em conformidade com o Provimento 205/2021 do CFOAB: casos e valores
-            desta seção são ilustrativos, sem promessa de resultado.
+            Em conformidade com o Provimento 205/2021 do CFOAB: esta seção descreve
+            o tipo de atuação, sem divulgação de resultados, valores ou honorários.
           </div>
         </div>
       </section>
