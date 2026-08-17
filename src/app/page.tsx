@@ -226,9 +226,9 @@ export default function EstudioHome() {
                 Se funciona aqui, funciona no seu.
               </p>
               <p className="mt-4 max-w-xl text-sm text-white/40">
-                LCP e peso medidos em 4G com CPU 4× mais lenta, simulando um
-                Android intermediário. Não precisa acreditar: jogue a URL de
-                qualquer demo no PageSpeed Insights do Google e confira.
+                LCP e peso medidos em produção, sem cache, em 4G com CPU 4× mais
+                lenta — pior caso de 3 medições. Não precisa acreditar: jogue a URL
+                de qualquer demo no PageSpeed Insights do Google e confira.
               </p>
             </div>
           </Reveal>
