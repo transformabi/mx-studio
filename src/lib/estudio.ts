@@ -1,19 +1,19 @@
 export const estudio = {
-  name: 'Max Costa',
+  name: 'MX Studio',
   role: 'Estúdio digital freelance',
   tagline: 'Sites e produtos digitais para marcas que se levam a sério.',
   location: 'Rio de Janeiro · atende Brasil e exterior',
   yearsExp: 8,
-  whatsapp: '5521976852478',
-  whatsappDisplay: '(21) 97685-2478',
-  email: 'ola@maxcosta.studio',
-  instagram: 'https://instagram.com/maxcosta.studio',
-  linkedin: 'https://linkedin.com/in/maxcostastudio',
-  github: 'https://github.com/maxcosta',
+  whatsapp: '5521993196171',
+  whatsappDisplay: '(21) 99319-6171',
+  email: 'developermaxrj@gmail.com',
+  instagram: 'https://www.instagram.com/mxestudioweb/',
+  linkedin: 'https://www.linkedin.com/company/145009011/',
+  github: 'https://github.com/mxstudio',
 } as const;
 
 export const whatsappMsgDefault =
-  'Olá Max! Vim pelo seu portfólio e queria conversar sobre um projeto.';
+  'Olá! Vim pelo portfólio da MX Studio e queria conversar sobre um projeto.';
 export const whatsappUrl = (msg = whatsappMsgDefault) =>
   `https://wa.me/${estudio.whatsapp}?text=${encodeURIComponent(msg)}`;
 

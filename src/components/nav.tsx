@@ -59,12 +59,12 @@ export function EstudioNav() {
       >
         <Link
           href="/"
-          aria-label="Max Costa · Estúdio"
+          aria-label="MX Studio · Estúdio"
           className="flex items-center gap-2.5 pl-1 pr-3"
         >
           <MaxMonogram variant="inverted" rounded={20} className="h-8 w-8 shrink-0" />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-sm font-semibold text-white">Max Costa</span>
+            <span className="font-display text-sm font-semibold text-white">MX Studio</span>
             <span className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-white/50">
               Estúdio
             </span>

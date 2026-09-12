@@ -353,7 +353,7 @@ export default function ModaArteDemo() {
             </div>
           </div>
           <div className="mt-8 text-xs text-neutral-500">
-            © 2025 Moda & Arte · Demo por Max Costa · Estúdio
+            © 2025 Moda & Arte · Demo por MX Studio
           </div>
         </div>
       </footer>

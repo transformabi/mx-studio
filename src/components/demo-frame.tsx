@@ -36,7 +36,7 @@ export function DemoFrame({
         </div>
 
         <div className="mt-4 text-center text-[11px] text-white/40">
-          Esta é uma demo interativa criada por Max Costa · Estúdio. Todos os
+          Esta é uma demo interativa criada por MX Studio. Todos os
           dados são fictícios e o checkout não processa pagamentos.
         </div>
       </div>

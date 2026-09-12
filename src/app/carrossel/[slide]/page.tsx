@@ -241,7 +241,7 @@ function CTASlide({ s }: { s: Slide }) {
           {s.body}
         </div>
         <div className="text-[22px] uppercase tracking-[0.28em] text-white/50">
-          Link na bio · WhatsApp (21) 97685-2478
+          Link na bio · WhatsApp (21) 99319-6171
         </div>
       </div>
 

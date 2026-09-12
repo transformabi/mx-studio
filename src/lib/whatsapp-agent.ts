@@ -2,8 +2,8 @@
  * Atendente de WhatsApp.
  *
  * Resolve o topo do funil sozinho — dúvidas de preço, prazo, processo e o demo
- * do nicho — e termina com um horário marcado na agenda, não com um "o Max já
- * responde". O gargalo deixa de ser a disponibilidade do Max para conversar.
+ * do nicho — e termina com um horário marcado na agenda, não com um "a equipe já
+ * responde". O gargalo deixa de ser a disponibilidade da equipe para conversar.
  *
  * O que ele NÃO faz: negociar valor, fechar escopo, prometer resultado. Num
  * ticket de R$ 3.500 a R$ 16.000 a decisão é considerada e essa parte é humana.
@@ -22,17 +22,17 @@ export const HISTORY_LIMIT = 24;
 
 const CLOSING = BOOKING_URL
   ? `Quando a pessoa demonstrar interesse real — perguntou preço, prazo ou disse que quer
-avançar — ofereça uma conversa de 30 minutos com o Max e mande este link para ela
+avançar — ofereça uma conversa de 30 minutos com a equipe e mande este link para ela
 escolher o horário: ${BOOKING_URL}
 Mande o link uma vez só. Se ela não agendar, siga respondendo normalmente e ofereça
 de novo apenas se ela retomar o assunto.`
-  : `Quando a pessoa demonstrar interesse real, diga que o Max retorna pessoalmente
-ainda hoje e que ele já chega com o contexto da conversa. Não prometa horário exato.`;
+  : `Quando a pessoa demonstrar interesse real, diga que a equipe retorna pessoalmente
+ainda hoje e que já chega com o contexto da conversa. Não prometa horário exato.`;
 
-export const SYSTEM_PROMPT = `Você é o atendente do estúdio do Max Costa, desenvolvedor freelance no Rio de Janeiro que faz sites sob medida em Next.js. Você fala por WhatsApp com quem clicou no site ou num anúncio.
+export const SYSTEM_PROMPT = `Você é o atendente da MX Studio, estúdio digital freelance no Rio de Janeiro que faz sites sob medida em Next.js. Você fala por WhatsApp com quem clicou no site ou num anúncio.
 
 Você resolve a conversa inteira sozinho: tira dúvidas, mostra o trabalho e conduz até
-o agendamento. Não fique empurrando a pessoa para "falar com o Max" a cada pergunta —
+o agendamento. Não fique empurrando a pessoa para "falar com a equipe" a cada pergunta —
 isso irrita e trava o atendimento.
 
 # Como escrever
@@ -68,9 +68,9 @@ Se o ramo não estiver na lista, mande ${SITE_URL} e diga que ali tem seis exemp
 # O que você NÃO faz
 - Não negocia valor, não dá desconto, não fecha escopo.
 - Não promete resultado ("vai vender mais", "vai dobrar seu movimento").
-- Não inventa. Se perguntarem algo que não está aqui: "Vou confirmar isso com o Max e te retorno."
+- Não inventa. Se perguntarem algo que não está aqui: "Vou confirmar isso com a equipe e te retorno."
 - Se a pessoa estiver irritada, reclamando ou for cliente antigo com problema, pare de
-  qualificar e diga que vai chamar o Max agora.
+  qualificar e diga que vai chamar a equipe agora.
 
 # Fechamento
 ${CLOSING}
@@ -93,7 +93,7 @@ export async function reply(history: Turn[]): Promise<string> {
   });
 
   if (response.stop_reason === 'refusal') {
-    return 'Vou confirmar isso com o Max e te retorno.';
+    return 'Vou confirmar isso com a equipe e te retorno.';
   }
 
   const text = response.content
@@ -102,5 +102,5 @@ export async function reply(history: Turn[]): Promise<string> {
     .join('')
     .trim();
 
-  return text || 'Vou confirmar isso com o Max e te retorno.';
+  return text || 'Vou confirmar isso com a equipe e te retorno.';
 }

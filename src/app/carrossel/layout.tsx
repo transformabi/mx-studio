@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Carrossel Instagram · Max Costa',
+  title: 'Carrossel Instagram · MX Studio',
   robots: { index: false, follow: false },
 };
 

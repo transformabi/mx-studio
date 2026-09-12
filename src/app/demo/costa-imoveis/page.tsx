@@ -501,7 +501,7 @@ export default function CostaImoveisDemo() {
       )}
 
       <footer className="border-t border-neutral-200 bg-white py-8 text-center text-xs text-neutral-500">
-        © 2025 Costa Imóveis · Demo por Max Costa · Estúdio
+        © 2025 Costa Imóveis · Demo por MX Studio
       </footer>
     </DemoFrame>
   );

@@ -604,7 +604,7 @@ export default function MottaDemo() {
       )}
 
       <footer className="border-t border-neutral-200 bg-white py-8 text-center text-xs text-neutral-500">
-        © 2025 Motta Advogados · Demo por Max Costa · Estúdio
+        © 2025 Motta Advogados · Demo por MX Studio
       </footer>
     </DemoFrame>
   );

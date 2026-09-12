@@ -680,7 +680,7 @@ export default function ClinicaSerenoDemo() {
       </section>
 
       <footer className="border-t border-neutral-200 bg-white py-8 text-center text-xs text-neutral-500">
-        © 2025 Clínica Sereno · Demo por Max Costa · Estúdio
+        © 2025 Clínica Sereno · Demo por MX Studio
       </footer>
     </DemoFrame>
   );
