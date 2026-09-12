@@ -14,7 +14,7 @@ export function EstudioFooter() {
             <div className="flex items-center gap-2.5">
               <MaxMonogram variant="inverted" rounded={22} className="h-9 w-9 shrink-0" />
               <div>
-                <div className="font-display text-lg font-semibold text-white">Max Costa</div>
+                <div className="font-display text-lg font-semibold text-white">MX Studio</div>
                 <div className="text-[11px] uppercase tracking-[0.14em] text-white/50">
                   Estúdio digital
                 </div>
@@ -109,7 +109,7 @@ export function EstudioFooter() {
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center">
-          <div>© {new Date().getFullYear()} Max Costa · Estúdio digital · Todos os direitos reservados</div>
+          <div>© {new Date().getFullYear()} MX Studio · Estúdio digital · Todos os direitos reservados</div>
           <div className="flex items-center gap-6">
             <span>Feito à mão em Next.js</span>
           </div>

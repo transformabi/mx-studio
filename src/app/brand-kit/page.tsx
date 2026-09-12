@@ -5,7 +5,7 @@ import { MaxMonogram } from '@/components/max-monogram';
 import { estudio, whatsappUrl } from '@/lib/estudio';
 
 export const metadata: Metadata = {
-  title: 'Brand kit · Max Costa Estúdio',
+  title: 'Brand kit · MX Studio',
   description: 'Foto de perfil, banners, bio e link do portfólio pra usar em LinkedIn, Instagram e plataformas de freelance.',
 };
 
@@ -27,21 +27,21 @@ const bios = [
   {
     tag: 'Curta · 150 caracteres',
     where: 'Instagram · Twitter · perfis compactos',
-    text: 'Faço sites e produtos digitais em Next.js. Do brief ao pós-lançamento, um humano só. Vem ver → maxcosta.studio',
+    text: 'Fazemos sites e produtos digitais em Next.js. Do brief ao pós-lançamento, um humano só. Vem ver → maxcosta.studio',
   },
   {
     tag: 'Média · 300 caracteres',
     where: 'Workana · 99Freelas · Fiverr · Upwork',
-    text: 'Sou o Max — dev + designer freelancer no Rio. Faço sites, e-commerces e produtos digitais sob medida em Next.js/React. 8+ anos de mercado, do brief ao pós-lançamento sem intermediário. Portfólio: maxcosta.studio · Respondo em até 24h.',
+    text: 'Somos a MX Studio — estúdio digital no Rio. Fazemos sites, e-commerces e produtos digitais sob medida em Next.js/React. 8+ anos de mercado, do brief ao pós-lançamento sem intermediário. Portfólio: maxcosta.studio · Respondemos em até 24h.',
   },
   {
     tag: 'Longa · para o "sobre" do LinkedIn',
     where: 'LinkedIn · sobre no site · deck',
-    text: `Sou o Max Costa, dev + designer freelancer no Rio de Janeiro. Faço sites, e-commerces e produtos digitais sob medida em Next.js — do brief ao pós-lançamento, um humano só.
+    text: `Somos a MX Studio, estúdio digital de dev + design no Rio de Janeiro. Fazemos sites, e-commerces e produtos digitais sob medida em Next.js — do brief ao pós-lançamento, um humano só.
 
-Passei por agências, produto e consultoria antes de virar autônomo. O que aprendi: cliente não quer site — quer que o site resolva.
+Passamos por agências, produto e consultoria antes de virar um estúdio independente. O que aprendemos: cliente não quer site — quer que o site resolva.
 
-Ramos que costumo atender: moda autoral, gastronomia, saúde, jurídico, imobiliária, infoprodutos.
+Ramos que costumamos atender: moda autoral, gastronomia, saúde, jurídico, imobiliária, infoprodutos.
 
 • Contrato + escopo fechado
 • Pagamento parcelado
@@ -50,7 +50,7 @@ Ramos que costumo atender: moda autoral, gastronomia, saúde, jurídico, imobili
 • 30 dias de garantia
 
 Portfólio com 6 demos funcionais: maxcosta.studio
-Falar comigo: (21) 97685-2478 (WhatsApp)`,
+Fale com a gente: (21) 99319-6171 (WhatsApp)`,
   },
 ];
 
@@ -240,7 +240,7 @@ export default function BrandKitPage() {
       </section>
 
       <footer className="mt-20 border-t border-white/10 pt-8 text-xs text-white/40">
-        Brand kit gerado para uso interno de Max Costa. Todos os assets em{' '}
+        Brand kit gerado para uso interno da MX Studio. Todos os assets em{' '}
         <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[11px]">/public/brand/</code>.
       </footer>
     </div>

@@ -27,8 +27,8 @@ const instrumentSans = Instrument_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL('https://maxcosta.studio'),
   title: {
-    default: 'Max Costa · Estúdio digital freelance',
-    template: '%s · Max Costa Estúdio',
+    default: 'MX Studio · Estúdio digital freelance',
+    template: '%s · MX Studio',
   },
   description:
     'Sites, e-commerces e produtos digitais sob medida em Next.js. Portfólio com demos funcionais em 6 nichos: e-commerce, gastronomia, saúde, jurídico, imobiliário, infoproduto.',
@@ -38,10 +38,10 @@ export const metadata: Metadata = {
     'sites sob medida',
     'e-commerce next.js',
     'Rio de Janeiro',
-    'Max Costa',
+    'MX Studio',
   ],
   openGraph: {
-    title: 'Max Costa · Estúdio digital freelance',
+    title: 'MX Studio · Estúdio digital freelance',
     description:
       'Sites que fazem seu negócio parecer sério — e que vendem. Portfólio com 6 demos funcionais.',
     type: 'website',

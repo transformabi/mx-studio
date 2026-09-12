@@ -643,7 +643,7 @@ export default function RestauranteTerraDemo() {
       </section>
 
       <footer className="border-t border-white/10 bg-[#1c1917] py-8 text-center text-xs text-[#f5e9d5]/50">
-        © 2025 Terra Casa de Fogo · Demo por Max Costa · Estúdio
+        © 2025 Terra Casa de Fogo · Demo por MX Studio
       </footer>
     </DemoFrame>
   );

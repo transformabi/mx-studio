@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 
 /**
- * Max Costa monogram — an M with a Transforma-BI-style growth arrow
+ * MX Studio monogram — an M with a Transforma-BI-style growth arrow
  * that dips (falls) and then rises with an arrowhead pointing up-right,
  * crossing over the letter M.
  *
@@ -33,7 +33,7 @@ export function MaxMonogram({
       viewBox="0 0 200 200"
       xmlns="http://www.w3.org/2000/svg"
       className={cn('block', className)}
-      aria-label="Max Costa"
+      aria-label="MX Studio"
     >
       {/* Background */}
       <rect width="200" height="200" rx={rounded} fill={bg} />

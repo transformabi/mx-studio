@@ -155,7 +155,7 @@ export default function EstudioHome() {
 
           <Reveal delay={160}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/70">
-              Sou o <span className="text-white">Max Costa</span>. Faço sites,
+              Somos a <span className="text-white">MX Studio</span>. Fazemos sites,
               e-commerces e produtos digitais sob medida em Next.js. Do brief
               ao pós-lançamento, um humano só. Sem template. Sem
               intermediário. Sem surpresa.
@@ -350,14 +350,14 @@ export default function EstudioHome() {
               do brief à entrega.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-white/70">
-              Sou Max Costa, dev e designer freelancer no Rio de Janeiro. Passei
-              por agências, produto e consultoria antes de virar autônomo. O
-              que aprendi: cliente não quer site — quer que o site resolva.
+              A MX Studio nasceu no Rio de Janeiro, entre agências, produto e
+              consultoria, até virar um estúdio independente. O que aprendemos:
+              cliente não quer site — quer que o site resolva.
             </p>
             <p className="mt-4 text-base leading-relaxed text-white/70">
-              Trabalho sozinho e faço poucos projetos por vez porque acredito
-              que cuidar de perto é o que separa um site que só existe de um
-              site que vende.
+              Trabalhamos em equipe enxuta e fazemos poucos projetos por vez
+              porque acreditamos que cuidar de perto é o que separa um site
+              que só existe de um site que vende.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">

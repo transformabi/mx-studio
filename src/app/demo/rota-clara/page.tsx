@@ -696,7 +696,7 @@ export default function RotaClaraDemo() {
       )}
 
       <footer className="border-t border-white/10 bg-[#0f172a] py-8 text-center text-xs text-white/50">
-        © 2025 Rota Clara · Larissa Nogueira · Demo por Max Costa · Estúdio
+        © 2025 Rota Clara · Larissa Nogueira · Demo por MX Studio
       </footer>
     </DemoFrame>
   );
