@@ -4,39 +4,46 @@ import { useMemo, useState } from 'react';
 import { Check, Heart, Instagram, Minus, Plus, Search, ShoppingBag, Sparkles, Star, Trash2, X } from 'lucide-react';
 import { DemoFrame } from '@/components/demo-frame';
 import { heros, modaArteProducts } from '@/lib/demo-images';
+import { useI18n } from '@/i18n/provider';
+import { content } from './content';
 
 type Category = 'Todos' | 'Vestidos' | 'Blusas' | 'Calças' | 'Acessórios';
 type ProductId = keyof typeof modaArteProducts;
 type Product = {
   id: ProductId;
-  name: string;
   category: Exclude<Category, 'Todos'>;
   price: number;
   isNew?: boolean;
 };
 
 const products: Product[] = [
-  { id: 'v1', name: 'Vestido Terra', category: 'Vestidos', price: 489, isNew: true },
-  { id: 'v2', name: 'Vestido Longo Barro', category: 'Vestidos', price: 649 },
-  { id: 'v3', name: 'Vestido Camisa Osso', category: 'Vestidos', price: 419 },
-  { id: 'b1', name: 'Blusa Fluida Areia', category: 'Blusas', price: 289, isNew: true },
-  { id: 'b2', name: 'Blusa Cropped Ferrugem', category: 'Blusas', price: 249 },
-  { id: 'b3', name: 'Camisa Larga Cru', category: 'Blusas', price: 329 },
-  { id: 'c1', name: 'Calça Wide Argila', category: 'Calças', price: 449 },
-  { id: 'c2', name: 'Calça Alfaiataria', category: 'Calças', price: 519, isNew: true },
-  { id: 'a1', name: 'Bolsa Trama Cera', category: 'Acessórios', price: 359 },
-  { id: 'a2', name: 'Colar Prata Bruta', category: 'Acessórios', price: 189 },
-  { id: 'a3', name: 'Chapéu de Palha', category: 'Acessórios', price: 219 },
-  { id: 'a4', name: 'Cinto Couro Tabaco', category: 'Acessórios', price: 179 },
+  { id: 'v1', category: 'Vestidos', price: 489, isNew: true },
+  { id: 'v2', category: 'Vestidos', price: 649 },
+  { id: 'v3', category: 'Vestidos', price: 419 },
+  { id: 'b1', category: 'Blusas', price: 289, isNew: true },
+  { id: 'b2', category: 'Blusas', price: 249 },
+  { id: 'b3', category: 'Blusas', price: 329 },
+  { id: 'c1', category: 'Calças', price: 449 },
+  { id: 'c2', category: 'Calças', price: 519, isNew: true },
+  { id: 'a1', category: 'Acessórios', price: 359 },
+  { id: 'a2', category: 'Acessórios', price: 189 },
+  { id: 'a3', category: 'Acessórios', price: 219 },
+  { id: 'a4', category: 'Acessórios', price: 179 },
 ];
 
 const categories: Category[] = ['Todos', 'Vestidos', 'Blusas', 'Calças', 'Acessórios'];
 
+const trustIcons = ['🚚', '↩︎', '💳', '✿'];
+
 type CartItem = { product: Product; qty: number };
 
-const brl = (v: number) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
 export default function ModaArteDemo() {
+  const { locale, money } = useI18n();
+  const c = content[locale];
+  const price = (v: number) => money(v);
+  const roundPrice = (v: number) => money(v, { decimals: 0, round: true });
+  const nameOf = (p: Product) => c.products[p.id];
+
   const [category, setCategory] = useState<Category>('Todos');
   const [search, setSearch] = useState('');
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -52,17 +59,17 @@ export default function ModaArteDemo() {
     return products.filter((p) => {
       const catOk = category === 'Todos' || p.category === category;
       const q = search.trim().toLowerCase();
-      const sOk = !q || p.name.toLowerCase().includes(q);
+      const sOk = !q || c.products[p.id].toLowerCase().includes(q);
       return catOk && sOk;
     });
-  }, [category, search]);
+  }, [category, search, c]);
 
   const addToCart = (product: Product) => {
     setCart((prev) => {
-      const existing = prev.find((c) => c.product.id === product.id);
+      const existing = prev.find((item) => item.product.id === product.id);
       if (existing) {
-        return prev.map((c) =>
-          c.product.id === product.id ? { ...c, qty: c.qty + 1 } : c,
+        return prev.map((item) =>
+          item.product.id === product.id ? { ...item, qty: item.qty + 1 } : item,
         );
       }
       return [...prev, { product, qty: 1 }];
@@ -73,20 +80,20 @@ export default function ModaArteDemo() {
   const changeQty = (id: string, delta: number) => {
     setCart((prev) =>
       prev
-        .map((c) =>
-          c.product.id === id ? { ...c, qty: Math.max(0, c.qty + delta) } : c,
+        .map((item) =>
+          item.product.id === id ? { ...item, qty: Math.max(0, item.qty + delta) } : item,
         )
-        .filter((c) => c.qty > 0),
+        .filter((item) => item.qty > 0),
     );
   };
 
-  const remove = (id: string) => setCart((prev) => prev.filter((c) => c.product.id !== id));
+  const remove = (id: string) => setCart((prev) => prev.filter((item) => item.product.id !== id));
 
-  const subtotal = cart.reduce((s, c) => s + c.product.price * c.qty, 0);
+  const subtotal = cart.reduce((s, item) => s + item.product.price * item.qty, 0);
   const discount = couponApplied ? subtotal * couponApplied.discount : 0;
   const shipping = subtotal > 500 || subtotal === 0 ? 0 : 29.9;
   const total = subtotal - discount + shipping;
-  const itemsCount = cart.reduce((s, c) => s + c.qty, 0);
+  const itemsCount = cart.reduce((s, item) => s + item.qty, 0);
 
   const applyCoupon = () => {
     const code = coupon.trim().toUpperCase();
@@ -124,7 +131,7 @@ export default function ModaArteDemo() {
             </span>
             <div className="leading-none">
               <div className="font-display text-base font-semibold text-neutral-900">Moda & Arte</div>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-neutral-500">Coleção Terra 25</div>
+              <div className="text-[10px] uppercase tracking-[0.16em] text-neutral-500">{c.collection}</div>
             </div>
           </div>
           <div className="hidden flex-1 items-center gap-2 rounded-full border border-neutral-300 bg-white px-4 py-2 sm:flex sm:max-w-md">
@@ -132,12 +139,12 @@ export default function ModaArteDemo() {
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Buscar em Moda & Arte…"
+              placeholder={c.searchPlaceholder}
               className="flex-1 bg-transparent text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none"
-              aria-label="Buscar produtos"
+              aria-label={c.searchAria}
             />
             {search && (
-              <button onClick={() => setSearch('')} aria-label="Limpar" className="text-neutral-400 hover:text-neutral-700">
+              <button onClick={() => setSearch('')} aria-label={c.clear} className="text-neutral-400 hover:text-neutral-700">
                 <X className="h-4 w-4" />
               </button>
             )}
@@ -145,10 +152,10 @@ export default function ModaArteDemo() {
           <button
             onClick={() => setCartOpen(true)}
             className="relative inline-flex items-center gap-2 rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
-            aria-label={`Abrir carrinho com ${itemsCount} itens`}
+            aria-label={c.openCart(itemsCount)}
           >
             <ShoppingBag className="h-4 w-4" />
-            <span className="hidden sm:inline">Carrinho</span>
+            <span className="hidden sm:inline">{c.cart}</span>
             {itemsCount > 0 && (
               <span className="ml-1 grid h-5 min-w-5 place-items-center rounded-full bg-[#c6ff3b] px-1 text-[11px] font-bold text-neutral-900">
                 {itemsCount}
@@ -163,25 +170,22 @@ export default function ModaArteDemo() {
         <div className="lg:col-span-7">
           <div className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-neutral-500">
             <Sparkles className="h-3 w-3" />
-            Coleção Terra 25
+            {c.collection}
           </div>
           <h1 className="mt-4 max-w-2xl font-display text-4xl font-semibold leading-[1.05] text-neutral-900 sm:text-5xl lg:text-6xl">
-            Peças autorais para quem{' '}
+            {c.heroTitleA}{' '}
             <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal">
-              se veste como pensa
+              {c.heroTitleEm}
             </em>
             .
           </h1>
-          <p className="mt-6 max-w-lg text-base text-neutral-600 sm:text-lg">
-            Frete grátis acima de R$ 500. Parcelamos em até 6× sem juros no
-            cartão ou 5% OFF no PIX à vista.
-          </p>
+          <p className="mt-6 max-w-lg text-base text-neutral-600 sm:text-lg">{c.heroLead(roundPrice)}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <button
               onClick={() => document.getElementById('grid')?.scrollIntoView({ behavior: 'smooth' })}
               className="rounded-full bg-neutral-900 px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
             >
-              Ver coleção
+              {c.seeCollection}
             </button>
             <button className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-900 transition-colors hover:bg-neutral-100">
               <Instagram className="h-4 w-4" /> @modaearte
@@ -192,20 +196,20 @@ export default function ModaArteDemo() {
           <div className="relative aspect-[3/4] overflow-hidden rounded-3xl">
             <img
               src={heros['moda-arte']}
-              alt="Coleção Terra 25 — direção de arte"
+              alt={c.heroAlt}
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-neutral-950/10" />
             <div className="absolute right-5 top-5 rounded-full bg-neutral-900/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#c6ff3b] backdrop-blur">
-              Coleção nova
+              {c.newCollection}
             </div>
             <div className="absolute bottom-6 left-6 right-6 text-white">
-              <div className="text-[10px] uppercase tracking-[0.16em] opacity-70">Editorial · Terra 25</div>
+              <div className="text-[10px] uppercase tracking-[0.16em] opacity-70">{c.editorial}</div>
               <div
                 style={{ fontFamily: 'var(--font-instrument-serif)' }}
                 className="mt-1 text-4xl italic leading-none"
               >
-                barro, osso, cera.
+                {c.editorialLine}
               </div>
             </div>
           </div>
@@ -215,23 +219,23 @@ export default function ModaArteDemo() {
       {/* Filters */}
       <section id="grid" className="border-y border-neutral-200 bg-white/50">
         <div className="mx-auto flex max-w-6xl items-center gap-3 overflow-x-auto px-4 py-4 sm:px-6">
-          {categories.map((c) => (
+          {categories.map((cat) => (
             <button
-              key={c}
-              onClick={() => setCategory(c)}
+              key={cat}
+              onClick={() => setCategory(cat)}
               className={
                 'shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors ' +
-                (category === c
+                (category === cat
                   ? 'border-neutral-900 bg-neutral-900 text-white'
                   : 'border-neutral-300 bg-white text-neutral-700 hover:border-neutral-500')
               }
-              aria-pressed={category === c}
+              aria-pressed={category === cat}
             >
-              {c}
+              {c.categories[cat]}
             </button>
           ))}
           <div className="ml-auto hidden text-xs text-neutral-500 sm:block">
-            {filtered.length} peças
+            {c.pieces(filtered.length)}
           </div>
         </div>
       </section>
@@ -240,7 +244,7 @@ export default function ModaArteDemo() {
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         {filtered.length === 0 ? (
           <div className="rounded-3xl border border-dashed border-neutral-300 bg-white/50 p-16 text-center">
-            <div className="text-neutral-400">Nada por aqui.</div>
+            <div className="text-neutral-400">{c.empty}</div>
             <button
               onClick={() => {
                 setCategory('Todos');
@@ -248,7 +252,7 @@ export default function ModaArteDemo() {
               }}
               className="mt-4 text-sm font-semibold text-neutral-900 underline"
             >
-              Limpar filtros
+              {c.clearFilters}
             </button>
           </div>
         ) : (
@@ -261,7 +265,7 @@ export default function ModaArteDemo() {
                 <button
                   onClick={() => setWish((w) => ({ ...w, [p.id]: !w[p.id] }))}
                   className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full border border-neutral-200 bg-white/90 backdrop-blur transition-colors hover:bg-white"
-                  aria-label={wish[p.id] ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+                  aria-label={wish[p.id] ? c.removeWish : c.addWish}
                 >
                   <Heart
                     className={
@@ -272,40 +276,40 @@ export default function ModaArteDemo() {
                 </button>
                 {p.isNew && (
                   <div className="absolute left-3 top-3 z-10 rounded-full bg-neutral-900 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
-                    Novo
+                    {c.isNew}
                   </div>
                 )}
                 <button
                   onClick={() => setDetail(p)}
                   className="block aspect-[3/4] w-full text-left"
-                  aria-label={`Ver detalhes de ${p.name}`}
+                  aria-label={c.seeDetails(nameOf(p))}
                 >
                   <div className="relative h-full w-full overflow-hidden bg-neutral-100">
                     <img
                       src={modaArteProducts[p.id]}
-                      alt={p.name}
+                      alt={nameOf(p)}
                       loading="lazy"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                   </div>
                 </button>
                 <div className="p-4">
-                  <div className="text-[10px] uppercase tracking-[0.16em] text-neutral-500">{p.category}</div>
+                  <div className="text-[10px] uppercase tracking-[0.16em] text-neutral-500">{c.categories[p.category]}</div>
                   <div className="mt-1 font-display text-base font-semibold text-neutral-900">
-                    {p.name}
+                    {nameOf(p)}
                   </div>
                   <div className="mt-2 flex items-center justify-between">
                     <div className="text-neutral-900">
-                      <span className="text-sm text-neutral-500">3× de </span>
-                      <span className="font-semibold">{brl(p.price / 3)}</span>
+                      <span className="text-sm text-neutral-500">{c.installments3}</span>
+                      <span className="font-semibold">{price(p.price / 3)}</span>
                     </div>
-                    <div className="text-sm font-semibold text-neutral-900">{brl(p.price)}</div>
+                    <div className="text-sm font-semibold text-neutral-900">{price(p.price)}</div>
                   </div>
                   <button
                     onClick={() => addToCart(p)}
                     className="mt-4 w-full rounded-full bg-neutral-900 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
                   >
-                    Adicionar
+                    {c.add}
                   </button>
                 </div>
               </article>
@@ -317,10 +321,9 @@ export default function ModaArteDemo() {
       {/* Trust strip */}
       <section className="bg-white/60 py-8">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 sm:grid-cols-4 sm:px-6">
-          <Trust icon="🚚" title="Frete grátis" desc="acima de R$ 500" />
-          <Trust icon="↩︎" title="Troca em 30 dias" desc="sem burocracia" />
-          <Trust icon="💳" title="Até 6× sem juros" desc="ou 5% no PIX" />
-          <Trust icon="✿" title="Ateliê no RJ" desc="feito por gente que ama" />
+          {c.trust(roundPrice).map((item, i) => (
+            <Trust key={item.title} icon={trustIcons[i]} title={item.title} desc={item.desc} />
+          ))}
         </div>
       </section>
 
@@ -330,21 +333,18 @@ export default function ModaArteDemo() {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
             <div>
               <div className="font-display text-lg font-semibold text-neutral-900">Moda & Arte</div>
-              <p className="mt-2 text-sm text-neutral-600">
-                Ateliê de moda autoral no Rio de Janeiro. Peças em pequenas
-                tiragens, feitas com carinho.
-              </p>
+              <p className="mt-2 text-sm text-neutral-600">{c.footerAbout}</p>
             </div>
             <div className="text-sm text-neutral-700">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-500">Loja</div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-500">{c.shop}</div>
               <div className="mt-3 space-y-1.5">
-                <div>Coleção Terra 25</div>
-                <div>Peças icônicas</div>
-                <div>Sob encomenda</div>
+                {c.shopLinks.map((link) => (
+                  <div key={link}>{link}</div>
+                ))}
               </div>
             </div>
             <div className="text-sm text-neutral-700">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-500">Contato</div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-500">{c.contact}</div>
               <div className="mt-3 space-y-1.5">
                 <div>ola@modaearte.com.br</div>
                 <div>(21) 99999-9999</div>
@@ -353,31 +353,29 @@ export default function ModaArteDemo() {
             </div>
           </div>
           <div className="mt-8 text-xs text-neutral-500">
-            © 2025 Moda & Arte · Demo por MX Studio
+            © 2025 Moda & Arte · {c.demoBy}
           </div>
         </div>
       </footer>
 
       {/* CART DRAWER */}
       {cartOpen && (
-        <div className="fixed inset-0 z-50 flex" role="dialog" aria-modal="true" aria-label="Carrinho">
+        <div className="fixed inset-0 z-50 flex" role="dialog" aria-modal="true" aria-label={c.cart}>
           <button
             className="flex-1 bg-black/60 backdrop-blur-sm"
             onClick={() => setCartOpen(false)}
-            aria-label="Fechar carrinho"
+            aria-label={c.closeCart}
           />
           <aside className="flex w-full max-w-md flex-col bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-5">
               <div>
-                <div className="font-display text-lg font-semibold text-neutral-900">Seu carrinho</div>
-                <div className="text-xs text-neutral-500">
-                  {itemsCount} {itemsCount === 1 ? 'peça' : 'peças'}
-                </div>
+                <div className="font-display text-lg font-semibold text-neutral-900">{c.yourCart}</div>
+                <div className="text-xs text-neutral-500">{c.pieces(itemsCount)}</div>
               </div>
               <button
                 onClick={() => setCartOpen(false)}
                 className="grid h-9 w-9 place-items-center rounded-full text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900"
-                aria-label="Fechar"
+                aria-label={c.close}
               >
                 <X className="h-5 w-5" />
               </button>
@@ -387,16 +385,14 @@ export default function ModaArteDemo() {
                 <div className="grid place-items-center px-6 py-16 text-center">
                   <ShoppingBag className="h-10 w-10 text-neutral-300" />
                   <div className="mt-4 font-display text-lg font-semibold text-neutral-900">
-                    Carrinho vazio
+                    {c.emptyCart}
                   </div>
-                  <p className="mt-2 text-sm text-neutral-500">
-                    Escolhe uma peça pra começar sua composição.
-                  </p>
+                  <p className="mt-2 text-sm text-neutral-500">{c.emptyCartText}</p>
                   <button
                     onClick={() => setCartOpen(false)}
                     className="mt-6 rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-semibold text-white"
                   >
-                    Continuar comprando
+                    {c.keepShopping}
                   </button>
                 </div>
               ) : (
@@ -406,20 +402,20 @@ export default function ModaArteDemo() {
                       <div className="relative h-20 w-16 shrink-0 overflow-hidden rounded-xl bg-neutral-100">
                         <img
                           src={modaArteProducts[item.product.id]}
-                          alt={item.product.name}
+                          alt={nameOf(item.product)}
                           className="absolute inset-0 h-full w-full object-cover"
                         />
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="font-display text-sm font-semibold text-neutral-900">
-                          {item.product.name}
+                          {nameOf(item.product)}
                         </div>
-                        <div className="text-xs text-neutral-500">{item.product.category}</div>
+                        <div className="text-xs text-neutral-500">{c.categories[item.product.category]}</div>
                         <div className="mt-2 flex items-center gap-2">
                           <button
                             onClick={() => changeQty(item.product.id, -1)}
                             className="grid h-7 w-7 place-items-center rounded-full border border-neutral-300 text-neutral-700 hover:bg-neutral-100"
-                            aria-label={`Diminuir ${item.product.name}`}
+                            aria-label={c.decrease(nameOf(item.product))}
                           >
                             <Minus className="h-3 w-3" />
                           </button>
@@ -429,21 +425,21 @@ export default function ModaArteDemo() {
                           <button
                             onClick={() => changeQty(item.product.id, 1)}
                             className="grid h-7 w-7 place-items-center rounded-full border border-neutral-300 text-neutral-700 hover:bg-neutral-100"
-                            aria-label={`Aumentar ${item.product.name}`}
+                            aria-label={c.increase(nameOf(item.product))}
                           >
                             <Plus className="h-3 w-3" />
                           </button>
                           <button
                             onClick={() => remove(item.product.id)}
                             className="ml-auto text-xs text-neutral-500 hover:text-red-600"
-                            aria-label={`Remover ${item.product.name}`}
+                            aria-label={c.remove(nameOf(item.product))}
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
                         </div>
                       </div>
                       <div className="text-right text-sm font-semibold text-neutral-900">
-                        {brl(item.product.price * item.qty)}
+                        {price(item.product.price * item.qty)}
                       </div>
                     </li>
                   ))}
@@ -457,41 +453,41 @@ export default function ModaArteDemo() {
                   <input
                     value={coupon}
                     onChange={(e) => setCoupon(e.target.value)}
-                    placeholder="Cupom (tenta MAX10)"
+                    placeholder={c.couponPlaceholder}
                     className="flex-1 rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
-                    aria-label="Código de cupom"
+                    aria-label={c.couponAria}
                   />
                   <button
                     onClick={applyCoupon}
                     className="rounded-full bg-neutral-900 px-4 py-2 text-sm font-semibold text-white"
                   >
-                    Aplicar
+                    {c.apply}
                   </button>
                 </div>
                 {couponApplied?.code === 'MAX10' && (
                   <div className="mt-2 flex items-center gap-1.5 text-xs text-emerald-700">
-                    <Check className="h-3.5 w-3.5" /> MAX10 aplicado — 10% OFF
+                    <Check className="h-3.5 w-3.5" /> {c.couponApplied}
                   </div>
                 )}
                 {couponApplied?.code === '__invalid__' && (
-                  <div className="mt-2 text-xs text-red-600">Cupom inválido.</div>
+                  <div className="mt-2 text-xs text-red-600">{c.couponInvalid}</div>
                 )}
                 <div className="mt-4 space-y-1.5 text-sm">
-                  <Row label="Subtotal" value={brl(subtotal)} />
+                  <Row label={c.subtotal} value={price(subtotal)} />
                   {couponApplied?.code === 'MAX10' && (
-                    <Row label="Desconto" value={`− ${brl(discount)}`} accent />
+                    <Row label={c.discount} value={`− ${price(discount)}`} accent />
                   )}
-                  <Row label="Frete" value={shipping === 0 ? 'Grátis' : brl(shipping)} />
+                  <Row label={c.shipping} value={shipping === 0 ? c.free : price(shipping)} />
                   <div className="mt-2 flex items-center justify-between border-t border-neutral-300 pt-2 text-base font-semibold text-neutral-900">
-                    <span>Total</span>
-                    <span>{brl(total)}</span>
+                    <span>{c.total}</span>
+                    <span>{price(total)}</span>
                   </div>
                 </div>
                 <button
                   onClick={goCheckout}
                   className="mt-4 w-full rounded-full bg-neutral-900 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
                 >
-                  Ir pro checkout
+                  {c.goCheckout}
                 </button>
               </div>
             )}
@@ -502,12 +498,12 @@ export default function ModaArteDemo() {
       {/* PRODUCT DETAIL MODAL */}
       {detail && (
         <div className="fixed inset-0 z-50 grid place-items-center p-4" role="dialog" aria-modal="true">
-          <button className="absolute inset-0 bg-black/70" onClick={() => setDetail(null)} aria-label="Fechar detalhes" />
+          <button className="absolute inset-0 bg-black/70" onClick={() => setDetail(null)} aria-label={c.closeDetails} />
           <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl bg-white shadow-2xl">
             <button
               onClick={() => setDetail(null)}
               className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-neutral-700"
-              aria-label="Fechar"
+              aria-label={c.close}
             >
               <X className="h-5 w-5" />
             </button>
@@ -515,26 +511,23 @@ export default function ModaArteDemo() {
               <div className="relative aspect-square overflow-hidden bg-neutral-100">
                 <img
                   src={modaArteProducts[detail.id]}
-                  alt={detail.name}
+                  alt={nameOf(detail)}
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>
               <div className="p-6 sm:p-8">
-                <div className="text-[10px] uppercase tracking-[0.16em] text-neutral-500">{detail.category}</div>
-                <h3 className="mt-2 font-display text-2xl font-semibold text-neutral-900">{detail.name}</h3>
+                <div className="text-[10px] uppercase tracking-[0.16em] text-neutral-500">{c.categories[detail.category]}</div>
+                <h3 className="mt-2 font-display text-2xl font-semibold text-neutral-900">{nameOf(detail)}</h3>
                 <div className="mt-2 flex items-center gap-2 text-sm text-neutral-600">
                   <Star className="h-4 w-4 fill-amber-500 text-amber-500" />
-                  <span>4.9 · 128 avaliações</span>
+                  <span>{c.reviews}</span>
                 </div>
-                <div className="mt-6 text-2xl font-semibold text-neutral-900">{brl(detail.price)}</div>
-                <div className="text-xs text-neutral-500">ou 6× de {brl(detail.price / 6)} sem juros</div>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-600">
-                  Peça feita à mão no ateliê do Botafogo, em tiragem limitada.
-                  Tecido em algodão pima com toque sedoso.
-                </p>
+                <div className="mt-6 text-2xl font-semibold text-neutral-900">{price(detail.price)}</div>
+                <div className="text-xs text-neutral-500">{c.installments6(price(detail.price / 6))}</div>
+                <p className="mt-4 text-sm leading-relaxed text-neutral-600">{c.productDescription}</p>
                 <div className="mt-6 flex items-center gap-2">
-                  <div className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">Tam.</div>
-                  {['P', 'M', 'G', 'GG'].map((s) => (
+                  <div className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">{c.size}</div>
+                  {c.sizes.map((s) => (
                     <button key={s} className="rounded-lg border border-neutral-300 px-3 py-1 text-sm hover:border-neutral-900">
                       {s}
                     </button>
@@ -547,7 +540,7 @@ export default function ModaArteDemo() {
                   }}
                   className="mt-6 w-full rounded-full bg-neutral-900 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
                 >
-                  Adicionar ao carrinho
+                  {c.addToCart}
                 </button>
               </div>
             </div>
@@ -558,15 +551,15 @@ export default function ModaArteDemo() {
       {/* CHECKOUT MODAL */}
       {checkoutStep > 0 && (
         <div className="fixed inset-0 z-50 grid place-items-center p-4" role="dialog" aria-modal="true">
-          <button className="absolute inset-0 bg-black/70" onClick={closeCheckout} aria-label="Fechar checkout" />
+          <button className="absolute inset-0 bg-black/70" onClick={closeCheckout} aria-label={c.closeCheckout} />
           <div className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl">
             <div className="border-b border-neutral-200 px-6 py-5">
               <div className="flex items-center justify-between">
-                <div className="font-display text-lg font-semibold text-neutral-900">Checkout</div>
+                <div className="font-display text-lg font-semibold text-neutral-900">{c.checkout}</div>
                 <button
                   onClick={closeCheckout}
                   className="grid h-9 w-9 place-items-center rounded-full text-neutral-500 hover:bg-neutral-100"
-                  aria-label="Fechar"
+                  aria-label={c.close}
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -587,25 +580,25 @@ export default function ModaArteDemo() {
             {checkoutStep === 1 && (
               <div className="px-6 py-6">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                  1 · Entrega
+                  {c.stepDelivery}
                 </div>
                 <div className="mt-4 grid grid-cols-1 gap-3">
                   <input
                     value={address.cep}
                     onChange={(e) => setAddress({ ...address, cep: e.target.value })}
-                    placeholder="CEP"
+                    placeholder={c.zip}
                     className="rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-neutral-900 focus:outline-none"
                   />
                   <input
                     value={address.street}
                     onChange={(e) => setAddress({ ...address, street: e.target.value })}
-                    placeholder="Rua, número e complemento"
+                    placeholder={c.street}
                     className="rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-neutral-900 focus:outline-none"
                   />
                   <input
                     value={address.city}
                     onChange={(e) => setAddress({ ...address, city: e.target.value })}
-                    placeholder="Cidade e estado"
+                    placeholder={c.city}
                     className="rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-neutral-900 focus:outline-none"
                   />
                 </div>
@@ -614,7 +607,7 @@ export default function ModaArteDemo() {
                   disabled={!address.cep || !address.street || !address.city}
                   className="mt-6 w-full rounded-full bg-neutral-900 py-3 text-sm font-semibold text-white disabled:opacity-50"
                 >
-                  Continuar
+                  {c.continue}
                 </button>
               </div>
             )}
@@ -622,7 +615,7 @@ export default function ModaArteDemo() {
             {checkoutStep === 2 && (
               <div className="px-6 py-6">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                  2 · Pagamento
+                  {c.stepPayment}
                 </div>
                 <div className="mt-4 grid grid-cols-2 gap-3">
                   {(['pix', 'card'] as const).map((p) => (
@@ -637,24 +630,24 @@ export default function ModaArteDemo() {
                       }
                     >
                       <div className="text-sm font-semibold text-neutral-900">
-                        {p === 'pix' ? 'PIX à vista' : 'Cartão de crédito'}
+                        {p === 'pix' ? c.pix : c.card}
                       </div>
                       <div className="mt-1 text-xs text-neutral-500">
-                        {p === 'pix' ? '5% OFF · aprovação em segundos' : 'até 6× sem juros'}
+                        {p === 'pix' ? c.pixDesc : c.cardDesc}
                       </div>
                     </button>
                   ))}
                 </div>
                 <div className="mt-6 rounded-2xl bg-neutral-50 p-4 text-sm">
-                  <Row label="Subtotal" value={brl(subtotal)} />
+                  <Row label={c.subtotal} value={price(subtotal)} />
                   {couponApplied?.code === 'MAX10' && (
-                    <Row label="Desconto" value={`− ${brl(discount)}`} />
+                    <Row label={c.discount} value={`− ${price(discount)}`} />
                   )}
-                  <Row label="Frete" value={shipping === 0 ? 'Grátis' : brl(shipping)} />
+                  <Row label={c.shipping} value={shipping === 0 ? c.free : price(shipping)} />
                   <div className="mt-2 flex items-center justify-between border-t border-neutral-300 pt-2 font-semibold text-neutral-900">
-                    <span>Total</span>
+                    <span>{c.total}</span>
                     <span>
-                      {brl(address.payment === 'pix' ? total * 0.95 : total)}
+                      {price(address.payment === 'pix' ? total * 0.95 : total)}
                     </span>
                   </div>
                 </div>
@@ -663,13 +656,13 @@ export default function ModaArteDemo() {
                     onClick={() => setCheckoutStep(1)}
                     className="flex-1 rounded-full border border-neutral-300 py-3 text-sm font-semibold text-neutral-900"
                   >
-                    Voltar
+                    {c.back}
                   </button>
                   <button
                     onClick={finishCheckout}
                     className="flex-1 rounded-full bg-neutral-900 py-3 text-sm font-semibold text-white"
                   >
-                    Finalizar
+                    {c.finish}
                   </button>
                 </div>
               </div>
@@ -681,12 +674,9 @@ export default function ModaArteDemo() {
                   <Check className="h-8 w-8" />
                 </div>
                 <div className="mt-6 font-display text-2xl font-semibold text-neutral-900">
-                  Pedido feito!
+                  {c.orderDone}
                 </div>
-                <p className="mt-3 text-sm text-neutral-600">
-                  Enviamos um e-mail com os detalhes. Este é apenas um demo — nenhum
-                  pagamento foi processado.
-                </p>
+                <p className="mt-3 text-sm text-neutral-600">{c.orderDoneText}</p>
                 <button
                   onClick={() => {
                     setCheckoutStep(0);
@@ -694,7 +684,7 @@ export default function ModaArteDemo() {
                   }}
                   className="mt-8 rounded-full bg-neutral-900 px-6 py-3 text-sm font-semibold text-white"
                 >
-                  Continuar comprando
+                  {c.keepShopping}
                 </button>
               </div>
             )}

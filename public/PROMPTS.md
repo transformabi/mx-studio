@@ -296,3 +296,68 @@ Rode 4 vezes trocando "person" por:
 5. Se Flow oferecer "style presets", teste com "Kinfolk", "Editorial magazine" ou "Minimalist lifestyle"
 
 Bom trabalho e me manda quando tiver tudo — vou plugar direto no código.
+
+---
+
+# Novas demos (set/2026) — 20 fotos
+
+Enquanto estas fotos não existirem, o site mostra imagens provisórias (via `ImgFallback`). Salve cada arquivo exatamente no caminho indicado, em `.webp`.
+
+## 7 · LUMI ODONTOLOGIA
+
+### heros/lumi-odonto.webp (aspect ratio 16:10)
+```
+Editorial photograph of a bright minimalist cosmetic dental clinic reception in Rio de Janeiro, white and pale sky-blue palette, curved light oak counter, soft daylight, calm premium healthcare atmosphere, no people, no text, 16:10 landscape
+```
+
+### lumi-odonto/clinic.webp (aspect ratio 4:5)
+```
+Editorial interior photograph of a modern dental treatment room with a white dental chair, pale blue accents, large window with soft natural light, spotless minimalist design, premium healthcare editorial, no people, 4:5 portrait
+```
+
+### lumi-odonto/team/d1.webp · d2.webp · d3.webp (aspect ratio 4:5)
+```
+Editorial portrait of a Brazilian [woman dentist in her mid 40s / man orthodontist in his late 30s / woman implant dentist in her early 40s], wearing a light blue clinical coat, warm confident smile, soft natural light, blurred bright clinic background, premium healthcare editorial, 4:5 portrait
+```
+
+## 8 · ÍRIS ESTÉTICA AVANÇADA
+
+### heros/iris-estetica.webp (aspect ratio 16:10)
+```
+Editorial photograph of a luxurious aesthetic clinic treatment room with blush pink and warm nude tones, curved plaster walls, velvet chair, soft diffused light, serene spa atmosphere, no people, no text, 16:10 landscape
+```
+
+### iris-estetica/space.webp (aspect ratio 3:4)
+```
+Editorial interior photograph of an elegant aesthetics clinic corridor with arched doorway, warm nude and dusty rose palette, travertine details, soft golden light, high-end beauty editorial, 3:4 portrait
+```
+
+### iris-estetica/procedures/*.webp (aspect ratio 4:3)
+Troque o tema entre colchetes em cada arquivo:
+- `bioestimulador` — close-up of a woman's glowing firm cheek skin
+- `toxina` — calm woman with relaxed forehead lying on a treatment bed, soft focus
+- `laser` — aesthetic laser handpiece near a woman's face, safety glasses
+- `peeling` — skincare professional applying a clear peel with a fan brush
+- `criolipolise` — cryolipolysis device applicator on the abdomen, clinical but elegant
+- `drenagem` — therapist's hands performing a gentle lymphatic drainage massage on legs
+```
+Editorial beauty photograph of [tema], warm nude and blush tones, soft diffused light, clean minimalist setting, premium aesthetics clinic editorial, no text, 4:3 landscape
+```
+
+## 9 · ALICERCE ENGENHARIA
+
+### heros/alicerce-construtora.webp (aspect ratio 16:9)
+```
+Cinematic photograph of a modern concrete house under construction at golden hour in Rio de Janeiro, exposed concrete structure, scaffolding, amber sunlight, dramatic sky, architectural photography, no people, no text, 16:9 cinematic
+```
+
+### alicerce/projects/o1.webp … o6.webp (aspect ratio 4:3)
+- `o1` — contemporary hillside house with concrete and glass in lush forest
+- `o2` — mid-rise office building with modern glass facade in a historic downtown
+- `o3` — restored colonial house with modern interior retrofit
+- `o4` — minimalist house with wooden facade and tropical garden
+- `o5` — boutique concept store with large storefront glass and warm lighting
+- `o6` — renovated penthouse terrace with ocean view
+```
+Architectural photograph of a [tema] in Rio de Janeiro, finished project, golden hour light, sharp lines, premium construction portfolio, no people, no text, 4:3 landscape
+```

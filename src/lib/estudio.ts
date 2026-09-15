@@ -23,10 +23,17 @@ export type DemoSlug =
   | 'clinica-sereno'
   | 'motta-advogados'
   | 'costa-imoveis'
-  | 'rota-clara';
+  | 'rota-clara'
+  | 'lumi-odonto'
+  | 'iris-estetica'
+  | 'alicerce-construtora';
+
+/** Filter groups on the home page. */
+export type DemoGroup = 'saude' | 'local' | 'digital';
 
 export type Demo = {
   slug: DemoSlug;
+  group: DemoGroup;
   vertical: string;
   clientName: string;
   tagline: string;
@@ -40,6 +47,7 @@ export type Demo = {
 export const demos: Demo[] = [
   {
     slug: 'moda-arte',
+    group: 'digital',
     vertical: 'E-commerce',
     clientName: 'Moda & Arte',
     tagline: 'Loja de moda autoral',
@@ -56,6 +64,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'restaurante-terra',
+    group: 'local',
     vertical: 'Gastronomia',
     clientName: 'Terra Casa de Fogo',
     tagline: 'Restaurante de alta gastronomia',
@@ -72,6 +81,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'clinica-sereno',
+    group: 'saude',
     vertical: 'Saúde',
     clientName: 'Clínica Sereno',
     tagline: 'Clínica multiprofissional',
@@ -88,6 +98,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'motta-advogados',
+    group: 'local',
     vertical: 'Advocacia',
     clientName: 'Motta Advogados',
     tagline: 'Escritório de advocacia',
@@ -104,6 +115,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'costa-imoveis',
+    group: 'local',
     vertical: 'Imobiliária',
     clientName: 'Costa Imóveis',
     tagline: 'Vitrine imobiliária boutique',
@@ -120,6 +132,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'rota-clara',
+    group: 'digital',
     vertical: 'Infoproduto',
     clientName: 'Rota Clara',
     tagline: 'Curso online + landing de vendas',
@@ -132,6 +145,57 @@ export const demos: Demo[] = [
       { label: '1.8s', value: 'LCP no 4G' },
       { label: '735 KB', value: 'a página inteira' },
       { label: 'Checkout', value: 'em 3 etapas' },
+    ],
+  },
+  {
+    slug: 'lumi-odonto',
+    group: 'saude',
+    vertical: 'Odontologia',
+    clientName: 'Lumi Odontologia',
+    tagline: 'Clínica odontológica estética',
+    summary:
+      'Simulador interativo de clareamento, tratamentos em abas, equipe com CRO e agendamento guiado em 3 passos.',
+    accent: '#7DD3FC',
+    year: '2026',
+    scope: ['Simulador de clareamento', 'Tratamentos em abas', 'Equipe e CRO', 'Agendamento guiado'],
+    metrics: [
+      { label: 'Simulador', value: 'de clareamento' },
+      { label: 'Agenda', value: 'em 3 passos' },
+      { label: 'CRO', value: 'responsável técnico' },
+    ],
+  },
+  {
+    slug: 'iris-estetica',
+    group: 'saude',
+    vertical: 'Estética',
+    clientName: 'Íris Estética Avançada',
+    tagline: 'Clínica de estética avançada',
+    summary:
+      'Protocolos filtráveis por área, quiz de avaliação com recomendação, montador de pacotes com preço em tempo real e reserva.',
+    accent: '#F0ABFC',
+    year: '2026',
+    scope: ['Quiz de avaliação', 'Protocolos por área', 'Pacotes de sessões', 'Reserva online'],
+    metrics: [
+      { label: 'Quiz', value: 'de avaliação' },
+      { label: 'Pacotes', value: 'preço em tempo real' },
+      { label: 'Filtro', value: 'por área do corpo' },
+    ],
+  },
+  {
+    slug: 'alicerce-construtora',
+    group: 'local',
+    vertical: 'Construtora',
+    clientName: 'Alicerce Engenharia',
+    tagline: 'Construtora e reformas',
+    summary:
+      'Simulador de orçamento por tipo, área e padrão, portfólio de obras com filtro, etapas da obra interativas e pedido de visita técnica.',
+    accent: '#FBBF24',
+    year: '2026',
+    scope: ['Simulador de orçamento', 'Portfólio de obras', 'Etapas da obra', 'Visita técnica'],
+    metrics: [
+      { label: 'Orçamento', value: 'em tempo real' },
+      { label: 'Obras', value: 'com filtro' },
+      { label: 'Etapas', value: 'da obra' },
     ],
   },
 ];

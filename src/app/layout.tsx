@@ -5,6 +5,13 @@ import { EstudioNav } from '@/components/nav';
 import { EstudioFooter } from '@/components/footer';
 import { ImgFallback } from '@/components/img-fallback';
 import { HideOnCarrossel } from '@/components/hide-on-carrossel';
+import { CustomCursor } from '@/components/fx/custom-cursor';
+import { ScrollProgress } from '@/components/fx/scroll-progress';
+import { SmoothScroll } from '@/components/fx/smooth-scroll';
+import { localeInfo } from '@/i18n/config';
+import { messages } from '@/i18n/messages';
+import { I18nProvider } from '@/i18n/provider';
+import { getI18n, getLocale } from '@/i18n/server';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -24,45 +31,47 @@ const instrumentSans = Instrument_Sans({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://maxcosta.studio'),
-  title: {
-    default: 'MX Studio · Estúdio digital freelance',
-    template: '%s · MX Studio',
-  },
-  description:
-    'Sites, e-commerces e produtos digitais sob medida em Next.js. Portfólio com demos funcionais em 6 nichos: e-commerce, gastronomia, saúde, jurídico, imobiliário, infoproduto.',
-  keywords: [
-    'freelance next.js',
-    'desenvolvedor freelancer',
-    'sites sob medida',
-    'e-commerce next.js',
-    'Rio de Janeiro',
-    'MX Studio',
-  ],
-  openGraph: {
-    title: 'MX Studio · Estúdio digital freelance',
-    description:
-      'Sites que fazem seu negócio parecer sério — e que vendem. Portfólio com 6 demos funcionais.',
-    type: 'website',
-    locale: 'pt_BR',
-  },
-  robots: { index: true, follow: true },
-};
+export function generateMetadata(): Metadata {
+  const locale = getLocale();
+  const t = messages[locale].meta;
+  return {
+    metadataBase: new URL('https://maxcosta.studio'),
+    title: {
+      default: t.title,
+      template: '%s · MX Studio',
+    },
+    description: t.description,
+    keywords: t.keywords,
+    openGraph: {
+      title: t.title,
+      description: t.ogDescription,
+      type: 'website',
+      locale: localeInfo[locale].og,
+    },
+    robots: { index: true, follow: true },
+  };
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const { locale, currency, rates, t } = await getI18n();
+
   return (
     <html
-      lang="pt-BR"
+      lang={localeInfo[locale].htmlLang}
       className={`${spaceGrotesk.variable} ${instrumentSerif.variable} ${instrumentSans.variable}`}
     >
       <body className="bg-black text-white antialiased">
-        <ImgFallback />
-        <EstudioNav />
-        <div className="relative">{children}</div>
-        <HideOnCarrossel>
-          <EstudioFooter />
-        </HideOnCarrossel>
+        <I18nProvider locale={locale} currency={currency} rates={rates}>
+          <SmoothScroll />
+          <ScrollProgress />
+          <CustomCursor />
+          <ImgFallback />
+          <EstudioNav t={t.nav} prefs={t.prefs} />
+          <div className="relative">{children}</div>
+          <HideOnCarrossel>
+            <EstudioFooter />
+          </HideOnCarrossel>
+        </I18nProvider>
       </body>
     </html>
   );

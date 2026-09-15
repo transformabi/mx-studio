@@ -17,9 +17,11 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .page-curtain { display: none; }
 }
 
 body {
@@ -57,7 +59,119 @@ body {
   animation: marquee 40s linear infinite;
   will-change: transform;
 }
+.marquee-track.is-reverse { animation-direction: reverse; }
 .marquee-mask {
   mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+
+/* Page transition: two curtains lift, then the page rises (see app/template.tsx) */
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  transform-origin: top;
+  animation: curtain-up 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+.page-curtain--lime { background: #c6ff3b; animation-delay: 0.12s; }
+.page-curtain--ink { background: #0a0a0a; }
+@keyframes curtain-up {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(0); }
+}
+.page-enter { animation: page-enter 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
+/* Ends on `transform: none` so fixed-position modals inside pages keep working. */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Word-by-word heading reveal (components/fx/words.tsx) */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0 0.06em 0.1em 0;
+  margin: 0 -0.06em -0.1em 0;
+}
+.word-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: word-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+}
+@keyframes word-up {
+  to { transform: none; }
+}
+
+/* Custom cursor (components/fx/custom-cursor.tsx) */
+html.has-custom-cursor,
+html.has-custom-cursor *:not(input):not(textarea) {
+  cursor: none !important;
+}
+.cursor-ring {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1), height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s, border-color 0.3s;
+}
+.cursor-ring.is-hover {
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  background: #fff;
+  border-color: #fff;
+}
+.cursor-ring.has-label {
+  width: 96px;
+  height: 96px;
+  margin: -48px 0 0 -48px;
+  background: #c6ff3b;
+  border-color: #c6ff3b;
+}
+.cursor-ring span {
+  padding: 0 10px;
+  text-align: center;
+  font: 600 11px/1.15 var(--font-space-grotesk), system-ui, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 9999px;
+  background: #c6ff3b;
+  transition: transform 0.25s;
+}
+.cursor-dot.is-hover { transform: scale(0); }
+
+/* Lit border for components/fx/spotlight-card.tsx */
+.spotlight-border {
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--sx, 50%) var(--sy, 50%), rgba(198, 255, 59, 0.7), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Film grain overlay */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22);
 }

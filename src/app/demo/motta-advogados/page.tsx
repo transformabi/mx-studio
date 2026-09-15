@@ -4,86 +4,33 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight, Building2, Check, Gavel, Scale, ShieldCheck, Users, X } from 'lucide-react';
 import { DemoFrame } from '@/components/demo-frame';
 import { heros, mottaPartners } from '@/lib/demo-images';
+import { useI18n } from '@/i18n/provider';
+import { content } from './content';
 
-type Area = {
-  id: string;
-  name: string;
-  short: string;
-  bio: string;
-  bullets: string[];
-  cases: string;
-  icon: JSX.Element;
+type AreaId = 'empresarial' | 'tributario' | 'trabalhista' | 'civel';
+
+const areaIds: AreaId[] = ['empresarial', 'tributario', 'trabalhista', 'civel'];
+
+const areaIcons: Record<AreaId, JSX.Element> = {
+  empresarial: <Building2 className="h-5 w-5" />,
+  tributario: <Scale className="h-5 w-5" />,
+  trabalhista: <Users className="h-5 w-5" />,
+  civel: <Gavel className="h-5 w-5" />,
 };
 
-const areas: Area[] = [
-  {
-    id: 'empresarial',
-    name: 'Direito empresarial',
-    short: 'Constituição, contratos, disputas.',
-    bio: 'Cuidamos da vida jurídica de empresas do porte de PMEs a grupos econômicos. Do contrato societário à disputa comercial complexa.',
-    bullets: [
-      'Constituição societária e reestruturação',
-      'Contratos comerciais e M&A',
-      'Recuperação judicial e falências',
-      'Compliance e governança',
-    ],
-    cases: 'Atuação desde 2011',
-    icon: <Building2 className="h-5 w-5" />,
-  },
-  {
-    id: 'tributario',
-    name: 'Tributário',
-    short: 'Planejamento e contencioso fiscal.',
-    bio: 'Reduzimos a carga tributária dentro da lei e defendemos autuações administrativas e judiciais em todas as instâncias.',
-    bullets: [
-      'Planejamento tributário',
-      'Contencioso administrativo (CARF)',
-      'Ações declaratórias e repetição',
-      'Consultoria em ICMS, ISS, PIS/COFINS',
-    ],
-    cases: 'Contencioso administrativo e judicial',
-    icon: <Scale className="h-5 w-5" />,
-  },
-  {
-    id: 'trabalhista',
-    name: 'Trabalhista',
-    short: 'Defesa empresarial e assessoria.',
-    bio: 'Assessoria preventiva e defesa em reclamações trabalhistas, com foco na redução de passivos e no compliance da folha.',
-    bullets: [
-      'Consultoria preventiva',
-      'Defesa em reclamações',
-      'Acordos individuais e coletivos',
-      'Auditoria de folha e riscos',
-    ],
-    cases: 'Defesa empresarial e prevenção',
-    icon: <Users className="h-5 w-5" />,
-  },
-  {
-    id: 'civel',
-    name: 'Cível',
-    short: 'Contratos, responsabilidade, imóveis.',
-    bio: 'Atuação em disputas cíveis complexas: contratos, responsabilidade civil, imobiliário, sucessões e família de alta renda.',
-    bullets: [
-      'Contratos e responsabilidade civil',
-      'Imobiliário e locações',
-      'Família e sucessões',
-      'Recuperação de crédito',
-    ],
-    cases: '17 anos de atuação',
-    icon: <Gavel className="h-5 w-5" />,
-  },
-];
-
-const urgencyOptions = [
-  { v: 'baixa', l: 'Consultiva · sem prazo', desc: 'Quero entender melhor uma situação.' },
-  { v: 'media', l: 'Preventiva · sem crise', desc: 'Estou me organizando pra algo.' },
-  { v: 'alta', l: 'Urgente · há prazo', desc: 'Já recebi uma notificação, citação ou ação.' },
+const partners = [
+  { name: 'Dr. Henrique Motta', oab: 'OAB/RJ 138.472', photo: mottaPartners.p1 },
+  { name: 'Dra. Fernanda Ferreira', oab: 'OAB/RJ 142.900', photo: mottaPartners.p2 },
+  { name: 'Dr. Rodrigo Barreto', oab: 'OAB/RJ 156.203', photo: mottaPartners.p3 },
 ];
 
 export default function MottaDemo() {
-  const [drawerArea, setDrawerArea] = useState<Area | null>(null);
+  const { locale, money } = useI18n();
+  const c = content[locale];
+
+  const [drawerArea, setDrawerArea] = useState<AreaId | null>(null);
   const [step, setStep] = useState<0 | 1 | 2 | 3 | 4>(0);
-  const [areaSel, setAreaSel] = useState<Area | null>(null);
+  const [areaSel, setAreaSel] = useState<AreaId | null>(null);
   const [urgency, setUrgency] = useState<string | null>(null);
   const [detail, setDetail] = useState('');
   const [name, setName] = useState('');
@@ -94,13 +41,13 @@ export default function MottaDemo() {
 
   const nextStep = () => {
     const e: Record<string, string> = {};
-    if (step === 1 && !areaSel) e.area = 'Escolha uma área.';
-    if (step === 2 && !urgency) e.urgency = 'Escolha uma opção.';
-    if (step === 3 && detail.trim().length < 20) e.detail = 'Descreva com um pouco mais de detalhe.';
+    if (step === 1 && !areaSel) e.area = c.errors.area;
+    if (step === 2 && !urgency) e.urgency = c.errors.urgency;
+    if (step === 3 && detail.trim().length < 20) e.detail = c.errors.detail;
     if (step === 4) {
-      if (!name.trim()) e.name = 'Nome é obrigatório.';
-      if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) e.email = 'E-mail inválido.';
-      if (!phone.match(/\d{8,}/)) e.phone = 'Telefone incompleto.';
+      if (!name.trim()) e.name = c.errors.name;
+      if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) e.email = c.errors.email;
+      if (!phone.match(/\d{8,}/)) e.phone = c.errors.phone;
     }
     setErrors(e);
     if (Object.keys(e).length === 0) {
@@ -113,9 +60,9 @@ export default function MottaDemo() {
 
   const finalSubmit = () => {
     const e: Record<string, string> = {};
-    if (!name.trim()) e.name = 'Nome é obrigatório.';
-    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) e.email = 'E-mail inválido.';
-    if (!phone.match(/\d{8,}/)) e.phone = 'Telefone incompleto.';
+    if (!name.trim()) e.name = c.errors.name;
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) e.email = c.errors.email;
+    if (!phone.match(/\d{8,}/)) e.phone = c.errors.phone;
     setErrors(e);
     if (Object.keys(e).length === 0) {
       setSubmitted(true);
@@ -150,20 +97,20 @@ export default function MottaDemo() {
           </div>
           <nav className="hidden items-center gap-1 sm:flex">
             <a href="#areas" className="rounded-full px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-100">
-              Áreas
+              {c.navAreas}
             </a>
             <a href="#socios" className="rounded-full px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-100">
-              Sócios
+              {c.navPartners}
             </a>
             <a href="#casos" className="rounded-full px-3 py-1.5 text-sm text-neutral-700 hover:bg-neutral-100">
-              Casos
+              {c.navCases}
             </a>
           </nav>
           <button
             onClick={() => setStep(1)}
             className="inline-flex items-center gap-1.5 rounded-full bg-[#1e1b4b] px-4 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
           >
-            Iniciar consulta
+            {c.startConsult}
             <ArrowRight className="h-4 w-4" />
           </button>
         </div>
@@ -173,42 +120,37 @@ export default function MottaDemo() {
       <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#a78bfa]">
-            Desde 2008 · Rio de Janeiro
+            {c.heroEyebrow}
           </div>
           <h1 className="mt-4 max-w-2xl font-display text-4xl font-semibold leading-[1.02] text-[#1e1b4b] sm:text-5xl lg:text-6xl">
-            Um escritório para quando{' '}
+            {c.heroTitleA}{' '}
             <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal">
-              a causa importa
+              {c.heroTitleEm}
             </em>
             .
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-neutral-700 sm:text-lg">
-            Atuamos em direito empresarial, tributário, trabalhista e cível para
-            empresas e pessoas físicas de alta renda que exigem excelência
-            técnica e presença próxima.
-          </p>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-neutral-700 sm:text-lg">{c.heroLead}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <button
               onClick={() => setStep(1)}
               className="inline-flex items-center gap-1.5 rounded-full bg-[#1e1b4b] px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
             >
-              Iniciar consulta
+              {c.startConsult}
               <ArrowRight className="h-4 w-4" />
             </button>
             <a
               href="#areas"
               className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-[#1e1b4b] transition-colors hover:bg-neutral-50"
             >
-              Ver áreas de atuação
+              {c.seeAreas}
             </a>
           </div>
 
           <div className="mt-10 grid grid-cols-2 gap-6 border-t border-neutral-200 pt-8 sm:grid-cols-4">
-            <Stat kpi="17+" label="anos de banca" />
-            <Stat kpi="6" label="advogados no time" />
-            <Stat kpi="24h" label="para primeiro retorno" />
-            <Stat kpi="4" label="áreas de atuação" />
+            {c.stats.map((s) => (
+              <Stat key={s.label} kpi={s.kpi} label={s.label} />
+            ))}
           </div>
         </div>
 
@@ -217,15 +159,14 @@ export default function MottaDemo() {
             <div className="relative aspect-[3/4] overflow-hidden">
               <img
                 src={heros['motta-advogados']}
-                alt="Biblioteca Motta Advogados"
+                alt={c.heroAlt}
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/25" />
             </div>
             <blockquote className="absolute inset-x-6 bottom-6 rounded-2xl bg-white/95 p-5 shadow-lg backdrop-blur">
               <p style={{ fontFamily: 'var(--font-instrument-serif)' }} className="text-lg italic leading-snug text-[#1e1b4b]">
-                "A gente não vende resultado. A gente compromete presença
-                técnica no seu problema."
+                {c.quote}
               </p>
               <div className="mt-4 flex items-center gap-3 border-t border-neutral-200 pt-4">
                 <img
@@ -235,7 +176,7 @@ export default function MottaDemo() {
                 />
                 <div className="text-xs">
                   <div className="font-semibold text-[#1e1b4b]">Dr. Henrique Motta</div>
-                  <div className="text-neutral-600">Sócio-fundador · OAB/RJ 138.472</div>
+                  <div className="text-neutral-600">{c.founderRole} · OAB/RJ 138.472</div>
                 </div>
               </div>
             </blockquote>
@@ -247,32 +188,32 @@ export default function MottaDemo() {
       <section id="areas" className="border-t border-neutral-200 bg-white py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#a78bfa]">
-            Áreas de atuação
+            {c.areasEyebrow}
           </div>
           <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold text-[#1e1b4b] sm:text-4xl">
-            Quatro áreas.{' '}
+            {c.areasTitleA}{' '}
             <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal">
-              Uma banca.
+              {c.areasTitleEm}
             </em>
           </h2>
 
           <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
-            {areas.map((a) => (
+            {areaIds.map((id) => (
               <button
-                key={a.id}
-                onClick={() => setDrawerArea(a)}
+                key={id}
+                onClick={() => setDrawerArea(id)}
                 className="group flex items-start gap-5 rounded-3xl border border-neutral-200 bg-white p-6 text-left transition-all hover:border-[#1e1b4b] hover:-translate-y-1 hover:shadow-lg"
               >
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-[#1e1b4b]/20 bg-[#1e1b4b]/5 text-[#1e1b4b] transition-colors group-hover:bg-[#1e1b4b] group-hover:text-white">
-                  {a.icon}
+                  {areaIcons[id]}
                 </span>
                 <div className="min-w-0 flex-1">
                   <div className="font-display text-lg font-semibold text-[#1e1b4b]">
-                    {a.name}
+                    {c.areas[id].name}
                   </div>
-                  <p className="mt-1 text-sm text-neutral-600">{a.short}</p>
+                  <p className="mt-1 text-sm text-neutral-600">{c.areas[id].short}</p>
                   <div className="mt-4 text-xs font-medium uppercase tracking-[0.14em] text-[#a78bfa]">
-                    {a.cases}
+                    {c.areas[id].cases}
                   </div>
                 </div>
                 <ArrowRight className="mt-2 h-5 w-5 shrink-0 text-neutral-400 transition-transform group-hover:translate-x-1 group-hover:text-[#1e1b4b]" />
@@ -285,21 +226,17 @@ export default function MottaDemo() {
       {/* Sócios */}
       <section id="socios" className="bg-[#f8f7f4] py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#a78bfa]">Quem cuida</div>
+          <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#a78bfa]">{c.partnersEyebrow}</div>
           <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold text-[#1e1b4b] sm:text-4xl">
-            Os sócios que{' '}
+            {c.partnersTitleA}{' '}
             <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal">
-              olham o seu caso
+              {c.partnersTitleEm}
             </em>{' '}
-            no olho.
+            {c.partnersTitleB}
           </h2>
 
           <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
-            {[
-              { name: 'Dr. Henrique Motta', role: 'Sócio-fundador', area: 'Direito empresarial · Tributário', oab: 'OAB/RJ 138.472', photo: mottaPartners.p1 },
-              { name: 'Dra. Fernanda Ferreira', role: 'Sócia', area: 'Trabalhista · Cível', oab: 'OAB/RJ 142.900', photo: mottaPartners.p2 },
-              { name: 'Dr. Rodrigo Barreto', role: 'Sócio', area: 'Tributário · Contencioso', oab: 'OAB/RJ 156.203', photo: mottaPartners.p3 },
-            ].map((s) => (
+            {partners.map((s, i) => (
               <div key={s.name} className="overflow-hidden rounded-3xl border border-neutral-200 bg-white">
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-100">
                   <img
@@ -311,9 +248,9 @@ export default function MottaDemo() {
                 </div>
                 <div className="p-6">
                   <div className="font-display text-lg font-semibold text-[#1e1b4b]">{s.name}</div>
-                  <div className="text-xs text-neutral-500">{s.role}</div>
+                  <div className="text-xs text-neutral-500">{c.partners[i].role}</div>
                   <div className="mt-4 border-t border-neutral-200 pt-4 text-sm text-neutral-700">
-                    {s.area}
+                    {c.partners[i].area}
                   </div>
                   <div className="mt-1 text-xs text-neutral-500">{s.oab}</div>
                 </div>
@@ -326,30 +263,23 @@ export default function MottaDemo() {
       {/* Casos */}
       <section id="casos" className="bg-white py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#a78bfa]">Casos-tipo</div>
+          <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#a78bfa]">{c.casesEyebrow}</div>
           <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold text-[#1e1b4b] sm:text-4xl">
-            Situações reais em que atuamos.
+            {c.casesTitle}
           </h2>
 
           <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { area: 'Tributário', title: 'Repetição de indébito ICMS-ST', scope: 'Levantamento de créditos e ação de repetição' },
-              { area: 'Empresarial', title: 'Reestruturação societária', scope: 'Planejamento societário e redação do acordo' },
-              { area: 'Trabalhista', title: 'Rescisão de alto valor', scope: 'Negociação e formalização do acordo' },
-              { area: 'Cível', title: 'Ação de despejo comercial', scope: 'Ação de despejo e acompanhamento processual' },
-              { area: 'Tributário', title: 'Defesa CARF ISS', scope: 'Defesa administrativa perante o CARF' },
-              { area: 'Empresarial', title: 'M&A de médio porte', scope: 'Due diligence e assessoria na negociação' },
-            ].map((c) => (
-              <div key={c.title} className="group rounded-2xl border border-neutral-200 bg-[#f8f7f4] p-5 transition-colors hover:border-[#1e1b4b]">
+            {c.cases.map((item) => (
+              <div key={item.title} className="group rounded-2xl border border-neutral-200 bg-[#f8f7f4] p-5 transition-colors hover:border-[#1e1b4b]">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#a78bfa]">
-                  {c.area}
+                  {item.area}
                 </div>
                 <div className="mt-2 font-display text-base font-semibold text-[#1e1b4b]">
-                  {c.title}
+                  {item.title}
                 </div>
                 <div className="mt-4 flex items-center gap-2 border-t border-neutral-200 pt-4 text-sm text-neutral-700">
                   <Check className="h-4 w-4 text-[#a78bfa]" />
-                  {c.scope}
+                  {item.scope}
                 </div>
               </div>
             ))}
@@ -357,8 +287,7 @@ export default function MottaDemo() {
 
           <div className="mt-8 rounded-2xl border border-dashed border-neutral-300 bg-[#f8f7f4]/50 p-5 text-xs text-neutral-600">
             <ShieldCheck className="mr-2 inline h-4 w-4 text-[#1e1b4b]" />
-            Em conformidade com o Provimento 205/2021 do CFOAB: esta seção descreve
-            o tipo de atuação, sem divulgação de resultados, valores ou honorários.
+            {c.compliance}
           </div>
         </div>
       </section>
@@ -367,21 +296,18 @@ export default function MottaDemo() {
       <section className="bg-[#1e1b4b] py-16 text-white">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 text-center sm:px-6">
           <h2 className="font-display text-3xl font-semibold sm:text-5xl">
-            Precisa de{' '}
+            {c.ctaTitleA}{' '}
             <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal">
-              orientação jurídica
+              {c.ctaTitleEm}
             </em>
             ?
           </h2>
-          <p className="max-w-2xl text-white/70">
-            Consulta inicial confidencial. Respondemos em até 24 horas úteis
-            com uma triagem gratuita e um orçamento se for o caso.
-          </p>
+          <p className="max-w-2xl text-white/70">{c.ctaLead}</p>
           <button
             onClick={() => setStep(1)}
             className="inline-flex items-center gap-1.5 rounded-full bg-[#a78bfa] px-6 py-3 text-sm font-semibold text-[#1e1b4b] transition-transform hover:-translate-y-0.5"
           >
-            Iniciar consulta triada
+            {c.ctaButton}
             <ArrowRight className="h-4 w-4" />
           </button>
         </div>
@@ -390,35 +316,35 @@ export default function MottaDemo() {
       {/* AREA DRAWER */}
       {drawerArea && (
         <div className="fixed inset-0 z-50 flex" role="dialog" aria-modal="true">
-          <button className="flex-1 bg-black/60" onClick={() => setDrawerArea(null)} aria-label="Fechar" />
+          <button className="flex-1 bg-black/60" onClick={() => setDrawerArea(null)} aria-label={c.close} />
           <aside className="flex w-full max-w-lg flex-col bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-5">
               <div className="flex items-center gap-3">
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#1e1b4b] text-white">
-                  {drawerArea.icon}
+                  {areaIcons[drawerArea]}
                 </span>
                 <div>
                   <div className="font-display text-lg font-semibold text-[#1e1b4b]">
-                    {drawerArea.name}
+                    {c.areas[drawerArea].name}
                   </div>
-                  <div className="text-xs text-neutral-500">{drawerArea.cases}</div>
+                  <div className="text-xs text-neutral-500">{c.areas[drawerArea].cases}</div>
                 </div>
               </div>
               <button
                 onClick={() => setDrawerArea(null)}
                 className="grid h-9 w-9 place-items-center rounded-full text-neutral-500 hover:bg-neutral-100"
-                aria-label="Fechar"
+                aria-label={c.close}
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
             <div className="flex-1 overflow-y-auto p-6">
-              <p className="text-sm leading-relaxed text-neutral-700">{drawerArea.bio}</p>
+              <p className="text-sm leading-relaxed text-neutral-700">{c.areas[drawerArea].bio}</p>
               <div className="mt-6 text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                O que fazemos
+                {c.whatWeDo}
               </div>
               <ul className="mt-4 space-y-3">
-                {drawerArea.bullets.map((b) => (
+                {c.areas[drawerArea].bullets.map((b) => (
                   <li key={b} className="flex items-start gap-3 text-sm text-neutral-700">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#1e1b4b]" />
                     {b}
@@ -435,7 +361,7 @@ export default function MottaDemo() {
                 }}
                 className="w-full rounded-full bg-[#1e1b4b] py-3 text-sm font-semibold text-white"
               >
-                Consultar sobre {drawerArea.name.toLowerCase()}
+                {c.consultAbout(c.areas[drawerArea].name)}
               </button>
             </div>
           </aside>
@@ -445,17 +371,17 @@ export default function MottaDemo() {
       {/* TRIAGEM MULTI-STEP MODAL */}
       {step > 0 && (
         <div className="fixed inset-0 z-50 grid place-items-center p-4" role="dialog" aria-modal="true">
-          <button className="absolute inset-0 bg-black/70" onClick={() => setStep(0)} aria-label="Fechar" />
+          <button className="absolute inset-0 bg-black/70" onClick={() => setStep(0)} aria-label={c.close} />
           <div className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl">
             <div className="border-b border-neutral-200 px-6 py-5">
               <div className="flex items-center justify-between">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                  Triagem · passo {Math.min(step, 4)} de 4
+                  {c.intakeStep(Math.min(step, 4))}
                 </div>
                 <button
                   onClick={() => setStep(0)}
                   className="grid h-9 w-9 place-items-center rounded-full text-neutral-500 hover:bg-neutral-100"
-                  aria-label="Fechar"
+                  aria-label={c.close}
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -471,25 +397,25 @@ export default function MottaDemo() {
               {!submitted && step === 1 && (
                 <div>
                   <div className="font-display text-xl font-semibold text-[#1e1b4b]">
-                    Sobre qual área é a sua dúvida?
+                    {c.step1Title}
                   </div>
-                  <p className="mt-2 text-sm text-neutral-600">Escolha a que melhor descreve seu caso.</p>
+                  <p className="mt-2 text-sm text-neutral-600">{c.step1Lead}</p>
                   <div className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                    {areas.map((a) => (
+                    {areaIds.map((id) => (
                       <button
-                        key={a.id}
-                        onClick={() => setAreaSel(a)}
+                        key={id}
+                        onClick={() => setAreaSel(id)}
                         className={
                           'flex items-center gap-3 rounded-2xl border p-3 text-left transition-colors ' +
-                          (areaSel?.id === a.id
+                          (areaSel === id
                             ? 'border-[#1e1b4b] bg-[#1e1b4b]/5'
                             : 'border-neutral-200 hover:border-neutral-400')
                         }
                       >
                         <span className="grid h-9 w-9 place-items-center rounded-xl bg-[#1e1b4b]/10 text-[#1e1b4b]">
-                          {a.icon}
+                          {areaIcons[id]}
                         </span>
-                        <span className="text-sm font-medium text-[#1e1b4b]">{a.name}</span>
+                        <span className="text-sm font-medium text-[#1e1b4b]">{c.areas[id].name}</span>
                       </button>
                     ))}
                   </div>
@@ -500,11 +426,11 @@ export default function MottaDemo() {
               {!submitted && step === 2 && (
                 <div>
                   <div className="font-display text-xl font-semibold text-[#1e1b4b]">
-                    Qual a urgência do seu caso?
+                    {c.step2Title}
                   </div>
-                  <p className="mt-2 text-sm text-neutral-600">Isso nos ajuda a priorizar a resposta.</p>
+                  <p className="mt-2 text-sm text-neutral-600">{c.step2Lead}</p>
                   <div className="mt-6 space-y-2">
-                    {urgencyOptions.map((o) => (
+                    {c.urgency.map((o) => (
                       <button
                         key={o.v}
                         onClick={() => setUrgency(o.v)}
@@ -525,19 +451,17 @@ export default function MottaDemo() {
               {!submitted && step === 3 && (
                 <div>
                   <div className="font-display text-xl font-semibold text-[#1e1b4b]">
-                    Conte brevemente sobre a situação.
+                    {c.step3Title}
                   </div>
-                  <p className="mt-2 text-sm text-neutral-600">Sem detalhes sensíveis por enquanto — tudo será refinado na consulta.</p>
+                  <p className="mt-2 text-sm text-neutral-600">{c.step3Lead}</p>
                   <textarea
                     value={detail}
                     onChange={(e) => setDetail(e.target.value)}
                     rows={6}
-                    placeholder="Ex.: recebi uma notificação de auto de infração ISS, valor aproximado R$ 340 mil, prazo pra defesa em 30 dias…"
+                    placeholder={c.step3Placeholder((v) => money(v, { compact: true }))}
                     className="mt-6 w-full resize-none rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-[#1e1b4b] focus:outline-none"
                   />
-                  <div className="mt-2 text-xs text-neutral-500">
-                    Mínimo 20 caracteres. {detail.length}/500.
-                  </div>
+                  <div className="mt-2 text-xs text-neutral-500">{c.charCount(detail.length)}</div>
                   {errors.detail && <div className="mt-1 text-xs text-red-600">{errors.detail}</div>}
                 </div>
               )}
@@ -545,12 +469,12 @@ export default function MottaDemo() {
               {!submitted && step === 4 && (
                 <div>
                   <div className="font-display text-xl font-semibold text-[#1e1b4b]">
-                    Como te encontramos?
+                    {c.step4Title}
                   </div>
                   <div className="mt-6 grid grid-cols-1 gap-3">
-                    <Input label="Nome" value={name} onChange={setName} error={errors.name} placeholder="Seu nome completo" />
-                    <Input label="Empresa (opcional)" value={company} onChange={setCompany} placeholder="Se for pela empresa" />
-                    <Input label="E-mail" value={email} onChange={setEmail} error={errors.email} placeholder="voce@dominio.com" type="email" />
+                    <Input label={c.name} value={name} onChange={setName} error={errors.name} placeholder={c.namePlaceholder} />
+                    <Input label={c.company} value={company} onChange={setCompany} placeholder={c.companyPlaceholder} />
+                    <Input label={c.email} value={email} onChange={setEmail} error={errors.email} placeholder={c.emailPlaceholder} type="email" />
                     <Input label="WhatsApp" value={phone} onChange={setPhone} error={errors.phone} placeholder="(21) 99999-9999" />
                   </div>
                 </div>
@@ -562,20 +486,18 @@ export default function MottaDemo() {
                     <Check className="h-8 w-8" />
                   </div>
                   <div className="mt-6 font-display text-2xl font-semibold text-[#1e1b4b]">
-                    Recebido, {name.split(' ')[0]}.
+                    {c.receivedTitle(name.split(' ')[0])}
                   </div>
-                  <p className="mt-2 text-sm text-neutral-600">
-                    Um dos sócios vai avaliar seu caso e responder em até 24h úteis pelo canal escolhido. Este é apenas um demo.
-                  </p>
+                  <p className="mt-2 text-sm text-neutral-600">{c.receivedText}</p>
                   <div className="mt-6 rounded-2xl bg-neutral-50 p-4 text-left text-sm">
-                    <div><span className="text-neutral-500">Área: </span>{areaSel?.name}</div>
-                    <div className="mt-1"><span className="text-neutral-500">Urgência: </span>{urgencyOptions.find((u) => u.v === urgency)?.l}</div>
+                    <div><span className="text-neutral-500">{c.areaLabel}</span>{areaSel && c.areas[areaSel].name}</div>
+                    <div className="mt-1"><span className="text-neutral-500">{c.urgencyLabel}</span>{c.urgency.find((u) => u.v === urgency)?.l}</div>
                   </div>
                   <button
                     onClick={reset}
                     className="mt-6 rounded-full border border-neutral-300 px-5 py-2.5 text-sm font-semibold text-[#1e1b4b]"
                   >
-                    Fechar
+                    {c.close}
                   </button>
                 </div>
               )}
@@ -588,13 +510,13 @@ export default function MottaDemo() {
                   disabled={step === 1}
                   className="inline-flex items-center gap-1 text-sm text-neutral-500 disabled:opacity-40"
                 >
-                  <ArrowLeft className="h-4 w-4" /> Voltar
+                  <ArrowLeft className="h-4 w-4" /> {c.back}
                 </button>
                 <button
                   onClick={() => (step === 4 ? finalSubmit() : nextStep())}
                   className="inline-flex items-center gap-1.5 rounded-full bg-[#1e1b4b] px-5 py-2.5 text-sm font-semibold text-white"
                 >
-                  {step === 4 ? 'Enviar triagem' : 'Continuar'}
+                  {step === 4 ? c.sendIntake : c.continue}
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
@@ -604,7 +526,7 @@ export default function MottaDemo() {
       )}
 
       <footer className="border-t border-neutral-200 bg-white py-8 text-center text-xs text-neutral-500">
-        © 2025 Motta Advogados · Demo por MX Studio
+        © 2025 Motta Advogados · {c.demoBy}
       </footer>
     </DemoFrame>
   );
