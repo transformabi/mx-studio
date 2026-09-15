@@ -12,6 +12,11 @@ export function ImgFallback() {
     const swap = (el: HTMLImageElement) => {
       if (el.dataset.fallbackApplied === '1') return;
       el.dataset.fallbackApplied = '1';
+      // Photos with art underneath (components/demo-art.tsx) just step aside.
+      if (el.dataset.fallback === 'hide') {
+        el.style.visibility = 'hidden';
+        return;
+      }
       const w = Math.max(200, el.width || el.clientWidth || 800);
       const h = Math.max(200, el.height || el.clientHeight || 600);
       const kw = el.dataset.keyword?.trim();

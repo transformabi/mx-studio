@@ -1,36 +1,37 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import { Check, ChevronLeft, ChevronRight, Clock, Flame, MapPin, Phone, Utensils, Users, X } from 'lucide-react';
 import { DemoFrame } from '@/components/demo-frame';
 import { heros, restauranteDishes } from '@/lib/demo-images';
+import { useI18n } from '@/i18n/provider';
+import { content } from './content';
 
 type Category = 'Couvert' | 'Entradas' | 'Principais' | 'Sobremesas' | 'Bebidas';
+type DishId = keyof (typeof content)['pt']['dishes'];
 
 type Dish = {
-  id: string;
-  name: string;
-  description: string;
+  id: DishId;
   price: number;
   category: Category;
   tags?: ('Vegano' | 'Vegetariano' | 'Sem glúten' | 'Chef')[];
 };
 
 const dishes: Dish[] = [
-  { id: 'c1', name: 'Pães do dia', description: 'Fermentação natural, manteiga de fogo e sal de flor.', price: 28, category: 'Couvert' },
-  { id: 'c2', name: 'Azeitonas assadas', description: 'Azeitonas curadas em casa, ervas do quintal.', price: 22, category: 'Couvert', tags: ['Vegano'] },
-  { id: 'e1', name: 'Carpaccio de tomate defumado', description: 'Tomate assado à brasa, ricota fresca, azeite verde.', price: 62, category: 'Entradas', tags: ['Vegetariano', 'Chef'] },
-  { id: 'e2', name: 'Tartar de carne', description: 'Contrafilé cortado à faca, gema curada, pão de fermentação.', price: 78, category: 'Entradas' },
-  { id: 'e3', name: 'Alcachofra de fogo', description: 'Alcachofra cozida no fogo, aioli defumado.', price: 68, category: 'Entradas', tags: ['Vegetariano'] },
-  { id: 'p1', name: 'Bife de fogo alto', description: 'Ancho maturado 45 dias, brasa direta, farofa de tutano.', price: 168, category: 'Principais', tags: ['Chef'] },
-  { id: 'p2', name: 'Peixe do dia à brasa', description: 'Peixe fresco do dia, molho de manteiga queimada.', price: 148, category: 'Principais' },
-  { id: 'p3', name: 'Cordeiro de barro', description: 'Cordeiro assado 8h em forno de barro, purê de abóbora queimada.', price: 178, category: 'Principais' },
-  { id: 'p4', name: 'Risoto de cogumelos silvestres', description: 'Arroz carnaroli, cogumelos assados, queijo curado.', price: 128, category: 'Principais', tags: ['Vegetariano'] },
-  { id: 's1', name: 'Sorvete de leite queimado', description: 'Nossa receita clássica com caramelo de fogo.', price: 42, category: 'Sobremesas' },
-  { id: 's2', name: 'Torta de banana caramelizada', description: 'Massa folhada, banana no forno, chantilly baunilha.', price: 46, category: 'Sobremesas' },
-  { id: 'b1', name: 'Vinho da casa · taça', description: 'Tempranillo espanhol, seleção do sommelier.', price: 38, category: 'Bebidas' },
-  { id: 'b2', name: 'Coquetel Terra', description: 'Cachaça envelhecida, mel de flor de laranjeira, alecrim.', price: 42, category: 'Bebidas', tags: ['Chef'] },
-  { id: 'b3', name: 'Água mineral', description: 'Com ou sem gás, servida em taça.', price: 12, category: 'Bebidas' },
+  { id: 'c1', price: 28, category: 'Couvert' },
+  { id: 'c2', price: 22, category: 'Couvert', tags: ['Vegano'] },
+  { id: 'e1', price: 62, category: 'Entradas', tags: ['Vegetariano', 'Chef'] },
+  { id: 'e2', price: 78, category: 'Entradas' },
+  { id: 'e3', price: 68, category: 'Entradas', tags: ['Vegetariano'] },
+  { id: 'p1', price: 168, category: 'Principais', tags: ['Chef'] },
+  { id: 'p2', price: 148, category: 'Principais' },
+  { id: 'p3', price: 178, category: 'Principais' },
+  { id: 'p4', price: 128, category: 'Principais', tags: ['Vegetariano'] },
+  { id: 's1', price: 42, category: 'Sobremesas' },
+  { id: 's2', price: 46, category: 'Sobremesas' },
+  { id: 'b1', price: 38, category: 'Bebidas' },
+  { id: 'b2', price: 42, category: 'Bebidas', tags: ['Chef'] },
+  { id: 'b3', price: 12, category: 'Bebidas' },
 ];
 
 const dishPhotoByCategory: Record<Category, string> = {
@@ -42,8 +43,6 @@ const dishPhotoByCategory: Record<Category, string> = {
 };
 
 const categories: Category[] = ['Couvert', 'Entradas', 'Principais', 'Sobremesas', 'Bebidas'];
-
-const brl = (v: number) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
 function nextDays(count = 14) {
   const days: Date[] = [];
@@ -63,12 +62,14 @@ const timesDinner = ['19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:0
 const bookedSlots = new Set(['2025-01-01_20:00', '2025-01-01_20:30']);
 const isBooked = (dateKey: string, time: string) => bookedSlots.has(`${dateKey}_${time}`);
 
-const dayLabel = (d: Date) =>
-  d.toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: 'short' }).replace('.', '');
-
 const isoKey = (d: Date) => d.toISOString().split('T')[0];
 
 export default function RestauranteTerraDemo() {
+  const { locale, intl, money } = useI18n();
+  const c = content[locale];
+  const shortDate = (d: Date, opts: Intl.DateTimeFormatOptions) =>
+    d.toLocaleDateString(intl, opts).replace('.', '');
+
   const [category, setCategory] = useState<Category>('Principais');
   const days = useMemo(() => nextDays(14), []);
   const [dateIdx, setDateIdx] = useState(1);
@@ -79,34 +80,29 @@ export default function RestauranteTerraDemo() {
   const [note, setNote] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [confirming, setConfirming] = useState(false);
-  const [reserved, setReserved] = useState<null | { name: string; date: string; time: string; people: number }>(null);
+  const [reserved, setReserved] = useState<null | { name: string; date: Date; time: string; people: number }>(null);
   const [visibleFrom, setVisibleFrom] = useState(0);
 
   const filteredDishes = useMemo(() => dishes.filter((d) => d.category === category), [category]);
 
   const selectedDate = days[dateIdx];
   const dateKey = isoKey(selectedDate);
-  const period: 'Almoço' | 'Jantar' =
-    selectedDate.getDay() >= 1 && selectedDate.getDay() <= 5 ? 'Jantar' : 'Almoço';
-  const times = period === 'Almoço' ? [...timesLunch, ...timesDinner] : timesDinner;
+  const period: 'lunch' | 'dinner' =
+    selectedDate.getDay() >= 1 && selectedDate.getDay() <= 5 ? 'dinner' : 'lunch';
+  const times = period === 'lunch' ? [...timesLunch, ...timesDinner] : timesDinner;
 
   const submit = () => {
     const e: Record<string, string> = {};
-    if (!name.trim()) e.name = 'Diga seu nome pra reservar.';
-    if (!phone.match(/\d{8,}/)) e.phone = 'Telefone com DDD.';
-    if (!time) e.time = 'Escolha um horário disponível.';
+    if (!name.trim()) e.name = c.errors.name;
+    if (!phone.match(/\d{8,}/)) e.phone = c.errors.phone;
+    if (!time) e.time = c.errors.time;
     setErrors(e);
     if (Object.keys(e).length) return;
     setConfirming(true);
   };
 
   const finalize = () => {
-    setReserved({
-      name,
-      date: selectedDate.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long' }),
-      time: time!,
-      people,
-    });
+    setReserved({ name, date: selectedDate, time: time!, people });
     setConfirming(false);
   };
 
@@ -123,25 +119,25 @@ export default function RestauranteTerraDemo() {
             </span>
             <div className="leading-none">
               <div className="font-display text-base font-semibold">Terra</div>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-[#f5e9d5]/60">Casa de fogo</div>
+              <div className="text-[10px] uppercase tracking-[0.16em] text-[#f5e9d5]/60">{c.tagline}</div>
             </div>
           </div>
           <nav className="hidden items-center gap-1 sm:flex">
             <a href="#menu" className="rounded-full px-3 py-1.5 text-sm text-[#f5e9d5]/80 hover:bg-white/5 hover:text-[#f5e9d5]">
-              Menu
+              {c.navMenu}
             </a>
             <a href="#reserva" className="rounded-full px-3 py-1.5 text-sm text-[#f5e9d5]/80 hover:bg-white/5 hover:text-[#f5e9d5]">
-              Reserva
+              {c.navBooking}
             </a>
             <a href="#visita" className="rounded-full px-3 py-1.5 text-sm text-[#f5e9d5]/80 hover:bg-white/5 hover:text-[#f5e9d5]">
-              Visita
+              {c.navVisit}
             </a>
           </nav>
           <a
             href="#reserva"
             className="inline-flex items-center gap-1.5 rounded-full bg-[#d97706] px-4 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
           >
-            Reservar
+            {c.book}
             <Utensils className="h-4 w-4" />
           </a>
         </div>
@@ -152,7 +148,7 @@ export default function RestauranteTerraDemo() {
         <div className="absolute inset-0">
           <img
             src={heros['restaurante-terra']}
-            alt="Terra Casa de Fogo — brasa"
+            alt={c.heroAlt}
             className="absolute inset-0 h-full w-full object-cover opacity-55"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#1c1917]/40 via-[#1c1917]/60 to-[#1c1917]" />
@@ -161,50 +157,37 @@ export default function RestauranteTerraDemo() {
         <div className="relative mx-auto max-w-6xl px-4 py-24 text-[#f5e9d5] sm:px-6 sm:py-32">
           <div className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[#f5e9d5]/70">
             <Flame className="h-3 w-3 text-[#d97706]" />
-            Casa de fogo · Botafogo, Rio de Janeiro
+            {c.heroEyebrow}
           </div>
           <h1 className="mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
-            Ingredientes,{' '}
+            {c.heroTitleA}{' '}
             <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal text-[#f5e9d5]">
-              fogo
+              {c.heroTitleEm}
             </em>{' '}
-            e tempo.
+            {c.heroTitleB}
           </h1>
-          <p className="mt-6 max-w-lg text-lg text-[#f5e9d5]/80">
-            Alta gastronomia em torno da brasa. Menu autoral do chef Rafael
-            Menezes, mudando com o que a estação oferece.
-          </p>
+          <p className="mt-6 max-w-lg text-lg text-[#f5e9d5]/80">{c.heroLead}</p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a
               href="#reserva"
               className="inline-flex items-center gap-1.5 rounded-full bg-[#d97706] px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
             >
-              Reservar mesa
+              {c.bookTable}
             </a>
             <a
               href="#menu"
               className="inline-flex items-center gap-1.5 rounded-full border border-[#f5e9d5]/30 px-5 py-3 text-sm font-semibold text-[#f5e9d5] transition-colors hover:bg-white/5"
             >
-              Ver o menu
+              {c.seeMenu}
             </a>
           </div>
           <div className="mt-14 grid grid-cols-2 gap-4 border-t border-[#f5e9d5]/15 pt-8 sm:grid-cols-4">
-            <div>
-              <div className="font-display text-3xl font-semibold">Ter–Dom</div>
-              <div className="mt-1 text-xs text-[#f5e9d5]/60">Almoço e jantar</div>
-            </div>
-            <div>
-              <div className="font-display text-3xl font-semibold">4.9 ★</div>
-              <div className="mt-1 text-xs text-[#f5e9d5]/60">Google Business</div>
-            </div>
-            <div>
-              <div className="font-display text-3xl font-semibold">42 lug.</div>
-              <div className="mt-1 text-xs text-[#f5e9d5]/60">Salão + varanda</div>
-            </div>
-            <div>
-              <div className="font-display text-3xl font-semibold">Sim</div>
-              <div className="mt-1 text-xs text-[#f5e9d5]/60">Aceitamos eventos</div>
-            </div>
+            {c.stats.map((s) => (
+              <div key={s.label}>
+                <div className="font-display text-3xl font-semibold">{s.kpi}</div>
+                <div className="mt-1 text-xs text-[#f5e9d5]/60">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -214,35 +197,33 @@ export default function RestauranteTerraDemo() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
             <div>
-              <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#d97706]">Menu</div>
+              <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#d97706]">{c.menuEyebrow}</div>
               <h2 className="mt-3 font-display text-4xl font-semibold sm:text-5xl">
-                O que a{' '}
+                {c.menuTitleA}{' '}
                 <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal">
-                  brasa
+                  {c.menuTitleEm}
                 </em>{' '}
-                oferece hoje.
+                {c.menuTitleB}
               </h2>
             </div>
-            <div className="text-xs text-[#f5e9d5]/60">
-              Menu atualizado semanalmente pelo chef
-            </div>
+            <div className="text-xs text-[#f5e9d5]/60">{c.menuNote}</div>
           </div>
 
-          <div className="mt-8 flex gap-2 overflow-x-auto border-b border-white/10 pb-3" role="tablist" aria-label="Categorias do menu">
-            {categories.map((c) => (
+          <div className="mt-8 flex gap-2 overflow-x-auto border-b border-white/10 pb-3" role="tablist" aria-label={c.menuTabs}>
+            {categories.map((cat) => (
               <button
-                key={c}
+                key={cat}
                 role="tab"
-                aria-selected={category === c}
-                onClick={() => setCategory(c)}
+                aria-selected={category === cat}
+                onClick={() => setCategory(cat)}
                 className={
                   'shrink-0 border-b-2 px-4 pb-3 text-sm font-medium transition-colors ' +
-                  (category === c
+                  (category === cat
                     ? 'border-[#d97706] text-[#f5e9d5]'
                     : 'border-transparent text-[#f5e9d5]/50 hover:text-[#f5e9d5]')
                 }
               >
-                {c}
+                {c.categories[cat]}
               </button>
             ))}
           </div>
@@ -253,33 +234,33 @@ export default function RestauranteTerraDemo() {
                 <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-2xl bg-white/5">
                   <img
                     src={dishPhotoByCategory[d.category]}
-                    alt={d.name}
+                    alt={c.dishes[d.id].name}
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <h3 className="font-display text-lg font-semibold text-[#f5e9d5]">{d.name}</h3>
+                    <h3 className="font-display text-lg font-semibold text-[#f5e9d5]">{c.dishes[d.id].name}</h3>
                     {d.tags?.includes('Chef') && (
                       <span className="rounded-full bg-[#d97706]/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#d97706]">
-                        Do chef
+                        {c.tags.chef}
                       </span>
                     )}
                     {d.tags?.includes('Vegano') && (
                       <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
-                        Vegano
+                        {c.tags.vegan}
                       </span>
                     )}
                     {d.tags?.includes('Vegetariano') && !d.tags?.includes('Vegano') && (
                       <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
-                        Vegetariano
+                        {c.tags.vegetarian}
                       </span>
                     )}
                   </div>
-                  <p className="mt-1.5 text-sm text-[#f5e9d5]/70">{d.description}</p>
+                  <p className="mt-1.5 text-sm text-[#f5e9d5]/70">{c.dishes[d.id].description}</p>
                 </div>
-                <div className="shrink-0 text-right font-mono text-sm text-[#f5e9d5]">{brl(d.price)}</div>
+                <div className="shrink-0 text-right font-mono text-sm text-[#f5e9d5]">{money(d.price)}</div>
               </li>
             ))}
           </ul>
@@ -291,18 +272,15 @@ export default function RestauranteTerraDemo() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#d97706]">Reserva</div>
+              <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#d97706]">{c.bookingEyebrow}</div>
               <h2 className="mt-3 font-display text-4xl font-semibold sm:text-5xl">
-                Sua mesa,{' '}
+                {c.bookingTitleA}{' '}
                 <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal">
-                  do jeito
+                  {c.bookingTitleEm}
                 </em>{' '}
-                que você quiser.
+                {c.bookingTitleB}
               </h2>
-              <p className="mt-4 text-[#f5e9d5]/70">
-                Reservamos até 20 pessoas. Grupos maiores: nos escreva pelo
-                WhatsApp. Cancelamento gratuito até 4 horas antes.
-              </p>
+              <p className="mt-4 text-[#f5e9d5]/70">{c.bookingLead}</p>
 
               <div className="mt-8 space-y-3 text-sm text-[#f5e9d5]/70">
                 <div className="flex items-center gap-3">
@@ -312,7 +290,7 @@ export default function RestauranteTerraDemo() {
                   <Phone className="h-4 w-4 text-[#d97706]" /> (21) 3232-9090
                 </div>
                 <div className="flex items-center gap-3">
-                  <Clock className="h-4 w-4 text-[#d97706]" /> Ter a Sex: 19h–23h · Sáb e Dom: 12h–15h e 19h–23h
+                  <Clock className="h-4 w-4 text-[#d97706]" /> {c.hours}
                 </div>
               </div>
             </div>
@@ -324,47 +302,47 @@ export default function RestauranteTerraDemo() {
                     <Check className="h-8 w-8" />
                   </div>
                   <h3 className="mt-6 font-display text-2xl font-semibold text-center">
-                    Mesa reservada!
+                    {c.reservedTitle}
                   </h3>
                   <p className="mt-2 text-center text-[#f5e9d5]/70">
-                    Obrigado, {reserved.name.split(' ')[0]}. Sua mesa está confirmada.
+                    {c.reservedText(reserved.name.split(' ')[0])}
                   </p>
                   <div className="mt-6 grid grid-cols-3 gap-4 rounded-2xl bg-white/[0.03] p-4 text-center">
                     <div>
-                      <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">Data</div>
-                      <div className="mt-1 text-sm font-semibold">{reserved.date}</div>
+                      <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">{c.date}</div>
+                      <div className="mt-1 text-sm font-semibold">
+                        {reserved.date.toLocaleDateString(intl, { weekday: 'long', day: '2-digit', month: 'long' })}
+                      </div>
                     </div>
                     <div>
-                      <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">Horário</div>
+                      <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">{c.time}</div>
                       <div className="mt-1 text-sm font-semibold">{reserved.time}</div>
                     </div>
                     <div>
-                      <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">Pessoas</div>
+                      <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">{c.people}</div>
                       <div className="mt-1 text-sm font-semibold">{reserved.people}</div>
                     </div>
                   </div>
-                  <p className="mt-4 text-center text-xs text-[#f5e9d5]/50">
-                    Vamos confirmar por WhatsApp em até 10 min. Este é um demo, nenhuma mesa foi realmente reservada.
-                  </p>
+                  <p className="mt-4 text-center text-xs text-[#f5e9d5]/50">{c.reservedNote}</p>
                   <button
                     onClick={() => setReserved(null)}
                     className="mt-6 w-full rounded-full border border-white/15 py-3 text-sm font-semibold text-[#f5e9d5] hover:bg-white/5"
                   >
-                    Nova reserva
+                    {c.newBooking}
                   </button>
                 </div>
               ) : (
                 <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
                   <div>
                     <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
-                      1 · Data
+                      {c.stepDate}
                     </div>
                     <div className="mt-3 flex items-center gap-2">
                       <button
                         onClick={() => setVisibleFrom((v) => Math.max(0, v - 7))}
                         disabled={visibleFrom === 0}
                         className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/15 text-[#f5e9d5] disabled:opacity-30"
-                        aria-label="Semana anterior"
+                        aria-label={c.prevWeek}
                       >
                         <ChevronLeft className="h-4 w-4" />
                       </button>
@@ -387,13 +365,13 @@ export default function RestauranteTerraDemo() {
                               }
                             >
                               <span className="text-[10px] uppercase tracking-[0.12em]">
-                                {dayLabel(d).split(' ')[0]}
+                                {shortDate(d, { weekday: 'short' })}
                               </span>
                               <span className="mt-1 font-display text-lg font-semibold">
                                 {d.getDate()}
                               </span>
                               <span className="text-[10px]">
-                                {d.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '')}
+                                {shortDate(d, { month: 'short' })}
                               </span>
                             </button>
                           );
@@ -403,7 +381,7 @@ export default function RestauranteTerraDemo() {
                         onClick={() => setVisibleFrom((v) => Math.min(days.length - 7, v + 7))}
                         disabled={visibleFrom + 7 >= days.length}
                         className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/15 text-[#f5e9d5] disabled:opacity-30"
-                        aria-label="Próxima semana"
+                        aria-label={c.nextWeek}
                       >
                         <ChevronRight className="h-4 w-4" />
                       </button>
@@ -413,7 +391,7 @@ export default function RestauranteTerraDemo() {
                   <div className="mt-6">
                     <div className="flex items-center justify-between">
                       <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
-                        2 · Horário · {period}
+                        {c.stepTime(c.periods[period])}
                       </div>
                       {errors.time && <div className="text-xs text-red-400">{errors.time}</div>}
                     </div>
@@ -444,31 +422,31 @@ export default function RestauranteTerraDemo() {
 
                   <div className="mt-6">
                     <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
-                      3 · Pessoas
+                      {c.stepPeople}
                     </div>
                     <div className="mt-3 flex items-center gap-2">
                       <button
                         onClick={() => setPeople((p) => Math.max(1, p - 1))}
                         className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-[#f5e9d5]"
-                        aria-label="Menos"
+                        aria-label={c.fewer}
                       >
                         −
                       </button>
                       <div className="w-24 text-center">
                         <div className="font-display text-2xl font-semibold">{people}</div>
                         <div className="text-[10px] uppercase tracking-[0.12em] text-[#f5e9d5]/50">
-                          {people === 1 ? 'pessoa' : 'pessoas'}
+                          {c.person(people)}
                         </div>
                       </div>
                       <button
                         onClick={() => setPeople((p) => Math.min(20, p + 1))}
                         className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-[#f5e9d5]"
-                        aria-label="Mais"
+                        aria-label={c.more}
                       >
                         +
                       </button>
                       <div className="ml-4 text-xs text-[#f5e9d5]/50">
-                        <Users className="mr-1 inline h-3.5 w-3.5" /> Máx. 20. Grupo maior? Chame no WhatsApp.
+                        <Users className="mr-1 inline h-3.5 w-3.5" /> {c.maxPeople}
                       </div>
                     </div>
                   </div>
@@ -476,13 +454,13 @@ export default function RestauranteTerraDemo() {
                   <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div>
                       <label htmlFor="rname" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
-                        Nome
+                        {c.name}
                       </label>
                       <input
                         id="rname"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="Seu nome completo"
+                        placeholder={c.namePlaceholder}
                         className="mt-2 w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-none"
                       />
                       {errors.name && <div className="mt-1 text-xs text-red-400">{errors.name}</div>}
@@ -504,13 +482,13 @@ export default function RestauranteTerraDemo() {
 
                   <div className="mt-3">
                     <label htmlFor="rnote" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
-                      Observação (opcional)
+                      {c.note}
                     </label>
                     <textarea
                       id="rnote"
                       value={note}
                       onChange={(e) => setNote(e.target.value)}
-                      placeholder="Alergias, aniversário, mesa da varanda…"
+                      placeholder={c.notePlaceholder}
                       rows={2}
                       className="mt-2 w-full resize-none rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-none"
                     />
@@ -520,7 +498,7 @@ export default function RestauranteTerraDemo() {
                     onClick={submit}
                     className="mt-6 w-full rounded-full bg-[#d97706] py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
                   >
-                    Confirmar reserva
+                    {c.confirmBooking}
                   </button>
                 </div>
               )}
@@ -532,14 +510,14 @@ export default function RestauranteTerraDemo() {
       {/* CONFIRM MODAL */}
       {confirming && (
         <div className="fixed inset-0 z-50 grid place-items-center p-4" role="dialog" aria-modal="true">
-          <button className="absolute inset-0 bg-black/70" onClick={() => setConfirming(false)} aria-label="Fechar" />
+          <button className="absolute inset-0 bg-black/70" onClick={() => setConfirming(false)} aria-label={c.close} />
           <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-[#1c1917] text-[#f5e9d5] shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
-              <div className="font-display text-lg font-semibold">Confere sua reserva</div>
+              <div className="font-display text-lg font-semibold">{c.reviewTitle}</div>
               <button
                 onClick={() => setConfirming(false)}
                 className="grid h-9 w-9 place-items-center rounded-full text-[#f5e9d5]/60 hover:bg-white/5"
-                aria-label="Fechar"
+                aria-label={c.close}
               >
                 <X className="h-5 w-5" />
               </button>
@@ -547,37 +525,37 @@ export default function RestauranteTerraDemo() {
             <div className="px-6 py-6">
               <div className="grid grid-cols-3 gap-4 rounded-2xl bg-white/[0.03] p-4 text-center">
                 <div>
-                  <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">Data</div>
+                  <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">{c.date}</div>
                   <div className="mt-1 text-sm font-semibold">
-                    {selectedDate.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })}
+                    {selectedDate.toLocaleDateString(intl, { day: '2-digit', month: 'short' })}
                   </div>
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">Horário</div>
+                  <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">{c.time}</div>
                   <div className="mt-1 text-sm font-semibold">{time}</div>
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">Pessoas</div>
+                  <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">{c.people}</div>
                   <div className="mt-1 text-sm font-semibold">{people}</div>
                 </div>
               </div>
               <div className="mt-4 space-y-1.5 text-sm text-[#f5e9d5]/70">
-                <div><span className="text-[#f5e9d5]/50">Nome: </span>{name}</div>
+                <div><span className="text-[#f5e9d5]/50">{c.nameLabel}</span>{name}</div>
                 <div><span className="text-[#f5e9d5]/50">WhatsApp: </span>{phone}</div>
-                {note && <div><span className="text-[#f5e9d5]/50">Obs: </span>{note}</div>}
+                {note && <div><span className="text-[#f5e9d5]/50">{c.noteLabel}</span>{note}</div>}
               </div>
               <div className="mt-6 flex gap-3">
                 <button
                   onClick={() => setConfirming(false)}
                   className="flex-1 rounded-full border border-white/15 py-3 text-sm font-semibold text-[#f5e9d5]"
                 >
-                  Alterar
+                  {c.change}
                 </button>
                 <button
                   onClick={finalize}
                   className="flex-1 rounded-full bg-[#d97706] py-3 text-sm font-semibold text-white"
                 >
-                  Confirmar
+                  {c.confirm}
                 </button>
               </div>
             </div>
@@ -588,9 +566,14 @@ export default function RestauranteTerraDemo() {
       {/* Filosofia */}
       <section className="border-t border-white/10 bg-[#1c1917] py-16 text-[#f5e9d5]">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#d97706]">Filosofia</div>
+          <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#d97706]">{c.philosophy}</div>
           <h2 style={{ fontFamily: 'var(--font-instrument-serif)' }} className="mt-4 text-4xl italic leading-[1.05] sm:text-6xl">
-            "cozinhamos com o que a<br/>estação nos entrega,<br/>e com fogo."
+            {c.quote.map((line, i) => (
+              <Fragment key={i}>
+                {i > 0 && <br />}
+                {line}
+              </Fragment>
+            ))}
           </h2>
           <div className="mt-8 inline-flex items-center gap-3 text-sm text-[#f5e9d5]/70">
             <div className="h-px w-8 bg-[#f5e9d5]/30" />
@@ -605,20 +588,11 @@ export default function RestauranteTerraDemo() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div className="md:col-span-2">
-              <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#d97706]">Visite</div>
-              <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">
-                A casa fica em Botafogo, num casarão de 1928.
-              </h2>
-              <p className="mt-4 max-w-lg text-[#f5e9d5]/70">
-                Salão principal, varanda coberta e mesa do chef pra 8 pessoas. Estacionamento com valet.
-              </p>
+              <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#d97706]">{c.visitEyebrow}</div>
+              <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">{c.visitTitle}</h2>
+              <p className="mt-4 max-w-lg text-[#f5e9d5]/70">{c.visitLead}</p>
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {[
-                  { l: 'Salão', s: '32 lugares' },
-                  { l: 'Varanda', s: '10 lugares' },
-                  { l: 'Mesa do chef', s: '8 lugares' },
-                  { l: 'Valet', s: 'incluso' },
-                ].map((f) => (
+                {c.spaces.map((f) => (
                   <div key={f.l} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
                     <div style={{ fontFamily: 'var(--font-instrument-serif)' }} className="text-2xl italic text-[#f5e9d5]">
                       {f.l}
@@ -629,13 +603,14 @@ export default function RestauranteTerraDemo() {
               </div>
             </div>
             <div className="rounded-3xl bg-white/[0.03] p-6 text-sm">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">Endereço</div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">{c.address}</div>
               <div className="mt-2 text-[#f5e9d5]">Rua Voluntários da Pátria, 42</div>
               <div className="text-[#f5e9d5]/70">Botafogo · Rio de Janeiro</div>
               <div className="mt-4 flex flex-col gap-1 text-[#f5e9d5]/70">
-                <div><span className="text-[#d97706]">Ter–Sex</span> · 19h às 23h</div>
-                <div><span className="text-[#d97706]">Sáb e Dom</span> · 12h–15h e 19h–23h</div>
-                <div className="text-[#f5e9d5]/50">Segunda: fechados</div>
+                {c.schedule.map((s) => (
+                  <div key={s.days}><span className="text-[#d97706]">{s.days}</span> · {s.hours}</div>
+                ))}
+                <div className="text-[#f5e9d5]/50">{c.closed}</div>
               </div>
             </div>
           </div>
@@ -643,7 +618,7 @@ export default function RestauranteTerraDemo() {
       </section>
 
       <footer className="border-t border-white/10 bg-[#1c1917] py-8 text-center text-xs text-[#f5e9d5]/50">
-        © 2025 Terra Casa de Fogo · Demo por MX Studio
+        © 2025 Terra Casa de Fogo · {c.demoBy}
       </footer>
     </DemoFrame>
   );

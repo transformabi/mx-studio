@@ -1,9 +1,14 @@
 import Link from 'next/link';
 import { ArrowUpRight, Github, Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
-import { estudio, whatsappUrl } from '@/lib/estudio';
+import { demos, estudio, whatsappUrl } from '@/lib/estudio';
+import { messages } from '@/i18n/messages';
+import { getLocale } from '@/i18n/server';
 import { MaxMonogram } from './max-monogram';
 
 export function EstudioFooter() {
+  const t = messages[getLocale()];
+  const f = t.footer;
+
   return (
     <footer className="relative mt-24 border-t border-white/10 bg-black">
       <div className="pointer-events-none absolute inset-x-0 -top-40 h-40 bg-[radial-gradient(ellipse_60%_100%_at_50%_100%,rgba(198,255,59,0.10),transparent)]" />
@@ -16,14 +21,11 @@ export function EstudioFooter() {
               <div>
                 <div className="font-display text-lg font-semibold text-white">MX Studio</div>
                 <div className="text-[11px] uppercase tracking-[0.14em] text-white/50">
-                  Estúdio digital
+                  {f.tagline}
                 </div>
               </div>
             </div>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">
-              Sites, e-commerces e produtos digitais sob medida para marcas que
-              querem ser levadas a sério. Do brief à entrega, um humano só.
-            </p>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">{f.description}</p>
 
             <div className="mt-6 flex flex-col gap-3 text-sm text-white/70">
               <a
@@ -33,7 +35,7 @@ export function EstudioFooter() {
                 <Mail className="h-4 w-4" /> {estudio.email}
               </a>
               <div className="inline-flex items-center gap-2 self-start">
-                <MapPin className="h-4 w-4 shrink-0" /> {estudio.location}
+                <MapPin className="h-4 w-4 shrink-0" /> {f.location}
               </div>
             </div>
 
@@ -53,26 +55,27 @@ export function EstudioFooter() {
           <div className="grid grid-cols-2 gap-8 lg:col-span-6">
             <div>
               <div className="text-xs font-semibold uppercase tracking-[0.16em] text-white/50">
-                Portfólio
+                {f.portfolio}
               </div>
               <ul className="mt-4 space-y-2.5 text-sm">
-                <li><Link href="/#trabalhos" className="text-white/70 hover:text-white">Trabalhos</Link></li>
-                <li><Link href="/#processo" className="text-white/70 hover:text-white">Processo</Link></li>
-                <li><Link href="/#servicos" className="text-white/70 hover:text-white">Serviços</Link></li>
-                <li><Link href="/#sobre" className="text-white/70 hover:text-white">Sobre</Link></li>
+                <li><Link href="/#trabalhos" className="text-white/70 hover:text-white">{f.work}</Link></li>
+                <li><Link href="/#processo" className="text-white/70 hover:text-white">{f.process}</Link></li>
+                <li><Link href="/#servicos" className="text-white/70 hover:text-white">{f.services}</Link></li>
+                <li><Link href="/#sobre" className="text-white/70 hover:text-white">{f.about}</Link></li>
               </ul>
             </div>
             <div>
               <div className="text-xs font-semibold uppercase tracking-[0.16em] text-white/50">
-                Demos
+                {f.demos}
               </div>
               <ul className="mt-4 space-y-2.5 text-sm">
-                <li><Link href="/demo/moda-arte" className="text-white/70 hover:text-white">E-commerce</Link></li>
-                <li><Link href="/demo/restaurante-terra" className="text-white/70 hover:text-white">Restaurante</Link></li>
-                <li><Link href="/demo/clinica-sereno" className="text-white/70 hover:text-white">Clínica</Link></li>
-                <li><Link href="/demo/motta-advogados" className="text-white/70 hover:text-white">Advocacia</Link></li>
-                <li><Link href="/demo/costa-imoveis" className="text-white/70 hover:text-white">Imobiliária</Link></li>
-                <li><Link href="/demo/rota-clara" className="text-white/70 hover:text-white">Infoproduto</Link></li>
+                {demos.map((d) => (
+                  <li key={d.slug}>
+                    <Link href={`/demo/${d.slug}`} className="text-white/70 hover:text-white">
+                      {f.demoLinks[d.slug]}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -82,15 +85,15 @@ export function EstudioFooter() {
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[#c6ff3b]">
-                Vamos conversar?
+                {f.ctaEyebrow}
               </div>
               <div className="mt-1 font-display text-2xl font-semibold text-white sm:text-3xl">
-                Respondo em até 24 horas.
+                {f.ctaTitle}
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
               <a
-                href={whatsappUrl()}
+                href={whatsappUrl(t.whatsappMsg)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-full bg-[#c6ff3b] px-5 py-2.5 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
@@ -102,16 +105,22 @@ export function EstudioFooter() {
                 href={`mailto:${estudio.email}`}
                 className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
               >
-                Enviar e-mail
+                {f.sendEmail}
               </a>
             </div>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center">
-          <div>© {new Date().getFullYear()} MX Studio · Estúdio digital · Todos os direitos reservados</div>
+          <div>© {new Date().getFullYear()} MX Studio · {f.rights}</div>
           <div className="flex items-center gap-6">
-            <span>Feito à mão em Next.js</span>
+            <span>{f.madeWith}</span>
+          </div>
+        </div>
+
+        <div aria-hidden className="mt-12 select-none overflow-hidden">
+          <div className="text-outline whitespace-nowrap font-display text-[clamp(4rem,19vw,17rem)] font-semibold leading-[0.8] tracking-tighter transition-colors duration-700 hover:text-[#c6ff3b]">
+            MX Studio
           </div>
         </div>
       </div>
