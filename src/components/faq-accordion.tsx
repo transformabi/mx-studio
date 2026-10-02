@@ -8,7 +8,7 @@ export function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div className="mx-auto mt-14 max-w-3xl divide-y divide-white/10 rounded-3xl border border-white/10 bg-white/[0.02]">
+    <div className="mx-auto mt-14 max-w-3xl divide-y divide-white/10 rounded-3xl border border-white/10 bg-white/2">
       {items.map((f, i) => {
         const isOpen = open === i;
         return (
@@ -22,7 +22,7 @@ export function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
               <span
                 className={cn(
                   'font-brand text-base font-semibold transition-colors duration-300 sm:text-lg',
-                  isOpen ? 'text-[#94E421]' : 'text-white group-hover:text-white/80',
+                  isOpen ? 'text-lime' : 'text-white group-hover:text-white/80',
                 )}
               >
                 {f.q}
@@ -30,7 +30,7 @@ export function FaqAccordion({ items }: { items: { q: string; a: string }[] }) {
               <span
                 className={cn(
                   'mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border transition-all duration-500',
-                  isOpen ? 'rotate-45 border-[#94E421] bg-[#94E421] text-black' : 'border-white/15 text-white/60',
+                  isOpen ? 'rotate-45 border-lime bg-lime text-black' : 'border-white/15 text-white/60',
                 )}
               >
                 <Plus className="h-4 w-4" />

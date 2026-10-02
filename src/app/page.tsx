@@ -22,7 +22,7 @@ const servicePrices = [4900, 9900, 3500, 16000];
 
 const techStack = ['Next.js', 'TypeScript', 'PHP', 'Tailwind CSS', 'WebGL', 'Framer Motion', 'Vercel'];
 
-const h2 = 'text-balance font-brand text-[clamp(2.25rem,4.5vw+0.5rem,4rem)] font-extrabold leading-[1] tracking-tight text-white';
+const h2 = 'text-balance font-brand text-[clamp(2.25rem,4.5vw+0.5rem,4rem)] font-extrabold leading-none tracking-tight text-white';
 
 export default async function EstudioHome() {
   const { t, currency, money } = await getI18n();
@@ -47,7 +47,7 @@ export default async function EstudioHome() {
   return (
     <div className="font-body">
       {/* HERO */}
-      <section className="grain relative isolate flex min-h-[100svh] items-end overflow-hidden pb-14 pt-36 sm:pb-20">
+      <section className="grain relative isolate flex min-h-svh items-end overflow-hidden pb-14 pt-36 sm:pb-20">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(148,228,33,0.16),transparent),radial-gradient(ellipse_50%_40%_at_100%_10%,rgba(47,107,12,0.28),transparent)]"
@@ -57,12 +57,12 @@ export default async function EstudioHome() {
         </div>
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.05] [background:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:40px_40px]"
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.05] [background:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-size-[40px_40px]"
         />
 
         <div className="container-wide relative">
           <Reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 font-label text-[11px] uppercase tracking-[0.12em] text-white/80 backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 font-label text-[11px] uppercase tracking-[0.12em] text-white/80 backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-70" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-lime" />
@@ -120,7 +120,7 @@ export default async function EstudioHome() {
       </section>
 
       {/* MARQUEE */}
-      <section className="relative space-y-4 overflow-hidden border-y border-white/10 bg-white/[0.02] py-10">
+      <section className="relative space-y-4 overflow-hidden border-y border-white/10 bg-white/2 py-10">
         <Marquee speed={45}>
           {t.marquee.flatMap((item, i) => [
             <span key={`n${i}`} className="font-brand text-3xl font-extrabold text-white/80 sm:text-5xl">
@@ -169,7 +169,7 @@ export default async function EstudioHome() {
       </section>
 
       {/* PROCESSO */}
-      <section id="processo" className="relative border-t border-white/10 bg-white/[0.02] py-24 sm:py-32">
+      <section id="processo" className="relative border-t border-white/10 bg-white/2 py-24 sm:py-32">
         <div className="container-wide grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
@@ -204,7 +204,7 @@ export default async function EstudioHome() {
         <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2">
           {t.services.items.map((s, i) => (
             <Reveal key={s.title} delay={(i % 2) * 80}>
-              <SpotlightCard className="h-full rounded-3xl border border-white/10 bg-white/[0.03] transition-colors hover:border-white/20">
+              <SpotlightCard className="h-full rounded-3xl border border-white/10 bg-white/3 transition-colors hover:border-white/20">
                 <div className="p-8">
                   <div className="flex items-start justify-between gap-6">
                     <div>
@@ -237,7 +237,7 @@ export default async function EstudioHome() {
       </section>
 
       {/* SOBRE */}
-      <section id="sobre" className="relative overflow-hidden border-t border-white/10 bg-white/[0.02] py-24 sm:py-32">
+      <section id="sobre" className="relative overflow-hidden border-t border-white/10 bg-white/2 py-24 sm:py-32">
         <div className="container-wide grid grid-cols-1 gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
             <Eyebrow index="04">{t.about.eyebrow}</Eyebrow>
@@ -261,19 +261,19 @@ export default async function EstudioHome() {
 
           <Reveal delay={120} className="lg:col-span-7">
             <div className="grid grid-cols-2 gap-4">
-              <SpotlightCard className="rounded-3xl border border-white/10 bg-white/[0.02]">
+              <SpotlightCard className="rounded-3xl border border-white/10 bg-white/2">
                 <div className="p-6">
                   <CardLabel>{t.about.stack}</CardLabel>
                   <Pills items={['Next.js 14', 'TypeScript', 'PHP', 'Tailwind CSS', 'Framer Motion', 'Sanity / MDX', 'Vercel']} />
                 </div>
               </SpotlightCard>
-              <SpotlightCard className="rounded-3xl border border-white/10 bg-white/[0.02]">
+              <SpotlightCard className="rounded-3xl border border-white/10 bg-white/2">
                 <div className="p-6">
                   <CardLabel>{t.about.alsoWith}</CardLabel>
                   <Pills items={['Stripe / PagarMe', 'Google Maps', 'Supabase', 'Resend / Postmark', 'Cal.com / Calendly', 'Analytics 4 + Pixel']} />
                 </div>
               </SpotlightCard>
-              <SpotlightCard className="col-span-2 rounded-3xl border border-white/10 bg-white/[0.02]">
+              <SpotlightCard className="col-span-2 rounded-3xl border border-white/10 bg-white/2">
                 <div className="p-6">
                   <CardLabel>{t.about.howIWork}</CardLabel>
                   <ul className="mt-4 grid grid-cols-2 gap-3 text-sm text-white/80 sm:grid-cols-3">
@@ -304,7 +304,7 @@ export default async function EstudioHome() {
       </section>
 
       {/* CONTATO */}
-      <section id="contato" className="relative isolate overflow-hidden border-t border-white/10 bg-white/[0.02] py-24 sm:py-32">
+      <section id="contato" className="relative isolate overflow-hidden border-t border-white/10 bg-white/2 py-24 sm:py-32">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_100%_at_50%_0%,rgba(148,228,33,0.14),transparent)]"
@@ -377,7 +377,7 @@ function Pills({ items }: { items: string[] }) {
       {items.map((item) => (
         <li
           key={item}
-          className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/80 transition-colors hover:border-lime/50 hover:text-lime"
+          className="rounded-full border border-white/10 bg-white/3 px-3 py-1.5 text-xs text-white/80 transition-colors hover:border-lime/50 hover:text-lime"
         >
           {item}
         </li>
@@ -408,7 +408,7 @@ function ContactLink({
       href={href}
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       className={cn(
-        'group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-sm text-white transition-colors',
+        'group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/3 px-5 py-4 text-sm text-white transition-colors',
         hoverClass,
       )}
     >

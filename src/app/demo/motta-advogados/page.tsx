@@ -84,7 +84,7 @@ export default function MottaDemo() {
   return (
     <DemoFrame siteName="Motta Advogados" bg="#f8f7f4">
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-[#f8f7f4]/85 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-[#f8f7f4]/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#1e1b4b] text-white">
@@ -156,15 +156,15 @@ export default function MottaDemo() {
 
         <div className="lg:col-span-5">
           <div className="relative overflow-hidden rounded-3xl bg-[#dcd7c8]">
-            <div className="relative aspect-[3/4] overflow-hidden">
+            <div className="relative aspect-3/4 overflow-hidden">
               <img
                 src={heros['motta-advogados']}
                 alt={c.heroAlt}
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/25" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-black/25" />
             </div>
-            <blockquote className="absolute inset-x-6 bottom-6 rounded-2xl bg-white/95 p-5 shadow-lg backdrop-blur">
+            <blockquote className="absolute inset-x-6 bottom-6 rounded-2xl bg-white/95 p-5 shadow-lg backdrop-blur-sm">
               <p style={{ fontFamily: 'var(--font-instrument-serif)' }} className="text-lg italic leading-snug text-[#1e1b4b]">
                 {c.quote}
               </p>
@@ -238,7 +238,7 @@ export default function MottaDemo() {
           <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
             {partners.map((s, i) => (
               <div key={s.name} className="overflow-hidden rounded-3xl border border-neutral-200 bg-white">
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-100">
+                <div className="relative aspect-4/5 w-full overflow-hidden bg-neutral-100">
                   <img
                     src={s.photo}
                     alt={s.name}
@@ -459,7 +459,7 @@ export default function MottaDemo() {
                     onChange={(e) => setDetail(e.target.value)}
                     rows={6}
                     placeholder={c.step3Placeholder((v) => money(v, { compact: true }))}
-                    className="mt-6 w-full resize-none rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-[#1e1b4b] focus:outline-none"
+                    className="mt-6 w-full resize-none rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-[#1e1b4b] focus:outline-hidden"
                   />
                   <div className="mt-2 text-xs text-neutral-500">{c.charCount(detail.length)}</div>
                   {errors.detail && <div className="mt-1 text-xs text-red-600">{errors.detail}</div>}
@@ -566,7 +566,7 @@ function Input({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-xl border border-neutral-300 px-4 py-2.5 text-sm focus:border-[#1e1b4b] focus:outline-none"
+        className="mt-2 w-full rounded-xl border border-neutral-300 px-4 py-2.5 text-sm focus:border-[#1e1b4b] focus:outline-hidden"
       />
       {error && <div className="mt-1 text-xs text-red-600">{error}</div>}
     </div>

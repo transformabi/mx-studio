@@ -30,10 +30,10 @@ export function ScrollProgress() {
   if (pathname?.startsWith('/carrossel')) return null;
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[2px]">
+    <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-60 h-[2px]">
       <div
         ref={bar}
-        className="h-full origin-left bg-gradient-to-r from-[#94E421] to-[#ff8a5c]"
+        className="h-full origin-left bg-linear-to-r from-[#94E421] to-[#ff8a5c]"
         style={{ transform: 'scaleX(0)' }}
       />
     </div>

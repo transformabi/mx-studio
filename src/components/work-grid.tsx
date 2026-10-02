@@ -47,7 +47,7 @@ export function WorkGrid({
               {active && (
                 <motion.span
                   layoutId="work-filter"
-                  className="absolute inset-0 rounded-full bg-[#94E421]"
+                  className="absolute inset-0 rounded-full bg-lime"
                   transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                 />
               )}

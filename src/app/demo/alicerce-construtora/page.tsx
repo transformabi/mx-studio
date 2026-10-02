@@ -62,7 +62,7 @@ export default function AlicerceDemo() {
     <DemoFrame siteName="Alicerce Engenharia" bg="#0f0f0e">
       <div className="text-[#f4efe6]">
         {/* Header */}
-        <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0f0f0e]/85 backdrop-blur">
+        <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0f0f0e]/85 backdrop-blur-sm">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
             <div className="flex items-center gap-2">
               <span className="grid h-9 w-9 place-items-center bg-[#f5a524] text-[#0f0f0e]">
@@ -94,10 +94,10 @@ export default function AlicerceDemo() {
         <section className="relative overflow-hidden">
           <DemoArt slug="alicerce-construtora" />
           <img src={heros['alicerce-construtora']} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover opacity-35" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f0e] via-[#0f0f0e]/85 to-[#0f0f0e]/30" />
+          <div className="absolute inset-0 bg-linear-to-r from-[#0f0f0e] via-[#0f0f0e]/85 to-[#0f0f0e]/30" />
           <div
             aria-hidden
-            className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(#f4efe6_1px,transparent_1px),linear-gradient(90deg,#f4efe6_1px,transparent_1px)] [background-size:64px_64px]"
+            className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(#f4efe6_1px,transparent_1px),linear-gradient(90deg,#f4efe6_1px,transparent_1px)] bg-size-[64px_64px]"
           />
           <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
             <div className="inline-flex items-center gap-2 border border-[#f5a524]/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#f5a524]">
@@ -132,12 +132,12 @@ export default function AlicerceDemo() {
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#f5a524]">{c.estimateEyebrow}</div>
-              <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[1] sm:text-5xl">
+              <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-none sm:text-5xl">
                 {c.estimateTitleA} <span className="text-[#f5a524]">{c.estimateTitleEm}</span>?
               </h2>
               <p className="mt-4 text-white/60">{c.estimateLead}</p>
 
-              <div className="mt-8 border border-[#f5a524]/40 bg-[#f5a524]/[0.06] p-6">
+              <div className="mt-8 border border-[#f5a524]/40 bg-[#f5a524]/6 p-6">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/50">{c.resultLabel}</div>
                 <div key={Math.round(estimate)} className="mt-2 flex animate-[page-enter_0.4s_ease_both] flex-wrap items-baseline gap-x-2 font-display text-2xl font-bold text-[#f5a524] xl:text-3xl">
                   <span>{money(estimate * 0.9, { decimals: 0, round: true })}</span>
@@ -229,7 +229,7 @@ export default function AlicerceDemo() {
             <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#f5a524]">{c.projectsEyebrow}</div>
-                <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[1] sm:text-5xl">{c.projectsTitle}</h2>
+                <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-none sm:text-5xl">{c.projectsTitle}</h2>
               </div>
               <div className="flex flex-wrap gap-2">
                 {(['all', 'residencial', 'comercial', 'reforma'] as const).map((cat) => (
@@ -238,7 +238,7 @@ export default function AlicerceDemo() {
                     onClick={() => setCategory(cat)}
                     aria-pressed={category === cat}
                     className={
-                      'border px-4 py-2 text-xs font-bold uppercase tracking-[0.1em] transition-colors ' +
+                      'border px-4 py-2 text-xs font-bold uppercase tracking-widest transition-colors ' +
                       (category === cat ? 'border-[#f5a524] text-[#f5a524]' : 'border-white/15 text-white/60 hover:text-white')
                     }
                   >
@@ -258,7 +258,7 @@ export default function AlicerceDemo() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4 }}
-                    className="group relative aspect-[4/5] overflow-hidden bg-[#1c1c1a]"
+                    className="group relative aspect-4/5 overflow-hidden bg-[#1c1c1a]"
                   >
                     <ArtTile icon={categoryIcons[p.category]} from="#2c2720" to="#121210" iconClassName="text-[#f5a524]/30" />
                     <img
@@ -268,7 +268,7 @@ export default function AlicerceDemo() {
                       loading="lazy"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0e] via-[#0f0f0e]/30 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#0f0f0e] via-[#0f0f0e]/30 to-transparent" />
                     <span className="absolute left-4 top-4 bg-[#f5a524] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#0f0f0e]">
                       {c.categories[p.category]}
                     </span>
@@ -293,7 +293,7 @@ export default function AlicerceDemo() {
         <section id="etapas" className="border-t border-white/10 bg-[#161615] py-20">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#f5a524]">{c.stagesEyebrow}</div>
-            <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[1] sm:text-5xl">
+            <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-none sm:text-5xl">
               {c.stagesTitleA} <span className="text-[#f5a524]">{c.stagesTitleEm}</span>.
             </h2>
 
@@ -426,7 +426,7 @@ function Input({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="mt-2 w-full border border-white/15 bg-transparent px-4 py-3 text-sm placeholder:text-white/30 focus:border-[#f5a524] focus:outline-none"
+        className="mt-2 w-full border border-white/15 bg-transparent px-4 py-3 text-sm placeholder:text-white/30 focus:border-[#f5a524] focus:outline-hidden"
       />
       {error && <span className="mt-1 block text-xs text-red-400">{error}</span>}
     </label>

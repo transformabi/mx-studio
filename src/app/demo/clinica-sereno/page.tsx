@@ -84,7 +84,7 @@ export default function ClinicaSerenoDemo() {
   return (
     <DemoFrame siteName="Clínica Sereno" bg="#f5f7f6">
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/85 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#0a3d40] text-white">
@@ -168,7 +168,7 @@ export default function ClinicaSerenoDemo() {
               alt={c.heroAlt}
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/95 p-4 shadow-lg">
               <div className="flex items-center gap-3">
                 <img
@@ -316,7 +316,7 @@ export default function ClinicaSerenoDemo() {
                   </button>
                 </div>
               ) : (
-                <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8">
+                <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-xs sm:p-8">
                   <div>
                     <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-500">
                       {c.stepDay}
@@ -434,7 +434,7 @@ export default function ClinicaSerenoDemo() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder={c.namePlaceholder}
-                        className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#0f5e62] focus:outline-none"
+                        className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#0f5e62] focus:outline-hidden"
                       />
                       {errors.name && <div className="mt-1 text-xs text-red-600">{errors.name}</div>}
                     </div>
@@ -448,7 +448,7 @@ export default function ClinicaSerenoDemo() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder={c.emailPlaceholder}
-                        className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#0f5e62] focus:outline-none"
+                        className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#0f5e62] focus:outline-hidden"
                       />
                       {errors.email && <div className="mt-1 text-xs text-red-600">{errors.email}</div>}
                     </div>
@@ -463,7 +463,7 @@ export default function ClinicaSerenoDemo() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="(21) 99999-9999"
-                      className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#0f5e62] focus:outline-none"
+                      className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#0f5e62] focus:outline-hidden"
                     />
                     {errors.phone && <div className="mt-1 text-xs text-red-600">{errors.phone}</div>}
                   </div>

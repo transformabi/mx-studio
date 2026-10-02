@@ -45,7 +45,7 @@ export function ContactForm({ t, budgets }: { t: Messages['form']; budgets: stri
 
   if (sentUrl) {
     return (
-      <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-10 text-center">
+      <div className="rounded-3xl border border-white/10 bg-white/4 p-10 text-center">
         <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-lime text-ink">
           <Check className="h-8 w-8" />
         </div>
@@ -68,7 +68,7 @@ export function ContactForm({ t, budgets }: { t: Messages['form']; budgets: stri
   return (
     <form
       onSubmit={submit}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8"
+      className="rounded-3xl border border-white/10 bg-white/3 p-6 sm:p-8"
       noValidate
     >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -106,8 +106,8 @@ export function ContactForm({ t, budgets }: { t: Messages['form']; budgets: stri
                 className={
                   'rounded-full border px-4 py-2 text-sm transition-colors ' +
                   (project === i
-                    ? 'border-[#94E421] bg-[#94E421] text-black'
-                    : 'border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:text-white')
+                    ? 'border-lime bg-lime text-black'
+                    : 'border-white/15 bg-white/3 text-white/70 hover:border-white/30 hover:text-white')
                 }
               >
                 {p}
@@ -130,8 +130,8 @@ export function ContactForm({ t, budgets }: { t: Messages['form']; budgets: stri
                 className={
                   'rounded-full border px-4 py-2 text-sm transition-colors ' +
                   (budget === i
-                    ? 'border-[#94E421] bg-[#94E421] text-black'
-                    : 'border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:text-white')
+                    ? 'border-lime bg-lime text-black'
+                    : 'border-white/15 bg-white/3 text-white/70 hover:border-white/30 hover:text-white')
                 }
               >
                 {b}

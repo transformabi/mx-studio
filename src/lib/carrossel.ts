@@ -108,7 +108,7 @@ export const slides: Slide[] = [
     n: 10,
     kind: 'cta',
     hook: 'Seu site pode ser\no próximo case.',
-    body: 'maxcosta.studio',
+    body: 'mxstudioweb.vercel.app',
     hookTail: '3 vagas em outubro',
   },
 ];

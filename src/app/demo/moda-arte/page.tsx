@@ -124,7 +124,7 @@ export default function ModaArteDemo() {
   return (
     <DemoFrame siteName="Moda & Arte" bg="#faf6f0">
       {/* Store header */}
-      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-[#faf6f0]/85 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-[#faf6f0]/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-neutral-900 text-[#c6ff3b] font-display text-sm font-black">
@@ -141,7 +141,7 @@ export default function ModaArteDemo() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={c.searchPlaceholder}
-              className="flex-1 bg-transparent text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none"
+              className="flex-1 bg-transparent text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-hidden"
               aria-label={c.searchAria}
             />
             {search && (
@@ -194,14 +194,14 @@ export default function ModaArteDemo() {
           </div>
         </div>
         <div className="lg:col-span-5">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-3xl">
+          <div className="relative aspect-3/4 overflow-hidden rounded-3xl">
             <img
               src={heros['moda-arte']}
               alt={c.heroAlt}
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-neutral-950/10" />
-            <div className="absolute right-5 top-5 rounded-full bg-neutral-900/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#c6ff3b] backdrop-blur">
+            <div className="absolute inset-0 bg-linear-to-t from-neutral-950/70 via-transparent to-neutral-950/10" />
+            <div className="absolute right-5 top-5 rounded-full bg-neutral-900/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#c6ff3b] backdrop-blur-sm">
               {c.newCollection}
             </div>
             <div className="absolute bottom-6 left-6 right-6 text-white">
@@ -265,7 +265,7 @@ export default function ModaArteDemo() {
               >
                 <button
                   onClick={() => setWish((w) => ({ ...w, [p.id]: !w[p.id] }))}
-                  className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full border border-neutral-200 bg-white/90 backdrop-blur transition-colors hover:bg-white"
+                  className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full border border-neutral-200 bg-white/90 backdrop-blur-sm transition-colors hover:bg-white"
                   aria-label={wish[p.id] ? c.removeWish : c.addWish}
                 >
                   <Heart
@@ -282,7 +282,7 @@ export default function ModaArteDemo() {
                 )}
                 <button
                   onClick={() => setDetail(p)}
-                  className="block aspect-[3/4] w-full text-left"
+                  className="block aspect-3/4 w-full text-left"
                   aria-label={c.seeDetails(nameOf(p))}
                 >
                   <div className="relative h-full w-full overflow-hidden bg-neutral-100">
@@ -363,7 +363,7 @@ export default function ModaArteDemo() {
       {cartOpen && (
         <div className="fixed inset-0 z-50 flex" role="dialog" aria-modal="true" aria-label={c.cart}>
           <button
-            className="flex-1 bg-black/60 backdrop-blur-sm"
+            className="flex-1 bg-black/60 backdrop-blur-xs"
             onClick={() => setCartOpen(false)}
             aria-label={c.closeCart}
           />
@@ -455,7 +455,7 @@ export default function ModaArteDemo() {
                     value={coupon}
                     onChange={(e) => setCoupon(e.target.value)}
                     placeholder={c.couponPlaceholder}
-                    className="flex-1 rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
+                    className="flex-1 rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-hidden"
                     aria-label={c.couponAria}
                   />
                   <button
@@ -588,19 +588,19 @@ export default function ModaArteDemo() {
                     value={address.cep}
                     onChange={(e) => setAddress({ ...address, cep: e.target.value })}
                     placeholder={c.zip}
-                    className="rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-neutral-900 focus:outline-none"
+                    className="rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-neutral-900 focus:outline-hidden"
                   />
                   <input
                     value={address.street}
                     onChange={(e) => setAddress({ ...address, street: e.target.value })}
                     placeholder={c.street}
-                    className="rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-neutral-900 focus:outline-none"
+                    className="rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-neutral-900 focus:outline-hidden"
                   />
                   <input
                     value={address.city}
                     onChange={(e) => setAddress({ ...address, city: e.target.value })}
                     placeholder={c.city}
-                    className="rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-neutral-900 focus:outline-none"
+                    className="rounded-xl border border-neutral-300 px-4 py-3 text-sm focus:border-neutral-900 focus:outline-hidden"
                   />
                 </div>
                 <button

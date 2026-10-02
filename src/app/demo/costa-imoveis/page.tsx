@@ -158,7 +158,7 @@ export default function CostaImoveisDemo() {
   return (
     <DemoFrame siteName="Costa Imóveis" bg="#fafaf9">
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/85 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-neutral-900 text-[#c6ff3b]">
@@ -201,7 +201,7 @@ export default function CostaImoveisDemo() {
               <p className="mt-5 max-w-xl text-base text-neutral-600 sm:text-lg">{c.heroLead}</p>
             </div>
             <div className="lg:col-span-5">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-neutral-100">
+              <div className="relative aspect-4/3 overflow-hidden rounded-3xl bg-neutral-100">
                 <img
                   src={heros['costa-imoveis']}
                   alt={c.heroAlt}
@@ -219,7 +219,7 @@ export default function CostaImoveisDemo() {
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
                   placeholder={c.searchPlaceholder}
-                  className="flex-1 bg-transparent text-sm placeholder:text-neutral-400 focus:outline-none"
+                  className="flex-1 bg-transparent text-sm placeholder:text-neutral-400 focus:outline-hidden"
                 />
                 {q && (
                   <button onClick={() => setQ('')} aria-label={c.clear} className="text-neutral-400 hover:text-neutral-700">
@@ -240,7 +240,7 @@ export default function CostaImoveisDemo() {
               <select
                 value={nb}
                 onChange={(e) => setNb(e.target.value as any)}
-                className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-none"
+                className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-hidden"
               >
                 {neighborhoods.map((n) => (
                   <option key={n} value={n}>{n === 'Todos' ? c.allNeighborhoods : n}</option>
@@ -249,7 +249,7 @@ export default function CostaImoveisDemo() {
               <select
                 value={tp}
                 onChange={(e) => setTp(e.target.value as any)}
-                className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-none"
+                className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-hidden"
               >
                 {types.map((t) => (
                   <option key={t} value={t}>{t === 'Todos' ? c.allTypes : c.types[t]}</option>
@@ -258,7 +258,7 @@ export default function CostaImoveisDemo() {
               <select
                 value={priceIdx}
                 onChange={(e) => setPriceIdx(Number(e.target.value))}
-                className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-none"
+                className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-hidden"
               >
                 {priceRanges.map((_, i) => (
                   <option key={i} value={i}>{rangeLabel(i)}</option>
@@ -334,7 +334,7 @@ export default function CostaImoveisDemo() {
                     setDetail(p);
                     setGIdx(0);
                   }}
-                  className="relative block aspect-[4/3] w-full overflow-hidden bg-neutral-100"
+                  className="relative block aspect-4/3 w-full overflow-hidden bg-neutral-100"
                   aria-label={c.see(nameOf(p))}
                 >
                   <img
@@ -343,8 +343,8 @@ export default function CostaImoveisDemo() {
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
-                  <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/50 px-3 py-1 text-[11px] font-medium text-white backdrop-blur">
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/60 to-transparent" />
+                  <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/50 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
                     {p.neighborhood}
                   </span>
                   {p.isExclusive && (
@@ -360,7 +360,7 @@ export default function CostaImoveisDemo() {
                 </button>
                 <button
                   onClick={() => setWish((w) => ({ ...w, [p.id]: !w[p.id] }))}
-                  className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full border border-neutral-200 bg-white/90 backdrop-blur transition-colors hover:bg-white"
+                  className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full border border-neutral-200 bg-white/90 backdrop-blur-sm transition-colors hover:bg-white"
                   aria-label={wish[p.id] ? c.removeWish : c.addWish}
                 >
                   <Heart className={'h-4 w-4 ' + (wish[p.id] ? 'fill-red-500 text-red-500' : 'text-neutral-600')} />
