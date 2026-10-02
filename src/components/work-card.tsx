@@ -95,8 +95,7 @@ export function WorkCard({ item, number }: { item: WorkItem; number: string }) {
           {item.text.vertical}
         </div>
         {item.badge ? (
-          <div className="pointer-events-none absolute right-5 top-5 flex items-center gap-1.5 rounded-full bg-black/60 py-1 pl-1.5 pr-3 text-xs font-semibold text-white backdrop-blur-sm">
-            <VerifiedBadge className="h-4 w-4" />
+          <div className="pointer-events-none absolute right-5 top-5 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
             {item.badge}
           </div>
         ) : (
@@ -120,7 +119,10 @@ export function WorkCard({ item, number }: { item: WorkItem; number: string }) {
             <span className="inline-block h-1.5 w-1.5 rounded-full" style={{ background: item.accent }} />
             {item.text.vertical} · {item.year}
           </div>
-          <h4 className="mt-2.5 font-brand text-xl font-semibold text-white">{item.name}</h4>
+          <h4 className="mt-2.5 flex items-center gap-1.5 font-brand text-xl font-semibold text-white">
+            {item.name}
+            {item.kind === 'case' && <VerifiedBadge className="h-5 w-5 shrink-0" />}
+          </h4>
           <p className="mt-1 text-sm text-white/60">{item.text.tagline}</p>
         </div>
         <div

@@ -95,7 +95,7 @@ export const es: Messages = {
     clientMany: '{n} clientes reales',
     modelOne: '1 modelo',
     modelMany: '{n} modelos',
-    clientBadge: 'Cliente real',
+    clientBadge: 'Cliente Real',
     visitSite: 'Visitar el sitio de {name}',
     clients: {
       'sulamita-estetica': {

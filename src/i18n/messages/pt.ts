@@ -101,7 +101,7 @@ export const pt = {
     clientMany: '{n} clientes reais',
     modelOne: '1 modelo',
     modelMany: '{n} modelos',
-    clientBadge: 'Cliente real',
+    clientBadge: 'Cliente Real',
     visitSite: 'Visitar o site de {name}',
     clients: {
       'sulamita-estetica': {
