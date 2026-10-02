@@ -13,6 +13,7 @@ export const heros = {
   'lumi-odonto': '/heros/lumi-odonto.webp',
   'iris-estetica': '/heros/iris-estetica.webp',
   'alicerce-construtora': '/heros/alicerce-construtora.webp',
+  'mare-salao': '/heros/mare-salao.webp',
 } as const;
 
 /** Search terms used by <ImgFallback> while a photo is still missing (see PROMPTS.md). */
@@ -26,6 +27,7 @@ export const demoKeywords: Record<keyof typeof heros, string> = {
   'lumi-odonto': 'dentist',
   'iris-estetica': 'spa',
   'alicerce-construtora': 'construction',
+  'mare-salao': 'salon',
 };
 
 // Moda Arte — 12 product photos (3:4)
@@ -131,6 +133,11 @@ export const irisEstetica = {
     criolipolise: '/iris-estetica/procedures/criolipolise.webp',
     drenagem: '/iris-estetica/procedures/drenagem.webp',
   },
+} as const;
+
+// Maré Salão — salon interior for the hero (4:5)
+export const mareSalao = {
+  space: '/mare-salao/space.webp',
 } as const;
 
 // Alicerce Engenharia — 6 finished projects (4:3)

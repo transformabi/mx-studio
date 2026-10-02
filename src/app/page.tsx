@@ -8,11 +8,14 @@ import { ContactForm } from '@/components/contact-form';
 import { FaqAccordion } from '@/components/faq-accordion';
 import { ProcessTimeline } from '@/components/process-timeline';
 import { WorkGrid } from '@/components/work-grid';
+import type { WorkItem } from '@/components/work-card';
+import { hasDemoArt } from '@/components/demo-art';
 import { CountUp } from '@/components/fx/count-up';
 import { HeroBackdrop } from '@/components/fx/hero-backdrop';
 import { SpotlightCard } from '@/components/fx/spotlight-card';
 import { Words, wordCount } from '@/components/fx/words';
-import { demos, estudio, whatsappUrl } from '@/lib/estudio';
+import { clientCases, demos, estudio, whatsappUrl } from '@/lib/estudio';
+import { demoKeywords, heros } from '@/lib/demo-images';
 import { cn } from '@/lib/utils';
 import { fill } from '@/i18n/format';
 import { getI18n } from '@/i18n/server';
@@ -38,6 +41,37 @@ export default async function EstudioHome() {
   const faqPrices = { price: price(4900), cheap: price(1500) };
   const faq = t.faq.items.map((f) => ({ q: fill(f.q, faqPrices), a: fill(f.a, faqPrices) }));
   const whatsapp = whatsappUrl(t.whatsappMsg);
+
+  // Live client sites first, then the demos; the grid groups both by niche.
+  const workItems: WorkItem[] = [
+    ...clientCases.map((cs) => ({
+      kind: 'case' as const,
+      key: cs.slug,
+      niche: cs.niche,
+      href: cs.url,
+      name: cs.clientName,
+      accent: cs.accent,
+      year: cs.year,
+      text: t.work.clients[cs.slug],
+      openLabel: fill(t.work.visitSite, { name: cs.clientName }),
+      image: cs.image,
+      badge: t.work.clientBadge,
+    })),
+    ...demos.map((d) => ({
+      kind: 'demo' as const,
+      key: d.slug,
+      niche: d.niche,
+      href: `/demo/${d.slug}`,
+      name: d.clientName,
+      accent: d.accent,
+      year: d.year,
+      text: t.work.cards[d.slug],
+      openLabel: fill(t.work.openDemo, { name: d.clientName }),
+      image: heros[d.slug],
+      artSlug: hasDemoArt(d.slug) ? d.slug : undefined,
+      keyword: hasDemoArt(d.slug) ? undefined : demoKeywords[d.slug],
+    })),
+  ];
 
   // Word indexes so the hero headline reveals as one continuous sequence.
   const h = t.hero;
@@ -155,7 +189,7 @@ export default async function EstudioHome() {
           <Reveal delay={100}>
             <div className="font-label text-xs uppercase tracking-[0.16em] text-white/40">
               {fill(t.work.count, {
-                niches: String(new Set(demos.map((d) => d.niche)).size),
+                niches: String(new Set(workItems.map((it) => it.niche)).size),
                 models: String(demos.length),
               })}
             </div>
@@ -163,11 +197,7 @@ export default async function EstudioHome() {
         </div>
 
         <WorkGrid
-          items={demos.map((demo) => ({
-            demo,
-            text: t.work.cards[demo.slug],
-            openLabel: fill(t.work.openDemo, { name: demo.clientName }),
-          }))}
+          items={workItems}
           t={t.work}
           numberLabel={t.work.number}
           previewHref={estudio.diagnostico}

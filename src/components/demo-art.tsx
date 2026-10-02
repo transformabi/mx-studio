@@ -1,10 +1,10 @@
-import { Flower2, HardHat, type LucideIcon } from 'lucide-react';
+import { Flower2, HardHat, Scissors, type LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-type ArtSlug = 'lumi-odonto' | 'iris-estetica' | 'alicerce-construtora';
+const artSlugs = ['lumi-odonto', 'iris-estetica', 'alicerce-construtora', 'mare-salao'] as const;
+type ArtSlug = (typeof artSlugs)[number];
 
-export const hasDemoArt = (slug: string): slug is ArtSlug =>
-  slug === 'lumi-odonto' || slug === 'iris-estetica' || slug === 'alicerce-construtora';
+export const hasDemoArt = (slug: string): slug is ArtSlug => (artSlugs as readonly string[]).includes(slug);
 
 /**
  * Art-directed stand-in rendered underneath photos that haven't been produced yet.
@@ -56,6 +56,28 @@ export function DemoArt({ slug, className }: { slug: string; className?: string 
           })}
         </svg>
         <Flower2 className="absolute left-1/2 top-[50%] h-[22%] w-[22%] -translate-x-1/2 text-white/90" strokeWidth={1.2} />
+      </div>
+    );
+  }
+
+  if (slug === 'mare-salao') {
+    return (
+      <div aria-hidden className={base} style={{ background: 'linear-gradient(200deg, #f3d3c6 0%, #d9b3a5 40%, #1f5b55 100%)' }}>
+        <div className="absolute right-[-20%] top-[-10%] h-[70%] w-[70%] rounded-full bg-white/40 blur-3xl" />
+        <svg
+          viewBox="0 0 200 250"
+          preserveAspectRatio="xMidYMid slice"
+          className="absolute inset-0 h-full w-full"
+          fill="none"
+          stroke="#ffffff"
+          strokeOpacity="0.45"
+          strokeWidth="1.5"
+        >
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <path key={i} d={`M${-20 + i * 14} 260 C ${30 + i * 14} 190, ${-10 + i * 14} 120, ${60 + i * 14} 60 S ${150 + i * 10} -10, ${210 + i * 6} 20`} />
+          ))}
+        </svg>
+        <Scissors className="absolute left-1/2 top-1/2 h-[20%] w-[20%] -translate-x-1/2 -translate-y-1/2 -rotate-45 text-white/90" strokeWidth={1.2} />
       </div>
     );
   }

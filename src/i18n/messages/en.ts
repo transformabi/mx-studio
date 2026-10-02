@@ -4,7 +4,7 @@ export const en: Messages = {
   meta: {
     title: 'MX Studio Web · Websites that bring in clients',
     description:
-      'Custom websites that bring in clients for clinics, law firms and shops, from Rio de Janeiro to Portugal. Try 9 working demos and ask for a free preview of yours.',
+      'Custom websites that bring in clients for clinics, law firms and shops, from Rio de Janeiro to Portugal. Try 10 working demos and ask for a free preview of yours.',
     keywords: [
       'clinic website',
       'law firm website',
@@ -15,7 +15,7 @@ export const en: Messages = {
       'MX Studio Web',
     ],
     ogDescription:
-      'Websites that bring in clients for clinics, law firms and shops. 9 working demos to try.',
+      'Websites that bring in clients for clinics, law firms and shops. 10 working demos to try.',
   },
 
   nav: {
@@ -59,9 +59,9 @@ export const en: Messages = {
       'MX Studio Web builds custom websites for businesses in Rio de Janeiro and Portugal: fast on mobile and designed to turn visits into WhatsApp conversations. One person from brief to post-launch. No templates, no middlemen.',
     preview: 'Get a free preview',
     previewNote: '5-min questionnaire · preview sent on WhatsApp',
-    seeWork: 'See the 9 demos',
+    seeWork: 'See the 10 demos',
     stats: [
-      { kpi: '9', label: 'demos for you to try' },
+      { kpi: '10', label: 'demos for you to try' },
       { kpi: '100%', label: 'code in your GitHub' },
       { kpi: '3–7', label: 'weeks per project' },
       { kpi: '24h', label: 'to reply' },
@@ -91,8 +91,23 @@ export const en: Messages = {
     openDemo: 'Open {name} demo',
     number: 'No.',
     all: 'All',
+    clientOne: '1 real client',
+    clientMany: '{n} real clients',
     modelOne: '1 model',
     modelMany: '{n} models',
+    clientBadge: 'Real Client',
+    visitSite: "Visit {name}'s site",
+    clients: {
+      'sulamita-estetica': {
+        vertical: 'Aesthetics',
+        tagline: 'Skin management in Caldas da Rainha, Portugal',
+        metrics: [
+          { label: '.pt', value: 'own domain' },
+          { label: 'PT · EN', value: 'bilingual site' },
+          { label: 'Live', value: 'since Sep 2026' },
+        ],
+      },
+    },
     niches: {
       saude: { label: 'Health', blurb: 'Clinics, practices and dentistry' },
       beleza: { label: 'Beauty & aesthetics', blurb: 'Aesthetic clinics, salons and barbershops' },
@@ -187,6 +202,15 @@ export const en: Messages = {
           { label: 'Estimate', value: 'in real time' },
           { label: 'Projects', value: 'with filters' },
           { label: 'Stages', value: 'of the build' },
+        ],
+      },
+      'mare-salao': {
+        vertical: 'Beauty salon',
+        tagline: 'Salon with online booking',
+        metrics: [
+          { label: 'Booking', value: 'in 4 steps' },
+          { label: 'Total', value: 'adds up live' },
+          { label: 'Team', value: 'by specialty' },
         ],
       },
     },
@@ -349,6 +373,7 @@ export const en: Messages = {
       'lumi-odonto': 'Dentistry',
       'iris-estetica': 'Aesthetics',
       'alicerce-construtora': 'Construction',
+      'mare-salao': 'Salon',
     },
     ctaEyebrow: 'Shall we talk?',
     ctaTitle: 'I reply within 24 hours.',

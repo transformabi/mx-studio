@@ -4,7 +4,7 @@ export const es: Messages = {
   meta: {
     title: 'MX Studio Web · Sitios que traen clientes',
     description:
-      'Sitios a medida que traen clientes a clínicas, despachos y tiendas, de Río de Janeiro a Portugal. Prueba 9 demos funcionales y pide una vista previa gratis del tuyo.',
+      'Sitios a medida que traen clientes a clínicas, despachos y tiendas, de Río de Janeiro a Portugal. Prueba 10 demos funcionales y pide una vista previa gratis del tuyo.',
     keywords: [
       'sitio web para clínica',
       'sitio web para abogados',
@@ -15,7 +15,7 @@ export const es: Messages = {
       'MX Studio Web',
     ],
     ogDescription:
-      'Sitios que traen clientes a clínicas, despachos y tiendas. 9 demos funcionales para probar.',
+      'Sitios que traen clientes a clínicas, despachos y tiendas. 10 demos funcionales para probar.',
   },
 
   nav: {
@@ -59,9 +59,9 @@ export const es: Messages = {
       'MX Studio Web crea sitios a medida para negocios de Río de Janeiro y Portugal: rápidos en el móvil y pensados para convertirse en conversaciones por WhatsApp. Del brief al post-lanzamiento, una sola persona. Sin plantillas, sin intermediarios.',
     preview: 'Pedir vista previa gratis',
     previewNote: 'Cuestionario de 5 min · la vista previa llega por WhatsApp',
-    seeWork: 'Ver las 9 demos',
+    seeWork: 'Ver las 10 demos',
     stats: [
-      { kpi: '9', label: 'demos para que pruebes' },
+      { kpi: '10', label: 'demos para que pruebes' },
       { kpi: '100%', label: 'código en tu GitHub' },
       { kpi: '3–7', label: 'semanas por proyecto' },
       { kpi: '24h', label: 'para responder' },
@@ -91,8 +91,23 @@ export const es: Messages = {
     openDemo: 'Abrir demo de {name}',
     number: 'Nº',
     all: 'Todos',
+    clientOne: '1 cliente real',
+    clientMany: '{n} clientes reales',
     modelOne: '1 modelo',
     modelMany: '{n} modelos',
+    clientBadge: 'Cliente Real',
+    visitSite: 'Visitar el sitio de {name}',
+    clients: {
+      'sulamita-estetica': {
+        vertical: 'Estética',
+        tagline: 'Cuidado de la piel en Caldas da Rainha, Portugal',
+        metrics: [
+          { label: '.pt', value: 'dominio propio' },
+          { label: 'PT · EN', value: 'sitio bilingüe' },
+          { label: 'En línea', value: 'desde sep. 2026' },
+        ],
+      },
+    },
     niches: {
       saude: { label: 'Salud', blurb: 'Clínicas, consultorios y odontología' },
       beleza: { label: 'Belleza y estética', blurb: 'Clínicas estéticas, salones y barberías' },
@@ -187,6 +202,15 @@ export const es: Messages = {
           { label: 'Presupuesto', value: 'en tiempo real' },
           { label: 'Obras', value: 'con filtro' },
           { label: 'Etapas', value: 'de la obra' },
+        ],
+      },
+      'mare-salao': {
+        vertical: 'Salón de belleza',
+        tagline: 'Salón con reserva online',
+        metrics: [
+          { label: 'Agenda', value: 'en 4 pasos' },
+          { label: 'Total', value: 'sumado al instante' },
+          { label: 'Equipo', value: 'por especialidad' },
         ],
       },
     },
@@ -349,6 +373,7 @@ export const es: Messages = {
       'lumi-odonto': 'Odontología',
       'iris-estetica': 'Estética',
       'alicerce-construtora': 'Construcción',
+      'mare-salao': 'Salón',
     },
     ctaEyebrow: '¿Hablamos?',
     ctaTitle: 'Respondo en menos de 24 horas.',
