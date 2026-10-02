@@ -5,6 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { useRef } from 'react';
 import type { DemoNiche } from '@/lib/estudio';
 import { cn } from '@/lib/utils';
+import { VerifiedBadge } from './brand-icons';
 import { DemoArt } from './demo-art';
 
 /** One card in the portfolio grid: a working demo, or a live client site (kind 'case'). */
@@ -94,8 +95,8 @@ export function WorkCard({ item, number }: { item: WorkItem; number: string }) {
           {item.text.vertical}
         </div>
         {item.badge ? (
-          <div className="pointer-events-none absolute right-5 top-5 flex items-center gap-1.5 rounded-full bg-lime px-2.5 py-1 font-label text-[10px] font-medium uppercase tracking-[0.14em] text-ink">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink" />
+          <div className="pointer-events-none absolute right-5 top-5 flex items-center gap-1.5 rounded-full bg-black/60 py-1 pl-1.5 pr-3 text-xs font-semibold text-white backdrop-blur-sm">
+            <VerifiedBadge className="h-4 w-4" />
             {item.badge}
           </div>
         ) : (
