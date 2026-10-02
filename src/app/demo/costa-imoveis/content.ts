@@ -61,7 +61,7 @@ const pt = {
     i9: 'Apartamento renovado',
     i10: 'Loft industrial',
   },
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 type CostaText = typeof pt;
@@ -128,7 +128,7 @@ const en: CostaText = {
     i9: 'Updated apartment',
     i10: 'Industrial loft',
   },
-  demoBy: 'Demo by MX Studio',
+  demoBy: 'Demo by MX Studio Web',
 };
 
 const es: CostaText = {
@@ -192,7 +192,7 @@ const es: CostaText = {
     i9: 'Apartamento renovado',
     i10: 'Loft industrial',
   },
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 export const content: Record<Locale, CostaText> = { pt, en, es };

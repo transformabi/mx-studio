@@ -12,7 +12,7 @@ const stepVariants = {
 };
 const iconVariants = {
   dim: { backgroundColor: 'rgba(255,255,255,0.04)', color: '#ffffff', scale: 1 },
-  lit: { backgroundColor: '#c6ff3b', color: '#000000', scale: 1.08 },
+  lit: { backgroundColor: '#94E421', color: '#000000', scale: 1.08 },
 };
 
 export function ProcessTimeline({ steps }: { steps: { title: string; duration: string; text: string }[] }) {
@@ -26,7 +26,7 @@ export function ProcessTimeline({ steps }: { steps: { title: string; duration: s
       <motion.div
         aria-hidden
         style={{ scaleY }}
-        className="absolute bottom-10 left-7 top-10 w-px origin-top bg-gradient-to-b from-[#c6ff3b] to-[#ff8a5c]"
+        className="absolute bottom-10 left-7 top-10 w-px origin-top bg-gradient-to-b from-[#94E421] to-[#ff8a5c]"
       />
       <ol className="space-y-4">
         {steps.map((s, i) => {
@@ -50,9 +50,9 @@ export function ProcessTimeline({ steps }: { steps: { title: string; duration: s
               </motion.span>
               <div className="min-w-0 pt-1">
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="font-mono text-xs text-white/40">{String(i + 1).padStart(2, '0')}</span>
-                  <h3 className="font-display text-2xl font-semibold text-white sm:text-3xl">{s.title}</h3>
-                  <span className="rounded-full border border-[#c6ff3b]/30 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-[0.14em] text-[#c6ff3b]">
+                  <span className="font-label text-xs text-white/40">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className="font-brand text-2xl font-semibold text-white sm:text-3xl">{s.title}</h3>
+                  <span className="rounded-full border border-[#94E421]/30 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-[0.14em] text-[#94E421]">
                     {s.duration}
                   </span>
                 </div>

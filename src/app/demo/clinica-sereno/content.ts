@@ -103,7 +103,7 @@ const pt = {
   ],
   whereEyebrow: 'Onde estamos',
   hours: ['Seg–Sex · 8h às 20h', 'Sáb · 8h às 13h'],
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 type ClinicaText = typeof pt;
@@ -211,7 +211,7 @@ const en: ClinicaText = {
   ],
   whereEyebrow: 'Where we are',
   hours: ['Mon–Fri · 8am to 8pm', 'Sat · 8am to 1pm'],
-  demoBy: 'Demo by MX Studio',
+  demoBy: 'Demo by MX Studio Web',
 };
 
 const es: ClinicaText = {
@@ -317,7 +317,7 @@ const es: ClinicaText = {
   ],
   whereEyebrow: 'Dónde estamos',
   hours: ['Lun–Vie · 8h a 20h', 'Sáb · 8h a 13h'],
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 export const content: Record<Locale, ClinicaText> = { pt, en, es };

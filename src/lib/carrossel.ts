@@ -41,7 +41,7 @@ export const slides: Slide[] = [
     caseMetricLabel: 'em conversão',
     caseTagline: 'Vendia por WhatsApp com planilha no colo.\nHoje o site vende sozinho.',
     caseImage: '/heros/moda-arte.webp',
-    caseAccent: '#c6ff3b',
+    caseAccent: '#94E421',
   },
   {
     n: 4,
@@ -85,7 +85,7 @@ export const slides: Slide[] = [
     caseMetricLabel: 'custo por lead',
     caseTagline: 'Deixou de pagar\nZap e VivaReal.',
     caseImage: '/heros/costa-imoveis.webp',
-    caseAccent: '#c6ff3b',
+    caseAccent: '#94E421',
   },
   {
     n: 8,

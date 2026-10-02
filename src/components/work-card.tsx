@@ -12,13 +12,11 @@ export function WorkCard({
   text,
   number,
   openLabel,
-  cursorLabel,
 }: {
   demo: Demo;
   text: Pick<Demo, 'vertical' | 'tagline' | 'metrics'>;
   number: string;
   openLabel: string;
-  cursorLabel: string;
 }) {
   const wrap = useRef<HTMLAnchorElement>(null);
 
@@ -44,7 +42,6 @@ export function WorkCard({
       href={`/demo/${demo.slug}`}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      data-cursor={cursorLabel}
       style={{
         transform: 'perspective(1200px) rotateX(calc(var(--ry, 0) * -5deg)) rotateY(calc(var(--rx, 0) * 7deg))',
       }}
@@ -79,17 +76,14 @@ export function WorkCard({
           <span className="h-1.5 w-1.5 rounded-full" style={{ background: demo.accent }} />
           {text.vertical}
         </div>
-        <div className="pointer-events-none absolute right-5 top-5 rounded-full bg-black/40 px-2.5 py-1 font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-white/70 backdrop-blur">
+        <div className="pointer-events-none absolute right-5 top-5 rounded-full bg-black/40 px-2.5 py-1 font-label text-[10px] font-medium uppercase tracking-[0.16em] text-white/70 backdrop-blur">
           {number}
         </div>
         <div className="pointer-events-none absolute bottom-5 left-5 right-5 flex items-end justify-between">
-          <div
-            style={{ fontFamily: 'var(--font-instrument-serif)' }}
-            className="text-4xl italic leading-none text-white transition-transform duration-500 group-hover:-translate-y-1"
-          >
+          <div className="font-brand text-4xl font-extrabold leading-none tracking-tight text-white transition-transform duration-500 group-hover:-translate-y-1">
             {demo.clientName.split(' ')[0].toLowerCase()}
           </div>
-          <div className="rounded-full border border-white/20 bg-black/40 px-2.5 py-1 text-[10px] font-mono text-white/70 backdrop-blur">
+          <div className="rounded-full border border-white/20 bg-black/40 px-2.5 py-1 text-[10px] font-label text-white/70 backdrop-blur">
             {demo.year}
           </div>
         </div>
@@ -104,7 +98,7 @@ export function WorkCard({
             />
             {text.vertical} · {demo.year}
           </div>
-          <h3 className="mt-2.5 font-display text-xl font-semibold text-white">
+          <h3 className="mt-2.5 font-brand text-xl font-semibold text-white">
             {demo.clientName}
           </h3>
           <p className="mt-1 text-sm text-white/60">{text.tagline}</p>
@@ -120,7 +114,7 @@ export function WorkCard({
       <div className="relative mt-2 grid grid-cols-3 gap-3 border-t border-white/10 px-3 pt-4 pb-2">
         {text.metrics.map((m) => (
           <div key={m.label + m.value}>
-            <div className="font-display text-base font-semibold" style={{ color: demo.accent }}>
+            <div className="font-brand text-base font-semibold" style={{ color: demo.accent }}>
               {m.label}
             </div>
             <div className="mt-0.5 truncate text-[11px] text-white/50">{m.value}</div>

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { Messages } from '@/i18n/messages';
+import { estudio } from '@/lib/estudio';
 import { MaxMonogram } from './max-monogram';
 import { PreferencesMenu } from './preferences-menu';
 
@@ -47,7 +48,7 @@ export function EstudioNav({ t, prefs }: { t: Messages['nav']; prefs: Messages['
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-all duration-500',
+        'fixed inset-x-0 top-0 z-50 font-body transition-all duration-500',
         scrolled ? 'py-2' : 'py-4',
       )}
     >
@@ -55,8 +56,8 @@ export function EstudioNav({ t, prefs }: { t: Messages['nav']; prefs: Messages['
         className={cn(
           'container-wide flex items-center justify-between rounded-full border border-white/10 px-4 py-2 backdrop-blur-xl transition-all duration-500',
           scrolled
-            ? 'bg-black/85 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.9)]'
-            : 'bg-black/30',
+            ? 'bg-ink/85 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.9)]'
+            : 'bg-ink/30',
         )}
       >
         <Link
@@ -66,7 +67,7 @@ export function EstudioNav({ t, prefs }: { t: Messages['nav']; prefs: Messages['
         >
           <MaxMonogram variant="inverted" rounded={20} className="h-8 w-8 shrink-0" />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-sm font-semibold text-white">MX Studio</span>
+            <span className="font-brand text-sm font-extrabold tracking-tight text-white">MX Studio Web</span>
             <span className="mt-0.5 text-[10px] uppercase tracking-[0.16em] text-white/50">
               {t.studio}
             </span>
@@ -97,13 +98,15 @@ export function EstudioNav({ t, prefs }: { t: Messages['nav']; prefs: Messages['
               {t.backShort}
             </Link>
           )}
-          <Link
-            href="/#contato"
-            className="hidden items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5 lg:inline-flex"
+          <a
+            href={estudio.diagnostico}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-1.5 rounded-full bg-lime px-4 py-2 text-sm font-semibold text-ink transition-transform hover:-translate-y-0.5 lg:inline-flex"
           >
             {t.startProject}
             <ArrowUpRight className="h-4 w-4" />
-          </Link>
+          </a>
 
           <button
             type="button"
@@ -126,7 +129,7 @@ export function EstudioNav({ t, prefs }: { t: Messages['nav']; prefs: Messages['
         )}
       >
         <div className="container-wide">
-          <div className="rounded-2xl border border-white/10 bg-black/90 p-4 backdrop-blur-xl shadow-[0_30px_60px_-20px_rgba(0,0,0,0.9)]">
+          <div className="rounded-2xl border border-white/10 bg-ink/95 p-4 backdrop-blur-xl shadow-[0_30px_60px_-20px_rgba(0,0,0,0.9)]">
             <nav aria-label={t.mobileNav} className="flex flex-col">
               {(isDemo ? [{ href: '/', label: t.backLong }] : links).map((l) => (
                 <Link
@@ -137,13 +140,15 @@ export function EstudioNav({ t, prefs }: { t: Messages['nav']; prefs: Messages['
                   {l.label}
                 </Link>
               ))}
-              <Link
-                href="/#contato"
-                className="mt-3 inline-flex items-center justify-center gap-1.5 rounded-full bg-white px-4 py-3 text-sm font-semibold text-black"
+              <a
+                href={estudio.diagnostico}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center justify-center gap-1.5 rounded-full bg-lime px-4 py-3 text-sm font-semibold text-ink"
               >
                 {t.startProject}
                 <ArrowUpRight className="h-4 w-4" />
-              </Link>
+              </a>
             </nav>
           </div>
         </div>

@@ -99,7 +99,7 @@ const pt = {
   doneText: 'Um engenheiro entra em contato em até 1 dia útil. Este é um demo — nenhuma visita foi agendada.',
   newRequest: 'Novo pedido',
   footerNote: 'CREA-RJ 2012345678 · Responsável técnico: Eng. Ricardo Alves',
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 type AlicerceText = typeof pt;
@@ -203,7 +203,7 @@ const en: AlicerceText = {
   doneText: 'An engineer will contact you within 1 business day. This is a demo — no visit was scheduled.',
   newRequest: 'New request',
   footerNote: 'CREA-RJ 2012345678 · Lead engineer: Ricardo Alves',
-  demoBy: 'Demo by MX Studio',
+  demoBy: 'Demo by MX Studio Web',
 };
 
 const es: AlicerceText = {
@@ -305,7 +305,7 @@ const es: AlicerceText = {
   doneText: 'Un ingeniero te contactará en 1 día hábil. Esto es una demo: no se agendó ninguna visita.',
   newRequest: 'Nueva solicitud',
   footerNote: 'CREA-RJ 2012345678 · Responsable técnico: Ing. Ricardo Alves',
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 export const content: Record<Locale, AlicerceText> = { pt, en, es };

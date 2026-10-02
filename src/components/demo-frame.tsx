@@ -11,19 +11,19 @@ const text: Record<Locale, { back: string; live: string; disclaimer: string }> =
     back: 'Voltar ao portfólio',
     live: 'Demo funcional',
     disclaimer:
-      'Esta é uma demo interativa criada por MX Studio. Todos os dados são fictícios e o checkout não processa pagamentos.',
+      'Esta é uma demo interativa criada por MX Studio Web. Todos os dados são fictícios e o checkout não processa pagamentos.',
   },
   en: {
     back: 'Back to portfolio',
     live: 'Working demo',
     disclaimer:
-      "This is an interactive demo built by MX Studio. All data is fictional and the checkout doesn't process payments.",
+      "This is an interactive demo built by MX Studio Web. All data is fictional and the checkout doesn't process payments.",
   },
   es: {
     back: 'Volver al portafolio',
     live: 'Demo funcional',
     disclaimer:
-      'Esta es una demo interactiva creada por MX Studio. Todos los datos son ficticios y el checkout no procesa pagos.',
+      'Esta es una demo interactiva creada por MX Studio Web. Todos los datos son ficticios y el checkout no procesa pagos.',
   },
 };
 
@@ -50,7 +50,7 @@ export function DemoFrame({
             {t.back}
           </Link>
           <div className="hidden items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-white/40 sm:flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#c6ff3b] animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#94E421] animate-pulse" />
             {t.live} · {siteName}
           </div>
         </div>

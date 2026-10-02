@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRef, type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
-type Variant = 'primary' | 'secondary' | 'ghost';
+type Variant = 'primary' | 'lime' | 'secondary' | 'ghost';
 
 const base =
   'group relative inline-flex items-center justify-center gap-1.5 rounded-full text-sm font-semibold transition-transform duration-300 ease-out focus-visible:outline-2 focus-visible:outline-offset-2';
@@ -12,6 +12,8 @@ const base =
 const variants: Record<Variant, string> = {
   primary:
     'bg-white text-black px-5 py-3 hover:-translate-y-0.5 focus-visible:outline-white',
+  lime:
+    'bg-lime text-ink px-5 py-3 hover:-translate-y-0.5 focus-visible:outline-lime',
   secondary:
     'border border-white/15 bg-white/5 text-white px-5 py-3 backdrop-blur hover:bg-white/10 hover:-translate-y-0.5 focus-visible:outline-white',
   ghost:

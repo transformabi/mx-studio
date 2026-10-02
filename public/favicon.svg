@@ -1,21 +1,10 @@
-<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="tb-lime" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#84D82C"/>
-      <stop offset="1" stop-color="#C6F26E"/>
-    </linearGradient>
-    <linearGradient id="tb-teal" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1D6A6E"/>
-      <stop offset="1" stop-color="#0F3E42"/>
-    </linearGradient>
-  </defs>
-  <rect width="40" height="40" rx="8" fill="#05070B"/>
-  <g transform="translate(2 2) scale(0.9)">
-    <rect x="4" y="24" width="6" height="12" rx="1.5" fill="url(#tb-teal)"/>
-    <rect x="13" y="18" width="6" height="18" rx="1.5" fill="url(#tb-teal)"/>
-    <rect x="22" y="12" width="6" height="24" rx="1.5" fill="url(#tb-teal)"/>
-    <rect x="31" y="6" width="6" height="30" rx="1.5" fill="url(#tb-teal)"/>
-    <path d="M4 24 L14 16 L22 20 L34 6" stroke="url(#tb-lime)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <path d="M34 6 L34 12 M34 6 L28 6" stroke="url(#tb-lime)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" rx="44" fill="#0C0E0A"/>
+  <g transform="translate(25 31) scale(0.385)">
+    <path fill="#FBFCF8" d="M37 125 L175 250 L345 78 L345 352 L300 352 L300 180 L175 302 L82 216 L82 352 L37 352 Z"/>
+    <g fill="none" stroke="#A4FE24" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 75 L175 212 L360 27"/>
+      <path d="M314 19 L368 19 L368 73"/>
+    </g>
   </g>
 </svg>

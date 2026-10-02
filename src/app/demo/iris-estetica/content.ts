@@ -115,7 +115,7 @@ const pt = {
   doneText: 'Nossa equipe vai te chamar no WhatsApp. Este é um demo — nenhuma reserva foi feita.',
   newRequest: 'Novo pedido',
   note: 'Procedimentos realizados por profissionais habilitados. Resultados variam de pessoa para pessoa.',
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 type IrisText = typeof pt;
@@ -235,7 +235,7 @@ const en: IrisText = {
   doneText: "Our team will message you on WhatsApp. This is a demo — no booking was made.",
   newRequest: 'New request',
   note: 'Treatments performed by licensed professionals. Results vary from person to person.',
-  demoBy: 'Demo by MX Studio',
+  demoBy: 'Demo by MX Studio Web',
 };
 
 const es: IrisText = {
@@ -353,7 +353,7 @@ const es: IrisText = {
   doneText: 'Nuestro equipo te escribirá por WhatsApp. Esto es una demo: no se hizo ninguna reserva.',
   newRequest: 'Nueva solicitud',
   note: 'Tratamientos realizados por profesionales habilitados. Los resultados varían de una persona a otra.',
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 export const content: Record<Locale, IrisText> = { pt, en, es };
