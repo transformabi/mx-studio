@@ -153,7 +153,12 @@ export default async function EstudioHome() {
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <div className="font-label text-xs uppercase tracking-[0.16em] text-white/40">{t.work.count}</div>
+            <div className="font-label text-xs uppercase tracking-[0.16em] text-white/40">
+              {fill(t.work.count, {
+                niches: String(new Set(demos.map((d) => d.niche)).size),
+                models: String(demos.length),
+              })}
+            </div>
           </Reveal>
         </div>
 
@@ -163,8 +168,9 @@ export default async function EstudioHome() {
             text: t.work.cards[demo.slug],
             openLabel: fill(t.work.openDemo, { name: demo.clientName }),
           }))}
-          filters={t.work.filters}
+          t={t.work}
           numberLabel={t.work.number}
+          previewHref={estudio.diagnostico}
         />
       </section>
 

@@ -32,12 +32,22 @@ export type DemoSlug =
   | 'iris-estetica'
   | 'alicerce-construtora';
 
-/** Filter groups on the home page. */
-export type DemoGroup = 'saude' | 'local' | 'digital';
+/** Business niches the demos are grouped by on the home page, in display order. */
+export const niches = [
+  'saude',
+  'beleza',
+  'advocacia',
+  'lojas',
+  'restaurantes',
+  'imobiliarias',
+  'construcao',
+  'cursos',
+] as const;
+export type DemoNiche = (typeof niches)[number];
 
 export type Demo = {
   slug: DemoSlug;
-  group: DemoGroup;
+  niche: DemoNiche;
   vertical: string;
   clientName: string;
   tagline: string;
@@ -51,7 +61,7 @@ export type Demo = {
 export const demos: Demo[] = [
   {
     slug: 'moda-arte',
-    group: 'digital',
+    niche: 'lojas',
     vertical: 'E-commerce',
     clientName: 'Moda & Arte',
     tagline: 'Loja de moda autoral',
@@ -68,7 +78,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'restaurante-terra',
-    group: 'local',
+    niche: 'restaurantes',
     vertical: 'Gastronomia',
     clientName: 'Terra Casa de Fogo',
     tagline: 'Restaurante de alta gastronomia',
@@ -85,7 +95,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'clinica-sereno',
-    group: 'saude',
+    niche: 'saude',
     vertical: 'Saúde',
     clientName: 'Clínica Sereno',
     tagline: 'Clínica multiprofissional',
@@ -102,7 +112,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'motta-advogados',
-    group: 'local',
+    niche: 'advocacia',
     vertical: 'Advocacia',
     clientName: 'Motta Advogados',
     tagline: 'Escritório de advocacia',
@@ -119,7 +129,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'costa-imoveis',
-    group: 'local',
+    niche: 'imobiliarias',
     vertical: 'Imobiliária',
     clientName: 'Costa Imóveis',
     tagline: 'Vitrine imobiliária boutique',
@@ -136,7 +146,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'rota-clara',
-    group: 'digital',
+    niche: 'cursos',
     vertical: 'Infoproduto',
     clientName: 'Rota Clara',
     tagline: 'Curso online + landing de vendas',
@@ -153,7 +163,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'lumi-odonto',
-    group: 'saude',
+    niche: 'saude',
     vertical: 'Odontologia',
     clientName: 'Lumi Odontologia',
     tagline: 'Clínica odontológica estética',
@@ -170,7 +180,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'iris-estetica',
-    group: 'saude',
+    niche: 'beleza',
     vertical: 'Estética',
     clientName: 'Íris Estética Avançada',
     tagline: 'Clínica de estética avançada',
@@ -187,7 +197,7 @@ export const demos: Demo[] = [
   },
   {
     slug: 'alicerce-construtora',
-    group: 'local',
+    niche: 'construcao',
     vertical: 'Construtora',
     clientName: 'Alicerce Engenharia',
     tagline: 'Construtora e reformas',
