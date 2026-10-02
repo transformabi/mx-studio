@@ -1,4 +1,4 @@
-import type { DemoGroup, DemoSlug } from '@/lib/estudio';
+import type { DemoNiche, DemoSlug } from '@/lib/estudio';
 
 type DemoCardText = {
   vertical: string;
@@ -93,15 +93,26 @@ export const pt = {
     titleB: ' do site.',
     lead: 'Clique, teste os botões, adicione ao carrinho, faça uma reserva. Se funciona aqui, funciona no seu.',
     note: 'LCP e peso medidos em produção, sem cache, em 4G com CPU 4× mais lenta — pior caso de 3 medições. Não precisa acreditar: jogue a URL de qualquer demo no PageSpeed Insights do Google e confira.',
-    count: '09 nichos · demos completos',
+    count: '{niches} nichos · {models} modelos de site',
     openDemo: 'Abrir demo {name}',
     number: 'Nº',
-    filters: {
-      all: 'Todos',
-      saude: 'Saúde & estética',
-      local: 'Negócios locais',
-      digital: 'Vendas online',
-    } as Record<'all' | DemoGroup, string>,
+    all: 'Todos',
+    modelOne: '1 modelo',
+    modelMany: '{n} modelos',
+    niches: {
+      saude: { label: 'Saúde', blurb: 'Clínicas, consultórios e odontologia' },
+      beleza: { label: 'Beleza & estética', blurb: 'Clínicas de estética, salões e barbearias' },
+      advocacia: { label: 'Advocacia', blurb: 'Escritórios de advocacia' },
+      lojas: { label: 'Lojas', blurb: 'Lojas virtuais e comércio' },
+      restaurantes: { label: 'Restaurantes', blurb: 'Restaurantes, bares e delivery' },
+      imobiliarias: { label: 'Imobiliárias', blurb: 'Corretores e imobiliárias' },
+      construcao: { label: 'Construção', blurb: 'Construtoras e reformas' },
+      cursos: { label: 'Cursos', blurb: 'Cursos online, escolas e infoprodutos' },
+    } as Record<DemoNiche, { label: string; blurb: string }>,
+    fillerEyebrow: 'Prévia grátis',
+    fillerTitle: 'Quer um site assim pro seu negócio?',
+    fillerText: 'Responda o diagnóstico de 5 min e receba uma prévia do seu site, no seu ramo, pelo WhatsApp.',
+    fillerCta: 'Pedir prévia grátis',
     cards: {
       'moda-arte': {
         vertical: 'E-commerce',

@@ -98,9 +98,9 @@ export function WorkCard({
             />
             {text.vertical} · {demo.year}
           </div>
-          <h3 className="mt-2.5 font-brand text-xl font-semibold text-white">
+          <h4 className="mt-2.5 font-brand text-xl font-semibold text-white">
             {demo.clientName}
-          </h3>
+          </h4>
           <p className="mt-1 text-sm text-white/60">{text.tagline}</p>
         </div>
         <div

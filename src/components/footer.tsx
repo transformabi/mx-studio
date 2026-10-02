@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
 import { Instagram, Linkedin } from './brand-icons';
-import { demos, estudio, whatsappUrl } from '@/lib/estudio';
+import { demos, estudio, niches, whatsappUrl } from '@/lib/estudio';
 import { messages } from '@/i18n/messages';
 import { getLocale } from '@/i18n/server';
 import { MaxMonogram } from './max-monogram';
@@ -67,7 +67,7 @@ export async function EstudioFooter() {
                 {f.demos}
               </div>
               <ul className="mt-4 space-y-2.5 text-sm">
-                {demos.map((d) => (
+                {niches.flatMap((n) => demos.filter((d) => d.niche === n)).map((d) => (
                   <li key={d.slug}>
                     <Link href={`/demo/${d.slug}`} className="text-white/70 hover:text-white">
                       {f.demoLinks[d.slug]}
