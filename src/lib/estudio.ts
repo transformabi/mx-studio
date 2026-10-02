@@ -1,5 +1,5 @@
 /** Public address of this site; override per deploy with NEXT_PUBLIC_SITE_URL. */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://max-costa-estudio.vercel.app';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mxstudioweb.vercel.app';
 
 export const estudio = {
   name: 'MX Studio Web',

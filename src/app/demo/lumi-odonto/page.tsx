@@ -109,7 +109,7 @@ export default function LumiOdontoDemo() {
     <DemoFrame siteName="Lumi Odontologia" bg="#f6f9fb">
       <div className="text-[#0b2239]">
         {/* Header */}
-        <header className="sticky top-0 z-30 border-b border-sky-900/10 bg-[#f6f9fb]/85 backdrop-blur">
+        <header className="sticky top-0 z-30 border-b border-sky-900/10 bg-[#f6f9fb]/85 backdrop-blur-sm">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
             <div className="flex items-center gap-2">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-[#0b2239] text-[#7dd3fc]">
@@ -143,7 +143,7 @@ export default function LumiOdontoDemo() {
 
         {/* Hero */}
         <section className="relative overflow-hidden">
-          <div aria-hidden className="absolute -right-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(125,211,252,0.45),transparent_65%)]" />
+          <div aria-hidden className="absolute -right-32 -top-32 h-112 w-md rounded-full bg-[radial-gradient(circle,rgba(125,211,252,0.45),transparent_65%)]" />
           <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-12">
             <div className="lg:col-span-6">
               <div className="inline-flex items-center gap-2 rounded-full border border-sky-900/10 bg-white px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[#0b2239]/60">
@@ -184,12 +184,12 @@ export default function LumiOdontoDemo() {
             </div>
             <div className="lg:col-span-6">
               <div className="relative">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-sky-100 sm:aspect-[4/3] lg:aspect-[4/5]">
+                <div className="relative aspect-4/5 overflow-hidden rounded-[2.5rem] bg-sky-100 sm:aspect-4/3 lg:aspect-4/5">
                   <DemoArt slug="lumi-odonto" />
                   <img src={lumiOdonto.clinic} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b2239]/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-[#0b2239]/40 via-transparent to-transparent" />
                 </div>
-                <div className="absolute -bottom-6 left-4 right-4 flex items-center gap-4 rounded-3xl border border-white/60 bg-white/90 p-4 shadow-xl backdrop-blur sm:left-auto sm:right-[-1rem] sm:w-72">
+                <div className="absolute -bottom-6 left-4 right-4 flex items-center gap-4 rounded-3xl border border-white/60 bg-white/90 p-4 shadow-xl backdrop-blur-sm sm:left-auto sm:-right-4 sm:w-72">
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-sky-100 text-sky-600">
                     <ScanLine className="h-6 w-6" />
                   </span>
@@ -225,7 +225,7 @@ export default function LumiOdontoDemo() {
             </div>
 
             <div className="lg:col-span-7">
-              <div className="rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] p-6 sm:p-10">
+              <div className="rounded-4xl border border-white/10 bg-linear-to-b from-white/[0.07] to-white/2 p-6 sm:p-10">
                 <Smile color={shadeColor(level)} />
                 <div className="mt-8">
                   <div className="flex items-center justify-between text-sm">
@@ -278,7 +278,7 @@ export default function LumiOdontoDemo() {
               ))}
             </div>
 
-            <div key={current.id} role="tabpanel" className="mt-6 grid animate-[page-enter_0.5s_ease_both] grid-cols-1 gap-6 rounded-[2rem] bg-white p-6 shadow-[0_30px_60px_-40px_rgba(11,34,57,0.5)] sm:p-10 lg:grid-cols-12">
+            <div key={current.id} role="tabpanel" className="mt-6 grid animate-[page-enter_0.5s_ease_both] grid-cols-1 gap-6 rounded-4xl bg-white p-6 shadow-[0_30px_60px_-40px_rgba(11,34,57,0.5)] sm:p-10 lg:grid-cols-12">
               <div className="lg:col-span-6">
                 <div className="font-mono text-xs text-sky-600">{String(tab + 1).padStart(2, '0')} / {String(c.treatments.length).padStart(2, '0')}</div>
                 <h3 className="mt-2 font-display text-3xl font-semibold">{current.name}</h3>
@@ -318,8 +318,8 @@ export default function LumiOdontoDemo() {
             <h2 className="mt-3 font-display text-4xl font-semibold sm:text-5xl">{c.teamTitle}</h2>
             <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
               {c.team.map((m, i) => (
-                <article key={m.name} className="group overflow-hidden rounded-[2rem] bg-[#f6f9fb]">
-                  <div className="relative aspect-[4/5] overflow-hidden">
+                <article key={m.name} className="group overflow-hidden rounded-4xl bg-[#f6f9fb]">
+                  <div className="relative aspect-4/5 overflow-hidden">
                     <EditorialPortrait name={m.name} className="absolute inset-0" />
                     <img
                       src={teamMeta[i].photo}
@@ -328,7 +328,7 @@ export default function LumiOdontoDemo() {
                       loading="lazy"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold backdrop-blur">
+                    <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold backdrop-blur-sm">
                       {m.specialty}
                     </span>
                   </div>
@@ -353,7 +353,7 @@ export default function LumiOdontoDemo() {
             </div>
 
             <div className="lg:col-span-7">
-              <div className="rounded-[2rem] bg-white p-6 shadow-[0_30px_60px_-40px_rgba(11,34,57,0.5)] sm:p-8">
+              <div className="rounded-4xl bg-white p-6 shadow-[0_30px_60px_-40px_rgba(11,34,57,0.5)] sm:p-8">
                 {step < 4 && (
                   <>
                     <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-[#0b2239]/50">
@@ -431,10 +431,10 @@ export default function LumiOdontoDemo() {
                     <div className="font-display text-xl font-semibold">{c.step3}</div>
                     <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <Field label={c.name} error={errors.name}>
-                        <input value={name} onChange={(e) => setName(e.target.value)} placeholder={c.namePlaceholder} className="w-full rounded-xl border border-sky-900/15 px-4 py-3 text-sm focus:border-sky-500 focus:outline-none" />
+                        <input value={name} onChange={(e) => setName(e.target.value)} placeholder={c.namePlaceholder} className="w-full rounded-xl border border-sky-900/15 px-4 py-3 text-sm focus:border-sky-500 focus:outline-hidden" />
                       </Field>
                       <Field label="WhatsApp" error={errors.phone}>
-                        <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(21) 99999-9999" className="w-full rounded-xl border border-sky-900/15 px-4 py-3 text-sm focus:border-sky-500 focus:outline-none" />
+                        <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(21) 99999-9999" className="w-full rounded-xl border border-sky-900/15 px-4 py-3 text-sm focus:border-sky-500 focus:outline-hidden" />
                       </Field>
                     </div>
                   </div>
@@ -497,7 +497,7 @@ export default function LumiOdontoDemo() {
 
 function Swatch({ label, name, color, highlight }: { label: string; name: string; color: string; highlight?: boolean }) {
   return (
-    <div className={'rounded-2xl border p-3 ' + (highlight ? 'border-sky-300/40 bg-sky-400/10' : 'border-white/10 bg-white/[0.03]')}>
+    <div className={'rounded-2xl border p-3 ' + (highlight ? 'border-sky-300/40 bg-sky-400/10' : 'border-white/10 bg-white/3')}>
       <div className="text-[10px] uppercase tracking-[0.14em] text-white/50">{label}</div>
       <div className="mt-2 flex items-center gap-3">
         <span className="h-10 w-10 rounded-xl border border-white/20 transition-colors" style={{ background: color }} />

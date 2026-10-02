@@ -99,7 +99,7 @@ export default function IrisEsteticaDemo() {
     <DemoFrame siteName="Íris Estética Avançada" bg="#faf6f3">
       <div className="text-[#2a1b22]">
         {/* Header */}
-        <header className="sticky top-0 z-30 border-b border-[#2a1b22]/10 bg-[#faf6f3]/85 backdrop-blur">
+        <header className="sticky top-0 z-30 border-b border-[#2a1b22]/10 bg-[#faf6f3]/85 backdrop-blur-sm">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
             <div className="flex items-center gap-2">
               <span className="grid h-9 w-9 place-items-center rounded-full border border-[#a8566a]/40 text-[#a8566a]">
@@ -129,7 +129,7 @@ export default function IrisEsteticaDemo() {
 
         {/* Hero */}
         <section className="relative overflow-hidden">
-          <div aria-hidden className="absolute -left-40 top-10 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(240,171,252,0.35),transparent_65%)]" />
+          <div aria-hidden className="absolute -left-40 top-10 h-120 w-120 rounded-full bg-[radial-gradient(circle,rgba(240,171,252,0.35),transparent_65%)]" />
           <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-[#a8566a]">{c.heroEyebrow}</div>
@@ -161,7 +161,7 @@ export default function IrisEsteticaDemo() {
             </div>
             <div className="lg:col-span-5">
               <div className="relative mx-auto max-w-sm lg:max-w-none">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-t-full rounded-b-[2.5rem] bg-[#f1e3e6]">
+                <div className="relative aspect-3/4 overflow-hidden rounded-t-full rounded-b-[2.5rem] bg-[#f1e3e6]">
                   <DemoArt slug="iris-estetica" />
                   <img src={irisEstetica.space} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover" />
                 </div>
@@ -208,8 +208,8 @@ export default function IrisEsteticaDemo() {
 
             <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {visible.map((p) => (
-                <article key={p.id} className="group overflow-hidden rounded-[2rem] bg-[#faf6f3] transition-shadow duration-500 hover:shadow-[0_30px_60px_-35px_rgba(42,27,34,0.45)]">
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                <article key={p.id} className="group overflow-hidden rounded-4xl bg-[#faf6f3] transition-shadow duration-500 hover:shadow-[0_30px_60px_-35px_rgba(42,27,34,0.45)]">
+                  <div className="relative aspect-4/3 overflow-hidden">
                     <ArtTile
                       icon={procedureIcons[p.id]}
                       from="#fdf2f5"
@@ -223,7 +223,7 @@ export default function IrisEsteticaDemo() {
                       loading="lazy"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] backdrop-blur">
+                    <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] backdrop-blur-sm">
                       {c.areas[p.area]}
                     </span>
                   </div>
@@ -258,7 +258,7 @@ export default function IrisEsteticaDemo() {
             <div className="text-[11px] font-medium uppercase tracking-[0.2em] text-[#f0abfc]">{c.quizEyebrow}</div>
             <h2 className="mt-3 font-display text-4xl font-semibold leading-[1.05] sm:text-5xl">{c.quizTitle}</h2>
 
-            <div className="mt-10 rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 text-left sm:p-10">
+            <div className="mt-10 rounded-4xl border border-white/10 bg-white/4 p-6 text-left sm:p-10">
               {!quizDone ? (
                 <div key={answers.length} className="animate-[page-enter_0.5s_ease_both]">
                   <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-white/50">
@@ -332,7 +332,7 @@ export default function IrisEsteticaDemo() {
             </div>
 
             <div className="lg:col-span-7">
-              <div className="rounded-[2rem] bg-white p-6 shadow-[0_30px_60px_-40px_rgba(42,27,34,0.45)] sm:p-8">
+              <div className="rounded-4xl bg-white p-6 shadow-[0_30px_60px_-40px_rgba(42,27,34,0.45)] sm:p-8">
                 <label className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#2a1b22]/50" htmlFor="iris-procedure">
                   {c.procedureLabel}
                 </label>
@@ -340,7 +340,7 @@ export default function IrisEsteticaDemo() {
                   id="iris-procedure"
                   value={pkgProcedure}
                   onChange={(e) => setPkgProcedure(e.target.value as ProcedureId)}
-                  className="mt-2 w-full rounded-2xl border border-[#2a1b22]/15 bg-[#faf6f3] px-4 py-3 text-sm font-medium focus:border-[#a8566a] focus:outline-none"
+                  className="mt-2 w-full rounded-2xl border border-[#2a1b22]/15 bg-[#faf6f3] px-4 py-3 text-sm font-medium focus:border-[#a8566a] focus:outline-hidden"
                 >
                   {procedures.map((p) => (
                     <option key={p.id} value={p.id}>
@@ -396,7 +396,7 @@ export default function IrisEsteticaDemo() {
         {/* Reserva */}
         <section id="reservar" className="bg-[#f1e3e6] py-20">
           <div className="mx-auto max-w-2xl px-4 sm:px-6">
-            <div className="rounded-[2rem] bg-white p-6 sm:p-10">
+            <div className="rounded-4xl bg-white p-6 sm:p-10">
               {sent ? (
                 <div className="py-6 text-center">
                   <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[#a8566a] text-white">
@@ -422,12 +422,12 @@ export default function IrisEsteticaDemo() {
                   <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <label className="block">
                       <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#2a1b22]/50">{c.name}</span>
-                      <input value={name} onChange={(e) => setName(e.target.value)} placeholder={c.namePlaceholder} className="mt-2 w-full rounded-xl border border-[#2a1b22]/15 px-4 py-3 text-sm focus:border-[#a8566a] focus:outline-none" />
+                      <input value={name} onChange={(e) => setName(e.target.value)} placeholder={c.namePlaceholder} className="mt-2 w-full rounded-xl border border-[#2a1b22]/15 px-4 py-3 text-sm focus:border-[#a8566a] focus:outline-hidden" />
                       {errors.name && <span className="mt-1 block text-xs text-red-600">{errors.name}</span>}
                     </label>
                     <label className="block">
                       <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#2a1b22]/50">WhatsApp</span>
-                      <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(21) 99999-9999" className="mt-2 w-full rounded-xl border border-[#2a1b22]/15 px-4 py-3 text-sm focus:border-[#a8566a] focus:outline-none" />
+                      <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(21) 99999-9999" className="mt-2 w-full rounded-xl border border-[#2a1b22]/15 px-4 py-3 text-sm focus:border-[#a8566a] focus:outline-hidden" />
                       {errors.phone && <span className="mt-1 block text-xs text-red-600">{errors.phone}</span>}
                     </label>
                   </div>

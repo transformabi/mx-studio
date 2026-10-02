@@ -6,8 +6,8 @@ export function generateStaticParams() {
   return slides.map((s) => ({ slide: String(s.n) }));
 }
 
-export default function CarrosselSlide({ params }: { params: { slide: string } }) {
-  const s = slideBySlug[params.slide];
+export default async function CarrosselSlide({ params }: { params: Promise<{ slide: string }> }) {
+  const s = slideBySlug[(await params).slide];
   if (!s) return notFound();
 
   return (
@@ -56,7 +56,7 @@ function CoverSlide({ s }: { s: Slide }) {
         <div style={display} className="text-[132px] font-bold leading-[0.9] text-white">
           {s.hook}
         </div>
-        <div style={serif} className="mt-3 text-[128px] italic leading-[0.95] text-[#94E421]">
+        <div style={serif} className="mt-3 text-[128px] italic leading-[0.95] text-lime">
           {s.hookAccent}
         </div>
         <div style={display} className="mt-3 text-[76px] font-bold leading-[0.95] text-white/90">
@@ -70,7 +70,7 @@ function CoverSlide({ s }: { s: Slide }) {
       {/* Grid dos 6 sites embaixo */}
       <div className="grid grid-cols-3 gap-4">
         {caseThumbnails.map((c) => (
-          <div key={c.src} className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-neutral-800">
+          <div key={c.src} className="relative aspect-16/10 overflow-hidden rounded-2xl bg-neutral-800">
             <img src={c.src} alt="" className="absolute inset-0 h-full w-full object-cover" />
             <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
             <div className="pointer-events-none absolute right-2 top-2 h-2 w-2 rounded-full" style={{ background: c.accent }} />
@@ -97,7 +97,7 @@ function SetupSlide({ s }: { s: Slide }) {
           <div key={i}>
             {i === 0 && line.includes('perde') ? (
               <>
-                E aí perde <span className="text-[#94E421]">cliente todo dia</span>
+                E aí perde <span className="text-lime">cliente todo dia</span>
               </>
             ) : (
               line
@@ -144,7 +144,7 @@ function CaseSlide({ s }: { s: Slide }) {
               <span className="h-3 w-3 rounded-full bg-white/25" />
             </div>
             <div className="ml-6 flex-1">
-              <div className="mx-auto max-w-sm rounded-md border border-white/10 bg-white/[0.06] px-3 py-1.5 text-center font-mono text-[13px] text-white/50">
+              <div className="mx-auto max-w-sm rounded-md border border-white/10 bg-white/6 px-3 py-1.5 text-center font-mono text-[13px] text-white/50">
                 {s.caseName?.toLowerCase().replace(/[^a-z]/g, '') || 'site'}.com.br
               </div>
             </div>
@@ -215,7 +215,7 @@ function ComparisonRow({
         className={
           'text-[52px] ' +
           (accent
-            ? 'italic text-[#94E421]'
+            ? 'italic text-lime'
             : muted
             ? 'font-mono text-white/40'
             : 'font-bold text-white')
@@ -237,7 +237,7 @@ function CTASlide({ s }: { s: Slide }) {
       </div>
 
       <div className="mt-4 flex flex-col items-center gap-3">
-        <div style={serif} className="text-[100px] italic leading-none text-[#94E421]">
+        <div style={serif} className="text-[100px] italic leading-none text-lime">
           {s.body}
         </div>
         <div className="text-[22px] uppercase tracking-[0.28em] text-white/50">

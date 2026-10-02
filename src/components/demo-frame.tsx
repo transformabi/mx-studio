@@ -44,13 +44,13 @@ export function DemoFrame({
         <div className="mb-3 flex items-center justify-between gap-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-white/70 backdrop-blur transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-white/70 backdrop-blur-sm transition-colors hover:text-white"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             {t.back}
           </Link>
           <div className="hidden items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-white/40 sm:flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#94E421] animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-lime animate-pulse" />
             {t.live} · {siteName}
           </div>
         </div>

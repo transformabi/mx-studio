@@ -111,7 +111,7 @@ export default function RestauranteTerraDemo() {
   return (
     <DemoFrame siteName="Terra Casa de Fogo" bg="#1c1917">
       {/* Store header */}
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-[#1c1917]/85 text-[#f5e9d5] backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-[#1c1917]/85 text-[#f5e9d5] backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#d97706] text-white">
@@ -151,7 +151,7 @@ export default function RestauranteTerraDemo() {
             alt={c.heroAlt}
             className="absolute inset-0 h-full w-full object-cover opacity-55"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1c1917]/40 via-[#1c1917]/60 to-[#1c1917]" />
+          <div className="absolute inset-0 bg-linear-to-b from-[#1c1917]/40 via-[#1c1917]/60 to-[#1c1917]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_20%,rgba(217,119,6,0.35),transparent)]" />
         </div>
         <div className="relative mx-auto max-w-6xl px-4 py-24 text-[#f5e9d5] sm:px-6 sm:py-32">
@@ -297,7 +297,7 @@ export default function RestauranteTerraDemo() {
 
             <div className="lg:col-span-7">
               {reserved ? (
-                <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+                <div className="rounded-3xl border border-white/10 bg-white/3 p-8">
                   <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-[#d97706] text-white">
                     <Check className="h-8 w-8" />
                   </div>
@@ -307,7 +307,7 @@ export default function RestauranteTerraDemo() {
                   <p className="mt-2 text-center text-[#f5e9d5]/70">
                     {c.reservedText(reserved.name.split(' ')[0])}
                   </p>
-                  <div className="mt-6 grid grid-cols-3 gap-4 rounded-2xl bg-white/[0.03] p-4 text-center">
+                  <div className="mt-6 grid grid-cols-3 gap-4 rounded-2xl bg-white/3 p-4 text-center">
                     <div>
                       <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">{c.date}</div>
                       <div className="mt-1 text-sm font-semibold">
@@ -332,7 +332,7 @@ export default function RestauranteTerraDemo() {
                   </button>
                 </div>
               ) : (
-                <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+                <div className="rounded-3xl border border-white/10 bg-white/3 p-6 sm:p-8">
                   <div>
                     <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
                       {c.stepDate}
@@ -361,7 +361,7 @@ export default function RestauranteTerraDemo() {
                                 'flex min-w-[76px] flex-col items-center rounded-2xl border px-3 py-2 text-center transition-colors ' +
                                 (selected
                                   ? 'border-[#d97706] bg-[#d97706] text-white'
-                                  : 'border-white/15 bg-white/[0.02] text-[#f5e9d5]/80 hover:border-white/30')
+                                  : 'border-white/15 bg-white/2 text-[#f5e9d5]/80 hover:border-white/30')
                               }
                             >
                               <span className="text-[10px] uppercase tracking-[0.12em]">
@@ -407,10 +407,10 @@ export default function RestauranteTerraDemo() {
                             className={
                               'rounded-full border px-3 py-1.5 text-sm transition-colors ' +
                               (booked
-                                ? 'cursor-not-allowed border-white/5 bg-white/[0.02] text-[#f5e9d5]/25 line-through'
+                                ? 'cursor-not-allowed border-white/5 bg-white/2 text-[#f5e9d5]/25 line-through'
                                 : selected
                                 ? 'border-[#d97706] bg-[#d97706] text-white'
-                                : 'border-white/15 bg-white/[0.02] text-[#f5e9d5]/80 hover:border-white/30')
+                                : 'border-white/15 bg-white/2 text-[#f5e9d5]/80 hover:border-white/30')
                             }
                           >
                             {t}
@@ -461,7 +461,7 @@ export default function RestauranteTerraDemo() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder={c.namePlaceholder}
-                        className="mt-2 w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-none"
+                        className="mt-2 w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-hidden"
                       />
                       {errors.name && <div className="mt-1 text-xs text-red-400">{errors.name}</div>}
                     </div>
@@ -474,7 +474,7 @@ export default function RestauranteTerraDemo() {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="(21) 99999-9999"
-                        className="mt-2 w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-none"
+                        className="mt-2 w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-hidden"
                       />
                       {errors.phone && <div className="mt-1 text-xs text-red-400">{errors.phone}</div>}
                     </div>
@@ -490,7 +490,7 @@ export default function RestauranteTerraDemo() {
                       onChange={(e) => setNote(e.target.value)}
                       placeholder={c.notePlaceholder}
                       rows={2}
-                      className="mt-2 w-full resize-none rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-none"
+                      className="mt-2 w-full resize-none rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-hidden"
                     />
                   </div>
 
@@ -523,7 +523,7 @@ export default function RestauranteTerraDemo() {
               </button>
             </div>
             <div className="px-6 py-6">
-              <div className="grid grid-cols-3 gap-4 rounded-2xl bg-white/[0.03] p-4 text-center">
+              <div className="grid grid-cols-3 gap-4 rounded-2xl bg-white/3 p-4 text-center">
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.14em] text-[#f5e9d5]/60">{c.date}</div>
                   <div className="mt-1 text-sm font-semibold">
@@ -593,7 +593,7 @@ export default function RestauranteTerraDemo() {
               <p className="mt-4 max-w-lg text-[#f5e9d5]/70">{c.visitLead}</p>
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {c.spaces.map((f) => (
-                  <div key={f.l} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                  <div key={f.l} className="rounded-2xl border border-white/10 bg-white/3 p-4">
                     <div style={{ fontFamily: 'var(--font-instrument-serif)' }} className="text-2xl italic text-[#f5e9d5]">
                       {f.l}
                     </div>
@@ -602,7 +602,7 @@ export default function RestauranteTerraDemo() {
                 ))}
               </div>
             </div>
-            <div className="rounded-3xl bg-white/[0.03] p-6 text-sm">
+            <div className="rounded-3xl bg-white/3 p-6 text-sm">
               <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">{c.address}</div>
               <div className="mt-2 text-[#f5e9d5]">Rua Voluntários da Pátria, 42</div>
               <div className="text-[#f5e9d5]/70">Botafogo · Rio de Janeiro</div>

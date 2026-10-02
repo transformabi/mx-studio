@@ -1,12 +1,13 @@
 import Link from 'next/link';
-import { ArrowUpRight, Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
+import { Instagram, Linkedin } from './brand-icons';
 import { demos, estudio, whatsappUrl } from '@/lib/estudio';
 import { messages } from '@/i18n/messages';
 import { getLocale } from '@/i18n/server';
 import { MaxMonogram } from './max-monogram';
 
-export function EstudioFooter() {
-  const t = messages[getLocale()];
+export async function EstudioFooter() {
+  const t = messages[await getLocale()];
   const f = t.footer;
 
   return (
@@ -78,7 +79,7 @@ export function EstudioFooter() {
           </div>
         </div>
 
-        <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
+        <div className="mt-12 rounded-2xl border border-white/10 bg-white/2 p-6 sm:p-8">
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="font-label text-xs uppercase tracking-[0.14em] text-lime">
@@ -140,7 +141,7 @@ function SocialLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-all hover:border-[#94E421]/40 hover:text-[#94E421] hover:-translate-y-0.5"
+      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-all hover:border-lime/40 hover:text-lime hover:-translate-y-0.5"
     >
       {children}
     </a>

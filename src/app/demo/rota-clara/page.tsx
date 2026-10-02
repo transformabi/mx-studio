@@ -93,7 +93,7 @@ export default function RotaClaraDemo() {
   return (
     <DemoFrame siteName="Método Rota Clara" bg="#0f172a">
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0f172a]/85 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0f172a]/85 backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#22d3ee] text-[#0f172a]">
@@ -136,11 +136,11 @@ export default function RotaClaraDemo() {
             alt=""
             className="absolute inset-0 h-full w-full object-cover opacity-40"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a]/60 via-[#0f172a]/75 to-[#0f172a]" />
+          <div className="absolute inset-0 bg-linear-to-b from-[#0f172a]/60 via-[#0f172a]/75 to-[#0f172a]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_10%,rgba(34,211,238,0.35),transparent)]" />
         </div>
         <div className="relative mx-auto max-w-4xl px-4 py-16 text-center text-white sm:px-6 sm:py-24">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3 py-1 text-xs font-medium text-white/70">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/4 px-3 py-1 text-xs font-medium text-white/70">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#22d3ee] opacity-70" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#22d3ee]" />
@@ -158,7 +158,7 @@ export default function RotaClaraDemo() {
           <p className="mx-auto mt-6 max-w-2xl text-lg text-white/70">{c.heroLead}</p>
 
           <div className="mt-8 flex flex-col items-center gap-6">
-            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-3">
+            <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/3 p-3">
               <Clock className="h-4 w-4 text-[#22d3ee]" />
               <div className="text-xs uppercase tracking-[0.14em] text-white/60">{c.offerEnds}</div>
               <div className="flex items-center gap-1.5 font-mono text-sm font-bold text-white">
@@ -221,8 +221,8 @@ export default function RotaClaraDemo() {
 
           <div className="mt-10 grid grid-cols-1 gap-3 md:grid-cols-2">
             {c.modules.map((mod, i) => (
-              <div key={mod.title} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-white/25">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/[0.06] font-display text-sm font-bold text-[#22d3ee]">
+              <div key={mod.title} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/2 p-4 transition-colors hover:border-white/25">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/6 font-display text-sm font-bold text-[#22d3ee]">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div className="min-w-0 flex-1">
@@ -243,7 +243,7 @@ export default function RotaClaraDemo() {
           <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold sm:text-4xl">{c.studentsTitle}</h2>
           <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
             {testimonials.map((t, i) => (
-              <div key={t.name} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+              <div key={t.name} className="rounded-3xl border border-white/10 bg-white/3 p-6">
                 <div className="flex items-center gap-1">
                   {Array.from({ length: 5 }).map((_, k) => (
                     <Star key={k} className="h-4 w-4 fill-amber-400 text-amber-400" />
@@ -272,7 +272,7 @@ export default function RotaClaraDemo() {
       <section className="border-t border-white/10 bg-[#0b1223] py-16 text-white">
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-white/[0.03]">
+            <div className="relative aspect-3/4 overflow-hidden rounded-3xl bg-white/3">
               <img
                 src={rotaClara.creator}
                 alt="Larissa Nogueira"
@@ -329,7 +329,7 @@ export default function RotaClaraDemo() {
                   'group text-left rounded-3xl border p-6 transition-all ' +
                   (p.id === selectedPlan
                     ? 'border-[#22d3ee] bg-[#22d3ee]/5 shadow-[0_0_60px_-15px_rgba(34,211,238,0.5)]'
-                    : 'border-white/10 bg-white/[0.02] hover:border-white/30')
+                    : 'border-white/10 bg-white/2 hover:border-white/30')
                 }
               >
                 {p.highlight && (
@@ -385,7 +385,7 @@ export default function RotaClaraDemo() {
           </div>
           <div className="mt-10 space-y-3">
             {c.faq.map((f, i) => (
-              <div key={f.q} className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
+              <div key={f.q} className="overflow-hidden rounded-2xl border border-white/10 bg-white/2">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="flex w-full items-center justify-between gap-4 p-5 text-left"
@@ -426,7 +426,7 @@ export default function RotaClaraDemo() {
                   <div key={n} className={'h-1 flex-1 rounded-full ' + (checkoutStep >= n ? 'bg-[#22d3ee]' : 'bg-white/10')} />
                 ))}
               </div>
-              <div className="mt-4 rounded-xl bg-white/[0.05] p-3">
+              <div className="mt-4 rounded-xl bg-white/5 p-3">
                 <div className="text-xs text-white/50">{c.buying}</div>
                 <div className="font-display text-base font-semibold">{planName} · Rota Clara</div>
               </div>
@@ -443,7 +443,7 @@ export default function RotaClaraDemo() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder={c.fullName}
-                      className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-none"
+                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
                     />
                     {errors.name && <div className="mt-1 text-xs text-red-400">{errors.name}</div>}
                   </div>
@@ -453,7 +453,7 @@ export default function RotaClaraDemo() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder={c.emailPlaceholder}
-                      className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-none"
+                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
                     />
                     {errors.email && <div className="mt-1 text-xs text-red-400">{errors.email}</div>}
                   </div>
@@ -501,14 +501,14 @@ export default function RotaClaraDemo() {
                       value={card.number}
                       onChange={(e) => setCard({ ...card, number: e.target.value })}
                       placeholder={c.cardNumber}
-                      className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-none"
+                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
                     />
                     {errors.number && <div className="text-xs text-red-400">{errors.number}</div>}
                     <input
                       value={card.name}
                       onChange={(e) => setCard({ ...card, name: e.target.value })}
                       placeholder={c.cardName}
-                      className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-none"
+                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
                     />
                     {errors.name && <div className="text-xs text-red-400">{errors.name}</div>}
                     <div className="grid grid-cols-2 gap-3">
@@ -516,13 +516,13 @@ export default function RotaClaraDemo() {
                         value={card.expiry}
                         onChange={(e) => setCard({ ...card, expiry: e.target.value })}
                         placeholder={c.expiry}
-                        className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-none"
+                        className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
                       />
                       <input
                         value={card.cvv}
                         onChange={(e) => setCard({ ...card, cvv: e.target.value })}
                         placeholder="CVV"
-                        className="w-full rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-none"
+                        className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
                       />
                     </div>
                     {(errors.expiry || errors.cvv) && (
@@ -530,11 +530,11 @@ export default function RotaClaraDemo() {
                     )}
                   </div>
                 ) : (
-                  <div className="mt-4 rounded-2xl bg-white/[0.05] p-4 text-sm">
+                  <div className="mt-4 rounded-2xl bg-white/5 p-4 text-sm">
                     <p>{c.pixInfo}</p>
                   </div>
                 )}
-                <div className="mt-6 flex items-center justify-between rounded-xl bg-white/[0.05] px-4 py-3 text-sm">
+                <div className="mt-6 flex items-center justify-between rounded-xl bg-white/5 px-4 py-3 text-sm">
                   <div>
                     <div className="text-white/50 text-xs">{c.total}</div>
                     <div className="font-display text-lg font-semibold">{money(finalPrice)}</div>
@@ -598,7 +598,8 @@ export default function RotaClaraDemo() {
 
 function Digit({ v, u }: { v: number; u: string }) {
   return (
-    <span className="tabular-nums">
+    // A live clock: the server and the first client render land on different seconds.
+    <span className="tabular-nums" suppressHydrationWarning>
       {String(v).padStart(2, '0')}
       <span className="ml-0.5 text-[10px] text-white/50">{u}</span>
     </span>

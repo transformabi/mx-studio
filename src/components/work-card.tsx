@@ -45,7 +45,7 @@ export function WorkCard({
       style={{
         transform: 'perspective(1200px) rotateX(calc(var(--ry, 0) * -5deg)) rotateY(calc(var(--rx, 0) * 7deg))',
       }}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-3 transition-[transform,border-color,background-color] duration-300 ease-out hover:border-white/25 hover:bg-white/[0.05]"
+      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/3 p-3 transition-[transform,border-color,background-color] duration-300 ease-out hover:border-white/25 hover:bg-white/5"
       aria-label={openLabel}
     >
       <div
@@ -55,7 +55,7 @@ export function WorkCard({
           background: `radial-gradient(500px circle at var(--mx,50%) var(--my,50%), ${demo.accent}22, transparent 40%)`,
         }}
       />
-      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-neutral-900">
+      <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-neutral-900">
         <DemoArt slug={demo.slug} />
         <img
           src={heros[demo.slug]}
@@ -70,20 +70,20 @@ export function WorkCard({
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/25"
+          className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/75 via-black/10 to-black/25"
         />
-        <div className="pointer-events-none absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur">
+        <div className="pointer-events-none absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm">
           <span className="h-1.5 w-1.5 rounded-full" style={{ background: demo.accent }} />
           {text.vertical}
         </div>
-        <div className="pointer-events-none absolute right-5 top-5 rounded-full bg-black/40 px-2.5 py-1 font-label text-[10px] font-medium uppercase tracking-[0.16em] text-white/70 backdrop-blur">
+        <div className="pointer-events-none absolute right-5 top-5 rounded-full bg-black/40 px-2.5 py-1 font-label text-[10px] font-medium uppercase tracking-[0.16em] text-white/70 backdrop-blur-sm">
           {number}
         </div>
         <div className="pointer-events-none absolute bottom-5 left-5 right-5 flex items-end justify-between">
           <div className="font-brand text-4xl font-extrabold leading-none tracking-tight text-white transition-transform duration-500 group-hover:-translate-y-1">
             {demo.clientName.split(' ')[0].toLowerCase()}
           </div>
-          <div className="rounded-full border border-white/20 bg-black/40 px-2.5 py-1 text-[10px] font-label text-white/70 backdrop-blur">
+          <div className="rounded-full border border-white/20 bg-black/40 px-2.5 py-1 text-[10px] font-label text-white/70 backdrop-blur-sm">
             {demo.year}
           </div>
         </div>
@@ -107,7 +107,7 @@ export function WorkCard({
           className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 transition-all duration-500 group-hover:rotate-45 group-hover:bg-white"
           style={{ borderColor: `${demo.accent}55` }}
         >
-          <ArrowUpRight className="h-4 w-4 transition-colors group-hover:!text-black" style={{ color: demo.accent }} aria-hidden />
+          <ArrowUpRight className="h-4 w-4 transition-colors group-hover:text-black!" style={{ color: demo.accent }} aria-hidden />
         </div>
       </div>
 

@@ -135,7 +135,7 @@ function Option({
     >
       <span className="w-7 font-label text-[11px] text-white/45">{aside}</span>
       <span className="flex-1">{children}</span>
-      {selected && <Check className="h-4 w-4 text-[#94E421]" aria-hidden />}
+      {selected && <Check className="h-4 w-4 text-lime" aria-hidden />}
     </button>
   );
 }

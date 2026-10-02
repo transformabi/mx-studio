@@ -170,7 +170,7 @@ export default function HeroCanvas() {
     <canvas
       ref={ref}
       aria-hidden
-      className={`absolute inset-0 h-full w-full transition-opacity duration-[1500ms] ${ready ? 'opacity-100' : 'opacity-0'}`}
+      className={`absolute inset-0 h-full w-full transition-opacity duration-1500 ${ready ? 'opacity-100' : 'opacity-0'}`}
     />
   );
 }

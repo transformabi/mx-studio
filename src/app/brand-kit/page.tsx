@@ -27,12 +27,12 @@ const bios = [
   {
     tag: 'Curta · 150 caracteres',
     where: 'Instagram · Twitter · perfis compactos',
-    text: 'Fazemos sites e produtos digitais em Next.js. Do brief ao pós-lançamento, um humano só. Vem ver → maxcosta.studio',
+    text: 'Fazemos sites e produtos digitais em Next.js. Do brief ao pós-lançamento, um humano só. Vem ver → mxstudioweb.vercel.app',
   },
   {
     tag: 'Média · 300 caracteres',
     where: 'Workana · 99Freelas · Fiverr · Upwork',
-    text: 'Somos a MX Studio Web — estúdio digital no Rio. Fazemos sites, e-commerces e produtos digitais sob medida em Next.js/React. 8+ anos de mercado, do brief ao pós-lançamento sem intermediário. Portfólio: maxcosta.studio · Respondemos em até 24h.',
+    text: 'Somos a MX Studio Web — estúdio digital no Rio. Fazemos sites, e-commerces e produtos digitais sob medida em Next.js/React. 8+ anos de mercado, do brief ao pós-lançamento sem intermediário. Portfólio: mxstudioweb.vercel.app · Respondemos em até 24h.',
   },
   {
     tag: 'Longa · para o "sobre" do LinkedIn',
@@ -49,7 +49,7 @@ Ramos que costumamos atender: moda autoral, gastronomia, saúde, jurídico, imob
 • Código no seu GitHub, sem lock-in
 • 30 dias de garantia
 
-Portfólio com 9 demos funcionais: maxcosta.studio
+Portfólio com 9 demos funcionais: mxstudioweb.vercel.app
 Fale com a gente: (21) 99319-6171 (WhatsApp)`,
   },
 ];
@@ -65,7 +65,7 @@ export default function BrandKitPage() {
     <div className="mx-auto max-w-5xl px-4 py-24 sm:px-6 sm:py-32">
       <Link
         href="/"
-        className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-white/70 backdrop-blur transition-colors hover:text-white"
+        className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/3 px-3.5 py-1.5 text-xs font-medium text-white/70 backdrop-blur-sm transition-colors hover:text-white"
       >
         <ArrowLeft className="h-3.5 w-3.5" />
         Voltar ao portfólio
@@ -77,7 +77,7 @@ export default function BrandKitPage() {
         </div>
         <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.05] text-white sm:text-6xl">
           Materiais pra{' '}
-          <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal text-[#94E421]">
+          <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal text-lime">
             criar seus perfis
           </em>
           .
@@ -95,7 +95,7 @@ export default function BrandKitPage() {
         </h2>
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
           {platforms.map((p) => (
-            <div key={p.name} className="rounded-3xl border border-white/10 bg-white/[0.03] p-4">
+            <div key={p.name} className="rounded-3xl border border-white/10 bg-white/3 p-4">
               <div className="grid aspect-square place-items-center rounded-2xl bg-[#080808]">
                 <MaxMonogram variant={p.variant} rounded={p.rounded} className="h-4/5 w-4/5" />
               </div>
@@ -113,7 +113,7 @@ export default function BrandKitPage() {
               key={f.file}
               href={f.file}
               download
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-sm text-white/80 transition-colors hover:bg-white/[0.08]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/3 px-4 py-2 text-sm text-white/80 transition-colors hover:bg-white/8"
             >
               <Download className="h-3.5 w-3.5" />
               {f.label}
@@ -123,7 +123,7 @@ export default function BrandKitPage() {
             href="https://www.iloveimg.com/svg-to-png"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[#94E421] px-4 py-2 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-full bg-lime px-4 py-2 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
           >
             Converter pra PNG (site externo) →
           </a>
@@ -142,7 +142,7 @@ export default function BrandKitPage() {
 
         <div className="mt-8 space-y-6">
           {banners.map((b) => (
-            <div key={b.name} className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03]">
+            <div key={b.name} className="overflow-hidden rounded-3xl border border-white/10 bg-white/3">
               <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-6 py-4">
                 <div>
                   <div className="text-sm font-semibold text-white">{b.name}</div>
@@ -170,12 +170,12 @@ export default function BrandKitPage() {
 
         <div className="mt-6 grid grid-cols-1 gap-4">
           {bios.map((b) => (
-            <div key={b.tag} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+            <div key={b.tag} className="rounded-3xl border border-white/10 bg-white/3 p-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <div
                     style={{ fontFamily: 'var(--font-instrument-serif)' }}
-                    className="text-2xl italic text-[#94E421]"
+                    className="text-2xl italic text-lime"
                   >
                     {b.tag}
                   </div>
@@ -201,24 +201,24 @@ export default function BrandKitPage() {
           04 · Link do portfólio
         </h2>
 
-        <div className="mt-6 rounded-3xl border border-[#94E421]/30 bg-[#94E421]/[0.04] p-8">
+        <div className="mt-6 rounded-3xl border border-lime/30 bg-lime/4 p-8">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <div
                 style={{ fontFamily: 'var(--font-instrument-serif)' }}
                 className="text-3xl italic text-white"
               >
-                maxcosta.studio
+                mxstudioweb.vercel.app
               </div>
               <p className="mt-3 text-sm text-white/70">
                 Assim que o deploy estiver no ar (passo a passo abaixo), esse será o link a colocar em todas as bios.
               </p>
               <p className="mt-4 text-xs text-white/50">
-                Enquanto isso, use o subdomínio da Vercel: <code className="rounded bg-white/10 px-2 py-0.5 font-mono text-[11px]">max-costa-estudio.vercel.app/estudio</code>
+                Enquanto isso, use o subdomínio da Vercel: <code className="rounded-sm bg-white/10 px-2 py-0.5 font-mono text-[11px]">max-costa-estudio.vercel.app/estudio</code>
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6 text-sm text-white/70">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#94E421]">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-lime">
                 Contato de bio
               </div>
               <div className="mt-3 space-y-1.5 text-white">
@@ -241,7 +241,7 @@ export default function BrandKitPage() {
 
       <footer className="mt-20 border-t border-white/10 pt-8 text-xs text-white/40">
         Brand kit gerado para uso interno da MX Studio Web. Todos os assets em{' '}
-        <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[11px]">/public/brand/</code>.
+        <code className="rounded-sm bg-white/10 px-1.5 py-0.5 font-mono text-[11px]">/public/brand/</code>.
       </footer>
     </div>
   );
@@ -280,7 +280,7 @@ function BannerPreview({ name, w, h }: { name: string; w: number; h: number }) {
             style={{ fontFamily: 'var(--font-instrument-serif)' }}
             className="mt-2 text-4xl italic leading-[1.02] text-white sm:text-5xl md:text-6xl"
           >
-            Sites que <span className="text-[#94E421]">vendem</span>.
+            Sites que <span className="text-lime">vendem</span>.
           </div>
           {!isSquare && (
             <div className="mt-3 text-xs text-white/60 sm:text-sm">
@@ -291,7 +291,7 @@ function BannerPreview({ name, w, h }: { name: string; w: number; h: number }) {
       </div>
 
       {/* corner label */}
-      <div className="absolute right-3 top-3 rounded-full border border-white/15 bg-black/40 px-2.5 py-1 text-[10px] font-mono text-white/60 backdrop-blur">
+      <div className="absolute right-3 top-3 rounded-full border border-white/15 bg-black/40 px-2.5 py-1 text-[10px] font-mono text-white/60 backdrop-blur-sm">
         {w}×{h}
       </div>
     </div>

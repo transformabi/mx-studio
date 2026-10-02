@@ -26,7 +26,7 @@ export function ProcessTimeline({ steps }: { steps: { title: string; duration: s
       <motion.div
         aria-hidden
         style={{ scaleY }}
-        className="absolute bottom-10 left-7 top-10 w-px origin-top bg-gradient-to-b from-[#94E421] to-[#ff8a5c]"
+        className="absolute bottom-10 left-7 top-10 w-px origin-top bg-linear-to-b from-[#94E421] to-[#ff8a5c]"
       />
       <ol className="space-y-4">
         {steps.map((s, i) => {
@@ -52,7 +52,7 @@ export function ProcessTimeline({ steps }: { steps: { title: string; duration: s
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="font-label text-xs text-white/40">{String(i + 1).padStart(2, '0')}</span>
                   <h3 className="font-brand text-2xl font-semibold text-white sm:text-3xl">{s.title}</h3>
-                  <span className="rounded-full border border-[#94E421]/30 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-[0.14em] text-[#94E421]">
+                  <span className="rounded-full border border-lime/30 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-[0.14em] text-lime">
                     {s.duration}
                   </span>
                 </div>
