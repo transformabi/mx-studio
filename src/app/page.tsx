@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { ArrowDown, ArrowUpRight, BadgeCheck, Handshake, MessageCircle } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, BadgeCheck, ClipboardCheck, Handshake, MessageCircle } from 'lucide-react';
 
 import { Reveal } from '@/components/reveal';
 import { EstudioBtn } from '@/components/btn';
@@ -13,15 +13,16 @@ import { HeroBackdrop } from '@/components/fx/hero-backdrop';
 import { SpotlightCard } from '@/components/fx/spotlight-card';
 import { Words, wordCount } from '@/components/fx/words';
 import { demos, estudio, whatsappUrl } from '@/lib/estudio';
+import { cn } from '@/lib/utils';
 import { fill } from '@/i18n/format';
 import { getI18n } from '@/i18n/server';
 
 /** In BRL, same order as messages.services.items. */
 const servicePrices = [4900, 9900, 3500, 16000];
 
-const techStack = ['Next.js', 'TypeScript', 'Tailwind CSS', 'WebGL', 'Framer Motion', 'Vercel'];
+const techStack = ['Next.js', 'TypeScript', 'PHP', 'Tailwind CSS', 'WebGL', 'Framer Motion', 'Vercel'];
 
-const serifStyle = { fontFamily: 'var(--font-instrument-serif)' } as const;
+const h2 = 'text-balance font-brand text-[clamp(2.25rem,4.5vw+0.5rem,4rem)] font-extrabold leading-[1] tracking-tight text-white';
 
 export default async function EstudioHome() {
   const { t, currency, money } = await getI18n();
@@ -41,17 +42,15 @@ export default async function EstudioHome() {
   // Word indexes so the hero headline reveals as one continuous sequence.
   const h = t.hero;
   const wordsA = wordCount(h.titleA);
-  const wordsEm = wordCount(h.titleEm);
-  const wordsB = wordCount(h.titleB);
   const wordsAccent = wordCount(h.titleAccent);
 
   return (
-    <>
+    <div className="font-body">
       {/* HERO */}
       <section className="grain relative isolate flex min-h-[100svh] items-end overflow-hidden pb-14 pt-36 sm:pb-20">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(198,255,59,0.14),transparent),radial-gradient(ellipse_50%_40%_at_100%_10%,rgba(255,138,92,0.10),transparent)]"
+          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(148,228,33,0.16),transparent),radial-gradient(ellipse_50%_40%_at_100%_10%,rgba(47,107,12,0.28),transparent)]"
         />
         <div aria-hidden className="absolute inset-0 -z-10">
           <HeroBackdrop />
@@ -63,44 +62,39 @@ export default async function EstudioHome() {
 
         <div className="container-wide relative">
           <Reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3 py-1 font-label text-[11px] uppercase tracking-[0.12em] text-white/80 backdrop-blur">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#c6ff3b] opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#c6ff3b]" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-lime" />
               </span>
               {h.badge}
             </div>
           </Reveal>
 
-          <h1 className="mt-8 max-w-6xl font-display text-[clamp(2.75rem,7.5vw+0.5rem,8rem)] font-semibold leading-[0.92] tracking-tight text-white">
+          <h1 className="mt-8 max-w-6xl text-balance font-brand text-[clamp(2.75rem,6vw+0.5rem,7rem)] font-extrabold leading-[0.95] tracking-tight text-white">
             <Words text={h.titleA} />{' '}
-            <span style={serifStyle} className="font-normal italic text-white/90">
-              <Words text={h.titleEm} start={wordsA} />
-            </span>
-            <br />
-            <Words text={h.titleB} start={wordsA + wordsEm} />{' '}
-            <span className="text-[#c6ff3b]">
-              <Words text={`${h.titleAccent}.`} start={wordsA + wordsEm + wordsB} />
-            </span>
+            <span className="text-lime">
+              <Words text={h.titleAccent} start={wordsA} />
+            </span>{' '}
+            <Words text={`${h.titleB}.`} start={wordsA + wordsAccent} />
           </h1>
 
           <div className="mt-10 grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
             <Reveal delay={500} className="lg:col-span-7">
-              <p className="max-w-2xl text-lg leading-relaxed text-white/70">
-                {h.leadA} <span className="text-white">MX Studio</span>. {h.leadB}
-              </p>
+              <p className="max-w-2xl text-lg leading-relaxed text-white/70">{h.lead}</p>
             </Reveal>
             <Reveal delay={600} className="lg:col-span-5 lg:justify-self-end">
               <div className="flex flex-wrap items-center gap-3">
-                <EstudioBtn href={whatsapp} external>
-                  <MessageCircle className="h-4 w-4" />
-                  {h.whatsapp}
+                <EstudioBtn href={estudio.diagnostico} external variant="lime">
+                  <ClipboardCheck className="h-4 w-4" />
+                  {h.preview}
                 </EstudioBtn>
                 <EstudioBtn href="#trabalhos" variant="secondary">
                   {h.seeWork}
                   <ArrowUpRight className="h-4 w-4" />
                 </EstudioBtn>
               </div>
+              <p className="mt-3 font-label text-[11px] uppercase tracking-[0.12em] text-white/45">{h.previewNote}</p>
             </Reveal>
           </div>
 
@@ -108,7 +102,7 @@ export default async function EstudioHome() {
             <div className="mt-14 grid grid-cols-2 gap-6 border-t border-white/10 pt-8 sm:grid-cols-4">
               {h.stats.map((s) => (
                 <div key={s.label}>
-                  <CountUp value={s.kpi} className="block font-display text-4xl font-semibold text-white sm:text-5xl" />
+                  <CountUp value={s.kpi} className="block font-brand text-4xl font-extrabold text-white sm:text-5xl" />
                   <div className="mt-1 text-xs text-white/50">{s.label}</div>
                 </div>
               ))}
@@ -119,7 +113,7 @@ export default async function EstudioHome() {
         <a
           href="#trabalhos"
           aria-label={h.seeWork}
-          className="absolute bottom-8 right-8 hidden h-14 w-14 place-items-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-[#c6ff3b] hover:text-[#c6ff3b] xl:grid"
+          className="absolute bottom-8 right-8 hidden h-14 w-14 place-items-center rounded-full border border-white/15 text-white/70 transition-colors hover:border-lime hover:text-lime xl:grid"
         >
           <ArrowDown className="h-5 w-5 animate-bounce" />
         </a>
@@ -129,15 +123,15 @@ export default async function EstudioHome() {
       <section className="relative space-y-4 overflow-hidden border-y border-white/10 bg-white/[0.02] py-10">
         <Marquee speed={45}>
           {t.marquee.flatMap((item, i) => [
-            <em key={`n${i}`} style={serifStyle} className="font-display text-3xl font-semibold text-white/80 sm:text-5xl">
+            <span key={`n${i}`} className="font-brand text-3xl font-extrabold text-white/80 sm:text-5xl">
               {item}
-            </em>,
-            <span key={`s${i}`} className="text-2xl text-[#c6ff3b]">★</span>,
+            </span>,
+            <span key={`s${i}`} className="text-2xl text-lime">★</span>,
           ])}
         </Marquee>
         <Marquee speed={60} reverse>
           {techStack.map((item) => (
-            <span key={item} className="text-outline font-display text-5xl font-semibold uppercase tracking-tight sm:text-7xl">
+            <span key={item} className="text-outline font-brand text-5xl font-extrabold uppercase tracking-tight sm:text-7xl">
               {item}
             </span>
           ))}
@@ -150,11 +144,8 @@ export default async function EstudioHome() {
           <Reveal>
             <div>
               <Eyebrow index="01">{t.work.eyebrow}</Eyebrow>
-              <h2 className="mt-4 max-w-3xl font-display text-[clamp(2.25rem,5vw+0.5rem,4.5rem)] font-semibold leading-[1] tracking-tight text-white">
-                {t.work.titleA}{' '}
-                <span style={serifStyle} className="font-normal italic text-[#c6ff3b]">
-                  {t.work.titleEm}
-                </span>
+              <h2 className={`mt-4 max-w-3xl ${h2}`}>
+                {t.work.titleA} <span className="text-lime">{t.work.titleEm}</span>
                 {t.work.titleB}
               </h2>
               <p className="mt-5 max-w-xl text-base text-white/60">{t.work.lead}</p>
@@ -162,9 +153,7 @@ export default async function EstudioHome() {
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <div className="text-xs font-medium uppercase tracking-[0.16em] text-white/40">
-              {t.work.count}
-            </div>
+            <div className="font-label text-xs uppercase tracking-[0.16em] text-white/40">{t.work.count}</div>
           </Reveal>
         </div>
 
@@ -176,7 +165,6 @@ export default async function EstudioHome() {
           }))}
           filters={t.work.filters}
           numberLabel={t.work.number}
-          cursorLabel={t.work.cursor}
         />
       </section>
 
@@ -187,15 +175,12 @@ export default async function EstudioHome() {
             <div className="lg:sticky lg:top-32">
               <Reveal>
                 <Eyebrow index="02">{t.process.eyebrow}</Eyebrow>
-                <h2 className="mt-4 font-display text-[clamp(2.25rem,4.5vw+0.5rem,4rem)] font-semibold leading-[1] tracking-tight text-white">
-                  {t.process.titleA}{' '}
-                  <span style={serifStyle} className="font-normal italic">
-                    {t.process.titleEm}
-                  </span>
+                <h2 className={`mt-4 ${h2}`}>
+                  {t.process.titleA} <span className="text-white/50">{t.process.titleEm}</span>
                   {t.process.titleB}
                 </h2>
               </Reveal>
-              <div aria-hidden className="text-outline mt-10 hidden select-none font-display text-[12rem] font-semibold leading-none lg:block">
+              <div aria-hidden className="text-outline mt-10 hidden select-none font-brand text-[12rem] font-extrabold leading-none lg:block">
                 0{t.process.steps.length}
               </div>
             </div>
@@ -210,11 +195,8 @@ export default async function EstudioHome() {
       <section id="servicos" className="container-wide py-24 sm:py-32">
         <Reveal>
           <Eyebrow index="03">{t.services.eyebrow}</Eyebrow>
-          <h2 className="mt-4 max-w-4xl font-display text-[clamp(2.25rem,4.5vw+0.5rem,4rem)] font-semibold leading-[1] tracking-tight text-white">
-            {t.services.titleA}{' '}
-            <span style={serifStyle} className="font-normal italic">
-              {t.services.titleEm}
-            </span>
+          <h2 className={`mt-4 max-w-4xl ${h2}`}>
+            {t.services.titleA} <span className="text-white/50">{t.services.titleEm}</span>
             {t.services.titleB}
           </h2>
         </Reveal>
@@ -226,21 +208,21 @@ export default async function EstudioHome() {
                 <div className="p-8">
                   <div className="flex items-start justify-between gap-6">
                     <div>
-                      <span className="font-mono text-xs text-white/30">{String(i + 1).padStart(2, '0')}</span>
-                      <div className="mt-2 font-display text-2xl font-semibold text-white sm:text-3xl">{s.title}</div>
+                      <span className="font-label text-xs text-white/30">{String(i + 1).padStart(2, '0')}</span>
+                      <div className="mt-2 font-brand text-2xl font-bold text-white sm:text-3xl">{s.title}</div>
                       <div className="mt-2 text-sm text-white/50">
                         {t.services.from}{' '}
-                        <span className="font-display text-lg font-semibold text-[#c6ff3b]">{price(servicePrices[i])}</span>
+                        <span className="font-brand text-lg font-bold text-lime">{price(servicePrices[i])}</span>
                       </div>
                     </div>
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-500 group-hover:rotate-45 group-hover:border-[#c6ff3b] group-hover:bg-[#c6ff3b] group-hover:text-black">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-500 group-hover:rotate-45 group-hover:border-lime group-hover:bg-lime group-hover:text-ink">
                       <ArrowUpRight className="h-4 w-4" />
                     </span>
                   </div>
                   <ul className="mt-8 grid grid-cols-2 gap-3 border-t border-white/10 pt-6 text-sm text-white/70">
                     {s.bullets.map((b) => (
                       <li key={b} className="flex items-start gap-2">
-                        <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#c6ff3b]" />
+                        <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-lime" />
                         {b}
                       </li>
                     ))}
@@ -259,11 +241,8 @@ export default async function EstudioHome() {
         <div className="container-wide grid grid-cols-1 gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
             <Eyebrow index="04">{t.about.eyebrow}</Eyebrow>
-            <h2 className="mt-4 font-display text-[clamp(2.25rem,4.5vw+0.5rem,4rem)] font-semibold leading-[1] tracking-tight text-white">
-              {t.about.titleA}{' '}
-              <span style={serifStyle} className="font-normal italic text-[#c6ff3b]">
-                {t.about.titleEm}
-              </span>
+            <h2 className={`mt-4 ${h2}`}>
+              {t.about.titleA} <span className="text-lime">{t.about.titleEm}</span>
               {t.about.titleB}
             </h2>
             <p className="mt-6 text-base leading-relaxed text-white/70">{t.about.p1}</p>
@@ -284,23 +263,23 @@ export default async function EstudioHome() {
             <div className="grid grid-cols-2 gap-4">
               <SpotlightCard className="rounded-3xl border border-white/10 bg-white/[0.02]">
                 <div className="p-6">
-                  <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/50">{t.about.stack}</div>
-                  <Pills items={['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Sanity / MDX', 'Vercel']} />
+                  <CardLabel>{t.about.stack}</CardLabel>
+                  <Pills items={['Next.js 14', 'TypeScript', 'PHP', 'Tailwind CSS', 'Framer Motion', 'Sanity / MDX', 'Vercel']} />
                 </div>
               </SpotlightCard>
               <SpotlightCard className="rounded-3xl border border-white/10 bg-white/[0.02]">
                 <div className="p-6">
-                  <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/50">{t.about.alsoWith}</div>
+                  <CardLabel>{t.about.alsoWith}</CardLabel>
                   <Pills items={['Stripe / PagarMe', 'Google Maps', 'Supabase', 'Resend / Postmark', 'Cal.com / Calendly', 'Analytics 4 + Pixel']} />
                 </div>
               </SpotlightCard>
               <SpotlightCard className="col-span-2 rounded-3xl border border-white/10 bg-white/[0.02]">
                 <div className="p-6">
-                  <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/50">{t.about.howIWork}</div>
+                  <CardLabel>{t.about.howIWork}</CardLabel>
                   <ul className="mt-4 grid grid-cols-2 gap-3 text-sm text-white/80 sm:grid-cols-3">
                     {t.about.howItems.map((item) => (
                       <li key={item} className="flex items-center gap-2">
-                        <Handshake className="h-4 w-4 text-[#c6ff3b]" /> {item}
+                        <Handshake className="h-4 w-4 text-lime" /> {item}
                       </li>
                     ))}
                   </ul>
@@ -315,11 +294,8 @@ export default async function EstudioHome() {
       <section className="container-wide py-24 sm:py-32">
         <Reveal>
           <Eyebrow index="05">{t.faq.eyebrow}</Eyebrow>
-          <h2 className="mt-4 max-w-3xl font-display text-[clamp(2.25rem,4.5vw+0.5rem,4rem)] font-semibold leading-[1] tracking-tight text-white">
-            {t.faq.titleA}{' '}
-            <span style={serifStyle} className="font-normal italic">
-              {t.faq.titleEm}
-            </span>
+          <h2 className={`mt-4 max-w-3xl ${h2}`}>
+            {t.faq.titleA} <span className="text-white/50">{t.faq.titleEm}</span>
             {t.faq.titleB}
           </h2>
         </Reveal>
@@ -331,47 +307,44 @@ export default async function EstudioHome() {
       <section id="contato" className="relative isolate overflow-hidden border-t border-white/10 bg-white/[0.02] py-24 sm:py-32">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_100%_at_50%_0%,rgba(198,255,59,0.14),transparent)]"
+          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_100%_at_50%_0%,rgba(148,228,33,0.14),transparent)]"
         />
         <div className="container-wide grid grid-cols-1 gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
             <Eyebrow index="06">{t.contact.eyebrow}</Eyebrow>
-            <h2 className="mt-4 font-display text-[clamp(2.25rem,4.5vw+0.5rem,4rem)] font-semibold leading-[1] tracking-tight text-white">
-              {t.contact.titleA}{' '}
-              <span style={serifStyle} className="font-normal italic text-[#c6ff3b]">
-                {t.contact.titleEm}
-              </span>
+            <h2 className={`mt-4 ${h2}`}>
+              {t.contact.titleA} <span className="text-lime">{t.contact.titleEm}</span>
               {t.contact.titleB}
             </h2>
             <p className="mt-6 text-base leading-relaxed text-white/70">{t.contact.lead}</p>
 
             <div className="mt-8 space-y-3">
-              <a
+              <ContactLink
+                href={estudio.diagnostico}
+                external
+                label={t.contact.preview}
+                value={t.contact.previewText}
+                icon={<ClipboardCheck className="h-4 w-4" />}
+                iconClass="bg-lime text-ink"
+                hoverClass="border-lime/40 hover:border-lime"
+              />
+              <ContactLink
                 href={whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-sm text-white transition-colors hover:border-[#25D366]/50"
-              >
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#25D366]/15 text-[#25D366]">
-                  <MessageCircle className="h-4 w-4" />
-                </span>
-                <div>
-                  <div className="text-[11px] uppercase tracking-[0.14em] text-white/50">{t.contact.whatsapp}</div>
-                  <div className="font-medium">{estudio.whatsappDisplay}</div>
-                </div>
-                <ArrowUpRight className="ml-auto h-4 w-4 text-white/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
-              <a
+                external
+                label={t.contact.whatsapp}
+                value={estudio.whatsappDisplay}
+                icon={<MessageCircle className="h-4 w-4" />}
+                iconClass="bg-[#25D366]/15 text-[#25D366]"
+                hoverClass="hover:border-[#25D366]/50"
+              />
+              <ContactLink
                 href={`mailto:${estudio.email}`}
-                className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-sm text-white transition-colors hover:border-white/30"
-              >
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/10 text-white">@</span>
-                <div>
-                  <div className="text-[11px] uppercase tracking-[0.14em] text-white/50">{t.contact.email}</div>
-                  <div className="font-medium">{estudio.email}</div>
-                </div>
-                <ArrowUpRight className="ml-auto h-4 w-4 text-white/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
+                label={t.contact.email}
+                value={estudio.email}
+                icon="@"
+                iconClass="bg-white/10 text-white"
+                hoverClass="hover:border-white/30"
+              />
             </div>
           </Reveal>
 
@@ -380,18 +353,22 @@ export default async function EstudioHome() {
           </Reveal>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 
 function Eyebrow({ index, children }: { index: string; children: ReactNode }) {
   return (
-    <div className="inline-flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-white/50">
-      <span className="font-mono text-[#c6ff3b]">({index})</span>
+    <div className="inline-flex items-center gap-3 font-label text-[11px] uppercase tracking-[0.16em] text-white/50">
+      <span className="text-lime">({index})</span>
       <span className="h-px w-8 bg-white/20" />
       {children}
     </div>
   );
+}
+
+function CardLabel({ children }: { children: ReactNode }) {
+  return <div className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50">{children}</div>;
 }
 
 function Pills({ items }: { items: string[] }) {
@@ -400,11 +377,47 @@ function Pills({ items }: { items: string[] }) {
       {items.map((item) => (
         <li
           key={item}
-          className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/80 transition-colors hover:border-[#c6ff3b]/50 hover:text-[#c6ff3b]"
+          className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/80 transition-colors hover:border-lime/50 hover:text-lime"
         >
           {item}
         </li>
       ))}
     </ul>
+  );
+}
+
+function ContactLink({
+  href,
+  external,
+  label,
+  value,
+  icon,
+  iconClass,
+  hoverClass,
+}: {
+  href: string;
+  external?: boolean;
+  label: string;
+  value: string;
+  icon: ReactNode;
+  iconClass: string;
+  hoverClass: string;
+}) {
+  return (
+    <a
+      href={href}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className={cn(
+        'group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-sm text-white transition-colors',
+        hoverClass,
+      )}
+    >
+      <span className={cn('grid h-10 w-10 shrink-0 place-items-center rounded-xl', iconClass)}>{icon}</span>
+      <div>
+        <div className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50">{label}</div>
+        <div className="font-medium">{value}</div>
+      </div>
+      <ArrowUpRight className="ml-auto h-4 w-4 shrink-0 text-white/50 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+    </a>
   );
 }

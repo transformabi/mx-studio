@@ -109,7 +109,7 @@ const pt = {
     { days: 'Sáb e Dom', hours: '12h–15h e 19h–23h' },
   ],
   closed: 'Segunda: fechados',
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 type RestauranteText = typeof pt;
@@ -223,7 +223,7 @@ const en: RestauranteText = {
     { days: 'Sat & Sun', hours: '12pm–3pm and 7pm–11pm' },
   ],
   closed: 'Closed on Mondays',
-  demoBy: 'Demo by MX Studio',
+  demoBy: 'Demo by MX Studio Web',
 };
 
 const es: RestauranteText = {
@@ -335,7 +335,7 @@ const es: RestauranteText = {
     { days: 'Sáb y Dom', hours: '12h–15h y 19h–23h' },
   ],
   closed: 'Lunes: cerrado',
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 export const content: Record<Locale, RestauranteText> = { pt, en, es };

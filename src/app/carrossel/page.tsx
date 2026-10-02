@@ -11,7 +11,7 @@ export default function CarrosselIndex() {
         style={{ fontFamily: 'var(--font-space-grotesk)' }}
         className="mt-4 text-5xl font-semibold text-white sm:text-6xl"
       >
-        10 slides prontos pra <span className="text-[#c6ff3b]">screenshot</span>.
+        10 slides prontos pra <span className="text-[#94E421]">screenshot</span>.
       </h1>
 
       <div className="mt-6 max-w-2xl text-sm leading-relaxed text-white/70">
@@ -29,7 +29,7 @@ export default function CarrosselIndex() {
           <li>PNG baixa automático em 1080×1350</li>
         </ol>
         <div className="mt-4 text-xs text-white/50">
-          Alternativa: extensão <a href="https://gofullpage.com" target="_blank" rel="noopener noreferrer" className="text-[#c6ff3b] underline">GoFullPage</a> — 1 clique captura a página inteira.
+          Alternativa: extensão <a href="https://gofullpage.com" target="_blank" rel="noopener noreferrer" className="text-[#94E421] underline">GoFullPage</a> — 1 clique captura a página inteira.
         </div>
       </div>
 
@@ -38,7 +38,7 @@ export default function CarrosselIndex() {
           <Link
             key={s.n}
             href={`/carrossel/${s.n}`}
-            className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-[#c6ff3b]/40 hover:-translate-y-0.5"
+            className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-[#94E421]/40 hover:-translate-y-0.5"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-white/40">

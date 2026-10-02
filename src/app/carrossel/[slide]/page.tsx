@@ -40,11 +40,11 @@ const serif = { fontFamily: 'var(--font-instrument-serif)' } as const;
 const display = { fontFamily: 'var(--font-space-grotesk)' } as const;
 
 const caseThumbnails = [
-  { src: '/heros/moda-arte.webp', accent: '#c6ff3b' },
+  { src: '/heros/moda-arte.webp', accent: '#94E421' },
   { src: '/heros/restaurante-terra.webp', accent: '#ff8a5c' },
   { src: '/heros/clinica-sereno.webp', accent: '#3be0b3' },
   { src: '/heros/motta-advogados.webp', accent: '#a78bfa' },
-  { src: '/heros/costa-imoveis.webp', accent: '#c6ff3b' },
+  { src: '/heros/costa-imoveis.webp', accent: '#94E421' },
   { src: '/heros/rota-clara.webp', accent: '#22d3ee' },
 ];
 
@@ -56,7 +56,7 @@ function CoverSlide({ s }: { s: Slide }) {
         <div style={display} className="text-[132px] font-bold leading-[0.9] text-white">
           {s.hook}
         </div>
-        <div style={serif} className="mt-3 text-[128px] italic leading-[0.95] text-[#c6ff3b]">
+        <div style={serif} className="mt-3 text-[128px] italic leading-[0.95] text-[#94E421]">
           {s.hookAccent}
         </div>
         <div style={display} className="mt-3 text-[76px] font-bold leading-[0.95] text-white/90">
@@ -97,7 +97,7 @@ function SetupSlide({ s }: { s: Slide }) {
           <div key={i}>
             {i === 0 && line.includes('perde') ? (
               <>
-                E aí perde <span className="text-[#c6ff3b]">cliente todo dia</span>
+                E aí perde <span className="text-[#94E421]">cliente todo dia</span>
               </>
             ) : (
               line
@@ -215,7 +215,7 @@ function ComparisonRow({
         className={
           'text-[52px] ' +
           (accent
-            ? 'italic text-[#c6ff3b]'
+            ? 'italic text-[#94E421]'
             : muted
             ? 'font-mono text-white/40'
             : 'font-bold text-white')
@@ -237,7 +237,7 @@ function CTASlide({ s }: { s: Slide }) {
       </div>
 
       <div className="mt-4 flex flex-col items-center gap-3">
-        <div style={serif} className="text-[100px] italic leading-none text-[#c6ff3b]">
+        <div style={serif} className="text-[100px] italic leading-none text-[#94E421]">
           {s.body}
         </div>
         <div className="text-[22px] uppercase tracking-[0.28em] text-white/50">

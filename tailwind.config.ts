@@ -10,11 +10,20 @@ const config: Config = {
       screens: { '2xl': '1280px' },
     },
     extend: {
+      colors: {
+        // Studio identity, shared with the diagnosis page (mx-studio-web).
+        ink: '#0C0E0A',
+        lime: { DEFAULT: '#94E421', bright: '#A4FE24' },
+      },
       fontFamily: {
         sans: ['var(--font-instrument-sans)', 'system-ui', 'sans-serif'],
         display: ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
         serif: ['var(--font-instrument-serif)', 'Georgia', 'serif'],
         mono: ['ui-monospace', 'monospace'],
+        // Studio pages only; demos keep the families above.
+        brand: ['var(--font-bricolage)', 'var(--font-figtree)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-figtree)', 'system-ui', 'sans-serif'],
+        label: ['var(--font-jetbrains)', 'ui-monospace', 'monospace'],
       },
       fontSize: {
         'display-xl': ['clamp(3rem, 6vw + 1rem, 6.5rem)', { lineHeight: '0.98', letterSpacing: '-0.035em', fontWeight: '600' }],

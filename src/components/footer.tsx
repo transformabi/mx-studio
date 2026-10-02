@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight, Github, Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
 import { demos, estudio, whatsappUrl } from '@/lib/estudio';
 import { messages } from '@/i18n/messages';
 import { getLocale } from '@/i18n/server';
@@ -10,8 +10,8 @@ export function EstudioFooter() {
   const f = t.footer;
 
   return (
-    <footer className="relative mt-24 border-t border-white/10 bg-black">
-      <div className="pointer-events-none absolute inset-x-0 -top-40 h-40 bg-[radial-gradient(ellipse_60%_100%_at_50%_100%,rgba(198,255,59,0.10),transparent)]" />
+    <footer className="relative mt-24 border-t border-white/10 bg-ink font-body">
+      <div className="pointer-events-none absolute inset-x-0 -top-40 h-40 bg-[radial-gradient(ellipse_60%_100%_at_50%_100%,rgba(148,228,33,0.10),transparent)]" />
 
       <div className="container-wide py-16">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
@@ -19,7 +19,7 @@ export function EstudioFooter() {
             <div className="flex items-center gap-2.5">
               <MaxMonogram variant="inverted" rounded={22} className="h-9 w-9 shrink-0" />
               <div>
-                <div className="font-display text-lg font-semibold text-white">MX Studio</div>
+                <div className="font-brand text-lg font-extrabold tracking-tight text-white">MX Studio Web</div>
                 <div className="text-[11px] uppercase tracking-[0.14em] text-white/50">
                   {f.tagline}
                 </div>
@@ -45,9 +45,6 @@ export function EstudioFooter() {
               </SocialLink>
               <SocialLink href={estudio.linkedin} label="LinkedIn">
                 <Linkedin className="h-4 w-4" />
-              </SocialLink>
-              <SocialLink href={estudio.github} label="GitHub">
-                <Github className="h-4 w-4" />
               </SocialLink>
             </div>
           </div>
@@ -84,10 +81,10 @@ export function EstudioFooter() {
         <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[#c6ff3b]">
+              <div className="font-label text-xs uppercase tracking-[0.14em] text-lime">
                 {f.ctaEyebrow}
               </div>
-              <div className="mt-1 font-display text-2xl font-semibold text-white sm:text-3xl">
+              <div className="mt-1 font-brand text-2xl font-extrabold text-white sm:text-3xl">
                 {f.ctaTitle}
               </div>
             </div>
@@ -96,7 +93,7 @@ export function EstudioFooter() {
                 href={whatsappUrl(t.whatsappMsg)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full bg-[#c6ff3b] px-5 py-2.5 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-1.5 rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-ink transition-transform hover:-translate-y-0.5"
               >
                 WhatsApp {estudio.whatsappDisplay}
                 <ArrowUpRight className="h-4 w-4" />
@@ -112,15 +109,15 @@ export function EstudioFooter() {
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center">
-          <div>© {new Date().getFullYear()} MX Studio · {f.rights}</div>
+          <div>© {new Date().getFullYear()} MX Studio Web · {f.rights}</div>
           <div className="flex items-center gap-6">
             <span>{f.madeWith}</span>
           </div>
         </div>
 
         <div aria-hidden className="mt-12 select-none overflow-hidden">
-          <div className="text-outline whitespace-nowrap font-display text-[clamp(4rem,19vw,17rem)] font-semibold leading-[0.8] tracking-tighter transition-colors duration-700 hover:text-[#c6ff3b]">
-            MX Studio
+          <div className="text-outline whitespace-nowrap font-brand text-[clamp(2.5rem,12vw,10.5rem)] font-extrabold leading-[0.85] tracking-tighter transition-colors duration-700 hover:text-lime">
+            MX Studio Web
           </div>
         </div>
       </div>
@@ -143,7 +140,7 @@ function SocialLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-all hover:border-[#c6ff3b]/40 hover:text-[#c6ff3b] hover:-translate-y-0.5"
+      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-white/70 transition-all hover:border-[#94E421]/40 hover:text-[#94E421] hover:-translate-y-0.5"
     >
       {children}
     </a>

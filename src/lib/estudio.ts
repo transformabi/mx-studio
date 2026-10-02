@@ -1,19 +1,23 @@
+/** Public address of this site; override per deploy with NEXT_PUBLIC_SITE_URL. */
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://max-costa-estudio.vercel.app';
+
 export const estudio = {
-  name: 'MX Studio',
+  name: 'MX Studio Web',
   role: 'Estúdio digital freelance',
-  tagline: 'Sites e produtos digitais para marcas que se levam a sério.',
-  location: 'Rio de Janeiro · atende Brasil e exterior',
+  tagline: 'Sites que trazem clientes para clínicas, escritórios e lojas.',
+  location: 'Rio de Janeiro · Portugal',
   yearsExp: 8,
   whatsapp: '5521993196171',
   whatsappDisplay: '(21) 99319-6171',
   email: 'developermaxrj@gmail.com',
-  instagram: 'https://www.instagram.com/mxestudioweb/',
+  instagram: 'https://www.instagram.com/mxstudioweb/',
   linkedin: 'https://www.linkedin.com/company/145009011/',
-  github: 'https://github.com/mxstudio',
+  /** The free preview request form linked from the Instagram bio. */
+  diagnostico: 'https://mx-studio-web.vercel.app/',
 } as const;
 
 export const whatsappMsgDefault =
-  'Olá! Vim pelo portfólio da MX Studio e queria conversar sobre um projeto.';
+  'Olá! Vim pelo portfólio da MX Studio Web e queria conversar sobre um projeto.';
 export const whatsappUrl = (msg = whatsappMsgDefault) =>
   `https://wa.me/${estudio.whatsapp}?text=${encodeURIComponent(msg)}`;
 

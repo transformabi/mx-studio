@@ -2,19 +2,20 @@ import type { Messages } from './pt';
 
 export const en: Messages = {
   meta: {
-    title: 'MX Studio · Freelance digital studio',
+    title: 'MX Studio Web · Websites that bring in clients',
     description:
-      'Custom websites, e-commerce and digital products built with Next.js. Portfolio with working demos across 9 niches: e-commerce, food & dining, healthcare, dentistry, aesthetics, legal, real estate, construction and online courses.',
+      'Custom websites that bring in clients for clinics, law firms and shops, from Rio de Janeiro to Portugal. Try 9 working demos and ask for a free preview of yours.',
     keywords: [
-      'freelance next.js developer',
-      'freelance web developer',
+      'clinic website',
+      'law firm website',
+      'shop website',
       'custom websites',
-      'next.js e-commerce',
       'Rio de Janeiro',
-      'MX Studio',
+      'Portugal',
+      'MX Studio Web',
     ],
     ogDescription:
-      'Websites that make your business look serious — and actually sell. Portfolio with 9 working demos.',
+      'Websites that bring in clients for clinics, law firms and shops. 9 working demos to try.',
   },
 
   nav: {
@@ -23,12 +24,12 @@ export const en: Messages = {
     process: 'Process',
     about: 'About',
     studio: 'Studio',
-    homeAria: 'MX Studio · Studio',
+    homeAria: 'MX Studio Web · Home',
     mainNav: 'Main',
     mobileNav: 'Mobile',
     backShort: '← Portfolio',
     backLong: '← Back to portfolio',
-    startProject: 'Start a project',
+    startProject: 'Get a free preview',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
   },
@@ -47,19 +48,18 @@ export const en: Messages = {
     ratesNote: "Prices in other currencies are converted from BRL at today's exchange rate.",
   },
 
-  whatsappMsg: "Hi! I found MX Studio's portfolio and would like to talk about a project.",
+  whatsappMsg: "Hi! I found MX Studio Web's website and would like to talk about a project.",
 
   hero: {
     badge: 'Available for 2 projects in October',
-    titleA: 'Websites that make your business look',
-    titleEm: 'serious',
-    titleB: '— and actually',
-    titleAccent: 'sell',
-    leadA: 'We are',
-    leadB:
-      'We build custom websites, e-commerce stores and digital products with Next.js. One person from brief to post-launch. No templates. No middlemen. No surprises.',
-    whatsapp: 'Chat on WhatsApp',
-    seeWork: 'See the work',
+    titleA: 'Websites that bring in',
+    titleAccent: 'clients',
+    titleB: 'for clinics, law firms and shops',
+    lead:
+      'MX Studio Web builds custom websites for businesses in Rio de Janeiro and Portugal: fast on mobile and designed to turn visits into WhatsApp conversations. One person from brief to post-launch. No templates, no middlemen.',
+    preview: 'Get a free preview',
+    previewNote: '5-min questionnaire · preview sent on WhatsApp',
+    seeWork: 'See the 9 demos',
     stats: [
       { kpi: '9', label: 'demos for you to try' },
       { kpi: '100%', label: 'code in your GitHub' },
@@ -90,7 +90,6 @@ export const en: Messages = {
     count: '09 niches · complete demos',
     openDemo: 'Open {name} demo',
     number: 'No.',
-    cursor: 'Open demo',
     filters: {
       all: 'All',
       saude: 'Health & beauty',
@@ -201,7 +200,7 @@ export const en: Messages = {
       {
         title: 'Development',
         duration: '2–4 weeks',
-        text: 'Built with Next.js + Tailwind. You follow along in a staging environment from day 1.',
+        text: 'Built with Next.js + Tailwind or PHP, depending on the project. You follow along in a staging environment from day 1.',
       },
       {
         title: 'Launch',
@@ -230,8 +229,8 @@ export const en: Messages = {
     titleA: 'A',
     titleEm: 'single human',
     titleB: ' from brief to delivery.',
-    p1: "MX Studio was born in Rio de Janeiro, shaped by years in agencies, product teams and consulting before becoming an independent studio. What we learned: clients don't want a website — they want the website to solve something.",
-    p2: 'We keep the team lean and take on only a few projects at a time, because we believe close care is what separates a site that merely exists from a site that sells.',
+    p1: "MX Studio Web was born in Rio de Janeiro, shaped by years in agencies, product teams and consulting before becoming an independent studio. What I learned: clients don't want a website — they want the website to solve something.",
+    p2: 'I work from Rio and Portugal and take on only a few projects at a time, because close care is what separates a site that merely exists from a site that brings in clients.',
     talk: "Let's talk",
     seeWork: 'See the work',
     stack: 'Stack',
@@ -271,11 +270,11 @@ export const en: Messages = {
       },
       {
         q: 'Do you use ready-made templates?',
-        a: 'No. Code from scratch in Next.js + Tailwind. No Elementor or WordPress themes. The code is yours — no lock-in.',
+        a: 'No. Code from scratch, in Next.js + Tailwind or PHP depending on the project. No Elementor or WordPress themes. The code is yours — no lock-in.',
       },
       {
         q: 'Do you work with clients outside Rio de Janeiro?',
-        a: 'Yes, all over Brazil and abroad. Meetings on Google Meet, WhatsApp for day-to-day, and a staging environment so you can follow along in real time.',
+        a: 'Yes: all over Brazil, Portugal and other countries. Meetings on Google Meet, WhatsApp for day-to-day, and a staging environment so you can follow along in real time.',
       },
     ],
   },
@@ -286,6 +285,8 @@ export const en: Messages = {
     titleEm: 'off the ground',
     titleB: '?',
     lead: "Send me a quick summary of the project. If it's a fit, I'll set up a 30-minute call to understand it better and send back a proposal within 3 days.",
+    preview: 'Free preview',
+    previewText: '5-min questionnaire, preview on WhatsApp',
     whatsapp: 'WhatsApp',
     email: 'Email',
   },
@@ -302,22 +303,25 @@ export const en: Messages = {
     budgetAbove: 'Over {amount}',
     message: 'About the project',
     messagePlaceholder: 'Briefly tell me what the company does, what you need and your ideal timeline.',
-    footnote: "Reply within 24h · your data doesn't go anywhere.",
-    sending: 'Sending…',
-    send: 'Send',
+    footnote: 'Sending opens WhatsApp with your message ready · reply within 24h.',
+    send: 'Send on WhatsApp',
+    waIntro: "Hi! I found MX Studio Web's website.",
+    waProject: 'Project',
+    waBudget: 'Budget',
     errorName: 'Please tell me your name.',
     errorEmail: 'Invalid email.',
     errorMessage: 'Tell me a little more about the project.',
-    sentTitle: 'Got it!',
+    sentTitle: 'Almost there!',
     sentText:
-      "Thanks, {name}. I'll get back to you within 24 hours with an invite to a call or a preliminary proposal. Shall we keep in touch on WhatsApp in the meantime?",
+      "WhatsApp is open with your message, {name}. Just tap send there — I'll reply within 24 hours.",
+    sentRetry: "WhatsApp didn't open? Tap here.",
   },
 
   footer: {
     tagline: 'Digital studio',
     description:
-      'Custom websites, e-commerce and digital products for brands that want to be taken seriously. One person from brief to delivery.',
-    location: 'Rio de Janeiro · serving Brazil and abroad',
+      'Custom websites that bring in clients for clinics, law firms and shops. One person from brief to delivery.',
+    location: 'Rio de Janeiro · Portugal · serving Brazil and abroad',
     portfolio: 'Portfolio',
     work: 'Work',
     process: 'Process',

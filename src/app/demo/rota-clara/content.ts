@@ -158,7 +158,7 @@ const pt = {
     expiry: 'Formato MM/AA.',
     cvv: 'CVV inválido.',
   },
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 type RotaClaraText = typeof pt;
@@ -320,7 +320,7 @@ const en: RotaClaraText = {
     expiry: 'Use the MM/YY format.',
     cvv: 'Invalid CVV.',
   },
-  demoBy: 'Demo by MX Studio',
+  demoBy: 'Demo by MX Studio Web',
 };
 
 const es: RotaClaraText = {
@@ -480,7 +480,7 @@ const es: RotaClaraText = {
     expiry: 'Formato MM/AA.',
     cvv: 'CVV no válido.',
   },
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 export const content: Record<Locale, RotaClaraText> = { pt, en, es };

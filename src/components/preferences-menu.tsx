@@ -133,9 +133,9 @@ function Option({
         selected ? 'bg-white/10 text-white' : 'text-white/70 hover:bg-white/5 hover:text-white',
       )}
     >
-      <span className="w-7 font-mono text-[11px] text-white/45">{aside}</span>
+      <span className="w-7 font-label text-[11px] text-white/45">{aside}</span>
       <span className="flex-1">{children}</span>
-      {selected && <Check className="h-4 w-4 text-[#c6ff3b]" aria-hidden />}
+      {selected && <Check className="h-4 w-4 text-[#94E421]" aria-hidden />}
     </button>
   );
 }

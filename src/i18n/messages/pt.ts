@@ -8,19 +8,20 @@ type DemoCardText = {
 
 export const pt = {
   meta: {
-    title: 'MX Studio · Estúdio digital freelance',
+    title: 'MX Studio Web · Sites que trazem clientes',
     description:
-      'Sites, e-commerces e produtos digitais sob medida em Next.js. Portfólio com demos funcionais em 9 nichos: e-commerce, gastronomia, saúde, odontologia, estética, jurídico, imobiliário, construção e infoproduto.',
+      'Sites sob medida que trazem clientes para clínicas, escritórios e lojas, do Rio de Janeiro a Portugal. Teste 9 demos funcionais e peça uma prévia grátis do seu.',
     keywords: [
-      'freelance next.js',
-      'desenvolvedor freelancer',
+      'site para clínica',
+      'site para advogado',
+      'site para loja',
       'sites sob medida',
-      'e-commerce next.js',
       'Rio de Janeiro',
-      'MX Studio',
+      'Portugal',
+      'MX Studio Web',
     ],
     ogDescription:
-      'Sites que fazem seu negócio parecer sério — e que vendem. Portfólio com 9 demos funcionais.',
+      'Sites que trazem clientes para clínicas, escritórios e lojas. 9 demos funcionais pra testar.',
   },
 
   nav: {
@@ -29,12 +30,12 @@ export const pt = {
     process: 'Processo',
     about: 'Sobre',
     studio: 'Estúdio',
-    homeAria: 'MX Studio · Estúdio',
+    homeAria: 'MX Studio Web · Início',
     mainNav: 'Principal',
     mobileNav: 'Móvel',
     backShort: '← Portfólio',
     backLong: '← Voltar ao portfólio',
-    startProject: 'Iniciar projeto',
+    startProject: 'Pedir prévia grátis',
     openMenu: 'Abrir menu',
     closeMenu: 'Fechar menu',
   },
@@ -53,19 +54,18 @@ export const pt = {
     ratesNote: 'Preços em outras moedas são convertidos do real pela cotação do dia.',
   },
 
-  whatsappMsg: 'Olá! Vim pelo portfólio da MX Studio e queria conversar sobre um projeto.',
+  whatsappMsg: 'Olá! Vim pelo site da MX Studio Web e queria conversar sobre um projeto.',
 
   hero: {
     badge: 'Disponível pra 2 projetos em outubro',
-    titleA: 'Sites que fazem seu negócio parecer',
-    titleEm: 'sério',
-    titleB: '— e que',
-    titleAccent: 'vendem',
-    leadA: 'Somos a',
-    leadB:
-      'Fazemos sites, e-commerces e produtos digitais sob medida em Next.js. Do brief ao pós-lançamento, um humano só. Sem template. Sem intermediário. Sem surpresa.',
-    whatsapp: 'Falar no WhatsApp',
-    seeWork: 'Ver os trabalhos',
+    titleA: 'Sites que trazem',
+    titleAccent: 'clientes',
+    titleB: 'para clínicas, escritórios e lojas',
+    lead:
+      'A MX Studio Web faz sites sob medida para negócios do Rio de Janeiro e de Portugal: rápidos no celular e pensados pra virar conversa no WhatsApp. Do brief ao pós-lançamento, um humano só. Sem template, sem intermediário.',
+    preview: 'Pedir prévia grátis',
+    previewNote: 'Diagnóstico de 5 min · a prévia chega no WhatsApp',
+    seeWork: 'Ver as 9 demos',
     stats: [
       { kpi: '9', label: 'demos pra você testar' },
       { kpi: '100%', label: 'código no seu GitHub' },
@@ -96,7 +96,6 @@ export const pt = {
     count: '09 nichos · demos completos',
     openDemo: 'Abrir demo {name}',
     number: 'Nº',
-    cursor: 'Abrir demo',
     filters: {
       all: 'Todos',
       saude: 'Saúde & estética',
@@ -207,7 +206,7 @@ export const pt = {
       {
         title: 'Desenvolvimento',
         duration: '2–4 semanas',
-        text: 'Implementação em Next.js + Tailwind. Você acompanha em ambiente de staging desde o dia 1.',
+        text: 'Implementação em Next.js + Tailwind ou PHP, conforme o projeto. Você acompanha em ambiente de staging desde o dia 1.',
       },
       {
         title: 'Lançamento',
@@ -236,8 +235,8 @@ export const pt = {
     titleA: 'Um',
     titleEm: 'humano só',
     titleB: ' do brief à entrega.',
-    p1: 'A MX Studio nasceu no Rio de Janeiro, entre agências, produto e consultoria, até virar um estúdio independente. O que aprendemos: cliente não quer site — quer que o site resolva.',
-    p2: 'Trabalhamos em equipe enxuta e fazemos poucos projetos por vez porque acreditamos que cuidar de perto é o que separa um site que só existe de um site que vende.',
+    p1: 'A MX Studio Web nasceu no Rio de Janeiro, entre agências, produto e consultoria, até virar um estúdio independente. O que aprendi: cliente não quer site — quer que o site resolva.',
+    p2: 'Atendo do Rio e de Portugal e pego poucos projetos por vez, porque cuidar de perto é o que separa um site que só existe de um site que traz cliente.',
     talk: 'Vamos conversar',
     seeWork: 'Ver os trabalhos',
     stack: 'Stack',
@@ -277,11 +276,11 @@ export const pt = {
       },
       {
         q: 'Você usa template pronto?',
-        a: 'Não. Código do zero em Next.js + Tailwind. Nada de Elementor ou tema WordPress. O código é seu — sem lock-in.',
+        a: 'Não. Código do zero, em Next.js + Tailwind ou PHP, conforme o projeto. Nada de Elementor ou tema WordPress. O código é seu — sem lock-in.',
       },
       {
         q: 'Atende fora do Rio de Janeiro?',
-        a: 'Sim, todo o Brasil e no exterior. Reuniões em Meet, WhatsApp pra o dia a dia, ambiente de staging pra acompanhar em tempo real.',
+        a: 'Sim: todo o Brasil, Portugal e outros países. Reuniões em Meet, WhatsApp pro dia a dia e ambiente de staging pra acompanhar em tempo real.',
       },
     ],
   },
@@ -292,6 +291,8 @@ export const pt = {
     titleEm: 'do papel',
     titleB: '?',
     lead: 'Me manda um resumo do projeto. Se fizer sentido, marco uma call de 30 min pra entender melhor e devolver uma proposta em até 3 dias.',
+    preview: 'Prévia grátis',
+    previewText: 'Diagnóstico de 5 min, prévia no WhatsApp',
     whatsapp: 'WhatsApp',
     email: 'E-mail',
   },
@@ -308,22 +309,25 @@ export const pt = {
     budgetAbove: 'Acima de {amount}',
     message: 'Sobre o projeto',
     messagePlaceholder: 'Conta brevemente: o que a empresa faz, o que precisa e um prazo desejado.',
-    footnote: 'Resposta em até 24h · seus dados não vão pra parte nenhuma.',
-    sending: 'Enviando…',
-    send: 'Enviar',
+    footnote: 'Ao enviar, o WhatsApp abre com a sua mensagem pronta · resposta em até 24h.',
+    send: 'Enviar pelo WhatsApp',
+    waIntro: 'Olá! Vim pelo site da MX Studio Web.',
+    waProject: 'Projeto',
+    waBudget: 'Investimento',
     errorName: 'Diz seu nome, por favor.',
     errorEmail: 'E-mail inválido.',
     errorMessage: 'Conta um pouquinho mais sobre o projeto.',
-    sentTitle: 'Recebido!',
+    sentTitle: 'Quase lá!',
     sentText:
-      'Obrigado, {name}. Vou te responder em até 24 horas com um convite pra uma call ou uma proposta preliminar. Ficamos por WhatsApp enquanto isso?',
+      'Abri o WhatsApp com a sua mensagem, {name}. É só tocar em enviar por lá — respondo em até 24 horas.',
+    sentRetry: 'O WhatsApp não abriu? Toque aqui.',
   },
 
   footer: {
     tagline: 'Estúdio digital',
     description:
-      'Sites, e-commerces e produtos digitais sob medida para marcas que querem ser levadas a sério. Do brief à entrega, um humano só.',
-    location: 'Rio de Janeiro · atende Brasil e exterior',
+      'Sites sob medida que trazem clientes para clínicas, escritórios e lojas. Do brief à entrega, um humano só.',
+    location: 'Rio de Janeiro · Portugal · atende Brasil e exterior',
     portfolio: 'Portfólio',
     work: 'Trabalhos',
     process: 'Processo',

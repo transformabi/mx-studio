@@ -5,7 +5,7 @@ import { MaxMonogram } from '@/components/max-monogram';
 import { estudio, whatsappUrl } from '@/lib/estudio';
 
 export const metadata: Metadata = {
-  title: 'Brand kit · MX Studio',
+  title: 'Brand kit · MX Studio Web',
   description: 'Foto de perfil, banners, bio e link do portfólio pra usar em LinkedIn, Instagram e plataformas de freelance.',
 };
 
@@ -32,12 +32,12 @@ const bios = [
   {
     tag: 'Média · 300 caracteres',
     where: 'Workana · 99Freelas · Fiverr · Upwork',
-    text: 'Somos a MX Studio — estúdio digital no Rio. Fazemos sites, e-commerces e produtos digitais sob medida em Next.js/React. 8+ anos de mercado, do brief ao pós-lançamento sem intermediário. Portfólio: maxcosta.studio · Respondemos em até 24h.',
+    text: 'Somos a MX Studio Web — estúdio digital no Rio. Fazemos sites, e-commerces e produtos digitais sob medida em Next.js/React. 8+ anos de mercado, do brief ao pós-lançamento sem intermediário. Portfólio: maxcosta.studio · Respondemos em até 24h.',
   },
   {
     tag: 'Longa · para o "sobre" do LinkedIn',
     where: 'LinkedIn · sobre no site · deck',
-    text: `Somos a MX Studio, estúdio digital de dev + design no Rio de Janeiro. Fazemos sites, e-commerces e produtos digitais sob medida em Next.js — do brief ao pós-lançamento, um humano só.
+    text: `Somos a MX Studio Web, estúdio digital de dev + design no Rio de Janeiro. Fazemos sites, e-commerces e produtos digitais sob medida em Next.js — do brief ao pós-lançamento, um humano só.
 
 Passamos por agências, produto e consultoria antes de virar um estúdio independente. O que aprendemos: cliente não quer site — quer que o site resolva.
 
@@ -77,7 +77,7 @@ export default function BrandKitPage() {
         </div>
         <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.05] text-white sm:text-6xl">
           Materiais pra{' '}
-          <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal text-[#c6ff3b]">
+          <em style={{ fontFamily: 'var(--font-instrument-serif)' }} className="font-normal text-[#94E421]">
             criar seus perfis
           </em>
           .
@@ -123,7 +123,7 @@ export default function BrandKitPage() {
             href="https://www.iloveimg.com/svg-to-png"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[#c6ff3b] px-4 py-2 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-full bg-[#94E421] px-4 py-2 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
           >
             Converter pra PNG (site externo) →
           </a>
@@ -175,7 +175,7 @@ export default function BrandKitPage() {
                 <div>
                   <div
                     style={{ fontFamily: 'var(--font-instrument-serif)' }}
-                    className="text-2xl italic text-[#c6ff3b]"
+                    className="text-2xl italic text-[#94E421]"
                   >
                     {b.tag}
                   </div>
@@ -201,7 +201,7 @@ export default function BrandKitPage() {
           04 · Link do portfólio
         </h2>
 
-        <div className="mt-6 rounded-3xl border border-[#c6ff3b]/30 bg-[#c6ff3b]/[0.04] p-8">
+        <div className="mt-6 rounded-3xl border border-[#94E421]/30 bg-[#94E421]/[0.04] p-8">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <div
@@ -218,7 +218,7 @@ export default function BrandKitPage() {
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6 text-sm text-white/70">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#c6ff3b]">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#94E421]">
                 Contato de bio
               </div>
               <div className="mt-3 space-y-1.5 text-white">
@@ -240,7 +240,7 @@ export default function BrandKitPage() {
       </section>
 
       <footer className="mt-20 border-t border-white/10 pt-8 text-xs text-white/40">
-        Brand kit gerado para uso interno da MX Studio. Todos os assets em{' '}
+        Brand kit gerado para uso interno da MX Studio Web. Todos os assets em{' '}
         <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[11px]">/public/brand/</code>.
       </footer>
     </div>
@@ -254,7 +254,7 @@ function BannerPreview({ name, w, h }: { name: string; w: number; h: number }) {
   return (
     <div className="relative overflow-hidden bg-[#080808]" style={aspectStyle}>
       {/* backdrop gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_20%_50%,rgba(198,255,59,0.14),transparent),radial-gradient(ellipse_50%_60%_at_100%_100%,rgba(255,138,92,0.10),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_20%_50%,rgba(148,228,33,0.14),transparent),radial-gradient(ellipse_50%_60%_at_100%_100%,rgba(255,138,92,0.10),transparent)]" />
       <div
         aria-hidden
         className="absolute inset-0 opacity-25"
@@ -280,7 +280,7 @@ function BannerPreview({ name, w, h }: { name: string; w: number; h: number }) {
             style={{ fontFamily: 'var(--font-instrument-serif)' }}
             className="mt-2 text-4xl italic leading-[1.02] text-white sm:text-5xl md:text-6xl"
           >
-            Sites que <span className="text-[#c6ff3b]">vendem</span>.
+            Sites que <span className="text-[#94E421]">vendem</span>.
           </div>
           {!isSquare && (
             <div className="mt-3 text-xs text-white/60 sm:text-sm">

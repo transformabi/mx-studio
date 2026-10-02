@@ -18,12 +18,10 @@ export function WorkGrid({
   items,
   filters,
   numberLabel,
-  cursorLabel,
 }: {
   items: Item[];
   filters: Record<Filter, string>;
   numberLabel: string;
-  cursorLabel: string;
 }) {
   const [filter, setFilter] = useState<Filter>('all');
   const keys = Object.keys(filters) as Filter[];
@@ -49,13 +47,13 @@ export function WorkGrid({
               {active && (
                 <motion.span
                   layoutId="work-filter"
-                  className="absolute inset-0 rounded-full bg-[#c6ff3b]"
+                  className="absolute inset-0 rounded-full bg-[#94E421]"
                   transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                 />
               )}
               <span className="relative">
                 {filters[key]}
-                <span className={cn('ml-1.5 font-mono text-[11px]', active ? 'text-black/60' : 'text-white/40')}>
+                <span className={cn('ml-1.5 font-label text-[11px]', active ? 'text-black/60' : 'text-white/40')}>
                   {String(count).padStart(2, '0')}
                 </span>
               </span>
@@ -80,7 +78,6 @@ export function WorkGrid({
                 text={it.text}
                 number={`${numberLabel} ${String(items.indexOf(it) + 1).padStart(2, '0')}`}
                 openLabel={it.openLabel}
-                cursorLabel={cursorLabel}
               />
             </motion.div>
           ))}

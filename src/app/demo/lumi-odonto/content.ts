@@ -97,7 +97,7 @@ const pt = {
   summaryWhen: 'Quando',
   newBooking: 'Novo agendamento',
   compliance: 'Responsável técnica: Dra. Helena Prado · CRO-RJ 45.210. Imagens meramente ilustrativas.',
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 type LumiText = typeof pt;
@@ -199,7 +199,7 @@ const en: LumiText = {
   summaryWhen: 'When',
   newBooking: 'New booking',
   compliance: 'Lead dentist: Dr. Helena Prado · CRO-RJ 45.210. Images are for illustration only.',
-  demoBy: 'Demo by MX Studio',
+  demoBy: 'Demo by MX Studio Web',
 };
 
 const es: LumiText = {
@@ -299,7 +299,7 @@ const es: LumiText = {
   summaryWhen: 'Cuándo',
   newBooking: 'Nueva reserva',
   compliance: 'Responsable técnica: Dra. Helena Prado · CRO-RJ 45.210. Imágenes meramente ilustrativas.',
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 export const content: Record<Locale, LumiText> = { pt, en, es };

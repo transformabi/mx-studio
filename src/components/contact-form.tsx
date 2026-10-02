@@ -4,14 +4,16 @@ import { useState } from 'react';
 import { Check, Send } from 'lucide-react';
 import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
+import { whatsappUrl } from '@/lib/estudio';
 
+/** There is no backend: the form hands the lead to WhatsApp with the message already written. */
 export function ContactForm({ t, budgets }: { t: Messages['form']; budgets: string[] }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [project, setProject] = useState(0);
   const [budget, setBudget] = useState(1);
   const [message, setMessage] = useState('');
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [sentUrl, setSentUrl] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
@@ -23,24 +25,42 @@ export function ContactForm({ t, budgets }: { t: Messages['form']; budgets: stri
     return Object.keys(e).length === 0;
   };
 
-  const submit = async (ev: React.FormEvent) => {
+  const submit = (ev: React.FormEvent) => {
     ev.preventDefault();
     if (!validate()) return;
-    setStatus('sending');
-    await new Promise((r) => setTimeout(r, 900));
-    setStatus('sent');
+    const text = [
+      t.waIntro,
+      '',
+      `${t.name}: ${name.trim()}`,
+      `${t.email}: ${email.trim()}`,
+      `${t.waProject}: ${t.projects[project]}`,
+      `${t.waBudget}: ${budgets[budget]}`,
+      '',
+      message.trim(),
+    ].join('\n');
+    const url = whatsappUrl(text);
+    window.open(url, '_blank', 'noopener,noreferrer');
+    setSentUrl(url);
   };
 
-  if (status === 'sent') {
+  if (sentUrl) {
     return (
       <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-10 text-center">
-        <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-[#c6ff3b] text-black">
+        <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-lime text-ink">
           <Check className="h-8 w-8" />
         </div>
-        <h3 className="mt-6 font-display text-2xl font-semibold text-white">{t.sentTitle}</h3>
+        <h3 className="mt-6 font-brand text-2xl font-bold text-white">{t.sentTitle}</h3>
         <p className="mt-3 max-w-md mx-auto text-white/70">
-          {fill(t.sentText, { name: name.split(' ')[0] })}
+          {fill(t.sentText, { name: name.trim().split(' ')[0] })}
         </p>
+        <a
+          href={sentUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-5 inline-block text-sm text-lime underline-offset-4 hover:underline"
+        >
+          {t.sentRetry}
+        </a>
       </div>
     );
   }
@@ -86,7 +106,7 @@ export function ContactForm({ t, budgets }: { t: Messages['form']; budgets: stri
                 className={
                   'rounded-full border px-4 py-2 text-sm transition-colors ' +
                   (project === i
-                    ? 'border-[#c6ff3b] bg-[#c6ff3b] text-black'
+                    ? 'border-[#94E421] bg-[#94E421] text-black'
                     : 'border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:text-white')
                 }
               >
@@ -110,7 +130,7 @@ export function ContactForm({ t, budgets }: { t: Messages['form']; budgets: stri
                 className={
                   'rounded-full border px-4 py-2 text-sm transition-colors ' +
                   (budget === i
-                    ? 'border-[#c6ff3b] bg-[#c6ff3b] text-black'
+                    ? 'border-[#94E421] bg-[#94E421] text-black'
                     : 'border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:text-white')
                 }
               >
@@ -138,10 +158,9 @@ export function ContactForm({ t, budgets }: { t: Messages['form']; budgets: stri
         <p className="text-xs text-white/40">{t.footnote}</p>
         <button
           type="submit"
-          disabled={status === 'sending'}
-          className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
         >
-          {status === 'sending' ? t.sending : (<>{t.send} <Send className="h-4 w-4" /></>)}
+          {t.send} <Send className="h-4 w-4" />
         </button>
       </div>
 
@@ -159,7 +178,7 @@ export function ContactForm({ t, budgets }: { t: Messages['form']; budgets: stri
         .input::placeholder { color: rgba(255,255,255,0.35); }
         .input:focus {
           outline: none;
-          border-color: rgba(198,255,59,0.6);
+          border-color: rgba(148,228,33,0.6);
           background: rgba(255,255,255,0.06);
         }
       `}</style>

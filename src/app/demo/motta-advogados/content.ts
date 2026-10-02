@@ -142,7 +142,7 @@ const pt = {
     email: 'E-mail inválido.',
     phone: 'Telefone incompleto.',
   },
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 type MottaText = typeof pt;
@@ -287,7 +287,7 @@ const en: MottaText = {
     email: 'Invalid email.',
     phone: 'Incomplete phone number.',
   },
-  demoBy: 'Demo by MX Studio',
+  demoBy: 'Demo by MX Studio Web',
 };
 
 const es: MottaText = {
@@ -430,7 +430,7 @@ const es: MottaText = {
     email: 'Correo no válido.',
     phone: 'Teléfono incompleto.',
   },
-  demoBy: 'Demo por MX Studio',
+  demoBy: 'Demo por MX Studio Web',
 };
 
 export const content: Record<Locale, MottaText> = { pt, en, es };
