@@ -261,3 +261,18 @@ export const clientCases: ClientCase[] = [
     year: '2026',
   },
 ];
+
+/**
+ * "Clientes fundadores" launch offer for small local businesses (page /fundadores).
+ * Update `restantes` by hand as slots are taken; the page never invents scarcity.
+ */
+export const fundadores = {
+  vagas: 5,
+  restantes: 5,
+  preco: 497,
+  parcelas: 3,
+  dominioAno: 40,
+  cuidadoMes: 39,
+  prazoDias: 7,
+  whatsappMsg: 'Olá! Vi o Reels e quero uma vaga de cliente fundador para o meu negócio.',
+} as const;
