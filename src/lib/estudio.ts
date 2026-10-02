@@ -30,7 +30,8 @@ export type DemoSlug =
   | 'rota-clara'
   | 'lumi-odonto'
   | 'iris-estetica'
-  | 'alicerce-construtora';
+  | 'alicerce-construtora'
+  | 'mare-salao';
 
 /** Business niches the demos are grouped by on the home page, in display order. */
 export const niches = [
@@ -196,6 +197,23 @@ export const demos: Demo[] = [
     ],
   },
   {
+    slug: 'mare-salao',
+    niche: 'beleza',
+    vertical: 'Salão de beleza',
+    clientName: 'Maré Salão',
+    tagline: 'Salão com agendamento online',
+    summary:
+      'Serviços por categoria com preço e duração somados na hora, escolha da profissional, dias e horários livres e confirmação.',
+    accent: '#F2B5A0',
+    year: '2026',
+    scope: ['Serviços por categoria', 'Escolha da profissional', 'Horários livres', 'Resumo com total'],
+    metrics: [
+      { label: 'Agenda', value: 'em 4 passos' },
+      { label: 'Total', value: 'somado na hora' },
+      { label: 'Equipe', value: 'por especialidade' },
+    ],
+  },
+  {
     slug: 'alicerce-construtora',
     niche: 'construcao',
     vertical: 'Construtora',
@@ -218,3 +236,28 @@ export const demoBySlug = Object.fromEntries(demos.map((d) => [d.slug, d])) as R
   DemoSlug,
   Demo
 >;
+
+/** Real client sites that are live, shown in their niche ahead of the demos. */
+export type CaseSlug = 'sulamita-estetica';
+
+export type ClientCase = {
+  slug: CaseSlug;
+  niche: DemoNiche;
+  clientName: string;
+  url: string;
+  image: string;
+  accent: string;
+  year: string;
+};
+
+export const clientCases: ClientCase[] = [
+  {
+    slug: 'sulamita-estetica',
+    niche: 'beleza',
+    clientName: 'Sulamita Nascimento',
+    url: 'https://www.sulamitaestetica.pt/',
+    image: '/clientes/sulamita-estetica.webp',
+    accent: '#E39A7B',
+    year: '2026',
+  },
+];

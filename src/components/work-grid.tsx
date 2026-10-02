@@ -6,35 +6,39 @@ import { ClipboardCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
-import { niches, type Demo, type DemoNiche } from '@/lib/estudio';
-import { WorkCard } from './work-card';
+import { niches, type DemoNiche } from '@/lib/estudio';
+import { WorkCard, type WorkItem } from './work-card';
 
 type Filter = 'all' | DemoNiche;
 
-type Item = {
-  demo: Demo;
-  text: Pick<Demo, 'vertical' | 'tagline' | 'metrics'>;
-  openLabel: string;
-};
-
-/** Demos grouped by business niche, each niche a block of site models; the chips narrow it to one niche. */
+/** Live client sites and demos grouped by business niche; the chips narrow it to one niche. */
 export function WorkGrid({
   items,
   t,
   numberLabel,
   previewHref,
 }: {
-  items: Item[];
+  items: WorkItem[];
   t: Messages['work'];
   numberLabel: string;
   previewHref: string;
 }) {
   const [filter, setFilter] = useState<Filter>('all');
 
-  const byNiche = (n: DemoNiche) => items.filter((it) => it.demo.niche === n);
+  const byNiche = (n: DemoNiche) => items.filter((it) => it.niche === n);
   const groups = niches.filter((n) => byNiche(n).length > 0);
-  // Numbered in display order, so the Nº on each card follows the niche blocks.
-  const ordered = groups.flatMap(byNiche);
+  // Demos are numbered in display order, so the Nº on each card follows the niche blocks.
+  const ordered = groups.flatMap(byNiche).filter((it) => it.kind === 'demo');
+  const countLabel = (group: WorkItem[]) => {
+    const cases = group.filter((it) => it.kind === 'case').length;
+    const models = group.length - cases;
+    return [
+      cases && (cases === 1 ? t.clientOne : fill(t.clientMany, { n: cases })),
+      models && (models === 1 ? t.modelOne : fill(t.modelMany, { n: models })),
+    ]
+      .filter(Boolean)
+      .join(' · ');
+  };
   const shown = filter === 'all' ? groups : [filter];
 
   const chips: { key: Filter; label: string; count: number }[] = [
@@ -99,18 +103,16 @@ export function WorkGrid({
                     <p className="mt-1 text-sm text-white/50">{t.niches[niche].blurb}</p>
                   </div>
                   <span className="font-label text-[11px] uppercase tracking-[0.16em] text-white/40">
-                    {group.length === 1 ? t.modelOne : fill(t.modelMany, { n: String(group.length) })}
+                    {countLabel(group)}
                   </span>
                 </header>
 
                 <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
                   {group.map((it) => (
                     <WorkCard
-                      key={it.demo.slug}
-                      demo={it.demo}
-                      text={it.text}
+                      key={it.key}
+                      item={it}
                       number={`${numberLabel} ${String(ordered.indexOf(it) + 1).padStart(2, '0')}`}
-                      openLabel={it.openLabel}
                     />
                   ))}
                   {/* Fills the empty half of an odd row on wide screens. */}

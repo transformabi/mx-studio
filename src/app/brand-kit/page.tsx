@@ -49,7 +49,7 @@ Ramos que costumamos atender: moda autoral, gastronomia, saúde, jurídico, imob
 • Código no seu GitHub, sem lock-in
 • 30 dias de garantia
 
-Portfólio com 9 demos funcionais: mxstudioweb.vercel.app
+Portfólio com 10 demos funcionais: mxstudioweb.vercel.app
 Fale com a gente: (21) 99319-6171 (WhatsApp)`,
   },
 ];

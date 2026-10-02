@@ -1,4 +1,4 @@
-import type { DemoNiche, DemoSlug } from '@/lib/estudio';
+import type { CaseSlug, DemoNiche, DemoSlug } from '@/lib/estudio';
 
 type DemoCardText = {
   vertical: string;
@@ -10,7 +10,7 @@ export const pt = {
   meta: {
     title: 'MX Studio Web · Sites que trazem clientes',
     description:
-      'Sites sob medida que trazem clientes para clínicas, escritórios e lojas, do Rio de Janeiro a Portugal. Teste 9 demos funcionais e peça uma prévia grátis do seu.',
+      'Sites sob medida que trazem clientes para clínicas, escritórios e lojas, do Rio de Janeiro a Portugal. Teste 10 demos funcionais e peça uma prévia grátis do seu.',
     keywords: [
       'site para clínica',
       'site para advogado',
@@ -21,7 +21,7 @@ export const pt = {
       'MX Studio Web',
     ],
     ogDescription:
-      'Sites que trazem clientes para clínicas, escritórios e lojas. 9 demos funcionais pra testar.',
+      'Sites que trazem clientes para clínicas, escritórios e lojas. 10 demos funcionais pra testar.',
   },
 
   nav: {
@@ -65,9 +65,9 @@ export const pt = {
       'A MX Studio Web faz sites sob medida para negócios do Rio de Janeiro e de Portugal: rápidos no celular e pensados pra virar conversa no WhatsApp. Do brief ao pós-lançamento, um humano só. Sem template, sem intermediário.',
     preview: 'Pedir prévia grátis',
     previewNote: 'Diagnóstico de 5 min · a prévia chega no WhatsApp',
-    seeWork: 'Ver as 9 demos',
+    seeWork: 'Ver as 10 demos',
     stats: [
-      { kpi: '9', label: 'demos pra você testar' },
+      { kpi: '10', label: 'demos pra você testar' },
       { kpi: '100%', label: 'código no seu GitHub' },
       { kpi: '3–7', label: 'semanas por projeto' },
       { kpi: '24h', label: 'pra responder' },
@@ -97,8 +97,23 @@ export const pt = {
     openDemo: 'Abrir demo {name}',
     number: 'Nº',
     all: 'Todos',
+    clientOne: '1 cliente real',
+    clientMany: '{n} clientes reais',
     modelOne: '1 modelo',
     modelMany: '{n} modelos',
+    clientBadge: 'Cliente real',
+    visitSite: 'Visitar o site de {name}',
+    clients: {
+      'sulamita-estetica': {
+        vertical: 'Estética',
+        tagline: 'Gerenciamento da pele em Caldas da Rainha, Portugal',
+        metrics: [
+          { label: '.pt', value: 'domínio próprio' },
+          { label: 'PT · EN', value: 'site bilíngue' },
+          { label: 'No ar', value: 'desde set. 2026' },
+        ],
+      },
+    } as Record<CaseSlug, DemoCardText>,
     niches: {
       saude: { label: 'Saúde', blurb: 'Clínicas, consultórios e odontologia' },
       beleza: { label: 'Beleza & estética', blurb: 'Clínicas de estética, salões e barbearias' },
@@ -193,6 +208,15 @@ export const pt = {
           { label: 'Orçamento', value: 'em tempo real' },
           { label: 'Obras', value: 'com filtro' },
           { label: 'Etapas', value: 'da obra' },
+        ],
+      },
+      'mare-salao': {
+        vertical: 'Salão de beleza',
+        tagline: 'Salão com agendamento online',
+        metrics: [
+          { label: 'Agenda', value: 'em 4 passos' },
+          { label: 'Total', value: 'somado na hora' },
+          { label: 'Equipe', value: 'por especialidade' },
         ],
       },
     } as Record<DemoSlug, DemoCardText>,
@@ -355,6 +379,7 @@ export const pt = {
       'lumi-odonto': 'Odontologia',
       'iris-estetica': 'Estética',
       'alicerce-construtora': 'Construtora',
+      'mare-salao': 'Salão',
     } as Record<DemoSlug, string>,
     ctaEyebrow: 'Vamos conversar?',
     ctaTitle: 'Respondo em até 24 horas.',
