@@ -59,8 +59,8 @@ const instrumentSans = Instrument_Sans({
   display: 'swap',
 });
 
-export function generateMetadata(): Metadata {
-  const locale = getLocale();
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
   const t = messages[locale].meta;
   return {
     metadataBase: new URL(SITE_URL),

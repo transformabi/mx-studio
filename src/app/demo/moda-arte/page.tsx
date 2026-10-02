@@ -1,7 +1,8 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Check, Heart, Instagram, Minus, Plus, Search, ShoppingBag, Sparkles, Star, Trash2, X } from 'lucide-react';
+import { Check, Heart, Minus, Plus, Search, ShoppingBag, Sparkles, Star, Trash2, X } from 'lucide-react';
+import { Instagram } from '@/components/brand-icons';
 import { DemoFrame } from '@/components/demo-frame';
 import { heros, modaArteProducts } from '@/lib/demo-images';
 import { useI18n } from '@/i18n/provider';

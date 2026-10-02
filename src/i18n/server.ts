@@ -13,20 +13,20 @@ import { formatMoney, type MoneyOptions } from './format';
 import { messages } from './messages';
 import { getRates } from './rates';
 
-export function getLocale(): Locale {
-  const saved = cookies().get(LOCALE_COOKIE)?.value;
+export async function getLocale(): Promise<Locale> {
+  const saved = (await cookies()).get(LOCALE_COOKIE)?.value;
   if (isLocale(saved)) return saved;
-  return fromAcceptLanguage(headers().get('accept-language'));
+  return fromAcceptLanguage((await headers()).get('accept-language'));
 }
 
-export function getCurrency(locale: Locale): Currency {
-  const saved = cookies().get(CURRENCY_COOKIE)?.value;
+export async function getCurrency(locale: Locale): Promise<Currency> {
+  const saved = (await cookies()).get(CURRENCY_COOKIE)?.value;
   return isCurrency(saved) ? saved : defaultCurrency[locale];
 }
 
 export async function getI18n() {
-  const locale = getLocale();
-  const currency = getCurrency(locale);
+  const locale = await getLocale();
+  const currency = await getCurrency(locale);
   const rates = await getRates();
   return {
     locale,

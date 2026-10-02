@@ -6,8 +6,8 @@ export function generateStaticParams() {
   return slides.map((s) => ({ slide: String(s.n) }));
 }
 
-export default function CarrosselSlide({ params }: { params: { slide: string } }) {
-  const s = slideBySlug[params.slide];
+export default async function CarrosselSlide({ params }: { params: Promise<{ slide: string }> }) {
+  const s = slideBySlug[(await params).slide];
   if (!s) return notFound();
 
   return (

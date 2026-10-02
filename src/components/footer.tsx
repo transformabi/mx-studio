@@ -1,12 +1,13 @@
 import Link from 'next/link';
-import { ArrowUpRight, Instagram, Linkedin, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
+import { Instagram, Linkedin } from './brand-icons';
 import { demos, estudio, whatsappUrl } from '@/lib/estudio';
 import { messages } from '@/i18n/messages';
 import { getLocale } from '@/i18n/server';
 import { MaxMonogram } from './max-monogram';
 
-export function EstudioFooter() {
-  const t = messages[getLocale()];
+export async function EstudioFooter() {
+  const t = messages[await getLocale()];
   const f = t.footer;
 
   return (

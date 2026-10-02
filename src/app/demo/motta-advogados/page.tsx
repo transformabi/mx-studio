@@ -11,7 +11,7 @@ type AreaId = 'empresarial' | 'tributario' | 'trabalhista' | 'civel';
 
 const areaIds: AreaId[] = ['empresarial', 'tributario', 'trabalhista', 'civel'];
 
-const areaIcons: Record<AreaId, JSX.Element> = {
+const areaIcons: Record<AreaId, React.JSX.Element> = {
   empresarial: <Building2 className="h-5 w-5" />,
   tributario: <Scale className="h-5 w-5" />,
   trabalhista: <Users className="h-5 w-5" />,
