@@ -272,7 +272,7 @@ export const fundadores = {
   preco: 497,
   parcelas: 3,
   dominioAno: 40,
-  cuidadoMes: 39,
+  cuidadoMes: 149.9,
   prazoDias: 7,
   whatsappMsg: 'Olá! Vi o Reels e quero uma vaga de cliente fundador para o meu negócio.',
 } as const;
