@@ -20,7 +20,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const brl = (n: number) => `R$ ${n.toLocaleString('pt-BR')}`;
+const brl = (n: number) =>
+  `R$ ${n.toLocaleString('pt-BR', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 })}`;
 
 const included = [
   { icon: Smartphone, title: 'Site de uma página', text: 'Bonito e rápido no celular, onde seu cliente está.' },
