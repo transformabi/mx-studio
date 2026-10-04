@@ -93,7 +93,7 @@ reescritos.
 ## Conteúdo da home (PT, EN, ES)
 
 1. **Topo** — título forte ("Sites que trazem clientes para o seu negócio" e equivalentes),
-   frase de apoio, botões **Pedir prévia grátis** (→ `/diagnostico`) e **Falar no WhatsApp**.
+   frase de apoio, botões **Pedir prévia grátis** (→ diagnóstico em `mx-studio-web.vercel.app`) e **Falar no WhatsApp**.
    Ao lado: prints reais do site da Sulamita (desktop + celular), etiqueta "Cliente real · sulamitaestetica.pt".
 2. **Cliente real** — caso da Sulamita: o que foi feito (site bilíngue PT/EN, domínio .pt, no ar desde
    set/2026), link para o site ao vivo. Sem métricas inventadas.
