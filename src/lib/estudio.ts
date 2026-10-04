@@ -1,23 +1,24 @@
 /** Public address of this site; override per deploy with NEXT_PUBLIC_SITE_URL. */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mxstudioweb.vercel.app';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mxstudioweb.com.br';
 
 export const estudio = {
   name: 'MX Studio Web',
+  owner: 'Max Costa',
   role: 'Estúdio digital freelance',
-  tagline: 'Sites que trazem clientes para clínicas, escritórios e lojas.',
-  location: 'Rio de Janeiro · Portugal',
-  yearsExp: 8,
+  tagline: 'Sites que trazem clientes para o seu negócio.',
+  location: 'Rio de Janeiro · Brasil e exterior',
   whatsapp: '5521993196171',
   whatsappDisplay: '(21) 99319-6171',
-  email: 'developermaxrj@gmail.com',
+  phoneE164: '+5521993196171',
+  email: 'contato@mxstudioweb.com.br',
   instagram: 'https://www.instagram.com/mxstudioweb/',
+  instagramHandle: '@mxstudioweb',
   linkedin: 'https://www.linkedin.com/company/145009011/',
-  /** The free preview request form linked from the Instagram bio. */
+  /** The free preview questionnaire (separate Vercel project with its own Supabase panel). */
   diagnostico: 'https://mx-studio-web.vercel.app/',
 } as const;
 
-export const whatsappMsgDefault =
-  'Olá! Vim pelo portfólio da MX Studio Web e queria conversar sobre um projeto.';
+export const whatsappMsgDefault = 'Olá! Vim pelo site da MX Studio Web e quero conversar sobre um site.';
 export const whatsappUrl = (msg = whatsappMsgDefault) =>
   `https://wa.me/${estudio.whatsapp}?text=${encodeURIComponent(msg)}`;
 
@@ -249,6 +250,25 @@ export const showcase = [
 export type ShowcaseSlug = (typeof showcase)[number];
 export const isShowcased = (slug: string): slug is ShowcaseSlug => (showcase as readonly string[]).includes(slug);
 
+/** Load time on 4G measured in production, no cache, 4× slower CPU, worst of 3 runs (seconds). */
+export const lcpSeconds: Record<ShowcaseSlug, number> = {
+  'clinica-sereno': 1.8,
+  'motta-advogados': 1.2,
+  'moda-arte': 1.8,
+  'restaurante-terra': 1.7,
+  'costa-imoveis': 1.7,
+  'rota-clara': 1.8,
+};
+
+/** Starting prices in BRL; other currencies are converted at display time. */
+export const services = [
+  { key: 'landing', price: 3500 },
+  { key: 'institucional', price: 4900 },
+  { key: 'ecommerce', price: 9900 },
+  { key: 'sistema', price: 16000 },
+] as const;
+export type ServiceKey = (typeof services)[number]['key'];
+
 /** Real client sites that are live, shown in their niche ahead of the demos. */
 export type CaseSlug = 'sulamita-estetica';
 
@@ -268,7 +288,7 @@ export const clientCases: ClientCase[] = [
     niche: 'beleza',
     clientName: 'Sulamita Nascimento',
     url: 'https://www.sulamitaestetica.pt/',
-    image: '/clientes/sulamita-estetica.webp',
+    image: '/shots/sulamita-desktop.webp',
     accent: '#E39A7B',
     year: '2026',
   },
