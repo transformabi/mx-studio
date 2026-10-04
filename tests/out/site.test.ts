@@ -89,3 +89,14 @@ describe('home page', () => {
     expect(broken).toEqual([]);
   });
 });
+
+describe('/fundadores', () => {
+  it('is Portuguese only, out of search, and keeps the launch offer', () => {
+    const html = read('fundadores.html').replace(/\s/g, ' ');
+    expect(html).toMatch(/<html[^>]*lang="pt-BR"/);
+    expect(html).toMatch(/<meta name="robots" content="noindex, nofollow"/);
+    expect(html).toContain('R$ 497');
+    expect(html).toContain('R$ 149,90');
+    expect(html).toContain('sulamitaestetica.pt');
+  });
+});
