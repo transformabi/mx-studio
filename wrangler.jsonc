@@ -2,6 +2,8 @@
   // Static site only: Cloudflare serves the files Next.js exports to out/.
   "name": "mxstudioweb",
   "compatibility_date": "2026-10-01",
+  // Every pushed branch gets its own *-mxstudioweb.<account>.workers.dev link to review before merging.
+  "preview_urls": true,
   "assets": {
     "directory": "./out",
     "not_found_handling": "404-page"
