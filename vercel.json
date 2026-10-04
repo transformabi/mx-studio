@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/:path*", "destination": "https://mxstudioweb.com.br/:path*", "permanent": true }
+  ]
+}
