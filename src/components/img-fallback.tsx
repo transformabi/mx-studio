@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 
 /**
  * Hides images whose file is missing, so a demo shows blank space (or the art-directed
- * stand-in underneath, see components/demo-art.tsx) instead of a broken-image icon.
- * Mounted by the demo frame; only the demos still waiting for photos need it.
+ * stand-in underneath) instead of a broken-image icon.
+ * Mounted by DemoFrame; only demos with missing photos need it.
  */
 export function ImgFallback() {
   useEffect(() => {
