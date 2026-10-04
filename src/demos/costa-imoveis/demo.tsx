@@ -99,6 +99,13 @@ const priceRanges = [
   { min: 4_000_000, max: Infinity },
 ];
 
+// Hero (LCP): 1920px original plus a 768px variant for phones.
+const heroSrc = heros['costa-imoveis'];
+const heroSrcSmall = '/heros/costa-imoveis-768.webp';
+// Rendered width: full section width below lg (frame + section gutters), 5/12 columns from lg, capped at 441px.
+const heroSizes =
+  '(min-width: 1202px) 441px, (min-width: 1024px) calc(41.67vw - 60px), (min-width: 640px) calc(100vw - 98px), calc(100vw - 58px)';
+
 export default function CostaImoveisDemo() {
   const { locale, money } = useI18n();
   const c = content[locale];
@@ -157,8 +164,9 @@ export default function CostaImoveisDemo() {
 
   return (
     <DemoFrame siteName="Costa Imóveis" bg="#fafaf9">
+      {/* Every top-level block sets text-neutral-900 so nothing (the search field included) inherits the studio's near-white text. */}
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/85 backdrop-blur-sm">
+      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/85 text-neutral-900 backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-neutral-900 text-[#c6ff3b]">
@@ -183,8 +191,8 @@ export default function CostaImoveisDemo() {
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="border-b border-neutral-200 bg-white">
+      {/* Hero (scheme-light: the studio sets color-scheme dark, which would darken the native select popups) */}
+      <section className="border-b border-neutral-200 bg-white text-neutral-900 scheme-light">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
@@ -203,8 +211,13 @@ export default function CostaImoveisDemo() {
             <div className="lg:col-span-5">
               <div className="relative aspect-4/3 overflow-hidden rounded-3xl bg-neutral-100">
                 <img
-                  src={heros['costa-imoveis']}
+                  src={heroSrc}
+                  srcSet={`${heroSrcSmall} 768w, ${heroSrc} 1920w`}
+                  sizes={heroSizes}
                   alt={c.heroAlt}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>
@@ -219,10 +232,10 @@ export default function CostaImoveisDemo() {
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
                   placeholder={c.searchPlaceholder}
-                  className="flex-1 bg-transparent text-sm placeholder:text-neutral-400 focus:outline-hidden"
+                  className="flex-1 bg-transparent text-sm text-neutral-900 placeholder:text-neutral-500 focus:outline-hidden"
                 />
                 {q && (
-                  <button onClick={() => setQ('')} aria-label={c.clear} className="text-neutral-400 hover:text-neutral-700">
+                  <button onClick={() => setQ('')} aria-label={c.clear} className="text-neutral-500 hover:text-neutral-700">
                     <X className="h-4 w-4" />
                   </button>
                 )}
@@ -240,6 +253,7 @@ export default function CostaImoveisDemo() {
               <select
                 value={nb}
                 onChange={(e) => setNb(e.target.value as (typeof neighborhoods)[number])}
+                aria-label={c.neighborhoodLabel}
                 className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-hidden"
               >
                 {neighborhoods.map((n) => (
@@ -249,6 +263,7 @@ export default function CostaImoveisDemo() {
               <select
                 value={tp}
                 onChange={(e) => setTp(e.target.value as (typeof types)[number])}
+                aria-label={c.typeLabel}
                 className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-hidden"
               >
                 {types.map((t) => (
@@ -258,6 +273,7 @@ export default function CostaImoveisDemo() {
               <select
                 value={priceIdx}
                 onChange={(e) => setPriceIdx(Number(e.target.value))}
+                aria-label={c.priceLabel}
                 className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-hidden"
               >
                 {priceRanges.map((_, i) => (
@@ -270,7 +286,7 @@ export default function CostaImoveisDemo() {
       </section>
 
       {/* Results header */}
-      <section className="border-b border-neutral-200 bg-white">
+      <section className="border-b border-neutral-200 bg-white text-neutral-900">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div className="flex items-center gap-3">
             <div className="text-sm font-medium text-neutral-900">{c.count(filtered.length)}</div>
@@ -314,7 +330,9 @@ export default function CostaImoveisDemo() {
       </section>
 
       {/* Grid */}
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+      <section className="mx-auto max-w-6xl px-4 py-10 text-neutral-900 sm:px-6">
+        {/* Keeps the outline H1 > H2 > H3 (card titles) without a visible heading. */}
+        <h2 className="sr-only">{c.listingsHeading}</h2>
         {filtered.length === 0 ? (
           <div className="rounded-3xl border border-dashed border-neutral-300 bg-white p-16 text-center">
             <div className="text-neutral-500">{c.empty}</div>
@@ -328,18 +346,19 @@ export default function CostaImoveisDemo() {
         ) : (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p) => (
-              <article key={p.id} className="group overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-shadow duration-500 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.2)]">
+              <article key={p.id} className="group relative overflow-hidden rounded-2xl border border-neutral-200 bg-white transition-shadow duration-500 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.2)]">
                 <button
                   onClick={() => {
                     setDetail(p);
                     setGIdx(0);
                   }}
                   className="relative block aspect-4/3 w-full overflow-hidden bg-neutral-100"
-                  aria-label={c.see(nameOf(p))}
                 >
+                  {/* Named by its content, so the visible neighborhood and badge are part of the accessible name. */}
+                  <span className="sr-only">{c.see(nameOf(p))}</span>
                   <img
                     src={p.photo}
-                    alt={nameOf(p)}
+                    alt=""
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -394,7 +413,7 @@ export default function CostaImoveisDemo() {
                     <a
                       href="#"
                       onClick={(e) => e.preventDefault()}
-                      className="inline-flex items-center gap-1 rounded-full bg-[#25D366]/10 px-3 py-1.5 text-xs font-semibold text-[#128C7E] hover:bg-[#25D366]/20"
+                      className="inline-flex items-center gap-1 rounded-full bg-[#25D366]/10 px-3 py-1.5 text-xs font-semibold text-[#0e7064] hover:bg-[#25D366]/20"
                     >
                       <MessageCircle className="h-3.5 w-3.5" /> {c.talk}
                     </a>
@@ -407,7 +426,7 @@ export default function CostaImoveisDemo() {
       </section>
 
       {/* Trust strip */}
-      <section className="bg-white py-8">
+      <section className="bg-white py-8 text-neutral-900">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 sm:grid-cols-4 sm:px-6">
           {c.trust.map((item) => (
             <TrustItem key={item.label} kpi={item.kpi} label={item.label} />
@@ -417,7 +436,12 @@ export default function CostaImoveisDemo() {
 
       {/* Property detail modal */}
       {detail && (
-        <div className="fixed inset-0 z-50 grid place-items-center p-4" role="dialog" aria-modal="true">
+        <div
+          className="fixed inset-0 z-50 grid place-items-center p-4 text-neutral-900"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="costa-detail-title"
+        >
           <button className="absolute inset-0 bg-black/70" onClick={() => setDetail(null)} aria-label={c.close} />
           <div className="relative w-full max-w-3xl overflow-hidden rounded-3xl bg-white shadow-2xl">
             <button
@@ -461,7 +485,7 @@ export default function CostaImoveisDemo() {
                   <div className="flex items-center gap-1.5 text-xs text-neutral-500">
                     <MapPin className="h-3.5 w-3.5" /> {detail.neighborhood} · {c.types[detail.type]}
                   </div>
-                  <h3 className="mt-2 font-display text-2xl font-semibold text-neutral-900">
+                  <h3 id="costa-detail-title" className="mt-2 font-display text-2xl font-semibold text-neutral-900">
                     {nameOf(detail)}
                   </h3>
                   <div className="mt-2 flex items-center gap-2 text-sm text-neutral-600">
@@ -488,7 +512,7 @@ export default function CostaImoveisDemo() {
                 <a
                   href="#"
                   onClick={(e) => e.preventDefault()}
-                  className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-white"
+                  className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#178540] px-5 py-3 text-sm font-semibold text-white"
                 >
                   <MessageCircle className="h-4 w-4" /> {c.talkToAgent}
                 </a>
@@ -501,8 +525,8 @@ export default function CostaImoveisDemo() {
         </div>
       )}
 
-      <footer className="border-t border-neutral-200 bg-white py-8 text-center text-xs text-neutral-500">
-        © 2025 Costa Imóveis · {c.demoBy}
+      <footer className="border-t border-neutral-200 bg-white py-8 text-center text-xs text-neutral-500" suppressHydrationWarning>
+        © {new Date().getFullYear()} Costa Imóveis · {c.demoBy}
       </footer>
     </DemoFrame>
   );

@@ -34,6 +34,13 @@ const slotsByProf: Record<string, string[]> = {
 
 const bookedFake = new Set(['p1_1_10:00', 'p2_2_09:00', 'p3_0_10:30']);
 
+// Hero (LCP): 1920px original plus a 768px variant for phones.
+const heroSrc = heros['clinica-sereno'];
+const heroSrcSmall = '/heros/clinica-sereno-768.webp';
+// Rendered width: full section width below lg (frame + section gutters), 5/12 columns from lg, capped at 441px.
+const heroSizes =
+  '(min-width: 1202px) 441px, (min-width: 1024px) calc(41.67vw - 60px), (min-width: 640px) calc(100vw - 98px), calc(100vw - 58px)';
+
 export default function ClinicaSerenoDemo() {
   const { locale, intl } = useI18n();
   const c = content[locale];
@@ -84,7 +91,7 @@ export default function ClinicaSerenoDemo() {
   return (
     <DemoFrame siteName="Clínica Sereno" bg="#f5f7f6">
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/85 backdrop-blur-sm">
+      <header className="sticky top-0 z-30 border-b border-neutral-200 bg-white/85 text-neutral-900 backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-2">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#0a3d40] text-white">
@@ -92,7 +99,7 @@ export default function ClinicaSerenoDemo() {
             </span>
             <div className="leading-none">
               <div className="font-display text-base font-semibold text-neutral-900">Sereno</div>
-              <div className="text-[10px] uppercase tracking-[0.14em] text-neutral-500">{c.clinic}</div>
+              <div className="text-[10px] uppercase tracking-[0.14em] text-neutral-600">{c.clinic}</div>
             </div>
           </div>
           <nav className="hidden items-center gap-1 sm:flex">
@@ -117,7 +124,7 @@ export default function ClinicaSerenoDemo() {
       </header>
 
       {/* Hero */}
-      <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 py-16 sm:px-6 lg:grid-cols-12">
+      <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 py-16 text-neutral-900 sm:px-6 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <div className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[#0f5e62]">
             <Stethoscope className="h-3 w-3" />
@@ -153,7 +160,7 @@ export default function ClinicaSerenoDemo() {
                   <Icon className="h-4 w-4 shrink-0 text-[#0f5e62]" />
                   <div>
                     <div className="font-semibold text-neutral-900">{b.title}</div>
-                    <div className="text-xs text-neutral-500">{b.desc}</div>
+                    <div className="text-xs text-neutral-600">{b.desc}</div>
                   </div>
                 </div>
               );
@@ -164,8 +171,13 @@ export default function ClinicaSerenoDemo() {
         <div className="lg:col-span-5">
           <div className="relative aspect-square overflow-hidden rounded-3xl">
             <img
-              src={heros['clinica-sereno']}
+              src={heroSrc}
+              srcSet={`${heroSrcSmall} 768w, ${heroSrc} 1920w`}
+              sizes={heroSizes}
               alt={c.heroAlt}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
@@ -178,7 +190,7 @@ export default function ClinicaSerenoDemo() {
                 />
                 <div className="min-w-0 flex-1">
                   <div className="text-sm font-semibold text-neutral-900">{c.professionals.p1.name}</div>
-                  <div className="text-xs text-neutral-500">{c.nextAvailable}</div>
+                  <div className="text-xs text-neutral-600">{c.nextAvailable}</div>
                 </div>
                 <a href="#agenda" className="rounded-full bg-[#0f5e62] px-3 py-1.5 text-xs font-semibold text-white">
                   {c.bookShort}
@@ -190,7 +202,7 @@ export default function ClinicaSerenoDemo() {
       </section>
 
       {/* Profissionais */}
-      <section id="profissionais" className="bg-white py-16">
+      <section id="profissionais" className="bg-white py-16 text-neutral-900">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#0f5e62]">{c.prosEyebrow}</div>
           <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold text-neutral-900 sm:text-4xl">
@@ -222,7 +234,7 @@ export default function ClinicaSerenoDemo() {
                   />
                   <div>
                     <div className="font-display text-base font-semibold text-neutral-900">{p.name}</div>
-                    <div className="text-xs text-neutral-500">{p.role}</div>
+                    <div className="text-xs text-neutral-600">{p.role}</div>
                   </div>
                 </div>
                 <p className="mt-4 text-sm leading-relaxed text-neutral-600">{p.bio}</p>
@@ -236,7 +248,7 @@ export default function ClinicaSerenoDemo() {
       </section>
 
       {/* Agenda */}
-      <section id="agenda" className="bg-[#f0f4f3] py-16">
+      <section id="agenda" className="bg-[#f0f4f3] py-16 text-neutral-900">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
             <div className="lg:col-span-5">
@@ -294,7 +306,7 @@ export default function ClinicaSerenoDemo() {
                         <div className="text-sm text-neutral-600">
                           {done.date.toLocaleDateString(intl, { weekday: 'long', day: '2-digit', month: 'long' })} · {done.time}
                         </div>
-                        <div className="text-xs text-neutral-500">
+                        <div className="text-xs text-neutral-600">
                           {c.modality}: {c.modalities[done.modality].label}
                         </div>
                       </div>
@@ -418,7 +430,7 @@ export default function ClinicaSerenoDemo() {
                           }
                         >
                           <div className="text-sm font-semibold text-neutral-900">{c.modalities[m].label}</div>
-                          <div className="text-xs text-neutral-500">{c.modalities[m].desc}</div>
+                          <div className="text-xs text-neutral-600">{c.modalities[m].desc}</div>
                         </button>
                       ))}
                     </div>
@@ -434,7 +446,7 @@ export default function ClinicaSerenoDemo() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder={c.namePlaceholder}
-                        className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#0f5e62] focus:outline-hidden"
+                        className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-500 focus:border-[#0f5e62] focus:outline-hidden"
                       />
                       {errors.name && <div className="mt-1 text-xs text-red-600">{errors.name}</div>}
                     </div>
@@ -448,7 +460,7 @@ export default function ClinicaSerenoDemo() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder={c.emailPlaceholder}
-                        className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#0f5e62] focus:outline-hidden"
+                        className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-500 focus:border-[#0f5e62] focus:outline-hidden"
                       />
                       {errors.email && <div className="mt-1 text-xs text-red-600">{errors.email}</div>}
                     </div>
@@ -463,7 +475,7 @@ export default function ClinicaSerenoDemo() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="(21) 99999-9999"
-                      className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm focus:border-[#0f5e62] focus:outline-hidden"
+                      className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-500 focus:border-[#0f5e62] focus:outline-hidden"
                     />
                     {errors.phone && <div className="mt-1 text-xs text-red-600">{errors.phone}</div>}
                   </div>
@@ -523,7 +535,7 @@ export default function ClinicaSerenoDemo() {
       </section>
 
       {confirming && (
-        <div className="fixed inset-0 z-50 grid place-items-center p-4" role="dialog" aria-modal="true">
+        <div className="fixed inset-0 z-50 grid place-items-center p-4 text-neutral-900" role="dialog" aria-modal="true">
           <button className="absolute inset-0 bg-black/60" onClick={() => setConfirming(false)} aria-label={c.close} />
           <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-5">
@@ -545,7 +557,7 @@ export default function ClinicaSerenoDemo() {
                 />
                 <div>
                   <div className="font-semibold text-neutral-900">{prof.name}</div>
-                  <div className="text-xs text-neutral-500">{prof.role}</div>
+                  <div className="text-xs text-neutral-600">{prof.role}</div>
                 </div>
               </div>
               <div className="mt-4 grid grid-cols-3 gap-4 text-center">
@@ -584,7 +596,7 @@ export default function ClinicaSerenoDemo() {
       )}
 
       {/* Clínica */}
-      <section id="clinica" className="bg-white py-16">
+      <section id="clinica" className="bg-white py-16 text-neutral-900">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div className="md:col-span-2">
@@ -597,13 +609,13 @@ export default function ClinicaSerenoDemo() {
                 {c.features.map((f) => (
                   <div key={f.l} className="rounded-2xl border border-neutral-200 bg-[#f5f7f6] p-5">
                     <div className="font-display text-base font-semibold text-[#0a3d40]">{f.l}</div>
-                    <div className="mt-1 text-xs text-neutral-500">{f.s}</div>
+                    <div className="mt-1 text-xs text-neutral-600">{f.s}</div>
                   </div>
                 ))}
               </div>
             </div>
             <div className="rounded-3xl bg-[#f0f4f3] p-6 text-sm">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-500">{c.whereEyebrow}</div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-neutral-600">{c.whereEyebrow}</div>
               <div className="mt-2 text-neutral-900">Rua Voluntários da Pátria, 42</div>
               <div className="text-neutral-600">Botafogo · Rio de Janeiro</div>
               <div className="mt-4 flex flex-col gap-1 text-neutral-600">
@@ -616,8 +628,8 @@ export default function ClinicaSerenoDemo() {
         </div>
       </section>
 
-      <footer className="border-t border-neutral-200 bg-white py-8 text-center text-xs text-neutral-500">
-        © 2025 Clínica Sereno · {c.demoBy}
+      <footer className="border-t border-neutral-200 bg-white py-8 text-center text-xs text-neutral-500" suppressHydrationWarning>
+        © {new Date().getFullYear()} Clínica Sereno · {c.demoBy}
       </footer>
     </DemoFrame>
   );

@@ -34,13 +34,23 @@ const dishes: Dish[] = [
   { id: 'b3', price: 12, category: 'Bebidas' },
 ];
 
-const dishPhotoByCategory: Record<Category, string> = {
-  Couvert: restauranteDishes.couvert,
-  Entradas: restauranteDishes.entrada,
-  Principais: restauranteDishes.principal,
-  Sobremesas: restauranteDishes.sobremesa,
-  Bebidas: restauranteDishes.bebida,
+// One photo per category, each showing one specific dish, so it is shown once per tab and captioned with that dish.
+const categoryPhoto: Record<Category, { src: string; dish: DishId }> = {
+  Couvert: { src: restauranteDishes.couvert, dish: 'c1' },
+  Entradas: { src: restauranteDishes.entrada, dish: 'e1' },
+  Principais: { src: restauranteDishes.principal, dish: 'p1' },
+  Sobremesas: { src: restauranteDishes.sobremesa, dish: 's1' },
+  Bebidas: { src: restauranteDishes.bebida, dish: 'b1' },
 };
+
+// Hero (LCP). It covers a ~730-800px-tall box, so it renders ~1300-1420 CSS px wide at every viewport and a
+// downscaled copy would look soft. Phones get a full-resolution 768x1080 centre crop instead: the exact region
+// they show (box aspect stays below 768/1080 under 500px), at about half the bytes.
+const heroSrc = heros['restaurante-terra'];
+const heroSrcPhone = '/heros/restaurante-terra-768.webp';
+
+const tabId = (cat: Category) => `terra-tab-${cat}`;
+const menuPanelId = 'terra-menu-panel';
 
 const categories: Category[] = ['Couvert', 'Entradas', 'Principais', 'Sobremesas', 'Bebidas'];
 
@@ -135,7 +145,7 @@ export default function RestauranteTerraDemo() {
           </nav>
           <a
             href="#reserva"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#d97706] px-4 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#b45309] px-4 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
           >
             {c.book}
             <Utensils className="h-4 w-4" />
@@ -146,11 +156,17 @@ export default function RestauranteTerraDemo() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src={heros['restaurante-terra']}
-            alt={c.heroAlt}
-            className="absolute inset-0 h-full w-full object-cover opacity-55"
-          />
+          <picture>
+            <source media="(max-width: 499px)" srcSet={heroSrcPhone} type="image/webp" />
+            <img
+              src={heroSrc}
+              alt={c.heroAlt}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover opacity-55"
+            />
+          </picture>
           <div className="absolute inset-0 bg-linear-to-b from-[#1c1917]/40 via-[#1c1917]/60 to-[#1c1917]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_20%,rgba(217,119,6,0.35),transparent)]" />
         </div>
@@ -170,7 +186,7 @@ export default function RestauranteTerraDemo() {
           <div className="mt-10 flex flex-wrap gap-3">
             <a
               href="#reserva"
-              className="inline-flex items-center gap-1.5 rounded-full bg-[#d97706] px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-1.5 rounded-full bg-[#b45309] px-5 py-3 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
             >
               {c.bookTable}
             </a>
@@ -213,14 +229,16 @@ export default function RestauranteTerraDemo() {
             {categories.map((cat) => (
               <button
                 key={cat}
+                id={tabId(cat)}
                 role="tab"
                 aria-selected={category === cat}
+                aria-controls={menuPanelId}
                 onClick={() => setCategory(cat)}
                 className={
                   'shrink-0 border-b-2 px-4 pb-3 text-sm font-medium transition-colors ' +
                   (category === cat
                     ? 'border-[#d97706] text-[#f5e9d5]'
-                    : 'border-transparent text-[#f5e9d5]/50 hover:text-[#f5e9d5]')
+                    : 'border-transparent text-[#f5e9d5]/60 hover:text-[#f5e9d5]')
                 }
               >
                 {c.categories[cat]}
@@ -228,42 +246,58 @@ export default function RestauranteTerraDemo() {
             ))}
           </div>
 
-          <ul className="mt-8 divide-y divide-white/10" role="tabpanel">
-            {filteredDishes.map((d) => (
-              <li key={d.id} className="flex items-start gap-6 py-5">
-                <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-2xl bg-white/5">
-                  <img
-                    src={dishPhotoByCategory[d.category]}
-                    alt={c.dishes[d.id].name}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-display text-lg font-semibold text-[#f5e9d5]">{c.dishes[d.id].name}</h3>
-                    {d.tags?.includes('Chef') && (
-                      <span className="rounded-full bg-[#d97706]/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#d97706]">
-                        {c.tags.chef}
-                      </span>
-                    )}
-                    {d.tags?.includes('Vegano') && (
-                      <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
-                        {c.tags.vegan}
-                      </span>
-                    )}
-                    {d.tags?.includes('Vegetariano') && !d.tags?.includes('Vegano') && (
-                      <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
-                        {c.tags.vegetarian}
-                      </span>
-                    )}
+          <div
+            id={menuPanelId}
+            role="tabpanel"
+            aria-labelledby={tabId(category)}
+            className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10"
+          >
+            <figure className="lg:col-span-4">
+              <div className="relative aspect-video overflow-hidden rounded-2xl bg-white/5 sm:aspect-21/9 lg:aspect-4/3">
+                <img
+                  src={categoryPhoto[category].src}
+                  alt={c.dishes[categoryPhoto[category].dish].name}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-xs text-[#f5e9d5]/60">
+                {c.pictured} {c.dishes[categoryPhoto[category].dish].name}
+              </figcaption>
+            </figure>
+
+            <ul className="divide-y divide-white/10 lg:col-span-8">
+              {filteredDishes.map((d) => (
+                <li key={d.id} className="flex items-start justify-between gap-4 py-5 first:pt-0 sm:gap-6">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <h3 className="font-display text-lg font-semibold text-[#f5e9d5]">{c.dishes[d.id].name}</h3>
+                      {d.tags?.includes('Chef') && (
+                        <span className="whitespace-nowrap rounded-full bg-[#d97706]/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#f59e0b]">
+                          {c.tags.chef}
+                        </span>
+                      )}
+                      {d.tags?.includes('Vegano') && (
+                        <span className="whitespace-nowrap rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
+                          {c.tags.vegan}
+                        </span>
+                      )}
+                      {d.tags?.includes('Vegetariano') && !d.tags?.includes('Vegano') && (
+                        <span className="whitespace-nowrap rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
+                          {c.tags.vegetarian}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1.5 text-sm text-[#f5e9d5]/70">{c.dishes[d.id].description}</p>
                   </div>
-                  <p className="mt-1.5 text-sm text-[#f5e9d5]/70">{c.dishes[d.id].description}</p>
-                </div>
-                <div className="shrink-0 text-right font-mono text-sm text-[#f5e9d5]">{money(d.price)}</div>
-              </li>
-            ))}
-          </ul>
+                  <div className="shrink-0 whitespace-nowrap pt-1 text-right font-mono text-sm text-[#f5e9d5]">
+                    {money(d.price)}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -323,7 +357,7 @@ export default function RestauranteTerraDemo() {
                       <div className="mt-1 text-sm font-semibold">{reserved.people}</div>
                     </div>
                   </div>
-                  <p className="mt-4 text-center text-xs text-[#f5e9d5]/50">{c.reservedNote}</p>
+                  <p className="mt-4 text-center text-xs text-[#f5e9d5]/60">{c.reservedNote}</p>
                   <button
                     onClick={() => setReserved(null)}
                     className="mt-6 w-full rounded-full border border-white/15 py-3 text-sm font-semibold text-[#f5e9d5] hover:bg-white/5"
@@ -334,7 +368,7 @@ export default function RestauranteTerraDemo() {
               ) : (
                 <div className="rounded-3xl border border-white/10 bg-white/3 p-6 sm:p-8">
                   <div>
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/60">
                       {c.stepDate}
                     </div>
                     <div className="mt-3 flex items-center gap-2">
@@ -360,7 +394,7 @@ export default function RestauranteTerraDemo() {
                               className={
                                 'flex min-w-[76px] flex-col items-center rounded-2xl border px-3 py-2 text-center transition-colors ' +
                                 (selected
-                                  ? 'border-[#d97706] bg-[#d97706] text-white'
+                                  ? 'border-[#b45309] bg-[#b45309] text-white'
                                   : 'border-white/15 bg-white/2 text-[#f5e9d5]/80 hover:border-white/30')
                               }
                             >
@@ -390,7 +424,7 @@ export default function RestauranteTerraDemo() {
 
                   <div className="mt-6">
                     <div className="flex items-center justify-between">
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/60">
                         {c.stepTime(c.periods[period])}
                       </div>
                       {errors.time && <div className="text-xs text-red-400">{errors.time}</div>}
@@ -409,7 +443,7 @@ export default function RestauranteTerraDemo() {
                               (booked
                                 ? 'cursor-not-allowed border-white/5 bg-white/2 text-[#f5e9d5]/25 line-through'
                                 : selected
-                                ? 'border-[#d97706] bg-[#d97706] text-white'
+                                ? 'border-[#b45309] bg-[#b45309] text-white'
                                 : 'border-white/15 bg-white/2 text-[#f5e9d5]/80 hover:border-white/30')
                             }
                           >
@@ -421,7 +455,7 @@ export default function RestauranteTerraDemo() {
                   </div>
 
                   <div className="mt-6">
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/60">
                       {c.stepPeople}
                     </div>
                     <div className="mt-3 flex items-center gap-2">
@@ -434,7 +468,7 @@ export default function RestauranteTerraDemo() {
                       </button>
                       <div className="w-24 text-center">
                         <div className="font-display text-2xl font-semibold">{people}</div>
-                        <div className="text-[10px] uppercase tracking-[0.12em] text-[#f5e9d5]/50">
+                        <div className="text-[10px] uppercase tracking-[0.12em] text-[#f5e9d5]/60">
                           {c.person(people)}
                         </div>
                       </div>
@@ -445,7 +479,7 @@ export default function RestauranteTerraDemo() {
                       >
                         +
                       </button>
-                      <div className="ml-4 text-xs text-[#f5e9d5]/50">
+                      <div className="ml-4 text-xs text-[#f5e9d5]/60">
                         <Users className="mr-1 inline h-3.5 w-3.5" /> {c.maxPeople}
                       </div>
                     </div>
@@ -453,7 +487,7 @@ export default function RestauranteTerraDemo() {
 
                   <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="rname" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
+                      <label htmlFor="rname" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/60">
                         {c.name}
                       </label>
                       <input
@@ -461,12 +495,12 @@ export default function RestauranteTerraDemo() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder={c.namePlaceholder}
-                        className="mt-2 w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-hidden"
+                        className="mt-2 w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/55 focus:border-[#d97706] focus:outline-hidden"
                       />
                       {errors.name && <div className="mt-1 text-xs text-red-400">{errors.name}</div>}
                     </div>
                     <div>
-                      <label htmlFor="rphone" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
+                      <label htmlFor="rphone" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/60">
                         WhatsApp
                       </label>
                       <input
@@ -474,14 +508,14 @@ export default function RestauranteTerraDemo() {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="(21) 99999-9999"
-                        className="mt-2 w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-hidden"
+                        className="mt-2 w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/55 focus:border-[#d97706] focus:outline-hidden"
                       />
                       {errors.phone && <div className="mt-1 text-xs text-red-400">{errors.phone}</div>}
                     </div>
                   </div>
 
                   <div className="mt-3">
-                    <label htmlFor="rnote" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">
+                    <label htmlFor="rnote" className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/60">
                       {c.note}
                     </label>
                     <textarea
@@ -490,13 +524,13 @@ export default function RestauranteTerraDemo() {
                       onChange={(e) => setNote(e.target.value)}
                       placeholder={c.notePlaceholder}
                       rows={2}
-                      className="mt-2 w-full resize-none rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/40 focus:border-[#d97706] focus:outline-hidden"
+                      className="mt-2 w-full resize-none rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-[#f5e9d5] placeholder:text-[#f5e9d5]/55 focus:border-[#d97706] focus:outline-hidden"
                     />
                   </div>
 
                   <button
                     onClick={submit}
-                    className="mt-6 w-full rounded-full bg-[#d97706] py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+                    className="mt-6 w-full rounded-full bg-[#b45309] py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
                   >
                     {c.confirmBooking}
                   </button>
@@ -509,11 +543,18 @@ export default function RestauranteTerraDemo() {
 
       {/* CONFIRM MODAL */}
       {confirming && (
-        <div className="fixed inset-0 z-50 grid place-items-center p-4" role="dialog" aria-modal="true">
+        <div
+          className="fixed inset-0 z-50 grid place-items-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="terra-review-title"
+        >
           <button className="absolute inset-0 bg-black/70" onClick={() => setConfirming(false)} aria-label={c.close} />
           <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-[#1c1917] text-[#f5e9d5] shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
-              <div className="font-display text-lg font-semibold">{c.reviewTitle}</div>
+              <div id="terra-review-title" className="font-display text-lg font-semibold">
+                {c.reviewTitle}
+              </div>
               <button
                 onClick={() => setConfirming(false)}
                 className="grid h-9 w-9 place-items-center rounded-full text-[#f5e9d5]/60 hover:bg-white/5"
@@ -553,7 +594,7 @@ export default function RestauranteTerraDemo() {
                 </button>
                 <button
                   onClick={finalize}
-                  className="flex-1 rounded-full bg-[#d97706] py-3 text-sm font-semibold text-white"
+                  className="flex-1 rounded-full bg-[#b45309] py-3 text-sm font-semibold text-white"
                 >
                   {c.confirm}
                 </button>
@@ -567,11 +608,12 @@ export default function RestauranteTerraDemo() {
       <section className="border-t border-white/10 bg-[#1c1917] py-16 text-[#f5e9d5]">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <div className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#d97706]">{c.philosophy}</div>
-          <h2 style={{ fontFamily: 'var(--font-instrument-serif)' }} className="mt-4 text-4xl italic leading-[1.05] sm:text-6xl">
+          {/* Phones flow the quote as one balanced paragraph; the hand-set line breaks start at sm. */}
+          <h2 style={{ fontFamily: 'var(--font-instrument-serif)' }} className="mt-4 text-balance text-4xl italic leading-[1.05] sm:text-6xl">
             {c.quote.map((line, i) => (
               <Fragment key={i}>
-                {i > 0 && <br />}
-                {line}
+                {i > 0 && ' '}
+                <span className="sm:block">{line}</span>
               </Fragment>
             ))}
           </h2>
@@ -603,22 +645,25 @@ export default function RestauranteTerraDemo() {
               </div>
             </div>
             <div className="rounded-3xl bg-white/3 p-6 text-sm">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/50">{c.address}</div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f5e9d5]/60">{c.address}</div>
               <div className="mt-2 text-[#f5e9d5]">Rua Voluntários da Pátria, 42</div>
               <div className="text-[#f5e9d5]/70">Botafogo · Rio de Janeiro</div>
               <div className="mt-4 flex flex-col gap-1 text-[#f5e9d5]/70">
                 {c.schedule.map((s) => (
                   <div key={s.days}><span className="text-[#d97706]">{s.days}</span> · {s.hours}</div>
                 ))}
-                <div className="text-[#f5e9d5]/50">{c.closed}</div>
+                <div className="text-[#f5e9d5]/60">{c.closed}</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-white/10 bg-[#1c1917] py-8 text-center text-xs text-[#f5e9d5]/50">
-        © 2025 Terra Casa de Fogo · {c.demoBy}
+      <footer
+        className="border-t border-white/10 bg-[#1c1917] py-8 text-center text-xs text-[#f5e9d5]/50"
+        suppressHydrationWarning
+      >
+        © {new Date().getFullYear()} Terra Casa de Fogo · {c.demoBy}
       </footer>
     </DemoFrame>
   );

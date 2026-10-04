@@ -26,6 +26,8 @@ const pt = {
   isNew: 'Novo',
   seeDetails: (name: string) => `Ver detalhes de ${name}`,
   installments3: '3× de ',
+  // Prefix for the full (single-payment) price shown next to the installments on product cards.
+  orFull: 'ou ',
   add: 'Adicionar',
   categories: {
     Todos: 'Todos',
@@ -131,6 +133,7 @@ const en: ModaArteText = {
   isNew: 'New',
   seeDetails: (name) => `View details for ${name}`,
   installments3: '3× ',
+  orFull: 'or ',
   add: 'Add',
   categories: {
     Todos: 'All',
@@ -234,6 +237,7 @@ const es: ModaArteText = {
   isNew: 'Nuevo',
   seeDetails: (name) => `Ver detalles de ${name}`,
   installments3: '3× de ',
+  orFull: 'o ',
   add: 'Añadir',
   categories: {
     Todos: 'Todo',

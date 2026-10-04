@@ -167,13 +167,14 @@ export default function LumiOdontoDemo() {
                   {c.trySimulator}
                 </a>
               </div>
-              <div className="mt-10 grid grid-cols-3 gap-4 border-t border-sky-900/10 pt-6 text-sm">
+              {/* Two columns on phones: in three, "Escaneamento" is wider than its cell and runs into the next icon. */}
+              <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-5 border-t border-sky-900/10 pt-6 text-sm sm:grid-cols-3">
                 {c.heroBadges.map((b, i) => {
                   const Icon = badgeIcons[i];
                   return (
                     <div key={b.title} className="flex items-start gap-2">
                       <Icon className="mt-0.5 h-4 w-4 shrink-0 text-sky-500" />
-                      <div>
+                      <div className="min-w-0">
                         <div className="font-semibold">{b.title}</div>
                         <div className="text-xs text-[#0b2239]/50">{b.desc}</div>
                       </div>
@@ -186,7 +187,9 @@ export default function LumiOdontoDemo() {
               <div className="relative">
                 <div className="relative aspect-4/5 overflow-hidden rounded-[2.5rem] bg-sky-100 sm:aspect-4/3 lg:aspect-4/5">
                   <DemoArt slug="lumi-odonto" />
-                  <img src={lumiOdonto.clinic} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover" />
+                  {lumiOdonto.clinic && (
+                    <img src={lumiOdonto.clinic} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover" />
+                  )}
                   <div className="absolute inset-0 bg-linear-to-t from-[#0b2239]/40 via-transparent to-transparent" />
                 </div>
                 <div className="absolute -bottom-6 left-4 right-4 flex items-center gap-4 rounded-3xl border border-white/60 bg-white/90 p-4 shadow-xl backdrop-blur-sm sm:left-auto sm:-right-4 sm:w-72">
@@ -321,13 +324,15 @@ export default function LumiOdontoDemo() {
                 <article key={m.name} className="group overflow-hidden rounded-4xl bg-[#f6f9fb]">
                   <div className="relative aspect-4/5 overflow-hidden">
                     <EditorialPortrait name={m.name} className="absolute inset-0" />
-                    <img
-                      src={teamMeta[i].photo}
-                      alt={m.name}
-                      data-fallback="hide"
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                    {teamMeta[i].photo && (
+                      <img
+                        src={teamMeta[i].photo}
+                        alt={m.name}
+                        data-fallback="hide"
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )}
                     <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold backdrop-blur-sm">
                       {m.specialty}
                     </span>

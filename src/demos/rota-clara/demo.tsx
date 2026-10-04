@@ -7,6 +7,13 @@ import { heros, rotaClara } from '@/lib/demo-images';
 import { useI18n } from '@/i18n/provider';
 import { content } from './content';
 
+const heroSrc = heros['rota-clara'];
+const heroSrcSmall = '/heros/rota-clara-768.webp';
+// Rendered width: the full demo card (frame gutters 12px/24px plus 1px borders), capped at 1310px.
+// The hero is a soft gradient dimmed to 40% under an overlay, so the 768w file holds up on phones
+// even though object-cover enlarges it in the tall mobile box.
+const heroSizes = '(min-width: 1360px) 1310px, (min-width: 640px) calc(100vw - 50px), calc(100vw - 26px)';
+
 const targetDate = new Date();
 targetDate.setDate(targetDate.getDate() + 3);
 targetDate.setHours(23, 59, 59, 0);
@@ -132,15 +139,20 @@ export default function RotaClaraDemo() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={heros['rota-clara']}
+            src={heroSrc}
+            srcSet={`${heroSrcSmall} 768w, ${heroSrc} 1920w`}
+            sizes={heroSizes}
             alt=""
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover opacity-40"
           />
           <div className="absolute inset-0 bg-linear-to-b from-[#0f172a]/60 via-[#0f172a]/75 to-[#0f172a]" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_10%,rgba(34,211,238,0.35),transparent)]" />
         </div>
         <div className="relative mx-auto max-w-4xl px-4 py-16 text-center text-white sm:px-6 sm:py-24">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/4 px-3 py-1 text-xs font-medium text-white/70">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/4 px-3 py-1 text-xs font-medium text-white/85">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#22d3ee] opacity-70" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#22d3ee]" />
@@ -443,7 +455,7 @@ export default function RotaClaraDemo() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder={c.fullName}
-                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
+                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-[#22d3ee] focus:outline-hidden"
                     />
                     {errors.name && <div className="mt-1 text-xs text-red-400">{errors.name}</div>}
                   </div>
@@ -453,7 +465,7 @@ export default function RotaClaraDemo() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder={c.emailPlaceholder}
-                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
+                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-[#22d3ee] focus:outline-hidden"
                     />
                     {errors.email && <div className="mt-1 text-xs text-red-400">{errors.email}</div>}
                   </div>
@@ -501,14 +513,14 @@ export default function RotaClaraDemo() {
                       value={card.number}
                       onChange={(e) => setCard({ ...card, number: e.target.value })}
                       placeholder={c.cardNumber}
-                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
+                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-[#22d3ee] focus:outline-hidden"
                     />
                     {errors.number && <div className="text-xs text-red-400">{errors.number}</div>}
                     <input
                       value={card.name}
                       onChange={(e) => setCard({ ...card, name: e.target.value })}
                       placeholder={c.cardName}
-                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
+                      className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-[#22d3ee] focus:outline-hidden"
                     />
                     {errors.name && <div className="text-xs text-red-400">{errors.name}</div>}
                     <div className="grid grid-cols-2 gap-3">
@@ -516,13 +528,13 @@ export default function RotaClaraDemo() {
                         value={card.expiry}
                         onChange={(e) => setCard({ ...card, expiry: e.target.value })}
                         placeholder={c.expiry}
-                        className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
+                        className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-[#22d3ee] focus:outline-hidden"
                       />
                       <input
                         value={card.cvv}
                         onChange={(e) => setCard({ ...card, cvv: e.target.value })}
                         placeholder="CVV"
-                        className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm placeholder:text-white/40 focus:border-[#22d3ee] focus:outline-hidden"
+                        className="w-full rounded-xl border border-white/15 bg-white/4 px-4 py-3 text-sm text-white placeholder:text-white/50 focus:border-[#22d3ee] focus:outline-hidden"
                       />
                     </div>
                     {(errors.expiry || errors.cvv) && (
@@ -589,8 +601,9 @@ export default function RotaClaraDemo() {
         </div>
       )}
 
-      <footer className="border-t border-white/10 bg-[#0f172a] py-8 text-center text-xs text-white/50">
-        © 2025 Rota Clara · Larissa Nogueira · {c.demoBy}
+      {/* The static export bakes in the build year; a visit after New Year renders a newer one on the client. */}
+      <footer className="border-t border-white/10 bg-[#0f172a] py-8 text-center text-xs text-white/50" suppressHydrationWarning>
+        © {new Date().getFullYear()} Rota Clara · Larissa Nogueira · {c.demoBy}
       </footer>
     </DemoFrame>
   );

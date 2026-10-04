@@ -93,7 +93,9 @@ export default function AlicerceDemo() {
         {/* Hero */}
         <section className="relative overflow-hidden">
           <DemoArt slug="alicerce-construtora" />
-          <img src={heros['alicerce-construtora']} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover opacity-35" />
+          {heros['alicerce-construtora'] && (
+            <img src={heros['alicerce-construtora']} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover opacity-35" />
+          )}
           <div className="absolute inset-0 bg-linear-to-r from-[#0f0f0e] via-[#0f0f0e]/85 to-[#0f0f0e]/30" />
           <div
             aria-hidden
@@ -250,40 +252,45 @@ export default function AlicerceDemo() {
 
             <motion.div layout className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <AnimatePresence mode="popLayout" initial={false}>
-                {visibleProjects.map((p) => (
-                  <motion.article
-                    key={p.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.4 }}
-                    className="group relative aspect-4/5 overflow-hidden bg-[#1c1c1a]"
-                  >
-                    <ArtTile icon={categoryIcons[p.category]} from="#2c2720" to="#121210" iconClassName="text-[#f5a524]/30" />
-                    <img
-                      src={alicerceProjects[p.id]}
-                      alt={c.projects[p.id]}
-                      data-fallback="hide"
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-[#0f0f0e] via-[#0f0f0e]/30 to-transparent" />
-                    <span className="absolute left-4 top-4 bg-[#f5a524] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#0f0f0e]">
-                      {c.categories[p.category]}
-                    </span>
-                    <div className="absolute inset-x-0 bottom-0 p-5">
-                      <h3 className="font-display text-xl font-bold uppercase leading-tight">{c.projects[p.id]}</h3>
-                      <div className="mt-2 flex items-center gap-1.5 text-sm text-white/60">
-                        <MapPin className="h-3.5 w-3.5" /> {p.location}
+                {visibleProjects.map((p) => {
+                  const photo = alicerceProjects[p.id];
+                  return (
+                    <motion.article
+                      key={p.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.4 }}
+                      className="group relative aspect-4/5 overflow-hidden bg-[#1c1c1a]"
+                    >
+                      <ArtTile icon={categoryIcons[p.category]} from="#2c2720" to="#121210" iconClassName="text-[#f5a524]/30" />
+                      {photo && (
+                        <img
+                          src={photo}
+                          alt={c.projects[p.id]}
+                          data-fallback="hide"
+                          loading="lazy"
+                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-linear-to-t from-[#0f0f0e] via-[#0f0f0e]/30 to-transparent" />
+                      <span className="absolute left-4 top-4 bg-[#f5a524] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#0f0f0e]">
+                        {c.categories[p.category]}
+                      </span>
+                      <div className="absolute inset-x-0 bottom-0 p-5">
+                        <h3 className="font-display text-xl font-bold uppercase leading-tight">{c.projects[p.id]}</h3>
+                        <div className="mt-2 flex items-center gap-1.5 text-sm text-white/60">
+                          <MapPin className="h-3.5 w-3.5" /> {p.location}
+                        </div>
+                        <div className="mt-3 grid grid-cols-2 border-t border-white/15 pt-3 text-xs text-white/70 transition-all duration-500 sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
+                          <span>{p.area.toLocaleString(locale === 'en' ? 'en-US' : 'pt-BR')} m²</span>
+                          <span className="text-right">{c.delivered(p.year)}</span>
+                        </div>
                       </div>
-                      <div className="mt-3 grid grid-cols-2 border-t border-white/15 pt-3 text-xs text-white/70 transition-all duration-500 sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
-                        <span>{p.area.toLocaleString(locale === 'en' ? 'en-US' : 'pt-BR')} m²</span>
-                        <span className="text-right">{c.delivered(p.year)}</span>
-                      </div>
-                    </div>
-                  </motion.article>
-                ))}
+                    </motion.article>
+                  );
+                })}
               </AnimatePresence>
             </motion.div>
           </div>

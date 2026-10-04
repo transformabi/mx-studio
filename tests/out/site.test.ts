@@ -101,13 +101,18 @@ describe('home page', () => {
   });
 
   it('has no broken internal link or asset', () => {
-    // The four non-showcased demos are hidden (noindex) until they get photos, so their missing images are expected.
-    const hiddenDemo = /[\\/]demo[\\/](lumi-odonto|iris-estetica|alicerce-construtora|mare-salao)\.html$/;
+    // Includes the four hidden demos: they render stand-in art instead of requesting photos that don't exist yet.
     const broken: string[] = [];
-    for (const file of htmlFiles().filter((f) => !hiddenDemo.test(f))) {
+    for (const file of htmlFiles()) {
       const html = readFileSync(file, 'utf8');
       for (const [, url] of html.matchAll(/(?:href|src)="(\/[^"/][^"]*|\/)"/g)) {
         if (!resolves(url)) broken.push(`${file.replace(OUT, '')} → ${url}`);
+      }
+      // Responsive candidates (<img srcset>, <picture><source srcset>): "url 768w, url 1920w".
+      for (const [, set] of html.matchAll(/srcset="([^"]+)"/gi)) {
+        for (const url of set.split(',').map((c) => c.trim().split(/\s+/)[0])) {
+          if (url.startsWith('/') && !resolves(url)) broken.push(`${file.replace(OUT, '')} → ${url} (srcset)`);
+        }
       }
     }
     expect(broken).toEqual([]);

@@ -163,7 +163,9 @@ export default function IrisEsteticaDemo() {
               <div className="relative mx-auto max-w-sm lg:max-w-none">
                 <div className="relative aspect-3/4 overflow-hidden rounded-t-full rounded-b-[2.5rem] bg-[#f1e3e6]">
                   <DemoArt slug="iris-estetica" />
-                  <img src={irisEstetica.space} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover" />
+                  {irisEstetica.space && (
+                    <img src={irisEstetica.space} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover" />
+                  )}
                 </div>
                 <div className="absolute -left-4 bottom-10 flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm shadow-lg">
                   <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
@@ -207,47 +209,52 @@ export default function IrisEsteticaDemo() {
             </div>
 
             <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {visible.map((p) => (
-                <article key={p.id} className="group overflow-hidden rounded-4xl bg-[#faf6f3] transition-shadow duration-500 hover:shadow-[0_30px_60px_-35px_rgba(42,27,34,0.45)]">
-                  <div className="relative aspect-4/3 overflow-hidden">
-                    <ArtTile
-                      icon={procedureIcons[p.id]}
-                      from="#fdf2f5"
-                      to={p.area === 'corpo' ? '#d9a3b3' : p.area === 'pele' ? '#e8c4a8' : '#e7b6c4'}
-                      iconClassName="text-white/80"
-                    />
-                    <img
-                      src={irisEstetica.procedures[p.id]}
-                      alt={c.procedures[p.id].name}
-                      data-fallback="hide"
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] backdrop-blur-sm">
-                      {c.areas[p.area]}
-                    </span>
-                  </div>
-                  <div className="p-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="font-display text-lg font-semibold">{c.procedures[p.id].name}</h3>
-                      <span className="inline-flex shrink-0 items-center gap-1 text-xs text-[#2a1b22]/50">
-                        <Clock className="h-3.5 w-3.5" />
-                        {c.minutes(p.minutes)}
+              {visible.map((p) => {
+                const photo = irisEstetica.procedures[p.id];
+                return (
+                  <article key={p.id} className="group overflow-hidden rounded-4xl bg-[#faf6f3] transition-shadow duration-500 hover:shadow-[0_30px_60px_-35px_rgba(42,27,34,0.45)]">
+                    <div className="relative aspect-4/3 overflow-hidden">
+                      <ArtTile
+                        icon={procedureIcons[p.id]}
+                        from="#fdf2f5"
+                        to={p.area === 'corpo' ? '#d9a3b3' : p.area === 'pele' ? '#e8c4a8' : '#e7b6c4'}
+                        iconClassName="text-white/80"
+                      />
+                      {photo && (
+                        <img
+                          src={photo}
+                          alt={c.procedures[p.id].name}
+                          data-fallback="hide"
+                          loading="lazy"
+                          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      )}
+                      <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] backdrop-blur-sm">
+                        {c.areas[p.area]}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm text-[#2a1b22]/60">{c.procedures[p.id].desc}</p>
-                    <div className="mt-5 flex items-end justify-between border-t border-[#2a1b22]/10 pt-4">
-                      <div>
-                        <div className="text-[11px] text-[#2a1b22]/50">{c.from}</div>
-                        <div className="font-display text-xl font-semibold text-[#a8566a]">{money(p.price, { decimals: 0 })}</div>
+                    <div className="p-5">
+                      <div className="flex items-center justify-between gap-3">
+                        <h3 className="font-display text-lg font-semibold">{c.procedures[p.id].name}</h3>
+                        <span className="inline-flex shrink-0 items-center gap-1 text-xs text-[#2a1b22]/50">
+                          <Clock className="h-3.5 w-3.5" />
+                          {c.minutes(p.minutes)}
+                        </span>
                       </div>
-                      <button onClick={() => choosePackage(p.id)} className="inline-flex items-center gap-1 text-sm font-semibold transition-all hover:gap-2">
-                        {c.buildPackage} <ArrowRight className="h-4 w-4" />
-                      </button>
+                      <p className="mt-2 text-sm text-[#2a1b22]/60">{c.procedures[p.id].desc}</p>
+                      <div className="mt-5 flex items-end justify-between border-t border-[#2a1b22]/10 pt-4">
+                        <div>
+                          <div className="text-[11px] text-[#2a1b22]/50">{c.from}</div>
+                          <div className="font-display text-xl font-semibold text-[#a8566a]">{money(p.price, { decimals: 0 })}</div>
+                        </div>
+                        <button onClick={() => choosePackage(p.id)} className="inline-flex items-center gap-1 text-sm font-semibold transition-all hover:gap-2">
+                          {c.buildPackage} <ArrowRight className="h-4 w-4" />
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>

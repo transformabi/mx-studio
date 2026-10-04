@@ -35,6 +35,7 @@ const pt = {
     Bebidas: 'Bebidas',
   },
   tags: { chef: 'Do chef', vegan: 'Vegano', vegetarian: 'Vegetariano' },
+  pictured: 'Na foto:',
   dishes: {
     c1: { name: 'Pães do dia', description: 'Fermentação natural, manteiga de fogo e sal de flor.' },
     c2: { name: 'Azeitonas assadas', description: 'Azeitonas curadas em casa, ervas do quintal.' },
@@ -149,6 +150,7 @@ const en: RestauranteText = {
     Bebidas: 'Drinks',
   },
   tags: { chef: "Chef's pick", vegan: 'Vegan', vegetarian: 'Vegetarian' },
+  pictured: 'Pictured:',
   dishes: {
     c1: { name: 'Bread of the day', description: 'Naturally leavened, fire-roasted butter and flaky salt.' },
     c2: { name: 'Roasted olives', description: 'House-cured olives, herbs from our garden.' },
@@ -261,6 +263,7 @@ const es: RestauranteText = {
     Bebidas: 'Bebidas',
   },
   tags: { chef: 'Del chef', vegan: 'Vegano', vegetarian: 'Vegetariano' },
+  pictured: 'En la foto:',
   dishes: {
     c1: { name: 'Panes del día', description: 'Masa madre, mantequilla de fuego y sal en escamas.' },
     c2: { name: 'Aceitunas asadas', description: 'Aceitunas curadas en casa, hierbas de nuestro huerto.' },

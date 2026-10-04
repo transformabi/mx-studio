@@ -200,7 +200,9 @@ export default function MareSalaoDemo() {
               <div className="relative mx-auto max-w-sm lg:max-w-none">
                 <div className="relative aspect-4/5 overflow-hidden rounded-[2.5rem] rounded-tl-[9rem] bg-[#f3d3c6]">
                   <DemoArt slug="mare-salao" />
-                  <img src={mareSalao.space} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover" />
+                  {mareSalao.space && (
+                    <img src={mareSalao.space} alt={c.heroAlt} data-fallback="hide" className="absolute inset-0 h-full w-full object-cover" />
+                  )}
                 </div>
                 <div className="absolute -left-4 bottom-10 flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm shadow-lg">
                   <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
