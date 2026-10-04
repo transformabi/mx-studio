@@ -102,9 +102,10 @@ const priceRanges = [
 // Hero (LCP): 1920px original plus a 768px variant for phones.
 const heroSrc = heros['costa-imoveis'];
 const heroSrcSmall = '/heros/costa-imoveis-768.webp';
-// Rendered width: full section width below lg (frame + section gutters), 5/12 columns from lg, capped at 441px.
+// Box width: full section width below lg (frame + section gutters), 5/12 columns from lg, capped at 441px.
+// The 16:9 photo is cropped into a 4:3 box, so it renders 4/3 wider than the box.
 const heroSizes =
-  '(min-width: 1202px) 441px, (min-width: 1024px) calc(41.67vw - 60px), (min-width: 640px) calc(100vw - 98px), calc(100vw - 58px)';
+  '(min-width: 1202px) 588px, (min-width: 1024px) calc((41.67vw - 60px) * 1.334), (min-width: 640px) calc((100vw - 98px) * 1.334), calc((100vw - 58px) * 1.334)';
 
 export default function CostaImoveisDemo() {
   const { locale, money } = useI18n();

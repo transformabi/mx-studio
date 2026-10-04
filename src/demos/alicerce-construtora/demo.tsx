@@ -70,7 +70,7 @@ export default function AlicerceDemo() {
               </span>
               <div className="leading-none">
                 <div className="font-display text-base font-bold uppercase tracking-[0.08em]">Alicerce</div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-white/45">{c.tagline}</div>
+                <div className="text-[10px] uppercase tracking-[0.18em] text-white/50">{c.tagline}</div>
               </div>
             </div>
             <nav className="hidden items-center gap-1 sm:flex">

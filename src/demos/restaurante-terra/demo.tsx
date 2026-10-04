@@ -256,7 +256,7 @@ export default function RestauranteTerraDemo() {
               <div className="relative aspect-video overflow-hidden rounded-2xl bg-white/5 sm:aspect-21/9 lg:aspect-4/3">
                 <img
                   src={categoryPhoto[category].src}
-                  alt={c.dishes[categoryPhoto[category].dish].name}
+                  alt=""
                   loading="lazy"
                   decoding="async"
                   className="absolute inset-0 h-full w-full object-cover"

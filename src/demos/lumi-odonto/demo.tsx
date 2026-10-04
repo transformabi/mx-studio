@@ -224,7 +224,7 @@ export default function LumiOdontoDemo() {
                 <Swatch label={c.simBefore} name={shades[0].name} color={shades[0].color} />
                 <Swatch label={c.simAfter} name={shades[shadeIdx].name} color={shadeColor(level)} highlight />
               </div>
-              <p className="mt-6 text-xs text-white/45">{c.simNote}</p>
+              <p className="mt-6 text-xs text-white/50">{c.simNote}</p>
             </div>
 
             <div className="lg:col-span-7">

@@ -63,7 +63,6 @@ export type Demo = {
   accent: string;
   year: string;
   scope: string[];
-  metrics: { label: string; value: string }[];
 };
 
 export const demos: Demo[] = [
@@ -78,11 +77,6 @@ export const demos: Demo[] = [
     accent: '#C6FF3B',
     year: '2025',
     scope: ['Catálogo dinâmico', 'Carrinho persistente', 'Cupom + total', 'Checkout mockado'],
-    metrics: [
-      { label: '1.8s', value: 'LCP no 4G' },
-      { label: '741 KB', value: 'a página inteira' },
-      { label: 'PIX', value: 'no checkout' },
-    ],
   },
   {
     slug: 'restaurante-terra',
@@ -95,11 +89,6 @@ export const demos: Demo[] = [
     accent: '#FF8A5C',
     year: '2025',
     scope: ['Menu em tabs', 'Reserva com calendário', 'Modal de confirmação', 'Envio simulado'],
-    metrics: [
-      { label: '1.7s', value: 'LCP no 4G' },
-      { label: '397 KB', value: 'a página inteira' },
-      { label: '24/7', value: 'reserva sem ligação' },
-    ],
   },
   {
     slug: 'clinica-sereno',
@@ -112,11 +101,6 @@ export const demos: Demo[] = [
     accent: '#3BE0B3',
     year: '2025',
     scope: ['Perfis dos profissionais', 'Grade de horários', 'Form validado', 'Confirmação'],
-    metrics: [
-      { label: '1.8s', value: 'LCP no 4G' },
-      { label: '465 KB', value: 'a página inteira' },
-      { label: '0', value: 'de layout shift' },
-    ],
   },
   {
     slug: 'motta-advogados',
@@ -129,11 +113,6 @@ export const demos: Demo[] = [
     accent: '#A78BFA',
     year: '2025',
     scope: ['Áreas de atuação', 'Drawer detalhado', 'Triagem em etapas', 'Resumo do caso'],
-    metrics: [
-      { label: '1.2s', value: 'LCP no 4G' },
-      { label: '489 KB', value: 'a página inteira' },
-      { label: 'OAB', value: 'Prov. 205/2021' },
-    ],
   },
   {
     slug: 'costa-imoveis',
@@ -146,11 +125,6 @@ export const demos: Demo[] = [
     accent: '#C6FF3B',
     year: '2025',
     scope: ['Filtros em tempo real', 'Grid responsivo', 'Ficha do imóvel', 'WhatsApp por imóvel'],
-    metrics: [
-      { label: '1.7s', value: 'LCP no 4G' },
-      { label: '679 KB', value: 'a página inteira' },
-      { label: 'Filtro', value: 'em tempo real' },
-    ],
   },
   {
     slug: 'rota-clara',
@@ -163,11 +137,6 @@ export const demos: Demo[] = [
     accent: '#5EEAD4',
     year: '2025',
     scope: ['FAQ acordeão', 'Contador de vagas', 'Seleção de plano', 'Checkout em etapas'],
-    metrics: [
-      { label: '1.8s', value: 'LCP no 4G' },
-      { label: '735 KB', value: 'a página inteira' },
-      { label: 'Checkout', value: 'em 3 etapas' },
-    ],
   },
   {
     slug: 'lumi-odonto',
@@ -180,11 +149,6 @@ export const demos: Demo[] = [
     accent: '#7DD3FC',
     year: '2026',
     scope: ['Simulador de clareamento', 'Tratamentos em abas', 'Equipe e CRO', 'Agendamento guiado'],
-    metrics: [
-      { label: 'Simulador', value: 'de clareamento' },
-      { label: 'Agenda', value: 'em 3 passos' },
-      { label: 'CRO', value: 'responsável técnico' },
-    ],
   },
   {
     slug: 'iris-estetica',
@@ -197,11 +161,6 @@ export const demos: Demo[] = [
     accent: '#F0ABFC',
     year: '2026',
     scope: ['Quiz de avaliação', 'Protocolos por área', 'Pacotes de sessões', 'Reserva online'],
-    metrics: [
-      { label: 'Quiz', value: 'de avaliação' },
-      { label: 'Pacotes', value: 'preço em tempo real' },
-      { label: 'Filtro', value: 'por área do corpo' },
-    ],
   },
   {
     slug: 'mare-salao',
@@ -214,11 +173,6 @@ export const demos: Demo[] = [
     accent: '#F2B5A0',
     year: '2026',
     scope: ['Serviços por categoria', 'Escolha da profissional', 'Horários livres', 'Resumo com total'],
-    metrics: [
-      { label: 'Agenda', value: 'em 4 passos' },
-      { label: 'Total', value: 'somado na hora' },
-      { label: 'Equipe', value: 'por especialidade' },
-    ],
   },
   {
     slug: 'alicerce-construtora',
@@ -231,11 +185,6 @@ export const demos: Demo[] = [
     accent: '#FBBF24',
     year: '2026',
     scope: ['Simulador de orçamento', 'Portfólio de obras', 'Etapas da obra', 'Visita técnica'],
-    metrics: [
-      { label: 'Orçamento', value: 'em tempo real' },
-      { label: 'Obras', value: 'com filtro' },
-      { label: 'Etapas', value: 'da obra' },
-    ],
   },
 ];
 

@@ -601,7 +601,7 @@ export default function RotaClaraDemo() {
         </div>
       )}
 
-      {/* The static export bakes in the build year; a visit after New Year renders a newer one on the client. */}
+      {/* The static export bakes in the build year; it updates on the next deploy. */}
       <footer className="border-t border-white/10 bg-[#0f172a] py-8 text-center text-xs text-white/50" suppressHydrationWarning>
         © {new Date().getFullYear()} Rota Clara · Larissa Nogueira · {c.demoBy}
       </footer>
