@@ -237,6 +237,18 @@ export const demoBySlug = Object.fromEntries(demos.map((d) => [d.slug, d])) as R
   Demo
 >;
 
+/** The six demos with real photography, in display order. The other four stay off the showcase until they get photos. */
+export const showcase = [
+  'clinica-sereno',
+  'motta-advogados',
+  'moda-arte',
+  'restaurante-terra',
+  'costa-imoveis',
+  'rota-clara',
+] as const satisfies readonly DemoSlug[];
+export type ShowcaseSlug = (typeof showcase)[number];
+export const isShowcased = (slug: string): slug is ShowcaseSlug => (showcase as readonly string[]).includes(slug);
+
 /** Real client sites that are live, shown in their niche ahead of the demos. */
 export type CaseSlug = 'sulamita-estetica';
 

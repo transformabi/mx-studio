@@ -1,15 +1,8 @@
 'use client';
 
-import { createContext, useContext, useMemo, useTransition, type ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
-import {
-  COOKIE_MAX_AGE,
-  CURRENCY_COOKIE,
-  LOCALE_COOKIE,
-  localeInfo,
-  type Currency,
-  type Locale,
-} from './config';
+import { createContext, useContext, useMemo, useSyncExternalStore, type ReactNode } from 'react';
+import { defaultCurrency, localeInfo, type Currency, type Locale } from './config';
+import { readSavedCurrency, saveCurrency, subscribeCurrency } from './currency-store';
 import { formatMoney, type MoneyOptions, type Rates } from './format';
 
 type I18nValue = {
@@ -18,43 +11,27 @@ type I18nValue = {
   /** BCP 47 tag for Intl / toLocaleDateString. */
   intl: string;
   money: (brl: number, opts?: MoneyOptions) => string;
-  setLocale: (locale: Locale) => void;
   setCurrency: (currency: Currency) => void;
-  pending: boolean;
 };
 
 const I18nContext = createContext<I18nValue | null>(null);
 
-export function I18nProvider({
-  locale,
-  currency,
-  rates,
-  children,
-}: {
-  locale: Locale;
-  currency: Currency;
-  rates: Rates;
-  children: ReactNode;
-}) {
-  const router = useRouter();
-  const [pending, startTransition] = useTransition();
+/** The language comes from the route; the currency is the visitor's choice, kept in the browser. */
+export function I18nProvider({ locale, rates, children }: { locale: Locale; rates: Rates; children: ReactNode }) {
+  // Server and first client render use the language default, so hydration always matches.
+  const saved = useSyncExternalStore(subscribeCurrency, readSavedCurrency, () => null);
+  const currency = saved ?? defaultCurrency[locale];
 
-  const value = useMemo<I18nValue>(() => {
-    // The server reads the cookie, so a refresh re-renders everything in the new language.
-    const save = (name: string, v: string) => {
-      document.cookie = `${name}=${v}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
-      startTransition(() => router.refresh());
-    };
-    return {
+  const value = useMemo<I18nValue>(
+    () => ({
       locale,
       currency,
       intl: localeInfo[locale].intl,
       money: (brl, opts) => formatMoney(brl, locale, currency, rates, opts),
-      setLocale: (l) => save(LOCALE_COOKIE, l),
-      setCurrency: (c) => save(CURRENCY_COOKIE, c),
-      pending,
-    };
-  }, [locale, currency, rates, pending, router]);
+      setCurrency: saveCurrency,
+    }),
+    [locale, currency, rates],
+  );
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
