@@ -42,7 +42,8 @@ export const pt = {
 
   case: {
     label: 'Cliente real',
-    title: 'Sulamita Nascimento, Estética de Resultados',
+    name: 'Sulamita Nascimento',
+    business: 'Estética de Resultados',
     text: 'Site bilíngue para uma especialista em estética em Caldas da Rainha, Portugal. Apresenta os tratamentos, passa confiança e leva a cliente direto para marcar a consulta.',
     facts: [
       { label: 'Domínio', value: 'sulamitaestetica.pt' },

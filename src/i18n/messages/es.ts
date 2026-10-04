@@ -40,7 +40,8 @@ export const es: Messages = {
 
   case: {
     label: 'Cliente real',
-    title: 'Sulamita Nascimento, Estética de Resultados',
+    name: 'Sulamita Nascimento',
+    business: 'Estética de Resultados',
     text: 'Sitio bilingüe para una especialista en estética en Caldas da Rainha, Portugal. Presenta los tratamientos, transmite confianza y lleva a la clienta directamente a reservar la consulta.',
     facts: [
       { label: 'Dominio', value: 'sulamitaestetica.pt' },
