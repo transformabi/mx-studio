@@ -1,13 +1,17 @@
 // Captures the real screenshots shown on the studio site (needs Microsoft Edge installed).
 // Usage: npm run shots
+// Env: DEMO_BASE=http://localhost:4173/demo  captures the demos from a local build (npm run build, then serve out/)
+//      ONLY=rota-clara,moda-arte             re-captures just those files (names without extension)
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright-core';
 import sharp from 'sharp';
 
 const OUT = 'public/shots';
 const SULAMITA = 'https://www.sulamitaestetica.pt/';
-// The demos as they are live today; the code is the same one this branch ships.
-const DEMO_BASE = 'https://mxstudioweb.vercel.app/demo';
+// By default the demos are captured as they are live today; set DEMO_BASE to capture a local build of this branch.
+const DEMO_BASE = process.env.DEMO_BASE ?? 'https://mxstudioweb.vercel.app/demo';
+const only = process.env.ONLY?.split(',');
+const wanted = (name) => !only || only.includes(name);
 const demos = ['clinica-sereno', 'motta-advogados', 'moda-arte', 'restaurante-terra', 'costa-imoveis', 'rota-clara'];
 
 await mkdir(OUT, { recursive: true });
@@ -53,16 +57,18 @@ const save = (buffer, name, width, height) =>
   sharp(buffer).resize(width, height, { fit: 'cover', position: 'top' }).webp({ quality: 80 }).toFile(`${OUT}/${name}.webp`);
 
 const wide = { width: 1440, height: 900 };
-await save(await shoot({ url: SULAMITA, viewport: wide }), 'sulamita-desktop', 1440, 900);
+if (wanted('sulamita-desktop')) await save(await shoot({ url: SULAMITA, viewport: wide }), 'sulamita-desktop', 1440, 900);
 // 760px puts the whole certification card right below the sticky menu.
-await save(await shoot({ url: SULAMITA, viewport: wide, scrollY: 760 }), 'sulamita-detail', 1440, 900);
-await save(
-  await shoot({ url: SULAMITA, viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true }),
-  'sulamita-mobile',
-  780,
-  1688,
-);
-for (const slug of demos) {
+if (wanted('sulamita-detail')) await save(await shoot({ url: SULAMITA, viewport: wide, scrollY: 760 }), 'sulamita-detail', 1440, 900);
+if (wanted('sulamita-mobile')) {
+  await save(
+    await shoot({ url: SULAMITA, viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true }),
+    'sulamita-mobile',
+    780,
+    1688,
+  );
+}
+for (const slug of demos.filter(wanted)) {
   const shot = await shoot({ url: `${DEMO_BASE}/${slug}`, viewport: { width: 1440, height: 1100 }, clip: 'div.overflow-hidden.rounded-3xl' });
   await save(shot, slug, 1440, 900);
   console.log('ok', slug);
