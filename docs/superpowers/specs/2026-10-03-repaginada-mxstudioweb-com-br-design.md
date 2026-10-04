@@ -50,15 +50,16 @@ Sucesso significa:
 - **Moeda no navegador**: seletor client-side (R$, US$, €, £), padrão por idioma (PT → BRL,
   EN → USD, ES → USD), escolha lembrada em `localStorage` (com try/catch). Cotação buscada **no build**
   (API pública da Coinbase, com valores de reserva se falhar) e exibida como "≈ valor aproximado".
-- **Diagnóstico** (hoje no projeto Vercel `mx-studio-web`, HTML estático + Supabase): os arquivos são
-  baixados do deploy atual e passam a viver em `public/diagnostico/`, com os caminhos `/assets/...`
-  ajustados para `/diagnostico/assets/...`. A configuração do Supabase não muda.
+- **Diagnóstico** (projeto Vercel `mx-studio-web`): **continua onde está**, em
+  `https://mx-studio-web.vercel.app/`. Ao planejar, apareceu que ele é um pequeno sistema — `painel`,
+  `proposta`, `chamado` e prévias em `/p/:slug` já enviadas a prospectos, com login no Supabase — e
+  mudá-lo de domínio arriscaria quebrar esses links e o login. O site novo aponta para ele; a migração
+  vira um projeto separado.
 - **Hospedagem**: Cloudflare (Workers/Pages com assets estáticos) conectada ao GitHub; cada push na
   `main` publica; cada branch gera um link de prévia. URLs limpas, sem `.html`.
 - **Vercel vira só redirecionamento**: um `vercel.json` na raiz do repositório com redirect 308
   `/(.*)` → `https://mxstudioweb.com.br/$1` (a Cloudflare ignora esse arquivo). O projeto
-  `mx-studio-web` recebe um deploy só com redirect para `https://mxstudioweb.com.br/diagnostico`.
-  **Só entra no ar depois que o domínio estiver respondendo.**
+  `mx-studio-web` (diagnóstico) não muda. **Só entra no ar depois que o domínio estiver respondendo.**
 
 ### Sai do repositório
 
@@ -96,8 +97,8 @@ reescritos.
    Ao lado: prints reais do site da Sulamita (desktop + celular), etiqueta "Cliente real · sulamitaestetica.pt".
 2. **Cliente real** — caso da Sulamita: o que foi feito (site bilíngue PT/EN, domínio .pt, no ar desde
    set/2026), link para o site ao vivo. Sem métricas inventadas.
-3. **Modelos por nicho** — grade de demos com filtro por ramo; cada card com print real, etiqueta
-   "Modelo de demonstração", abre a demo. Um CTA no fim da seção.
+3. **Modelos por nicho** — grade das 6 demos (uma por ramo, então sem filtro); cada card com print real,
+   o ramo, etiqueta "Modelo de demonstração" e o tempo de carregamento medido; abre a demo. Um CTA no fim.
 4. **Como funciona** — 4 etapas: descoberta (3–5 dias), design (1–2 semanas), desenvolvimento
    (2–4 semanas), lançamento (2–3 dias).
 5. **Serviços e preços** — 4 pacotes com preço "a partir de", seletor de moeda, linha de formas de
@@ -142,8 +143,8 @@ Página 404 nos três idiomas (texto PT com links para EN/ES).
    para contato@.
 6. (Opcional) Envio como contato@: conta Brevo do Max, domínio autenticado (DKIM + SPF combinado
    `include:spf.brevo.com`), Max cola a chave SMTP no Gmail em "Enviar e-mail como".
-7. Merge na `main` → Cloudflare publica; `vercel.json` de redirect entra junto; deploy de redirect no
-   `mx-studio-web`.
+7. Merge na `main` → Cloudflare publica. Depois do domínio verificado, o `vercel.json` de redirect
+   entra em um PR separado.
 8. Max troca o link da bio do Instagram para `mxstudioweb.com.br` (e `/fundadores`).
 9. Reativar DNSSEC pela Cloudflare (DS novo no registro.br) — opcional, depois de tudo estável.
 
@@ -151,10 +152,11 @@ Página 404 nos três idiomas (texto PT com links para EN/ES).
 
 - `npm run build` (export estático) e `npm run lint` sem erros.
 - Checagem de links internos no `out/` (nenhum 404).
-- Prévia no navegador: home nos 3 idiomas, `/fundadores`, `/diagnostico`, 6 demos, 404; largura
+- Prévia no navegador: home nos 3 idiomas, `/fundadores`, 6 demos, 404; largura
   375 px sem rolagem horizontal; console sem erros; seletor de moeda trocando valores.
 - PageSpeed (celular) da prévia: meta ≥ 90 em desempenho, acessibilidade, boas práticas e SEO.
-- `curl -I` nos endereços antigos da Vercel → 308 para o caminho certo no domínio novo.
+- `curl -I` nos endereços antigos da Vercel (`mxstudioweb.vercel.app`, `max-costa-estudio.vercel.app`) → 308
+  para o caminho certo no domínio novo; o diagnóstico continua respondendo 200.
 - E-mail de teste para contato@ chegando no Gmail.
 
 ## Riscos
@@ -163,5 +165,5 @@ Página 404 nos três idiomas (texto PT com links para EN/ES).
 - **Redirect antes da hora**: se o `vercel.json` entrar antes do domínio responder, os links antigos
   apontam para o nada. Mitigação: merge só depois do passo 4 verificado.
 - **Cotação de moeda velha**: atualiza a cada publicação; os valores são mostrados como aproximados.
-- **Diagnóstico**: se algum arquivo não puder ser baixado do deploy, ele continua na Vercel e o botão
-  aponta para lá até resolver.
+- **Diagnóstico na Vercel Hobby**: continua no plano grátis por enquanto; mudar para a Cloudflare é o
+  próximo projeto, com cuidado com os links `/p/...` já enviados e o login do painel.
