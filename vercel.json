@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/", "destination": "https://mxstudioweb.com.br/", "permanent": true },
     { "source": "/:path*", "destination": "https://mxstudioweb.com.br/:path*", "permanent": true }
   ]
 }
