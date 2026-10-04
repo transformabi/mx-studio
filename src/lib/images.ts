@@ -21,7 +21,7 @@ export const shots = {
   } satisfies Record<ShowcaseSlug, Img>,
 };
 
-/** Max's own photo, black and white (scripts/portrait.mjs). */
-export const portrait: Img = { src: '/sobre/max-costa.webp', width: 640, height: 800 };
+/** Max's own photo, full frame in original size and colors (scripts/portrait.mjs). */
+export const portrait: Img = { src: '/sobre/max-costa.webp', width: 1080, height: 1089 };
 
 export const ogImage = (locale: Locale) => `/og/og-${locale}.png`;

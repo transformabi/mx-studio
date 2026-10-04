@@ -84,8 +84,8 @@ reescritos.
 - **Imagens só reais**: prints capturados das páginas no ar (desktop 1440×900 e celular 390×844),
   dentro de molduras simples de navegador/celular feitas em CSS; a foto do Max. Nada de ilustração,
   silhueta, ícone gigante decorativo, banco de imagem ou foto aleatória de fallback.
-- **Foto do Max**: recorte do peito para cima (sem o copo do canto), preto e branco, fundo
-  escurecido, sem retoque no rosto. Gerada com `sharp` a partir do original; WebP ~600 px.
+- **Foto do Max**: a foto original inteira, colorida e no tamanho original (1080×1089), sem
+  recorte nem retoque (pedido do Max em 04/10/2026). Convertida para WebP com `sharp`.
 - **Movimento**: entrada suave ao rolar (opacity + translate curtos via IntersectionObserver),
   hover nos cards. Desligado com `prefers-reduced-motion`.
 - **Logo**: os SVGs atuais (`public/brand/*`, `favicon.svg`) continuam — o M branco com a seta verde.
