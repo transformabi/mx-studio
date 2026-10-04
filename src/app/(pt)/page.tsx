@@ -1,11 +1,7 @@
-import type { Metadata } from 'next';
-import { messages } from '@/i18n/messages';
+import { homeMetadata } from '@/lib/seo';
 import { HomePage } from '@/components/home/home-page';
 
-export const metadata: Metadata = {
-  title: messages.pt.meta.title,
-  description: messages.pt.meta.description,
-};
+export const metadata = homeMetadata('pt');
 
 export default function Page() {
   return <HomePage locale="pt" />;

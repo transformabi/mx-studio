@@ -1,14 +1,13 @@
 import type { Metadata } from 'next';
 import { isLocale } from '@/i18n/config';
-import { messages } from '@/i18n/messages';
+import { homeMetadata } from '@/lib/seo';
 import { HomePage } from '@/components/home/home-page';
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  if (!isLocale(locale)) return {};
-  return { title: messages[locale].meta.title, description: messages[locale].meta.description };
+  return isLocale(locale) ? homeMetadata(locale) : {};
 }
 
 export default async function Page({ params }: Props) {

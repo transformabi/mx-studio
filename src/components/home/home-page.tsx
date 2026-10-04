@@ -1,5 +1,6 @@
 import type { Locale } from '@/i18n/config';
 import { messages } from '@/i18n/messages';
+import { StudioJsonLd } from '@/lib/seo';
 import { About } from './about';
 import { ClientCase } from './client-case';
 import { Contact } from './contact';
@@ -21,6 +22,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <About t={t.about} />
       <Faq t={t.faq} />
       <Contact t={t.contact} waMsg={t.whatsappMsg} />
+      <StudioJsonLd locale={locale} />
     </main>
   );
 }

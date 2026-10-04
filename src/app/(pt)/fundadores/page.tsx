@@ -1,19 +1,23 @@
-import type { Metadata } from 'next';
 import { ArrowUpRight, BadgeCheck, Camera, Clock, MapPin, MessageCircle, Smartphone, Star, Video } from 'lucide-react';
 import { clientCases, demoBySlug, estudio, fundadores as f, whatsappUrl } from '@/lib/estudio';
 import { shots } from '@/lib/images';
+import { pageMetadata } from '@/lib/seo';
 import { ButtonLink } from '@/components/site/button-link';
 import { SectionHeader } from '@/components/site/section-header';
 import { ShowcaseCard } from '@/components/home/showcase-card';
 import { Reveal } from '@/components/reveal';
 
 // Campaign page for Reels and the Instagram bio: Portuguese only, out of search and of the main menu,
-// so the launch price never sits next to the regular price table.
-export const metadata: Metadata = {
+// so the launch price never sits next to the regular price table. It still gets a canonical and a share
+// image, since the link is sent around on WhatsApp and Instagram.
+export const metadata = pageMetadata({
+  locale: 'pt',
+  path: '/fundadores',
   title: 'Clientes fundadores · MX Studio Web',
   description: `Site profissional para pequenos negócios do Rio por R$ ${f.preco}. ${f.vagas} vagas de lançamento.`,
-  robots: { index: false, follow: false },
-};
+  index: false,
+  translated: false,
+});
 
 const brl = (n: number) =>
   new Intl.NumberFormat('pt-BR', {

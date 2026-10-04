@@ -99,4 +99,66 @@ describe('/fundadores', () => {
     expect(html).toContain('R$ 149,90');
     expect(html).toContain('sulamitaestetica.pt');
   });
+
+  it('has its own canonical and no language alternates', () => {
+    const html = read('fundadores.html');
+    expect(html).toContain('<link rel="canonical" href="https://mxstudioweb.com.br/fundadores"');
+    expect(html).not.toMatch(/<link rel="alternate"[^>]*hrefLang=/i);
+  });
+});
+
+describe('search engines', () => {
+  const hreflang = (html: string, lang: string, url: string) =>
+    new RegExp(`<link[^>]*hrefLang="${lang}"[^>]*href="${url}"|<link[^>]*href="${url}"[^>]*hrefLang="${lang}"`, 'i').test(html);
+
+  it('links the three languages of the home page to each other', () => {
+    for (const file of ['index.html', 'en.html', 'es.html']) {
+      const html = read(file);
+      expect(hreflang(html, 'pt-BR', 'https://mxstudioweb.com.br'), file).toBe(true);
+      expect(hreflang(html, 'en', 'https://mxstudioweb.com.br/en'), file).toBe(true);
+      expect(hreflang(html, 'es', 'https://mxstudioweb.com.br/es'), file).toBe(true);
+      expect(hreflang(html, 'x-default', 'https://mxstudioweb.com.br'), file).toBe(true);
+    }
+    expect(read('en.html')).toContain('<link rel="canonical" href="https://mxstudioweb.com.br/en"');
+  });
+
+  it('describes the studio with structured data', () => {
+    const html = read('index.html');
+    expect(html).toContain('"@type":"ProfessionalService"');
+    expect(html).toContain('"email":"contato@mxstudioweb.com.br"');
+  });
+
+  it('has share images per language', () => {
+    expect(read('index.html')).toContain('og-pt.png');
+    expect(read('en.html')).toContain('og-en.png');
+  });
+
+  it('has exactly one canonical, description and share image per page', () => {
+    const count = (html: string, re: RegExp) => html.match(re)?.length ?? 0;
+    for (const file of ['index.html', 'en.html', 'es.html', 'fundadores.html', 'demo/moda-arte.html', 'es/demo/rota-clara.html']) {
+      const html = read(file);
+      expect(count(html, /<link rel="canonical"/g), file).toBe(1);
+      expect(count(html, /<meta name="description"/g), file).toBe(1);
+      expect(count(html, /<meta property="og:image"/g), file).toBe(1);
+      expect(count(html, /<title>/g), file).toBe(1);
+    }
+  });
+
+  it('indexes showcased demos and hides the four without photos', () => {
+    expect(read('demo/moda-arte.html')).not.toContain('noindex');
+    for (const slug of ['lumi-odonto', 'iris-estetica', 'alicerce-construtora', 'mare-salao']) {
+      expect(read(`demo/${slug}.html`)).toContain('<meta name="robots" content="noindex, nofollow"');
+    }
+  });
+
+  it('lists only public pages in the sitemap', () => {
+    const xml = read('sitemap.xml');
+    expect(xml).toContain('<loc>https://mxstudioweb.com.br</loc>');
+    expect(xml).toContain('<loc>https://mxstudioweb.com.br/es/demo/rota-clara</loc>');
+    for (const hidden of ['fundadores', 'carrossel', 'brand-kit', 'lumi-odonto', 'mare-salao']) expect(xml).not.toContain(hidden);
+  });
+
+  it('points robots to the sitemap', () => {
+    expect(read('robots.txt')).toContain('Sitemap: https://mxstudioweb.com.br/sitemap.xml');
+  });
 });
