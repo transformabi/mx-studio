@@ -13,15 +13,15 @@ import { Showcase } from './showcase';
 export function HomePage({ locale }: { locale: Locale }) {
   const t = messages[locale];
   return (
-    <main className="font-body">
-      <Hero t={t.hero} waMsg={t.whatsappMsg} />
+    <main id="conteudo" className="font-body">
+      <Hero locale={locale} t={t.hero} waMsg={t.whatsappMsg} />
       <ClientCase t={t.case} />
       <Showcase locale={locale} t={t.work} />
       <Process t={t.process} />
       <Pricing t={t.pricing} />
       <About t={t.about} />
       <Faq t={t.faq} />
-      <Contact t={t.contact} waMsg={t.whatsappMsg} />
+      <Contact locale={locale} t={t.contact} waMsg={t.whatsappMsg} />
       <StudioJsonLd locale={locale} />
     </main>
   );

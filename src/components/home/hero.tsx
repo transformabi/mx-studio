@@ -1,12 +1,13 @@
 import { ArrowUpRight, MessageCircle } from 'lucide-react';
+import type { Locale } from '@/i18n/config';
 import type { Messages } from '@/i18n/messages';
-import { estudio, whatsappUrl } from '@/lib/estudio';
+import { diagnosticoUrl, whatsappUrl } from '@/lib/estudio';
 import { shots } from '@/lib/images';
 import { BrowserFrame } from '@/components/site/browser-frame';
 import { ButtonLink } from '@/components/site/button-link';
 import { PhoneFrame } from '@/components/site/phone-frame';
 
-export function Hero({ t, waMsg }: { t: Messages['hero']; waMsg: string }) {
+export function Hero({ locale, t, waMsg }: { locale: Locale; t: Messages['hero']; waMsg: string }) {
   return (
     <section className="relative overflow-hidden pb-24 pt-32 sm:pb-32 sm:pt-40">
       <div
@@ -21,7 +22,7 @@ export function Hero({ t, waMsg }: { t: Messages['hero']; waMsg: string }) {
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">{t.lead}</p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <ButtonLink href={estudio.diagnostico} external>
+            <ButtonLink href={diagnosticoUrl(locale)} external>
               {t.primary}
               <ArrowUpRight className="h-4 w-4" aria-hidden />
             </ButtonLink>
@@ -30,7 +31,7 @@ export function Hero({ t, waMsg }: { t: Messages['hero']; waMsg: string }) {
               {t.secondary}
             </ButtonLink>
           </div>
-          <p className="mt-4 text-sm text-white/45">{t.note}</p>
+          <p className="mt-4 text-sm text-white/50">{t.note}</p>
         </div>
 
         <div className="lg:col-span-6">
@@ -42,7 +43,7 @@ export function Hero({ t, waMsg }: { t: Messages['hero']; waMsg: string }) {
               className="absolute -bottom-2 left-0 sm:-bottom-12 sm:-left-2"
             />
           </div>
-          <p className="mt-6 text-right font-label text-[11px] uppercase tracking-[0.14em] text-white/45 sm:mt-16">
+          <p className="mt-6 text-right font-label text-[11px] uppercase tracking-[0.14em] text-white/50 sm:mt-16">
             {t.caseLabel}
           </p>
         </div>

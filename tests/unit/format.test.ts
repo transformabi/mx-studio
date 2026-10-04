@@ -14,6 +14,23 @@ describe('formatMoney', () => {
     expect(plain(formatMoney(4900, 'es', 'EUR', rates, { decimals: 0, round: true }))).toBe('830 €');
     expect(formatMoney(4900, 'en', 'GBP', rates, { decimals: 0, round: true })).toBe('£740');
   });
+
+  it('shows symbols, not ISO codes, for reais and pounds in Spanish', () => {
+    expect(plain(formatMoney(3500, 'es', 'BRL', rates, { decimals: 0 }))).toBe('3500 R$');
+    expect(plain(formatMoney(3400, 'es', 'GBP', rates, { decimals: 0, round: true }))).toBe('510 £');
+    expect(plain(formatMoney(4900, 'es', 'GBP', rates, { compact: true }))).not.toMatch(/GBP/);
+  });
+
+  it('keeps US$ in Spanish and Portuguese, where a bare $ would be ambiguous', () => {
+    expect(plain(formatMoney(4900, 'es', 'USD', rates, { decimals: 0, round: true }))).toBe('980 US$');
+    expect(plain(formatMoney(4900, 'pt', 'USD', rates, { decimals: 0, round: true }))).toBe('US$ 980');
+  });
+
+  it('leaves Portuguese and English symbols as they were', () => {
+    expect(plain(formatMoney(4900, 'pt', 'GBP', rates, { decimals: 0, round: true }))).toBe('£ 740');
+    expect(plain(formatMoney(4900, 'pt', 'EUR', rates, { decimals: 0, round: true }))).toBe('€ 830');
+    expect(formatMoney(3500, 'en', 'BRL', rates, { decimals: 0 })).toBe('R$3,500');
+  });
 });
 
 describe('currencies', () => {

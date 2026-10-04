@@ -3,7 +3,7 @@ import { localeInfo, type Locale } from '@/i18n/config';
 import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
 import { localizedPath } from '@/i18n/paths';
-import { demoBySlug, estudio, lcpSeconds, showcase } from '@/lib/estudio';
+import { demoBySlug, diagnosticoUrl, lcpSeconds, showcase } from '@/lib/estudio';
 import { shots } from '@/lib/images';
 import { ButtonLink } from '@/components/site/button-link';
 import { SectionHeader } from '@/components/site/section-header';
@@ -37,8 +37,8 @@ export function Showcase({ locale, t }: { locale: Locale; t: Messages['work'] })
           })}
         </div>
         <div className="mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 lg:flex-row lg:items-center lg:justify-between">
-          <p className="max-w-2xl text-xs leading-relaxed text-white/45">{t.note}</p>
-          <ButtonLink href={estudio.diagnostico} external className="shrink-0">
+          <p className="max-w-2xl text-xs leading-relaxed text-white/50">{t.note}</p>
+          <ButtonLink href={diagnosticoUrl(locale)} external className="shrink-0">
             {t.cta}
             <ArrowUpRight className="h-4 w-4" aria-hidden />
           </ButtonLink>

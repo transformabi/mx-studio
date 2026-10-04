@@ -5,8 +5,10 @@ import { localizedPath } from '@/i18n/paths';
 import { estudio, whatsappUrl } from '@/lib/estudio';
 import { Logo } from './logo';
 
-const heading = 'font-label text-[11px] uppercase tracking-[0.14em] text-white/45';
-const link = 'text-white/70 transition-colors hover:text-bone';
+const heading = 'font-label text-[11px] uppercase tracking-[0.14em] text-white/50';
+// min-h-10 makes each link a 40px tap target; the lists drop their gaps to keep a similar rhythm.
+const link = 'inline-flex min-h-10 items-center text-white/70 transition-colors hover:text-bone';
+const list = 'mt-1.5';
 
 export function Footer({ locale, t }: { locale: Locale; t: Messages }) {
   const home = localizedPath(locale, '/');
@@ -28,7 +30,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Messages }) {
 
         <div className="md:col-span-2">
           <h2 className={heading}>{t.footer.navTitle}</h2>
-          <ul className="mt-4 space-y-2.5">
+          <ul className={list}>
             {sections.map(([id, label]) => (
               <li key={id}>
                 <Link href={`${home}#${id}`} className={link}>
@@ -41,7 +43,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Messages }) {
 
         <div className="md:col-span-3">
           <h2 className={heading}>{t.footer.contactTitle}</h2>
-          <ul className="mt-4 space-y-2.5">
+          <ul className={list}>
             <li>
               <a href={whatsappUrl(t.whatsappMsg)} target="_blank" rel="noopener noreferrer" className={link}>
                 WhatsApp {estudio.whatsappDisplay}
@@ -62,7 +64,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Messages }) {
 
         <div className="md:col-span-2">
           <h2 className={heading}>{t.footer.languagesTitle}</h2>
-          <ul className="mt-4 space-y-2.5">
+          <ul className={list}>
             {locales.map((l) => (
               <li key={l}>
                 <a href={localizedPath(l, '/')} hrefLang={localeInfo[l].htmlLang} lang={localeInfo[l].htmlLang} className={link}>

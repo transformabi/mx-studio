@@ -11,6 +11,13 @@ export type MoneyOptions = {
   compact?: boolean;
 };
 
+/**
+ * Spanish (es-ES) has no symbol for BRL and GBP and prints the ISO code ("3500 BRL"), unlike USD and EUR.
+ * narrowSymbol gives "R$" and "£" there and changes nothing in pt-BR or en-US. It stays off for USD:
+ * it would turn "US$" into a bare "$" in Spanish and Portuguese.
+ */
+const narrowSymbol: ReadonlySet<Currency> = new Set(['BRL', 'GBP']);
+
 /** All prices in the codebase are written in BRL and converted at display time. */
 export function formatMoney(
   brl: number,
@@ -26,6 +33,7 @@ export function formatMoney(
   return new Intl.NumberFormat(localeInfo[locale].intl, {
     style: 'currency',
     currency,
+    currencyDisplay: narrowSymbol.has(currency) ? 'narrowSymbol' : 'symbol',
     notation: opts.compact ? 'compact' : 'standard',
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,

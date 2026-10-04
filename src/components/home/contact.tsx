@@ -1,14 +1,15 @@
 import { ArrowUpRight } from 'lucide-react';
+import type { Locale } from '@/i18n/config';
 import type { Messages } from '@/i18n/messages';
-import { estudio, whatsappUrl } from '@/lib/estudio';
+import { diagnosticoUrl, estudio, whatsappUrl } from '@/lib/estudio';
 import { ContactForm } from './contact-form';
 
-export function Contact({ t, waMsg }: { t: Messages['contact']; waMsg: string }) {
+export function Contact({ locale, t, waMsg }: { locale: Locale; t: Messages['contact']; waMsg: string }) {
   const channels = [
     { label: t.channels.whatsapp, value: estudio.whatsappDisplay, href: whatsappUrl(waMsg), external: true },
     { label: t.channels.email, value: estudio.email, href: `mailto:${estudio.email}`, external: false },
     { label: t.channels.instagram, value: estudio.instagramHandle, href: estudio.instagram, external: true },
-    { label: t.channels.preview, value: t.channels.previewText, href: estudio.diagnostico, external: true },
+    { label: t.channels.preview, value: t.channels.previewText, href: diagnosticoUrl(locale), external: true },
   ];
 
   return (
@@ -31,7 +32,7 @@ export function Contact({ t, waMsg }: { t: Messages['contact']; waMsg: string })
                   className="group flex items-center justify-between gap-4 py-5"
                 >
                   <span>
-                    <span className="block font-label text-[11px] uppercase tracking-[0.14em] text-white/45">{c.label}</span>
+                    <span className="block font-label text-[11px] uppercase tracking-[0.14em] text-white/50">{c.label}</span>
                     <span className="mt-1 block break-all font-brand text-lg font-semibold transition-colors group-hover:text-lime">
                       {c.value}
                     </span>

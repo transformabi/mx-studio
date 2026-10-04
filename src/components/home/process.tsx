@@ -5,7 +5,7 @@ export function Process({ t }: { t: Messages['process'] }) {
   return (
     <section id="process" className="bg-paper py-24 text-ink sm:py-32">
       <div className="container-site">
-        <SectionHeader tone="light" index="03" label={t.label} title={t.title} />
+        <SectionHeader tone="light" index="03" label={t.label} title={t.title} lead={t.lead} />
         <ol className="mt-16 grid gap-px overflow-hidden rounded-xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-4">
           {t.steps.map((step, i) => (
             <li key={step.title} className="bg-paper p-7">

@@ -25,6 +25,21 @@ describe('messages', () => {
     expect(methods).toMatch(/cart|card|tarjeta/i);
   });
 
+  it.each(['pt', 'en', 'es'] as const)('%s home description fits in a search result', (locale) => {
+    const { description } = messages[locale].meta;
+    expect([...description].length).toBeLessThanOrEqual(160);
+    expect(description).toMatch(/Rio de Janeiro|Río de Janeiro/);
+    expect(description).toMatch(/WhatsApp/);
+  });
+
+  it.each(['pt', 'en', 'es'] as const)('%s FAQ timeline matches the process steps', (locale) => {
+    const all = JSON.stringify(messages[locale].faq);
+    // Discovery + design + development + launch add up to roughly 4 to 7 weeks.
+    expect(all).toMatch(/4 (a|to) 7 (semanas|weeks)/);
+    expect(all).not.toMatch(/3 (a|to) 7/);
+    expect(messages[locale].process.lead).toMatch(/10/);
+  });
+
   it.each(['pt', 'en', 'es'] as const)('%s makes no claim about agencies or years of experience', (locale) => {
     const all = JSON.stringify(messages[locale]);
     expect(all).not.toMatch(/ag[eê]ncia|agency|anos de experi|years of experience|años de experiencia/i);

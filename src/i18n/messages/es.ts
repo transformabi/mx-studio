@@ -4,7 +4,7 @@ export const es: Messages = {
   meta: {
     title: 'MX Studio Web · Sitios web que traen clientes',
     description:
-      'Estudio de sitios web a medida en Río de Janeiro, Brasil. Sitios rápidos para clínicas, despachos, tiendas y negocios locales, hechos para convertir visitas en conversaciones. Atiendo clientes de todo el mundo.',
+      'Estudio de webs a medida en Río de Janeiro: webs rápidas que convierten visitas en chats de WhatsApp, para clínicas, despachos y negocios de todo el mundo.',
   },
 
   nav: {
@@ -19,6 +19,7 @@ export const es: Messages = {
     menu: 'Abrir menú',
     close: 'Cerrar menú',
     language: 'Idioma',
+    skip: 'Saltar al contenido',
   },
 
   whatsappMsg: '¡Hola! Llegué por el sitio de MX Studio Web y quiero hablar sobre un sitio web.',
@@ -83,6 +84,7 @@ export const es: Messages = {
   process: {
     label: 'Cómo funciona',
     title: 'Del primer contacto al sitio en línea, sin sorpresas.',
+    lead: 'Estas etapas se aplican a sitios corporativos, tiendas online y sistemas a medida. Una landing page queda en línea en 10 días como máximo.',
     steps: [
       {
         title: 'Descubrimiento',
@@ -118,7 +120,7 @@ export const es: Messages = {
       landing: {
         title: 'Landing page',
         text: 'Una página centrada en una oferta o servicio.',
-        bullets: ['Textos pensados para vender', 'WhatsApp y formulario', 'Medición de visitas y anuncios', 'En línea en hasta 10 días'],
+        bullets: ['Textos pensados para vender', 'WhatsApp y formulario', 'Medición de visitas y anuncios', 'En línea en 10 días como máximo'],
       },
       institucional: {
         title: 'Sitio corporativo',
@@ -171,7 +173,7 @@ export const es: Messages = {
       },
       {
         q: '¿Cuánto tarda el sitio?',
-        a: 'Landing page: hasta 10 días. Sitios más grandes, de 3 a 7 semanas, según el tamaño del proyecto. El calendario va en la propuesta, con las fechas de cada etapa.',
+        a: 'Landing page: hasta 10 días. Sitios más grandes, de 4 a 7 semanas, según el tamaño del proyecto. El calendario va en la propuesta, con las fechas de cada etapa.',
       },
       {
         q: '¿Cómo es el pago?',

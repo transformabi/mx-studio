@@ -1,3 +1,5 @@
+import type { Locale } from '@/i18n/config';
+
 /** Public address of this site; override per deploy with NEXT_PUBLIC_SITE_URL. */
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mxstudioweb.com.br';
 
@@ -17,6 +19,10 @@ export const estudio = {
   /** The free preview questionnaire (separate Vercel project with its own Supabase panel). */
   diagnostico: 'https://mx-studio-web.vercel.app/',
 } as const;
+
+/** Link to the diagnosis questionnaire in the page's language: it opens in Portuguese unless given ?lang=en|es. */
+export const diagnosticoUrl = (locale: Locale) =>
+  locale === 'pt' ? estudio.diagnostico : `${estudio.diagnostico}?lang=${locale}`;
 
 export const whatsappMsgDefault = 'Olá! Vim pelo site da MX Studio Web e quero conversar sobre um site.';
 export const whatsappUrl = (msg = whatsappMsgDefault) =>

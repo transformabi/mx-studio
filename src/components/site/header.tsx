@@ -6,7 +6,7 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 import type { Locale } from '@/i18n/config';
 import type { Messages } from '@/i18n/messages';
 import { localizedPath } from '@/i18n/paths';
-import { estudio } from '@/lib/estudio';
+import { diagnosticoUrl } from '@/lib/estudio';
 import { LangSwitch } from './lang-switch';
 import { Logo } from './logo';
 
@@ -22,10 +22,10 @@ export function Header({ locale, t }: { locale: Locale; t: Messages['nav'] }) {
   ];
   const cta = (
     <a
-      href={estudio.diagnostico}
+      href={diagnosticoUrl(locale)}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 rounded-full bg-lime px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-[#b8ff52]"
+      className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-lime px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-[#b8ff52]"
     >
       {t.cta}
       <ArrowUpRight className="h-4 w-4" aria-hidden />
@@ -34,8 +34,15 @@ export function Header({ locale, t }: { locale: Locale; t: Messages['nav'] }) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/85 font-body backdrop-blur-md">
+      {/* First stop for keyboard users; every page's <main> carries id="conteudo". */}
+      <a
+        href="#conteudo"
+        className="sr-only rounded-full bg-bone text-sm font-semibold text-ink focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-[60] focus:px-4 focus:py-2.5"
+      >
+        {t.skip}
+      </a>
       <div className="container-site flex h-16 items-center justify-between gap-6">
-        <Link href={home} aria-label={t.home} className="shrink-0">
+        <Link href={home} aria-label={t.home} className="flex min-h-10 shrink-0 items-center">
           <Logo />
         </Link>
 

@@ -17,17 +17,22 @@ export function Pricing({ t }: { t: Messages['pricing'] }) {
 
         <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-y border-white/10 py-4">
           <CurrencySwitch label={t.currency} />
-          <p className="max-w-md text-xs leading-relaxed text-white/45">{t.approx}</p>
+          <p className="max-w-md text-xs leading-relaxed text-white/50">{t.approx}</p>
         </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {services.map(({ key, price }) => {
             const item = t.items[key];
             return (
-              <article key={key} className="flex flex-col rounded-xl border border-white/10 bg-ink-2 p-7">
+              // Each card spans six rows of the parent grid (subgrid), one per child, so titles, prices,
+              // bullets and buttons line up across a row even when a title or description wraps.
+              <article
+                key={key}
+                className="row-span-6 grid grid-rows-subgrid gap-y-0 rounded-xl border border-white/10 bg-ink-2 p-7"
+              >
                 <h3 className="font-brand text-xl font-bold tracking-tight">{item.title}</h3>
                 <p className="mt-1 text-sm text-white/55">{item.text}</p>
-                <p className="mt-8 font-label text-[11px] uppercase tracking-[0.14em] text-white/45">{t.from}</p>
+                <p className="mt-8 font-label text-[11px] uppercase tracking-[0.14em] text-white/50">{t.from}</p>
                 <Price brl={price} className="mt-1 block font-brand text-4xl font-bold tracking-tight" />
                 <ul className="mt-7 space-y-2.5 text-sm text-white/75">
                   {item.bullets.map((b) => (

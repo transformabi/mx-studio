@@ -1,6 +1,7 @@
 'use client';
 
-import { useId, useState, type FormEvent, type ReactNode } from 'react';
+import { useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { flushSync } from 'react-dom';
 import { Check, Send } from 'lucide-react';
 import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
@@ -36,6 +37,9 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
   const [sentUrl, setSentUrl] = useState<string | null>(null);
   const uid = useId();
   const ids = { name: `${uid}-name`, email: `${uid}-email`, message: `${uid}-message` };
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
@@ -43,8 +47,13 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
     if (!name.trim()) found.name = t.errorName;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) found.email = t.errorEmail;
     if (message.trim().length < 12) found.message = t.errorMessage;
-    setErrors(found);
-    if (Object.keys(found).length) return;
+    // Commit the error state first, so the field is already marked invalid when it gets focus.
+    flushSync(() => setErrors(found));
+    const firstInvalid = found.name ? nameRef : found.email ? emailRef : found.message ? messageRef : null;
+    if (firstInvalid) {
+      firstInvalid.current?.focus();
+      return;
+    }
 
     const url = whatsappUrl(
       [
@@ -87,6 +96,7 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id={ids.name} label={t.name} error={errors.name}>
           <input
+            ref={nameRef}
             id={ids.name}
             {...invalid(ids.name, errors.name)}
             value={name}
@@ -98,6 +108,7 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
         </Field>
         <Field id={ids.email} label={t.email} error={errors.email}>
           <input
+            ref={emailRef}
             id={ids.email}
             {...invalid(ids.email, errors.email)}
             type="email"
@@ -135,6 +146,7 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
       <div className="mt-6">
         <Field id={ids.message} label={t.message} error={errors.message}>
           <textarea
+            ref={messageRef}
             id={ids.message}
             {...invalid(ids.message, errors.message)}
             rows={5}
@@ -147,7 +159,7 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
       </div>
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs text-white/45">{t.footnote}</p>
+        <p className="text-xs text-white/50">{t.footnote}</p>
         <button
           type="submit"
           className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-lime px-6 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-[#b8ff52]"

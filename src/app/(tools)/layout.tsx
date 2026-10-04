@@ -4,7 +4,10 @@ import '../globals.css';
 import { fontVariables } from '@/lib/fonts';
 
 // Internal tools for making Instagram posts: never indexed, no site header or footer.
-export const metadata: Metadata = { robots: { index: false, follow: false } };
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+  icons: { icon: '/favicon.svg', apple: '/apple-touch-icon.png' },
+};
 
 export default function ToolsLayout({ children }: { children: ReactNode }) {
   return (

@@ -4,9 +4,11 @@ import './globals.css';
 import { MaxMonogram } from '@/components/max-monogram';
 import { fontVariables } from '@/lib/fonts';
 
+// No `robots` here: Next already renders <meta name="robots" content="noindex"> on the 404 page,
+// and a second robots tag would only duplicate it.
 export const metadata: Metadata = {
   title: 'Página não encontrada · MX Studio Web',
-  robots: { index: false, follow: false },
+  icons: { icon: '/favicon.svg', apple: '/apple-touch-icon.png' },
 };
 
 export default function GlobalNotFound() {

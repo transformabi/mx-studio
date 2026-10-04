@@ -38,10 +38,10 @@ export function ShowcaseCard({
       </div>
       <div className="mt-5 flex items-start justify-between gap-6">
         <div>
-          <p className="font-label text-[11px] uppercase tracking-[0.14em] text-white/45">{label}</p>
+          <p className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50">{label}</p>
           <h3 className="mt-2 font-brand text-xl font-bold tracking-tight">{title}</h3>
           <p className="mt-1 text-sm text-white/60">{text}</p>
-          {meta && <p className="mt-3 font-label text-[11px] text-white/45">{meta}</p>}
+          {meta && <p className="mt-3 font-label text-[11px] text-white/50">{meta}</p>}
         </div>
         <span className="mt-1 inline-flex shrink-0 items-center gap-1 text-sm font-semibold transition-colors group-hover:text-lime">
           {cta}

@@ -6,7 +6,7 @@ export const pt = {
   meta: {
     title: 'MX Studio Web · Sites que trazem clientes',
     description:
-      'Estúdio de sites sob medida no Rio de Janeiro. Sites rápidos para clínicas, escritórios, lojas e negócios locais, feitos para virar conversa no WhatsApp. Atendo Brasil e exterior.',
+      'Estúdio de sites sob medida no Rio de Janeiro: sites rápidos que viram conversa no WhatsApp, para clínicas, escritórios e negócios do Brasil e do exterior.',
   },
 
   nav: {
@@ -21,6 +21,7 @@ export const pt = {
     menu: 'Abrir menu',
     close: 'Fechar menu',
     language: 'Idioma',
+    skip: 'Pular para o conteúdo',
   },
 
   whatsappMsg: 'Olá! Vim pelo site da MX Studio Web e quero conversar sobre um site.',
@@ -85,6 +86,7 @@ export const pt = {
   process: {
     label: 'Como funciona',
     title: 'Do primeiro contato ao site no ar, sem surpresa.',
+    lead: 'Estas etapas valem para sites institucionais, lojas virtuais e sistemas. Uma landing page fica no ar em até 10 dias.',
     steps: [
       {
         title: 'Descoberta',
@@ -174,7 +176,7 @@ export const pt = {
       },
       {
         q: 'Em quanto tempo o site fica pronto?',
-        a: 'Landing page: até 10 dias. Sites maiores, de 3 a 7 semanas, conforme o tamanho do projeto. O cronograma vem na proposta, com as datas de cada etapa.',
+        a: 'Landing page: até 10 dias. Sites maiores, de 4 a 7 semanas, conforme o tamanho do projeto. O cronograma vem na proposta, com as datas de cada etapa.',
       },
       {
         q: 'Como é o pagamento?',

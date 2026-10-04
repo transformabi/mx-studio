@@ -4,7 +4,7 @@ export const en: Messages = {
   meta: {
     title: 'MX Studio Web · Websites that bring customers',
     description:
-      'Custom website studio in Rio de Janeiro, Brazil. Fast websites for clinics, law firms, shops and local businesses, built to turn visits into conversations. Serving clients worldwide.',
+      'Custom website studio in Rio de Janeiro: fast sites that turn visits into WhatsApp chats, for clinics, law firms and local businesses in Brazil and abroad.',
   },
 
   nav: {
@@ -19,6 +19,7 @@ export const en: Messages = {
     menu: 'Open menu',
     close: 'Close menu',
     language: 'Language',
+    skip: 'Skip to content',
   },
 
   whatsappMsg: 'Hi! I came across the MX Studio Web website and would like to talk about a website.',
@@ -83,6 +84,7 @@ export const en: Messages = {
   process: {
     label: 'How it works',
     title: 'From first contact to launch, with no surprises.',
+    lead: 'These stages apply to business websites, online stores and custom systems. A landing page goes live within 10 days.',
     steps: [
       {
         title: 'Discovery',
@@ -171,7 +173,7 @@ export const en: Messages = {
       },
       {
         q: 'How long does it take?',
-        a: 'Landing page: up to 10 days. Larger websites take 3 to 7 weeks, depending on the size of the project. The schedule comes in the proposal, with dates for each stage.',
+        a: 'Landing page: up to 10 days. Larger websites take 4 to 7 weeks, depending on the size of the project. The schedule comes in the proposal, with dates for each stage.',
       },
       {
         q: 'How does payment work?',

@@ -1,5 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { clientCases, demos, estudio, lcpSeconds, services, showcase, SITE_URL, vagasRestantes } from '@/lib/estudio';
+import {
+  clientCases,
+  demos,
+  diagnosticoUrl,
+  estudio,
+  lcpSeconds,
+  services,
+  showcase,
+  SITE_URL,
+  vagasRestantes,
+} from '@/lib/estudio';
 
 describe('studio data', () => {
   it('uses the new domain and e-mail', () => {
@@ -27,6 +37,17 @@ describe('studio data', () => {
     for (const slug of showcase) {
       expect(demos.some((d) => d.slug === slug)).toBe(true);
       expect(lcpSeconds[slug]).toBeGreaterThan(0);
+    }
+  });
+});
+
+describe('diagnosis link', () => {
+  it('opens the questionnaire in the language of the page, on the same host', () => {
+    expect(diagnosticoUrl('pt')).toBe('https://mx-studio-web.vercel.app/');
+    expect(diagnosticoUrl('en')).toBe('https://mx-studio-web.vercel.app/?lang=en');
+    expect(diagnosticoUrl('es')).toBe('https://mx-studio-web.vercel.app/?lang=es');
+    for (const locale of ['pt', 'en', 'es'] as const) {
+      expect(new URL(diagnosticoUrl(locale)).host).toBe(new URL(estudio.diagnostico).host);
     }
   });
 });

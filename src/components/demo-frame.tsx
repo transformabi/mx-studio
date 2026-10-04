@@ -33,8 +33,10 @@ export function DemoFrame({ children, siteName, bg = '#0a0a0a' }: { children: Re
   const { locale } = useI18n();
   const t = text[locale];
 
+  // The page's <main> (target of the skip link), so the demo's own header and footer
+  // are not taken for the page's banner and contentinfo landmarks.
   return (
-    <div className="min-h-dvh w-full bg-ink pb-8 pt-20 font-body">
+    <main id="conteudo" className="min-h-dvh w-full bg-ink pb-8 pt-20 font-body">
       <ImgFallback />
       <div className="mx-auto max-w-[1360px] px-3 sm:px-6">
         {/* The badge stays on phones too: it is what tells a visitor the business is fictional. */}
@@ -46,7 +48,7 @@ export function DemoFrame({ children, siteName, bg = '#0a0a0a' }: { children: Re
             <ArrowLeft className="h-3.5 w-3.5 shrink-0" aria-hidden />
             <span className="truncate">{t.back}</span>
           </Link>
-          <p className="min-w-0 max-w-full truncate font-label text-[11px] uppercase tracking-[0.14em] text-white/45">
+          <p className="min-w-0 max-w-full truncate font-label text-[11px] uppercase tracking-[0.14em] text-white/50">
             {t.badge}
             <span className="hidden sm:inline"> · {siteName}</span>
           </p>
@@ -54,8 +56,8 @@ export function DemoFrame({ children, siteName, bg = '#0a0a0a' }: { children: Re
         <div className="overflow-hidden rounded-3xl border border-white/10" style={{ background: bg }}>
           {children}
         </div>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-[11px] leading-relaxed text-white/45">{t.disclaimer}</p>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-[11px] leading-relaxed text-white/50">{t.disclaimer}</p>
       </div>
-    </div>
+    </main>
   );
 }

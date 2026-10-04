@@ -95,7 +95,7 @@ export default function FundadoresPage() {
   const sulamita = clientCases[0];
 
   return (
-    <main className="font-body">
+    <main id="conteudo" className="font-body">
       <section className="relative overflow-hidden pb-20 pt-32 sm:pb-28 sm:pt-40">
         <div
           aria-hidden
@@ -141,7 +141,7 @@ export default function FundadoresPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-sm text-white/45">Hospedagem sem mensalidade. Uma rodada de ajustes depois da prévia.</p>
+          <p className="mt-6 text-sm text-white/50">Hospedagem sem mensalidade. Uma rodada de ajustes depois da prévia.</p>
         </div>
       </section>
 
