@@ -58,7 +58,7 @@ export const es: Messages = {
     badge: 'Modelo de demostración',
     open: 'Abrir',
     lcp: 'Carga en {value} en 4G',
-    note: 'Tiempo de carga medido en producción, sin caché, en 4G con un procesador 4× más lento: el peor de 3 mediciones. Compruébalo en PageSpeed Insights de Google.',
+    note: 'Tiempo de carga medido con Google Lighthouse (el mismo motor de PageSpeed Insights), sin caché, en 4G simulado con un procesador 4× más lento: el peor de 3 mediciones.',
     cta: 'Quiero un sitio así',
     imageAlt: 'Página de inicio del modelo {name}',
     niches: {

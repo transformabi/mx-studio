@@ -58,7 +58,7 @@ export const en: Messages = {
     badge: 'Demo website',
     open: 'Open',
     lcp: 'Loads in {value} on 4G',
-    note: 'Load time measured in production, without cache, on 4G with a 4× slower CPU: the worst of 3 runs. Check it yourself on Google PageSpeed Insights.',
+    note: 'Load time measured with Google Lighthouse (the same engine as PageSpeed Insights), without cache, on simulated 4G with a 4× slower CPU: the worst of 3 runs.',
     cta: 'I want a website like this',
     imageAlt: 'Home page of the {name} model',
     niches: {

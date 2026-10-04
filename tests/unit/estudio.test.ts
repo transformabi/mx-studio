@@ -37,6 +37,8 @@ describe('studio data', () => {
     for (const slug of showcase) {
       expect(demos.some((d) => d.slug === slug)).toBe(true);
       expect(lcpSeconds[slug]).toBeGreaterThan(0);
+      // Rounded (up) to 0.1 s, as the cards show one decimal.
+      expect(lcpSeconds[slug] * 10).toBeCloseTo(Math.round(lcpSeconds[slug] * 10), 9);
     }
   });
 });

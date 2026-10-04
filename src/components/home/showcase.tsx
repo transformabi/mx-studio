@@ -11,7 +11,8 @@ import { Reveal } from '@/components/reveal';
 import { ShowcaseCard } from './showcase-card';
 
 export function Showcase({ locale, t }: { locale: Locale; t: Messages['work'] }) {
-  const seconds = new Intl.NumberFormat(localeInfo[locale].intl, { maximumFractionDigits: 1 });
+  // Always one decimal ("4,0 s", not "4 s"), matching the 0.1 s rounding of lcpSeconds.
+  const seconds = new Intl.NumberFormat(localeInfo[locale].intl, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
   return (
     <section id="work" className="border-t border-white/10 py-24 sm:py-32">

@@ -256,14 +256,18 @@ export const showcase = [
 export type ShowcaseSlug = (typeof showcase)[number];
 export const isShowcased = (slug: string): slug is ShowcaseSlug => (showcase as readonly string[]).includes(slug);
 
-/** Load time on 4G measured in production, no cache, 4× slower CPU, worst of 3 runs (seconds). */
+/**
+ * LCP in seconds shown on the showcase cards: Google Lighthouse 12, mobile defaults (simulated 4G,
+ * 4× slower CPU, no cache), worst of 3 runs rounded up to 0.1 s. Measured on the static export
+ * (out/) served over local HTTP/2, 2026-10-04.
+ */
 export const lcpSeconds: Record<ShowcaseSlug, number> = {
-  'clinica-sereno': 1.8,
-  'motta-advogados': 1.2,
-  'moda-arte': 1.8,
-  'restaurante-terra': 1.7,
-  'costa-imoveis': 1.7,
-  'rota-clara': 1.8,
+  'clinica-sereno': 2.9,
+  'motta-advogados': 2.9,
+  'moda-arte': 2.7,
+  'restaurante-terra': 2.8,
+  'costa-imoveis': 2.6,
+  'rota-clara': 3.4,
 };
 
 /** Starting prices in BRL; other currencies are converted at display time. */

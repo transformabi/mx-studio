@@ -60,7 +60,7 @@ export const pt = {
     badge: 'Modelo de demonstração',
     open: 'Abrir',
     lcp: 'Carrega em {value} no 4G',
-    note: 'Tempo de carregamento medido em produção, sem cache, em 4G com processador 4× mais lento: o pior de 3 medições. Confira no PageSpeed Insights do Google.',
+    note: 'Tempo de carregamento medido com o Google Lighthouse (o mesmo motor do PageSpeed Insights), sem cache, em 4G simulado com processador 4× mais lento: o pior de 3 medições.',
     cta: 'Quero um site assim',
     imageAlt: 'Página inicial do modelo {name}',
     niches: {

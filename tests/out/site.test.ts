@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { demos, fundadores, vagasRestantes } from '@/lib/estudio';
+import { demos, fundadores, lcpSeconds, showcase, vagasRestantes } from '@/lib/estudio';
 import { nestedSegments } from '../../scripts/flatten-segments.mjs';
 
 const OUT = join(process.cwd(), 'out');
@@ -94,6 +94,16 @@ describe('home page', () => {
       expect(html).not.toContain(`/demo/${slug}`);
     }
     expect(read('en.html')).toContain('href="/en/demo/moda-arte"');
+  });
+
+  it('shows each showcased demo load time with one decimal, in the page language', () => {
+    const pt = text(read('index.html'));
+    const en = text(read('en.html'));
+    for (const slug of showcase) {
+      const s = lcpSeconds[slug].toFixed(1);
+      expect(pt).toContain(`Carrega em ${s.replace('.', ',')} s no 4G`);
+      expect(en).toContain(`Loads in ${s} s on 4G`);
+    }
   });
 
   it('shows prices in reais by default in Portuguese', () => {
