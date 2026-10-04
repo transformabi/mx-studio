@@ -114,10 +114,10 @@ Página 404 nos três idiomas (texto PT com links para EN/ES).
 ## Demos
 
 - O código das demos não muda. O `DemoFrame` ganha o visual novo e o "voltar" aponta para `/`.
-- **Decisão do Max (pendente)**: Lumi, Íris, Alicerce e Maré não têm foto de capa e mostram um desenho
-  feito em código no lugar. Recomendação: a home lista só as **6 demos com fotografia real**
+- **Decidido pelo Max**: a vitrine (home e `/fundadores`) lista só as **6 demos com fotografia real**
   (Moda & Arte, Terra, Sereno, Motta, Costa Imóveis, Rota Clara) — o mesmo "6 demos" da bio do
-  Instagram. As outras 4 continuam acessíveis pelo endereço, fora da vitrine, até ganharem fotos.
+  Instagram. Lumi, Íris, Alicerce e Maré (sem foto de capa, só desenho em código) ficam fora da
+  vitrine, do sitemap e com `noindex`, acessíveis só pelo endereço, até ganharem fotos.
 
 ## SEO e compartilhamento
 
