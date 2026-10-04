@@ -1,0 +1,9 @@
+{
+  // Static site only: Cloudflare serves the files Next.js exports to out/.
+  "name": "mxstudioweb",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}

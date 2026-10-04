@@ -1,30 +1,39 @@
-# Max Costa · Estúdio digital freelance
+# MX Studio Web
 
-Portfólio pessoal com 6 demos funcionais.
+Site do estúdio em https://mxstudioweb.com.br — PT (`/`), EN (`/en`) e ES (`/es`), com 10 modelos de demonstração em `/demo/*`.
 
-## Stack
-
-- Next.js 14 (App Router)
-- TypeScript
-- Tailwind CSS
-- Instrument Sans + Instrument Serif + Space Grotesk (Google Fonts)
-- Deploy: Vercel
+O formulário de diagnóstico continua em https://mx-studio-web.vercel.app/ (projeto separado, fora deste repositório).
 
 ## Rodar local
+
+Node 24 (versão em `.node-version`, a mesma que a Cloudflare usa no build).
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abra http://localhost:3000
+## Antes de publicar
 
-## Estrutura
+```bash
+npm run check   # lint, testes, build estático e testes do HTML gerado
+```
 
-- `/` — home do estúdio (hero, cases, processo, sobre, FAQ, contato)
-- `/demo/[nicho]` — 6 demos funcionais (moda-arte, restaurante-terra, clinica-sereno, motta-advogados, costa-imoveis, rota-clara)
-- `/brand-kit` — kit visual (logo, banners, bios)
+O `npm run build` roda o `next build` e depois `scripts/flatten-segments.mjs`, que copia os arquivos de pré-carregamento do Next que saem em subpastas (`__next.*/`) para o nome plano que o navegador pede. Onde o build já sai plano, não faz nada.
 
-## Deploy
+## Publicação
 
-Conectar este repo em [vercel.com/new](https://vercel.com/new) — Vercel detecta Next.js automaticamente. Build command padrão (`next build`), output dir padrão (`.next`).
+Cloudflare Workers (plano grátis) conectado a este repositório: cada push na `main` publica; outras branches geram link de prévia. Configuração em `wrangler.jsonc` (pasta `out/`); cabeçalhos de segurança e cache em `public/_headers`.
+
+A Vercel só redireciona os endereços antigos (`vercel.json`).
+
+## Imagens
+
+- `npm run shots` — prints reais das páginas no ar (precisa do Microsoft Edge)
+- `npm run portrait` — foto do Sobre a partir de `scripts/source/max.jpg`
+- `npm run og` — imagens de compartilhamento em `public/og/`
+
+## Onde mudar o quê
+
+- Textos: `src/i18n/messages/{pt,en,es}.ts`
+- Preços, vitrine, contato, vagas de fundador: `src/lib/estudio.ts`

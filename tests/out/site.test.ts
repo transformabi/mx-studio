@@ -2,6 +2,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { demos } from '@/lib/estudio';
+import { nestedSegments } from '../../scripts/flatten-segments.mjs';
 
 const OUT = join(process.cwd(), 'out');
 const read = (p: string) => readFileSync(join(OUT, p), 'utf8');
@@ -46,6 +47,12 @@ describe('static export', () => {
   it('keeps the internal tools out of search', () => {
     expect(read('carrossel.html')).toMatch(/<meta name="robots" content="noindex, nofollow"/);
     expect(read('brand-kit.html')).toMatch(/<meta name="robots" content="noindex, nofollow"/);
+  });
+
+  it('has a flat copy of every nested segment-prefetch file', () => {
+    // Passes trivially where the export is already flat (no __next.* directories).
+    const missing = nestedSegments(OUT).filter(({ from, to }) => !existsSync(to) || !readFileSync(to).equals(readFileSync(from)));
+    expect(missing.map(({ to }) => to.replace(OUT, ''))).toEqual([]);
   });
 });
 
