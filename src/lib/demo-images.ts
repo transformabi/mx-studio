@@ -16,20 +16,6 @@ export const heros = {
   'mare-salao': '/heros/mare-salao.webp',
 } as const;
 
-/** Search terms used by <ImgFallback> while a photo is still missing (see PROMPTS.md). */
-export const demoKeywords: Record<keyof typeof heros, string> = {
-  'moda-arte': 'fashion',
-  'restaurante-terra': 'restaurant',
-  'clinica-sereno': 'therapy',
-  'motta-advogados': 'library',
-  'costa-imoveis': 'interior',
-  'rota-clara': 'workshop',
-  'lumi-odonto': 'dentist',
-  'iris-estetica': 'spa',
-  'alicerce-construtora': 'construction',
-  'mare-salao': 'salon',
-};
-
 // Moda Arte — 12 product photos (3:4)
 export const modaArteProducts = {
   v1: '/moda-arte/products/v1.webp',
