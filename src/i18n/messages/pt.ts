@@ -51,7 +51,7 @@ export const pt = {
       { label: 'No ar desde', value: 'Setembro de 2026' },
     ],
     visit: 'Ver o site no ar',
-    imageAlt: 'Seção de tratamentos do site da Sulamita Nascimento',
+    imageAlt: 'Página inicial do site da Sulamita Nascimento, rolando até os tratamentos',
   },
 
   work: {

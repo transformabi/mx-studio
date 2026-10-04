@@ -29,7 +29,7 @@ Depois da migração, a Vercel só redireciona os endereços antigos (`vercel.js
 
 ## Imagens
 
-- `npm run shots` — prints reais das páginas no ar (precisa do Microsoft Edge)
+- `npm run shots` — prints reais das páginas no ar (precisa do Microsoft Edge, ou de outro Chromium em `CHROMIUM_PATH`). `ONLY=sulamita-scroll` refaz só a faixa do site da Sulamita que rola dentro da moldura na home, do topo até os tratamentos (para antes dos resultados de antes e depois)
 - `npm run portrait` — foto do Sobre a partir de `scripts/source/max.jpg`
 - `npm run og` — imagens de compartilhamento em `public/og/`
 

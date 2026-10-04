@@ -43,11 +43,40 @@ describe('static export', () => {
     expect(read('es.html')).toMatch(/<html[^>]*lang="es"/);
   });
 
+  const noscriptCss = (html: string) => html.match(/<noscript><style>([^<]*)<\/style><\/noscript>/)?.[1] ?? '';
+
   it('shows the fade-in content when JavaScript is off', () => {
     for (const file of ['index.html', 'en.html', 'es.html', 'fundadores.html']) {
       const html = read(file);
-      expect(html, file).toMatch(/<noscript><style>\.reveal\{opacity:1!important;transform:none!important;translate:none!important\}<\/style><\/noscript>/);
+      expect(noscriptCss(html), file).toContain('.reveal{opacity:1!important;transform:none!important;translate:none!important}');
       expect(html, file).toMatch(/class="reveal /);
+    }
+  });
+
+  it('drops the pin of the client case when JavaScript is off', () => {
+    for (const file of ['index.html', 'en.html', 'es.html']) {
+      const html = read(file);
+      expect(html, file).toContain('class="scrub-pin"');
+      expect(html, file).toContain('class="scrub-pin-stage"');
+      expect(noscriptCss(html), file).toContain('.scrub-pin{height:auto!important;margin-block:0!important}');
+      expect(noscriptCss(html), file).toContain('.scrub-pin-stage{position:static!important;');
+    }
+  });
+
+  it('pins the client case only on screens tall enough for it in every language, and never in print', () => {
+    const css = [...read('index.html').matchAll(/<link rel="stylesheet" href="\/([^"]+\.css)"/g)]
+      .map(([, href]) => read(href))
+      .join('');
+    const pin = css.match(/@media([^{]*)\{\.scrub-pin\{/)?.[1] ?? '';
+    const queries = pin.split(',').map((q) => q.trim());
+    expect(queries.length, pin).toBeGreaterThan(0);
+    for (const q of queries) {
+      expect(q).toMatch(/^screen and /);
+      expect(q).toContain('prefers-reduced-motion:no-preference');
+      // The case needs about 660px at 1024px wide in Spanish or with the fallback fonts, 646px from 1280px.
+      const [, w] = q.match(/min-width:(\d+)rem/) ?? [];
+      const [, h] = q.match(/min-height:(\d+)rem/) ?? [];
+      expect(Number(h) * 16, q).toBeGreaterThanOrEqual(Number(w) >= 80 ? 656 : 672);
     }
   });
 

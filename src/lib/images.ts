@@ -10,6 +10,15 @@ export const shots = {
     desktop: desktop('sulamita-desktop'),
     detail: desktop('sulamita-detail'),
     mobile: { src: '/shots/sulamita-mobile.webp', width: 780, height: 1688 } satisfies Img,
+    /**
+     * Her home page from the top down to the treatments, split in the sticky menu and the body that scrolls
+     * under it (target sulamita-scroll). Stops above the before/after results on purpose.
+     */
+    scroll: {
+      header: { src: '/shots/sulamita-scroll-header.webp', width: 1200, height: 68 },
+      body: { src: '/shots/sulamita-scroll.webp', width: 1200, height: 4302 },
+      bodySmall: { src: '/shots/sulamita-scroll-768.webp', width: 768, height: 2753 },
+    } satisfies Record<'header' | 'body' | 'bodySmall', Img>,
   },
   demos: {
     'clinica-sereno': desktop('clinica-sereno'),

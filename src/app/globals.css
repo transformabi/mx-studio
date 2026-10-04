@@ -114,6 +114,48 @@
   }
 }
 
+/*
+ * Client case on the home page: the section holds still while the client's real site scrolls inside the frame
+ * (class names in src/lib/scroll-scrub.ts; scrolling-site.tsx reads whether the stage is sticky).
+ * CSS decides the pin so the server HTML is already final: only on screens (not print), never with reduced
+ * motion, and only when the whole case fits under the fixed header in the longest language (es) and with the
+ * fallback fonts: about 660px of viewport at 1024-1279px wide, 646px from 1280px. The rem limits keep that
+ * true when the visitor raises the default font size. Without JavaScript, reveal-noscript.tsx drops the pin.
+ * Known trade-off: until the page hydrates (or if its scripts fail to load) the track is already 250vh while
+ * the Reveal wrappers are still hidden, so that stretch scrolls past empty. Gating the pin on hydration would
+ * instead grow the page by 1.5 screens at hydration, which moves anything below the case for visitors who
+ * landed there (a #link or a reload) in browsers without scroll anchoring.
+ */
+@media screen and (width >= 64rem) and (height >= 42rem) and (prefers-reduced-motion: no-preference),
+  screen and (width >= 80rem) and (height >= 41rem) and (prefers-reduced-motion: no-preference) {
+  .scrub-pin {
+    height: 250vh;
+    /* Takes back the section's own padding (sm:py-32); the stage centres the case instead. */
+    margin-block: -8rem;
+  }
+  .scrub-pin-stage {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    /* If the case is ever taller than the stage, it runs off the bottom, never under the fixed header. */
+    align-items: safe center;
+    height: 100vh;
+    height: 100svh;
+    /* Clears the fixed studio header (h-16). */
+    padding-top: 4rem;
+  }
+}
+/*
+ * The pin turns on and off in a single frame. The reduced-motion rule above gives every element a 0.01ms
+ * transition on all properties, which would keep the old margin and padding for one more frame and hand
+ * scrolling-site.tsx a half-unpinned layout to measure.
+ */
+.scrub-pin,
+.scrub-pin-stage {
+  transition-property: none;
+}
+
 /* FAQ uses native <details>; hide the marker and turn the + into an x when open */
 details > summary {
   list-style: none;

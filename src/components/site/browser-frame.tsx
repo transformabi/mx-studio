@@ -1,24 +1,11 @@
 import Image from 'next/image';
+import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 export type Img = { src: string; width: number; height: number };
 
-/** A real screenshot inside a plain browser chrome drawn in CSS. */
-export function BrowserFrame({
-  image,
-  alt,
-  url,
-  priority,
-  sizes = '(min-width: 1024px) 50vw, 100vw',
-  className,
-}: {
-  image: Img;
-  alt: string;
-  url: string;
-  priority?: boolean;
-  sizes?: string;
-  className?: string;
-}) {
+/** A plain browser chrome drawn in CSS; the page shown in it goes in `children`. */
+export function BrowserChrome({ url, className, children }: { url: string; className?: string; children: ReactNode }) {
   return (
     <figure
       className={cn(
@@ -36,6 +23,29 @@ export function BrowserFrame({
           {url}
         </span>
       </div>
+      {children}
+    </figure>
+  );
+}
+
+/** A real screenshot inside the browser chrome. */
+export function BrowserFrame({
+  image,
+  alt,
+  url,
+  priority,
+  sizes = '(min-width: 1024px) 50vw, 100vw',
+  className,
+}: {
+  image: Img;
+  alt: string;
+  url: string;
+  priority?: boolean;
+  sizes?: string;
+  className?: string;
+}) {
+  return (
+    <BrowserChrome url={url} className={className}>
       <Image
         src={image.src}
         alt={alt}
@@ -45,6 +55,6 @@ export function BrowserFrame({
         sizes={sizes}
         className="block h-auto w-full"
       />
-    </figure>
+    </BrowserChrome>
   );
 }

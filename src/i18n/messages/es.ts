@@ -49,7 +49,7 @@ export const es: Messages = {
       { label: 'En línea desde', value: 'Septiembre de 2026' },
     ],
     visit: 'Ver el sitio en línea',
-    imageAlt: 'Sección de tratamientos del sitio de Sulamita Nascimento',
+    imageAlt: 'Página de inicio del sitio de Sulamita Nascimento, desplazándose hasta los tratamientos',
   },
 
   work: {

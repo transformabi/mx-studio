@@ -49,7 +49,7 @@ export const en: Messages = {
       { label: 'Live since', value: 'September 2026' },
     ],
     visit: 'See the live website',
-    imageAlt: "Treatments section of Sulamita Nascimento's website",
+    imageAlt: "Home page of Sulamita Nascimento's website, scrolling down to the treatments",
   },
 
   work: {
