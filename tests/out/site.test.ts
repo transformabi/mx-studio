@@ -48,3 +48,44 @@ describe('static export', () => {
     expect(read('brand-kit.html')).toMatch(/<meta name="robots" content="noindex, nofollow"/);
   });
 });
+
+describe('home page', () => {
+  const pages = { pt: 'index.html', en: 'en.html', es: 'es.html' } as const;
+
+  it.each(Object.entries(pages))('%s has every section and the contact e-mail', (_, file) => {
+    const html = read(file);
+    for (const id of ['case', 'work', 'process', 'pricing', 'about', 'faq', 'contact']) expect(html).toContain(`id="${id}"`);
+    expect(html).toContain('contato@mxstudioweb.com.br');
+    expect(html).toContain('sulamitaestetica.pt');
+    expect(html).toMatch(/Wise/);
+    expect(html).not.toMatch(/bitcoin|loremflickr|picsum/i);
+  });
+
+  it('lists only the six showcased demos', () => {
+    const html = read('index.html');
+    for (const slug of ['clinica-sereno', 'motta-advogados', 'moda-arte', 'restaurante-terra', 'costa-imoveis', 'rota-clara']) {
+      expect(html).toContain(`href="/demo/${slug}"`);
+    }
+    for (const slug of ['lumi-odonto', 'iris-estetica', 'alicerce-construtora', 'mare-salao']) {
+      expect(html).not.toContain(`/demo/${slug}`);
+    }
+    expect(read('en.html')).toContain('href="/en/demo/moda-arte"');
+  });
+
+  it('shows prices in reais by default in Portuguese', () => {
+    expect(read('index.html').replace(/\s/g, ' ')).toContain('R$ 3.500');
+  });
+
+  it('has no broken internal link or asset', () => {
+    // The four non-showcased demos are hidden (noindex) until they get photos, so their missing images are expected.
+    const hiddenDemo = /[\\/]demo[\\/](lumi-odonto|iris-estetica|alicerce-construtora|mare-salao)\.html$/;
+    const broken: string[] = [];
+    for (const file of htmlFiles().filter((f) => !hiddenDemo.test(f))) {
+      const html = readFileSync(file, 'utf8');
+      for (const [, url] of html.matchAll(/(?:href|src)="(\/[^"/][^"]*|\/)"/g)) {
+        if (!resolves(url)) broken.push(`${file.replace(OUT, '')} → ${url}`);
+      }
+    }
+    expect(broken).toEqual([]);
+  });
+});
