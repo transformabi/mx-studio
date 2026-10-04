@@ -239,7 +239,7 @@ export default function CostaImoveisDemo() {
             <div className={'mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3 ' + (showFilters ? '' : 'hidden sm:grid')}>
               <select
                 value={nb}
-                onChange={(e) => setNb(e.target.value as any)}
+                onChange={(e) => setNb(e.target.value as (typeof neighborhoods)[number])}
                 className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-hidden"
               >
                 {neighborhoods.map((n) => (
@@ -248,7 +248,7 @@ export default function CostaImoveisDemo() {
               </select>
               <select
                 value={tp}
-                onChange={(e) => setTp(e.target.value as any)}
+                onChange={(e) => setTp(e.target.value as (typeof types)[number])}
                 className="rounded-2xl border-0 bg-white px-4 py-3 text-sm font-medium text-neutral-900 focus:outline-hidden"
               >
                 {types.map((t) => (

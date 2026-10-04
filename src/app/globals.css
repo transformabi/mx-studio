@@ -1,63 +1,43 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:is(.dark *));
-
-@utility container {
-  margin-inline: auto;
-  padding-inline: 1.25rem;
-  @media (width >= --theme(--breakpoint-sm)) {
-    max-width: none;
-  }
-  @media (width >= 1280px) {
-    max-width: 1280px;
-  }
-}
-
 @theme {
   --color-ink: #0c0e0a;
+  --color-ink-2: #141711;
+  --color-paper: #f3f4ef;
+  --color-bone: #fbfcf8;
+  --color-lime: #a4fe24;
 
-  --color-lime: #94e421;
-  --color-lime-bright: #a4fe24;
-
-  --font-sans: var(--font-instrument-sans), system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif), Georgia, serif;
-  --font-mono: ui-monospace, monospace;
-  --font-brand:
-    var(--font-bricolage), var(--font-figtree), system-ui, sans-serif;
+  /* Studio identity (same as the @mxstudioweb posts) */
+  --font-brand: var(--font-bricolage), system-ui, sans-serif;
   --font-body: var(--font-figtree), system-ui, sans-serif;
   --font-label: var(--font-jetbrains), ui-monospace, monospace;
 
-  --text-display-xl: clamp(3rem, 6vw + 1rem, 6.5rem);
-  --text-display-xl--line-height: 0.98;
-  --text-display-xl--letter-spacing: -0.035em;
-  --text-display-xl--font-weight: 600;
-  --text-display-lg: clamp(2.5rem, 4.5vw + 1rem, 4.5rem);
-  --text-display-lg--line-height: 1.02;
-  --text-display-lg--letter-spacing: -0.03em;
-  --text-display-lg--font-weight: 600;
-  --text-display-md: clamp(2rem, 3.5vw + 0.75rem, 3.25rem);
-  --text-display-md--line-height: 1.05;
-  --text-display-md--letter-spacing: -0.025em;
-  --text-display-md--font-weight: 600;
-  --text-display-sm: clamp(1.625rem, 2.5vw + 0.5rem, 2.25rem);
-  --text-display-sm--line-height: 1.15;
-  --text-display-sm--letter-spacing: -0.02em;
-  --text-display-sm--font-weight: 600;
-
-  --spacing-section: clamp(4rem, 8vw, 8rem);
-  --spacing-section-sm: clamp(3rem, 5vw, 5rem);
+  /* Used by the demos, each playing its own client brand */
+  --font-sans: var(--font-instrument-sans), system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+@utility container-site {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+}
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+/* The square grid from the @mxstudioweb posts, kept faint */
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
 @layer base {
+  /* Tailwind 4 changed the default border color; the demos were written for the v3 default. */
   *,
   ::after,
   ::before,
@@ -66,33 +46,41 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 
-  /* Tailwind v4 dropped the pointer cursor on buttons; keep the v3 behavior. */
   button:not(:disabled),
-  [role='button']:not(:disabled) {
+  [role='button']:not(:disabled),
+  summary {
     cursor: pointer;
   }
-}
 
-@utility container-wide {
-  @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
-}
-
-@utility container-tight {
-  @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
-}
-
-@layer utilities {
   :root {
     color-scheme: dark;
   }
 
-  * {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  html {
-    scroll-behavior: smooth;
+  body {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    background: var(--color-ink);
+    color: var(--color-bone);
+    /* Demos inherit this; studio pages set font-body themselves. */
+    font-family: var(--font-instrument-sans), system-ui, sans-serif;
+  }
+
+  ::selection {
+    background: rgb(164 254 36 / 0.3);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -107,120 +95,32 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
-    .page-curtain {
-      display: none;
-    }
-  }
-
-  body {
-    background: #0c0e0a;
-    color: #fff;
-    font-family: var(--font-instrument-sans), system-ui, sans-serif;
-    min-height: 100dvh;
-    overflow-x: hidden;
-  }
-
-  ::selection {
-    background: rgba(148, 228, 33, 0.3);
-    color: #fff;
-  }
-
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #0c0e0a;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(148, 228, 33, 0.3);
-  }
-
-  :focus-visible {
-    outline: 2px solid #94e421;
-    outline-offset: 3px;
-    border-radius: 4px;
   }
 }
 
-/* Marquee for landing horizontal scroll */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+/* Demos fade in on load (used inside src/demos) */
+.page-enter {
+  animation: page-enter 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
 }
-.marquee-track {
-  animation: marquee 40s linear infinite;
-  will-change: transform;
-}
-.marquee-track.is-reverse { animation-direction: reverse; }
-.marquee-mask {
-  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
-}
-
-/* Page transition: two curtains lift, then the page rises (see app/template.tsx) */
-.page-curtain {
-  position: fixed;
-  inset: 0;
-  z-index: 70;
-  pointer-events: none;
-  transform-origin: top;
-  animation: curtain-up 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards;
-}
-.page-curtain--lime { background: #94E421; animation-delay: 0.12s; }
-.page-curtain--ink { background: #0C0E0A; }
-@keyframes curtain-up {
-  from { transform: scaleY(1); }
-  to { transform: scaleY(0); }
-}
-.page-enter { animation: page-enter 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
-/* Ends on `transform: none` so fixed-position modals inside pages keep working. */
+/* Ends on `transform: none` so fixed-position modals inside demos keep working. */
 @keyframes page-enter {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-/* Word-by-word heading reveal (components/fx/words.tsx) */
-.word-mask {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-  padding: 0 0.06em 0.1em 0;
-  margin: 0 -0.06em -0.1em 0;
+/* FAQ uses native <details>; hide the marker and turn the + into an x when open */
+details > summary {
+  list-style: none;
 }
-.word-inner {
-  display: inline-block;
-  transform: translateY(110%);
-  animation: word-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+details > summary::-webkit-details-marker {
+  display: none;
 }
-@keyframes word-up {
-  to { transform: none; }
-}
-
-/* Lit border for components/fx/spotlight-card.tsx */
-.spotlight-border {
-  padding: 1px;
-  background: radial-gradient(260px circle at var(--sx, 50%) var(--sy, 50%), rgba(148, 228, 33, 0.7), transparent 60%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
-
-/* Film grain overlay */
-.grain::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.text-outline {
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22);
+details[open] .faq-icon {
+  transform: rotate(45deg);
 }
