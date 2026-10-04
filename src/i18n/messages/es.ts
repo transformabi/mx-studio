@@ -118,7 +118,7 @@ export const es: Messages = {
       landing: {
         title: 'Landing page',
         text: 'Una página centrada en una oferta o servicio.',
-        bullets: ['Textos pensados para vender', 'WhatsApp y formulario', 'Medición de visitas y anuncios', 'En línea en 10 días'],
+        bullets: ['Textos pensados para vender', 'WhatsApp y formulario', 'Medición de visitas y anuncios', 'En línea en hasta 10 días'],
       },
       institucional: {
         title: 'Sitio corporativo',
@@ -171,7 +171,7 @@ export const es: Messages = {
       },
       {
         q: '¿Cuánto tarda el sitio?',
-        a: 'De 3 a 7 semanas, según el tamaño del proyecto. El calendario va en la propuesta, con las fechas de cada etapa.',
+        a: 'Landing page: hasta 10 días. Sitios más grandes, de 3 a 7 semanas, según el tamaño del proyecto. El calendario va en la propuesta, con las fechas de cada etapa.',
       },
       {
         q: '¿Cómo es el pago?',

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/flatten-segments.mjs",
+    "build": "node -e \"require('fs').rmSync('.next/cache/fetch-cache',{recursive:true,force:true})\" && next build && node scripts/flatten-segments.mjs",
     "lint": "eslint .",
     "test": "vitest run tests/unit",
     "test:out": "vitest run tests/out",

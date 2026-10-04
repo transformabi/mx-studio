@@ -19,13 +19,13 @@ npm run dev
 npm run check   # lint, testes, build estático e testes do HTML gerado
 ```
 
-O `npm run build` roda o `next build` e depois `scripts/flatten-segments.mjs`, que copia os arquivos de pré-carregamento do Next que saem em subpastas (`__next.*/`) para o nome plano que o navegador pede. Onde o build já sai plano, não faz nada.
+O `npm run build` apaga o cache de `fetch` do Next (`.next/cache/fetch-cache`, para a cotação das moedas ser sempre a do dia da publicação), roda o `next build` e depois `scripts/flatten-segments.mjs`, que copia os arquivos de pré-carregamento do Next que saem em subpastas (`__next.*/`) para o nome plano que o navegador pede. Onde o build já sai plano, não faz nada.
 
 ## Publicação
 
 Cloudflare Workers (plano grátis) conectado a este repositório: cada push na `main` publica; outras branches geram link de prévia. Configuração em `wrangler.jsonc` (pasta `out/`); cabeçalhos de segurança e cache em `public/_headers`.
 
-A Vercel só redireciona os endereços antigos (`vercel.json`).
+Depois da migração, a Vercel só redireciona os endereços antigos (`vercel.json`).
 
 ## Imagens
 

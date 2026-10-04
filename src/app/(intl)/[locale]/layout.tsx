@@ -5,6 +5,7 @@ import '../../globals.css';
 import { defaultLocale, isLocale, localeInfo, prefixedLocales } from '@/i18n/config';
 import { SITE_URL } from '@/lib/estudio';
 import { fontVariables } from '@/lib/fonts';
+import { RevealNoScript } from '@/components/reveal-noscript';
 import { SiteChrome } from '@/components/site/site-chrome';
 
 export const dynamicParams = false;
@@ -30,6 +31,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={localeInfo[locale].htmlLang} className={fontVariables}>
+      <head>
+        <RevealNoScript />
+      </head>
       <body>
         <SiteChrome locale={locale}>{children}</SiteChrome>
       </body>

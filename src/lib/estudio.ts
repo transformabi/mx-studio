@@ -307,4 +307,13 @@ export const fundadores = {
   cuidadoMes: 149.9,
   prazoDias: 7,
   whatsappMsg: 'Olá! Vi o Reels e quero uma vaga de cliente fundador para o meu negócio.',
+  /** Sent instead of `whatsappMsg` once `restantes` reaches 0. */
+  listaDeEsperaMsg: 'Olá! Vi que as vagas de cliente fundador acabaram e quero entrar na lista de espera para uma vaga.',
 } as const;
+
+/** Closing headline of /fundadores, singular or plural: "Resta 1 vaga" / "Restam 3 vagas". */
+export function vagasRestantes(n: number) {
+  return n === 1
+    ? { verb: 'Resta', count: '1 vaga', tail: 'Ela pode ser sua.' }
+    : { verb: 'Restam', count: `${n} vagas`, tail: 'Uma pode ser sua.' };
+}

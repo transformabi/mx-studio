@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent, type ReactNode } from 'react';
+import { useId, useState, type FormEvent, type ReactNode } from 'react';
 import { Check, Send } from 'lucide-react';
 import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
@@ -9,7 +9,7 @@ import { whatsappUrl } from '@/lib/estudio';
 import { cn } from '@/lib/utils';
 
 const input =
-  'w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-bone placeholder:text-white/35 transition-colors focus:border-lime/60 focus:bg-white/[0.06] focus:outline-none';
+  'w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-bone placeholder:text-white/35 transition-colors focus:border-lime/60 focus:bg-white/[0.06]';
 const chip = (active: boolean) =>
   cn(
     'rounded-full border px-4 py-2 text-sm transition-colors',
@@ -34,6 +34,8 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sentUrl, setSentUrl] = useState<string | null>(null);
+  const uid = useId();
+  const ids = { name: `${uid}-name`, email: `${uid}-email`, message: `${uid}-message` };
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
@@ -83,9 +85,10 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
   return (
     <form onSubmit={submit} noValidate className="rounded-xl border border-white/10 bg-ink-2 p-6 sm:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field id="cf-name" label={t.name} error={errors.name}>
+        <Field id={ids.name} label={t.name} error={errors.name}>
           <input
-            id="cf-name"
+            id={ids.name}
+            {...invalid(ids.name, errors.name)}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder={t.namePlaceholder}
@@ -93,9 +96,10 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
             className={input}
           />
         </Field>
-        <Field id="cf-email" label={t.email} error={errors.email}>
+        <Field id={ids.email} label={t.email} error={errors.email}>
           <input
-            id="cf-email"
+            id={ids.email}
+            {...invalid(ids.email, errors.email)}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -129,9 +133,10 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
       </fieldset>
 
       <div className="mt-6">
-        <Field id="cf-message" label={t.message} error={errors.message}>
+        <Field id={ids.message} label={t.message} error={errors.message}>
           <textarea
-            id="cf-message"
+            id={ids.message}
+            {...invalid(ids.message, errors.message)}
             rows={5}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -155,6 +160,12 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
   );
 }
 
+const errorId = (id: string) => `${id}-error`;
+
+/** Marks a field invalid and points it at its error message, so screen readers announce both. */
+const invalid = (id: string, error?: string) =>
+  error ? { 'aria-invalid': true as const, 'aria-describedby': errorId(id) } : {};
+
 function Field({ id, label, error, children }: { id: string; label: string; error?: string; children: ReactNode }) {
   return (
     <div>
@@ -163,7 +174,7 @@ function Field({ id, label, error, children }: { id: string; label: string; erro
       </label>
       <div className="mt-2">{children}</div>
       {error && (
-        <p className="mt-2 text-xs text-[#ff9b7a]" role="alert">
+        <p id={errorId(id)} className="mt-2 text-xs text-[#ff9b7a]" role="alert">
           {error}
         </p>
       )}

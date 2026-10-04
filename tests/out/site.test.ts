@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { demos } from '@/lib/estudio';
+import { demos, fundadores, vagasRestantes } from '@/lib/estudio';
 import { nestedSegments } from '../../scripts/flatten-segments.mjs';
 
 const OUT = join(process.cwd(), 'out');
@@ -14,6 +14,15 @@ function htmlFiles(dir = OUT): string[] {
     return name.endsWith('.html') ? [full] : [];
   });
 }
+
+/** Visible text of a page: no tags, no React's <!-- --> separators, collapsed spaces. */
+const text = (html: string) =>
+  html
+    .replace(/<script[\s\S]*?<\/script>/g, ' ')
+    .replace(/<!-- -->/g, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/ ([.,])/g, '$1');
 
 /** '/' → out/index.html, '/demo/x' → out/demo/x.html (or x/index.html), files as-is. */
 function resolves(href: string) {
@@ -32,6 +41,14 @@ describe('static export', () => {
     expect(read('index.html')).toMatch(/<html[^>]*lang="pt-BR"/);
     expect(read('en.html')).toMatch(/<html[^>]*lang="en"/);
     expect(read('es.html')).toMatch(/<html[^>]*lang="es"/);
+  });
+
+  it('shows the fade-in content when JavaScript is off', () => {
+    for (const file of ['index.html', 'en.html', 'es.html', 'fundadores.html']) {
+      const html = read(file);
+      expect(html, file).toMatch(/<noscript><style>\.reveal\{opacity:1!important;transform:none!important;translate:none!important\}<\/style><\/noscript>/);
+      expect(html, file).toMatch(/class="reveal /);
+    }
   });
 
   it('has a 404 page', () => {
@@ -107,6 +124,22 @@ describe('/fundadores', () => {
     expect(html).toContain('sulamitaestetica.pt');
   });
 
+  it('words the slots left in the right number, with a waiting list when sold out', () => {
+    const page = text(read('fundadores.html'));
+    expect(page).not.toMatch(/Restam 1 vagas|Resta \d{2,} vaga|Resta [02-9] vaga/);
+    if (fundadores.restantes > 0) {
+      const left = vagasRestantes(fundadores.restantes);
+      expect(page).toContain(`${left.verb} ${left.count}. ${left.tail}`);
+      expect(page).toContain('Quero minha vaga');
+      expect(page).not.toContain('lista de espera');
+    } else {
+      expect(page).toContain('As vagas de fundador acabaram.');
+      expect(page).toContain('Entrar na lista de espera');
+      expect(page).not.toContain('Quero minha vaga');
+    }
+    expect(page).toContain('Respondo em até 24 horas em dias úteis.');
+  });
+
   it('has its own canonical and no language alternates', () => {
     const html = read('fundadores.html');
     expect(html).toContain('<link rel="canonical" href="https://mxstudioweb.com.br/fundadores"');
@@ -133,6 +166,9 @@ describe('search engines', () => {
     const html = read('index.html');
     expect(html).toContain('"@type":"ProfessionalService"');
     expect(html).toContain('"email":"contato@mxstudioweb.com.br"');
+    expect(html).toContain('"knowsLanguage":["pt-BR","en","es"]');
+    expect(html).toContain('"areaServed":[');
+    expect(html).not.toContain('"inLanguage"');
   });
 
   it('has share images per language', () => {

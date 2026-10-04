@@ -23,7 +23,7 @@ export function SectionHeader({
       <p
         className={cn(
           'font-label text-xs uppercase tracking-[0.16em] lg:col-span-3 lg:pt-3',
-          dark ? 'text-white/50' : 'text-ink/55',
+          dark ? 'text-white/50' : 'text-ink/65',
         )}
       >
         <span className={dark ? 'text-lime' : 'text-ink'}>{index}</span> — {label}

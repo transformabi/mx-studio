@@ -3,7 +3,11 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
-/** Fades content in once when it scrolls into view. Reduced motion skips the transition (globals.css). */
+/**
+ * Fades content in once when it scrolls into view. Reduced motion skips the transition (globals.css).
+ * The server HTML starts hidden, so the `reveal` class lets the root layouts show it when JS is off
+ * (see RevealNoScript), and browsers without IntersectionObserver show it right away.
+ */
 export function Reveal({
   children,
   className,
@@ -20,7 +24,11 @@ export function Reveal({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || typeof IntersectionObserver === 'undefined') return;
+    if (!el) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      const frame = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(frame);
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -39,7 +47,7 @@ export function Reveal({
     <Tag
       ref={ref as never}
       className={cn(
-        'transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
+        'reveal transition-[opacity,translate] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
         visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0',
         className,
       )}

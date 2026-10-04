@@ -5,7 +5,11 @@ export const fallbackRates: Rates = { BRL: 1, USD: 0.1947, EUR: 0.1686, GBP: 0.1
 
 const fiat = ['USD', 'EUR', 'GBP'] as const;
 
-/** Fetched once per build: the site is static, so prices refresh on every publish. */
+/**
+ * Fetched once per build: the site is static, so prices refresh on every publish. `force-cache` only
+ * shares the answer between the pages of one build; `npm run build` deletes .next/cache/fetch-cache
+ * first, so a cached rate never carries over to the next build.
+ */
 export async function getRates(): Promise<Rates> {
   try {
     const res = await fetch('https://api.coinbase.com/v2/exchange-rates?currency=BRL', {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { clientCases, demos, estudio, lcpSeconds, services, showcase, SITE_URL } from '@/lib/estudio';
+import { clientCases, demos, estudio, lcpSeconds, services, showcase, SITE_URL, vagasRestantes } from '@/lib/estudio';
 
 describe('studio data', () => {
   it('uses the new domain and e-mail', () => {
@@ -28,5 +28,19 @@ describe('studio data', () => {
       expect(demos.some((d) => d.slug === slug)).toBe(true);
       expect(lcpSeconds[slug]).toBeGreaterThan(0);
     }
+  });
+});
+
+describe('founder slots wording', () => {
+  const text = (n: number) => {
+    const v = vagasRestantes(n);
+    return `${v.verb} ${v.count}. ${v.tail}`;
+  };
+
+  it('agrees in number with the slots left', () => {
+    // At 0 the page shows the sold-out headline instead; the helper still never says "0 vaga".
+    expect(vagasRestantes(0)).toMatchObject({ verb: 'Restam', count: '0 vagas' });
+    expect(text(1)).toBe('Resta 1 vaga. Ela pode ser sua.');
+    expect(text(2)).toBe('Restam 2 vagas. Uma pode ser sua.');
   });
 });

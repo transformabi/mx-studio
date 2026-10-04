@@ -37,16 +37,18 @@ export function DemoFrame({ children, siteName, bg = '#0a0a0a' }: { children: Re
     <div className="min-h-dvh w-full bg-ink pb-8 pt-20 font-body">
       <ImgFallback />
       <div className="mx-auto max-w-[1360px] px-3 sm:px-6">
-        <div className="mb-3 flex items-center justify-between gap-4">
+        {/* The badge stays on phones too: it is what tells a visitor the business is fictional. */}
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
           <Link
             href={`${localizedPath(locale, '/')}#work`}
-            className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-medium text-white/75 transition-colors hover:text-bone"
+            className="inline-flex min-w-0 max-w-full items-center gap-1.5 rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-medium text-white/75 transition-colors hover:text-bone"
           >
-            <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
-            {t.back}
+            <ArrowLeft className="h-3.5 w-3.5 shrink-0" aria-hidden />
+            <span className="truncate">{t.back}</span>
           </Link>
-          <p className="hidden font-label text-[11px] uppercase tracking-[0.14em] text-white/45 sm:block">
-            {t.badge} · {siteName}
+          <p className="min-w-0 max-w-full truncate font-label text-[11px] uppercase tracking-[0.14em] text-white/45">
+            {t.badge}
+            <span className="hidden sm:inline"> · {siteName}</span>
           </p>
         </div>
         <div className="overflow-hidden rounded-3xl border border-white/10" style={{ background: bg }}>

@@ -174,7 +174,7 @@ export const pt = {
       },
       {
         q: 'Em quanto tempo o site fica pronto?',
-        a: 'De 3 a 7 semanas, conforme o tamanho do projeto. O cronograma vem na proposta, com as datas de cada etapa.',
+        a: 'Landing page: até 10 dias. Sites maiores, de 3 a 7 semanas, conforme o tamanho do projeto. O cronograma vem na proposta, com as datas de cada etapa.',
       },
       {
         q: 'Como é o pagamento?',

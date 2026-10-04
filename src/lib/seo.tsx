@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { localeInfo, type Locale } from '@/i18n/config';
+import { localeInfo, locales, type Locale } from '@/i18n/config';
 import { messages } from '@/i18n/messages';
 import { alternates, localizedPath } from '@/i18n/paths';
 import { estudio, SITE_URL } from './estudio';
@@ -65,7 +65,12 @@ export function StudioJsonLd({ locale }: { locale: Locale }) {
     founder: { '@type': 'Person', name: estudio.owner },
     address: { '@type': 'PostalAddress', addressLocality: 'Rio de Janeiro', addressRegion: 'RJ', addressCountry: 'BR' },
     priceRange: 'R$ 3.500 – R$ 16.000',
-    inLanguage: localeInfo[locale].htmlLang,
+    // The languages the studio works in (inLanguage is for creative works, not businesses).
+    knowsLanguage: locales.map((l) => localeInfo[l].htmlLang),
+    areaServed: [
+      { '@type': 'Country', name: 'Brasil' },
+      { '@type': 'Place', name: 'Worldwide' },
+    ],
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }

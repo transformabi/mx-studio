@@ -1,5 +1,5 @@
 import { ArrowUpRight, BadgeCheck, Camera, Clock, MapPin, MessageCircle, Smartphone, Star, Video } from 'lucide-react';
-import { clientCases, demoBySlug, estudio, fundadores as f, whatsappUrl } from '@/lib/estudio';
+import { clientCases, demoBySlug, estudio, fundadores as f, vagasRestantes, whatsappUrl } from '@/lib/estudio';
 import { shots } from '@/lib/images';
 import { pageMetadata } from '@/lib/seo';
 import { ButtonLink } from '@/components/site/button-link';
@@ -87,7 +87,11 @@ const faq = [
 const exampleDemos = ['restaurante-terra', 'moda-arte'] as const;
 
 export default function FundadoresPage() {
-  const whatsapp = whatsappUrl(f.whatsappMsg);
+  // Sold out: the same WhatsApp buttons put people on the waiting list instead.
+  const soldOut = f.restantes <= 0;
+  const whatsapp = whatsappUrl(soldOut ? f.listaDeEsperaMsg : f.whatsappMsg);
+  const cta = soldOut ? 'Entrar na lista de espera' : 'Quero minha vaga';
+  const left = vagasRestantes(f.restantes);
   const sulamita = clientCases[0];
 
   return (
@@ -110,7 +114,7 @@ export default function FundadoresPage() {
             <div className="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
               <ButtonLink href={whatsapp} external>
                 <MessageCircle className="h-4 w-4" aria-hidden />
-                Quero minha vaga
+                {cta}
               </ButtonLink>
               <ButtonLink href="#exemplos" variant="outline">
                 Ver exemplos
@@ -144,7 +148,7 @@ export default function FundadoresPage() {
       <section className="bg-paper py-24 text-ink sm:py-28">
         <div className="container-site grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="font-label text-xs uppercase tracking-[0.16em] text-ink/55">
+            <p className="font-label text-xs uppercase tracking-[0.16em] text-ink/65">
               <span className="text-ink">02</span> — O que eu peço em troca
             </p>
             <h2 className="mt-6 font-brand text-[clamp(2rem,3vw+1rem,3.25rem)] font-bold leading-[1.02] tracking-[-0.025em]">
@@ -244,14 +248,14 @@ export default function FundadoresPage() {
           <ol className="mt-14 grid gap-px overflow-hidden rounded-xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => (
               <li key={s.title} className="bg-paper p-7">
-                <span className="font-label text-xs text-ink/50">{String(i + 1).padStart(2, '0')}</span>
+                <span className="font-label text-xs text-ink/60">{String(i + 1).padStart(2, '0')}</span>
                 <h3 className="mt-8 font-brand text-xl font-bold">{s.title}</h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-ink/70">{s.text}</p>
               </li>
             ))}
           </ol>
           <div className="mt-8 rounded-xl border border-ink/10 p-7">
-            <p className="font-label text-[11px] uppercase tracking-[0.14em] text-ink/55">Depois de pronto · opcional</p>
+            <p className="font-label text-[11px] uppercase tracking-[0.14em] text-ink/65">Depois de pronto · opcional</p>
             <p className="mt-2 font-brand text-xl font-bold">Plano de cuidado por {brl(f.cuidadoMes)}/mês</p>
             <p className="mt-1 max-w-xl text-ink/70">
               Eu atualizo preços, fotos e horários quando você pedir pelo WhatsApp. Não é obrigatório: o site é seu.
@@ -282,19 +286,23 @@ export default function FundadoresPage() {
       <section className="border-t border-white/10 py-24 text-center sm:py-28">
         <div className="container-site">
           <h2 className="mx-auto max-w-3xl text-balance font-brand text-[clamp(2.25rem,4vw+1rem,4rem)] font-bold leading-[1] tracking-[-0.03em]">
-            {f.restantes > 0 ? (
-              <>
-                Restam <span className="text-lime">{f.restantes} vagas</span>. Uma pode ser sua.
-              </>
-            ) : (
+            {soldOut ? (
               'As vagas de fundador acabaram.'
+            ) : (
+              <>
+                {left.verb} <span className="text-lime">{left.count}</span>. {left.tail}
+              </>
             )}
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-white/60">Me chama no WhatsApp com o nome do seu negócio. Respondo em até 24 horas.</p>
+          <p className="mx-auto mt-5 max-w-xl text-white/60">
+            {soldOut
+              ? 'Me chama no WhatsApp com o nome do seu negócio para entrar na lista de espera. Respondo em até 24 horas em dias úteis.'
+              : 'Me chama no WhatsApp com o nome do seu negócio. Respondo em até 24 horas em dias úteis.'}
+          </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <ButtonLink href={whatsapp} external>
               <MessageCircle className="h-4 w-4" aria-hidden />
-              Quero minha vaga
+              {cta}
             </ButtonLink>
             <ButtonLink href={estudio.instagram} external variant="outline">
               {estudio.instagramHandle}
@@ -307,12 +315,12 @@ export default function FundadoresPage() {
   );
 }
 
+/** Label first in the markup (read once, before the value), value first on screen. */
 function Stat({ value, label }: { value: string; label: string }) {
   return (
-    <div>
-      <dt className="sr-only">{label}</dt>
-      <dd className="font-brand text-3xl font-bold tracking-tight sm:text-4xl">{value}</dd>
-      <dd className="mt-1 text-xs text-white/50">{label}</dd>
+    <div className="flex flex-col">
+      <dt className="order-2 mt-1 text-xs text-white/50">{label}</dt>
+      <dd className="order-1 font-brand text-3xl font-bold tracking-tight sm:text-4xl">{value}</dd>
     </div>
   );
 }

@@ -75,7 +75,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Messages }) {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-site flex flex-col gap-2 py-6 text-xs text-white/40 sm:flex-row sm:justify-between">
+        <div className="container-site flex flex-col gap-2 py-6 text-xs text-white/50 sm:flex-row sm:justify-between">
           <p>
             © {new Date().getFullYear()} MX Studio Web. {t.footer.rights}
           </p>

@@ -21,7 +21,7 @@ export const en: Messages = {
     language: 'Language',
   },
 
-  whatsappMsg: 'Hi! I found MX Studio Web through your website and would like to talk about a website.',
+  whatsappMsg: 'Hi! I came across the MX Studio Web website and would like to talk about a website.',
 
   hero: {
     eyebrow: 'Website studio · Rio de Janeiro, Brazil',
@@ -137,7 +137,7 @@ export const en: Messages = {
       },
     },
     ask: 'Request a quote',
-    askMsg: 'Hi! I found MX Studio Web through your website and would like a quote for: {service}.',
+    askMsg: 'Hi! I came across the MX Studio Web website and would like a quote for: {service}.',
     payments: {
       title: 'Payment methods',
       methods: ['PIX (Brazil)', 'Credit card, in instalments', 'Wise, for clients outside Brazil'],
@@ -171,7 +171,7 @@ export const en: Messages = {
       },
       {
         q: 'How long does it take?',
-        a: 'From 3 to 7 weeks, depending on the size of the project. The schedule comes in the proposal, with dates for each stage.',
+        a: 'Landing page: up to 10 days. Larger websites take 3 to 7 weeks, depending on the size of the project. The schedule comes in the proposal, with dates for each stage.',
       },
       {
         q: 'How does payment work?',
@@ -217,7 +217,7 @@ export const en: Messages = {
       messagePlaceholder: 'What the company does, what it needs and by when.',
       footnote: 'Sending opens WhatsApp with your message ready.',
       send: 'Send via WhatsApp',
-      waIntro: 'Hi! I found MX Studio Web through your website.',
+      waIntro: 'Hi! I came across the MX Studio Web website.',
       waProject: 'Project',
       waBudget: 'Budget',
       errorName: 'Please enter your name.',
