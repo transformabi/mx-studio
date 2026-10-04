@@ -1,7 +1,21 @@
 /**
  * Locally-hosted assets for the portfolio demos.
- * Files live under /public/estudio/*.
+ * Files live under /public, so each path is also the file's URL.
  */
+
+/**
+ * Photos planned for the four hidden demos (lumi-odonto, iris-estetica, alicerce-construtora, mare-salao:
+ * noindex, out of the showcase) that are already in /public. None has been shot yet.
+ * Add a path here in the same change that adds its file to /public.
+ */
+const inPublic = new Set<string>([]);
+
+/**
+ * A planned photo for a hidden demo: its path once the file is in /public, null until then.
+ * On null the demo skips the <img> and shows its stand-in art (DemoArt / ArtTile / EditorialPortrait),
+ * so the browser never requests a file that doesn't exist.
+ */
+const planned = (path: string): string | null => (inPublic.has(path) ? path : null);
 
 export const heros = {
   'moda-arte': '/heros/moda-arte.webp',
@@ -10,25 +24,11 @@ export const heros = {
   'motta-advogados': '/heros/motta-advogados.webp',
   'costa-imoveis': '/heros/costa-imoveis.webp',
   'rota-clara': '/heros/rota-clara.webp',
-  'lumi-odonto': '/heros/lumi-odonto.webp',
-  'iris-estetica': '/heros/iris-estetica.webp',
-  'alicerce-construtora': '/heros/alicerce-construtora.webp',
-  'mare-salao': '/heros/mare-salao.webp',
+  'lumi-odonto': planned('/heros/lumi-odonto.webp'),
+  'iris-estetica': planned('/heros/iris-estetica.webp'),
+  'alicerce-construtora': planned('/heros/alicerce-construtora.webp'),
+  'mare-salao': planned('/heros/mare-salao.webp'),
 } as const;
-
-/** Search terms used by <ImgFallback> while a photo is still missing (see PROMPTS.md). */
-export const demoKeywords: Record<keyof typeof heros, string> = {
-  'moda-arte': 'fashion',
-  'restaurante-terra': 'restaurant',
-  'clinica-sereno': 'therapy',
-  'motta-advogados': 'library',
-  'costa-imoveis': 'interior',
-  'rota-clara': 'workshop',
-  'lumi-odonto': 'dentist',
-  'iris-estetica': 'spa',
-  'alicerce-construtora': 'construction',
-  'mare-salao': 'salon',
-};
 
 // Moda Arte — 12 product photos (3:4)
 export const modaArteProducts = {
@@ -114,38 +114,38 @@ export const rotaClara = {
 
 // Lumi Odontologia — clinic interior (4:3) + 3 dentist portraits (4:5)
 export const lumiOdonto = {
-  clinic: '/lumi-odonto/clinic.webp',
+  clinic: planned('/lumi-odonto/clinic.webp'),
   team: {
-    d1: '/lumi-odonto/team/d1.webp',
-    d2: '/lumi-odonto/team/d2.webp',
-    d3: '/lumi-odonto/team/d3.webp',
+    d1: planned('/lumi-odonto/team/d1.webp'),
+    d2: planned('/lumi-odonto/team/d2.webp'),
+    d3: planned('/lumi-odonto/team/d3.webp'),
   },
 } as const;
 
 // Íris Estética — space (3:4) + 6 procedure photos (4:5)
 export const irisEstetica = {
-  space: '/iris-estetica/space.webp',
+  space: planned('/iris-estetica/space.webp'),
   procedures: {
-    bioestimulador: '/iris-estetica/procedures/bioestimulador.webp',
-    toxina: '/iris-estetica/procedures/toxina.webp',
-    laser: '/iris-estetica/procedures/laser.webp',
-    peeling: '/iris-estetica/procedures/peeling.webp',
-    criolipolise: '/iris-estetica/procedures/criolipolise.webp',
-    drenagem: '/iris-estetica/procedures/drenagem.webp',
+    bioestimulador: planned('/iris-estetica/procedures/bioestimulador.webp'),
+    toxina: planned('/iris-estetica/procedures/toxina.webp'),
+    laser: planned('/iris-estetica/procedures/laser.webp'),
+    peeling: planned('/iris-estetica/procedures/peeling.webp'),
+    criolipolise: planned('/iris-estetica/procedures/criolipolise.webp'),
+    drenagem: planned('/iris-estetica/procedures/drenagem.webp'),
   },
 } as const;
 
 // Maré Salão — salon interior for the hero (4:5)
 export const mareSalao = {
-  space: '/mare-salao/space.webp',
+  space: planned('/mare-salao/space.webp'),
 } as const;
 
 // Alicerce Engenharia — 6 finished projects (4:3)
 export const alicerceProjects = {
-  o1: '/alicerce/projects/o1.webp',
-  o2: '/alicerce/projects/o2.webp',
-  o3: '/alicerce/projects/o3.webp',
-  o4: '/alicerce/projects/o4.webp',
-  o5: '/alicerce/projects/o5.webp',
-  o6: '/alicerce/projects/o6.webp',
+  o1: planned('/alicerce/projects/o1.webp'),
+  o2: planned('/alicerce/projects/o2.webp'),
+  o3: planned('/alicerce/projects/o3.webp'),
+  o4: planned('/alicerce/projects/o4.webp'),
+  o5: planned('/alicerce/projects/o5.webp'),
+  o6: planned('/alicerce/projects/o6.webp'),
 } as const;

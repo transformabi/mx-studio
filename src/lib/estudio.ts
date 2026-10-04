@@ -1,23 +1,30 @@
+import type { Locale } from '@/i18n/config';
+
 /** Public address of this site; override per deploy with NEXT_PUBLIC_SITE_URL. */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mxstudioweb.vercel.app';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mxstudioweb.com.br';
 
 export const estudio = {
   name: 'MX Studio Web',
+  owner: 'Max Costa',
   role: 'Estúdio digital freelance',
-  tagline: 'Sites que trazem clientes para clínicas, escritórios e lojas.',
-  location: 'Rio de Janeiro · Portugal',
-  yearsExp: 8,
+  tagline: 'Sites que trazem clientes para o seu negócio.',
+  location: 'Rio de Janeiro · Brasil e exterior',
   whatsapp: '5521993196171',
   whatsappDisplay: '(21) 99319-6171',
-  email: 'developermaxrj@gmail.com',
+  phoneE164: '+5521993196171',
+  email: 'contato@mxstudioweb.com.br',
   instagram: 'https://www.instagram.com/mxstudioweb/',
+  instagramHandle: '@mxstudioweb',
   linkedin: 'https://www.linkedin.com/company/145009011/',
-  /** The free preview request form linked from the Instagram bio. */
+  /** The free preview questionnaire (separate Vercel project with its own Supabase panel). */
   diagnostico: 'https://mx-studio-web.vercel.app/',
 } as const;
 
-export const whatsappMsgDefault =
-  'Olá! Vim pelo portfólio da MX Studio Web e queria conversar sobre um projeto.';
+/** Link to the diagnosis questionnaire in the page's language: it opens in Portuguese unless given ?lang=en|es. */
+export const diagnosticoUrl = (locale: Locale) =>
+  locale === 'pt' ? estudio.diagnostico : `${estudio.diagnostico}?lang=${locale}`;
+
+export const whatsappMsgDefault = 'Olá! Vim pelo site da MX Studio Web e quero conversar sobre um site.';
 export const whatsappUrl = (msg = whatsappMsgDefault) =>
   `https://wa.me/${estudio.whatsapp}?text=${encodeURIComponent(msg)}`;
 
@@ -56,7 +63,6 @@ export type Demo = {
   accent: string;
   year: string;
   scope: string[];
-  metrics: { label: string; value: string }[];
 };
 
 export const demos: Demo[] = [
@@ -71,11 +77,6 @@ export const demos: Demo[] = [
     accent: '#C6FF3B',
     year: '2025',
     scope: ['Catálogo dinâmico', 'Carrinho persistente', 'Cupom + total', 'Checkout mockado'],
-    metrics: [
-      { label: '1.8s', value: 'LCP no 4G' },
-      { label: '741 KB', value: 'a página inteira' },
-      { label: 'PIX', value: 'no checkout' },
-    ],
   },
   {
     slug: 'restaurante-terra',
@@ -88,11 +89,6 @@ export const demos: Demo[] = [
     accent: '#FF8A5C',
     year: '2025',
     scope: ['Menu em tabs', 'Reserva com calendário', 'Modal de confirmação', 'Envio simulado'],
-    metrics: [
-      { label: '1.7s', value: 'LCP no 4G' },
-      { label: '397 KB', value: 'a página inteira' },
-      { label: '24/7', value: 'reserva sem ligação' },
-    ],
   },
   {
     slug: 'clinica-sereno',
@@ -105,11 +101,6 @@ export const demos: Demo[] = [
     accent: '#3BE0B3',
     year: '2025',
     scope: ['Perfis dos profissionais', 'Grade de horários', 'Form validado', 'Confirmação'],
-    metrics: [
-      { label: '1.8s', value: 'LCP no 4G' },
-      { label: '465 KB', value: 'a página inteira' },
-      { label: '0', value: 'de layout shift' },
-    ],
   },
   {
     slug: 'motta-advogados',
@@ -122,11 +113,6 @@ export const demos: Demo[] = [
     accent: '#A78BFA',
     year: '2025',
     scope: ['Áreas de atuação', 'Drawer detalhado', 'Triagem em etapas', 'Resumo do caso'],
-    metrics: [
-      { label: '1.2s', value: 'LCP no 4G' },
-      { label: '489 KB', value: 'a página inteira' },
-      { label: 'OAB', value: 'Prov. 205/2021' },
-    ],
   },
   {
     slug: 'costa-imoveis',
@@ -139,11 +125,6 @@ export const demos: Demo[] = [
     accent: '#C6FF3B',
     year: '2025',
     scope: ['Filtros em tempo real', 'Grid responsivo', 'Ficha do imóvel', 'WhatsApp por imóvel'],
-    metrics: [
-      { label: '1.7s', value: 'LCP no 4G' },
-      { label: '679 KB', value: 'a página inteira' },
-      { label: 'Filtro', value: 'em tempo real' },
-    ],
   },
   {
     slug: 'rota-clara',
@@ -156,11 +137,6 @@ export const demos: Demo[] = [
     accent: '#5EEAD4',
     year: '2025',
     scope: ['FAQ acordeão', 'Contador de vagas', 'Seleção de plano', 'Checkout em etapas'],
-    metrics: [
-      { label: '1.8s', value: 'LCP no 4G' },
-      { label: '735 KB', value: 'a página inteira' },
-      { label: 'Checkout', value: 'em 3 etapas' },
-    ],
   },
   {
     slug: 'lumi-odonto',
@@ -173,11 +149,6 @@ export const demos: Demo[] = [
     accent: '#7DD3FC',
     year: '2026',
     scope: ['Simulador de clareamento', 'Tratamentos em abas', 'Equipe e CRO', 'Agendamento guiado'],
-    metrics: [
-      { label: 'Simulador', value: 'de clareamento' },
-      { label: 'Agenda', value: 'em 3 passos' },
-      { label: 'CRO', value: 'responsável técnico' },
-    ],
   },
   {
     slug: 'iris-estetica',
@@ -190,11 +161,6 @@ export const demos: Demo[] = [
     accent: '#F0ABFC',
     year: '2026',
     scope: ['Quiz de avaliação', 'Protocolos por área', 'Pacotes de sessões', 'Reserva online'],
-    metrics: [
-      { label: 'Quiz', value: 'de avaliação' },
-      { label: 'Pacotes', value: 'preço em tempo real' },
-      { label: 'Filtro', value: 'por área do corpo' },
-    ],
   },
   {
     slug: 'mare-salao',
@@ -207,11 +173,6 @@ export const demos: Demo[] = [
     accent: '#F2B5A0',
     year: '2026',
     scope: ['Serviços por categoria', 'Escolha da profissional', 'Horários livres', 'Resumo com total'],
-    metrics: [
-      { label: 'Agenda', value: 'em 4 passos' },
-      { label: 'Total', value: 'somado na hora' },
-      { label: 'Equipe', value: 'por especialidade' },
-    ],
   },
   {
     slug: 'alicerce-construtora',
@@ -224,11 +185,6 @@ export const demos: Demo[] = [
     accent: '#FBBF24',
     year: '2026',
     scope: ['Simulador de orçamento', 'Portfólio de obras', 'Etapas da obra', 'Visita técnica'],
-    metrics: [
-      { label: 'Orçamento', value: 'em tempo real' },
-      { label: 'Obras', value: 'com filtro' },
-      { label: 'Etapas', value: 'da obra' },
-    ],
   },
 ];
 
@@ -236,6 +192,41 @@ export const demoBySlug = Object.fromEntries(demos.map((d) => [d.slug, d])) as R
   DemoSlug,
   Demo
 >;
+
+/** The six demos with real photography, in display order. The other four stay off the showcase until they get photos. */
+export const showcase = [
+  'clinica-sereno',
+  'motta-advogados',
+  'moda-arte',
+  'restaurante-terra',
+  'costa-imoveis',
+  'rota-clara',
+] as const satisfies readonly DemoSlug[];
+export type ShowcaseSlug = (typeof showcase)[number];
+export const isShowcased = (slug: string): slug is ShowcaseSlug => (showcase as readonly string[]).includes(slug);
+
+/**
+ * LCP in seconds shown on the showcase cards: Google Lighthouse 12, mobile defaults (simulated 4G,
+ * 4× slower CPU, no cache), worst of 3 runs rounded up to 0.1 s. Measured on the static export
+ * (out/) served over local HTTP/2, 2026-10-04.
+ */
+export const lcpSeconds: Record<ShowcaseSlug, number> = {
+  'clinica-sereno': 2.9,
+  'motta-advogados': 2.9,
+  'moda-arte': 2.7,
+  'restaurante-terra': 2.8,
+  'costa-imoveis': 2.6,
+  'rota-clara': 3.4,
+};
+
+/** Starting prices in BRL; other currencies are converted at display time. */
+export const services = [
+  { key: 'landing', price: 3500 },
+  { key: 'institucional', price: 4900 },
+  { key: 'ecommerce', price: 9900 },
+  { key: 'sistema', price: 16000 },
+] as const;
+export type ServiceKey = (typeof services)[number]['key'];
 
 /** Real client sites that are live, shown in their niche ahead of the demos. */
 export type CaseSlug = 'sulamita-estetica';
@@ -256,7 +247,7 @@ export const clientCases: ClientCase[] = [
     niche: 'beleza',
     clientName: 'Sulamita Nascimento',
     url: 'https://www.sulamitaestetica.pt/',
-    image: '/clientes/sulamita-estetica.webp',
+    image: '/shots/sulamita-desktop.webp',
     accent: '#E39A7B',
     year: '2026',
   },
@@ -275,4 +266,13 @@ export const fundadores = {
   cuidadoMes: 149.9,
   prazoDias: 7,
   whatsappMsg: 'Olá! Vi o Reels e quero uma vaga de cliente fundador para o meu negócio.',
+  /** Sent instead of `whatsappMsg` once `restantes` reaches 0. */
+  listaDeEsperaMsg: 'Olá! Vi que as vagas de cliente fundador acabaram e quero entrar na lista de espera para uma vaga.',
 } as const;
+
+/** Closing headline of /fundadores, singular or plural: "Resta 1 vaga" / "Restam 3 vagas". */
+export function vagasRestantes(n: number) {
+  return n === 1
+    ? { verb: 'Resta', count: '1 vaga', tail: 'Ela pode ser sua.' }
+    : { verb: 'Restam', count: `${n} vagas`, tail: 'Uma pode ser sua.' };
+}

@@ -1,0 +1,13 @@
+{
+  // Static site only: Cloudflare serves the files Next.js exports to out/.
+  "name": "mxstudioweb",
+  "compatibility_date": "2026-10-01",
+  // Keeps *-mxstudioweb.<account>.workers.dev links on, so each production deploy doesn't switch them off.
+  "preview_urls": true,
+  // Needed by `wrangler preview` (the branch previews Workers Builds runs); empty = same settings as production.
+  "previews": {},
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}

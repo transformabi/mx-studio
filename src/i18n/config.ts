@@ -1,13 +1,14 @@
 export const locales = ['pt', 'en', 'es'] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'pt';
+/** Served under a prefix (/en, /es); Portuguese lives at the root. */
+export const prefixedLocales = ['en', 'es'] as const satisfies readonly Locale[];
 
-export const currencies = ['BRL', 'USD', 'EUR', 'GBP', 'BTC'] as const;
+/** Currencies the studio is paid in (PIX/card in BRL, Wise for the rest). */
+export const currencies = ['BRL', 'USD', 'EUR', 'GBP'] as const;
 export type Currency = (typeof currencies)[number];
 
-export const LOCALE_COOKIE = 'mx-locale';
-export const CURRENCY_COOKIE = 'mx-currency';
-export const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+export const CURRENCY_STORAGE_KEY = 'mx-currency';
 
 export const localeInfo: Record<
   Locale,
@@ -23,11 +24,10 @@ export const currencySymbol: Record<Currency, string> = {
   USD: 'US$',
   EUR: '€',
   GBP: '£',
-  BTC: '₿',
 };
 
 /** Currency shown until the visitor picks one. */
-export const defaultCurrency: Record<Locale, Currency> = { pt: 'BRL', en: 'USD', es: 'EUR' };
+export const defaultCurrency: Record<Locale, Currency> = { pt: 'BRL', en: 'USD', es: 'USD' };
 
 export const isLocale = (v: unknown): v is Locale =>
   typeof v === 'string' && (locales as readonly string[]).includes(v);
