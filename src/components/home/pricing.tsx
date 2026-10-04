@@ -1,13 +1,14 @@
-import { ArrowUpRight, Check, CreditCard, Globe, QrCode } from 'lucide-react';
+import { ArrowUpRight, Check } from 'lucide-react';
 import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
 import { services, whatsappUrl } from '@/lib/estudio';
 import { CurrencySwitch } from '@/components/site/currency-switch';
+import { CardLogos, PixLogo, WiseLogo } from '@/components/site/payment-logos';
 import { Price } from '@/components/site/price';
 import { SectionHeader } from '@/components/site/section-header';
 
-// Same order as pricing.payments.methods: PIX, card, Wise.
-const methodIcons = [QrCode, CreditCard, Globe];
+// Brand marks in the same order as pricing.payments.methods: PIX, card, Wise.
+const methodLogos = [PixLogo, CardLogos, WiseLogo];
 
 export function Pricing({ t }: { t: Messages['pricing'] }) {
   return (
@@ -60,10 +61,10 @@ export function Pricing({ t }: { t: Messages['pricing'] }) {
           <p className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50 lg:col-span-3">{t.payments.title}</p>
           <ul className="flex flex-wrap gap-3 lg:col-span-9">
             {t.payments.methods.map((m, i) => {
-              const Icon = methodIcons[i];
+              const Logo = methodLogos[i];
               return (
-                <li key={m} className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm">
-                  <Icon className="h-4 w-4 text-lime" aria-hidden />
+                <li key={m} className="inline-flex items-center gap-2.5 rounded-full border border-white/15 px-4 py-2 text-sm">
+                  <Logo />
                   {m}
                 </li>
               );
