@@ -1,3 +1,5 @@
+import { SITE_HOST } from './estudio';
+
 export type Slide = {
   n: number;
   kind: 'cover' | 'setup' | 'case' | 'why' | 'cta';
@@ -108,7 +110,7 @@ export const slides: Slide[] = [
     n: 10,
     kind: 'cta',
     hook: 'Seu site pode ser\no próximo case.',
-    body: 'mxstudioweb.vercel.app',
+    body: SITE_HOST,
     hookTail: '3 vagas em outubro',
   },
 ];

@@ -1,5 +1,7 @@
 /** Public address of this site; override per deploy with NEXT_PUBLIC_SITE_URL. */
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mxstudioweb.com.br';
+/** SITE_URL without the protocol, for display (mxstudioweb.com.br). */
+export const SITE_HOST = new URL(SITE_URL).host;
 
 export const estudio = {
   name: 'MX Studio Web',
