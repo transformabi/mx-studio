@@ -143,7 +143,10 @@ describe('home page', () => {
     expect(html).toContain('R$ 297');
     expect(html).toContain('R$ 447');
     expect(html).toContain('R$ 597');
-    expect(html).toContain('id="planos"');
+    expect(html).toContain('action="/api/create-checkout-session"');
+    expect(html).toContain('name="plan" value="essencial"');
+    expect(html).toContain('name="plan" value="profissional"');
+    expect(html).toContain('name="plan" value="completo"');
     expect(html).toContain('href="/#planos"');
     expect(html).toContain('cta-call');
     expect(html).not.toContain('R$ 497');

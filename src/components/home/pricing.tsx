@@ -105,15 +105,16 @@ export function Pricing({ t }: { t: Messages['pricing'] }) {
                         </li>
                       ))}
                     </ul>
-                    <a
-                      href={whatsappUrl(fill(t.plans.askMsg, { plan: item.name, price }))}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-auto inline-flex items-center gap-1.5 pt-8 text-sm font-semibold transition-colors hover:text-lime"
-                    >
-                      {t.plans.cta}
-                      <ArrowUpRight className="h-4 w-4" aria-hidden />
-                    </a>
+                    <form action="/api/create-checkout-session" method="POST" className="mt-auto pt-8">
+                      <input type="hidden" name="plan" value={plano.id} />
+                      <button
+                        type="submit"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors hover:text-lime"
+                      >
+                        {t.plans.cta}
+                        <ArrowUpRight className="h-4 w-4" aria-hidden />
+                      </button>
+                    </form>
                   </article>
                 </Reveal>
               );

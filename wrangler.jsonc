@@ -1,5 +1,5 @@
 {
-  // Static site only: Cloudflare serves the files Next.js exports to out/.
+  // Static files from out/, plus one Worker route that opens Stripe Checkout.
   "name": "mxstudioweb",
   "compatibility_date": "2026-10-01",
   // Production lives only on mxstudioweb.com.br (custom domains set in the Cloudflare dashboard), so search
@@ -11,6 +11,9 @@
   "previews": {},
   "assets": {
     "directory": "./out",
-    "not_found_handling": "404-page"
-  }
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "main": "worker/index.ts"
 }
