@@ -108,8 +108,8 @@ export const slides: Slide[] = [
     n: 10,
     kind: 'cta',
     hook: 'Seu site pode ser\no próximo case.',
-    body: 'R$ 497 · mxstudioweb.com.br/fundadores',
-    hookTail: '3 vagas em outubro',
+    body: 'R$ 297, R$ 447 e R$ 597/mês',
+    hookTail: 'Essencial, Profissional e Completo',
   },
 ];
 

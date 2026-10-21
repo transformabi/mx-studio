@@ -44,9 +44,11 @@ describe('studio data', () => {
 });
 
 describe('diagnosis link', () => {
-  it('stays on this domain, on the October offer', () => {
+  it('stays on this domain and opens the plans in the same tab', () => {
+    expect(diagnosticoUrl('pt')).toBe('/#pricing');
+    expect(diagnosticoUrl('en')).toBe('/en#pricing');
+    expect(diagnosticoUrl('es')).toBe('/es#pricing');
     for (const locale of ['pt', 'en', 'es'] as const) {
-      expect(diagnosticoUrl(locale)).toBe('/fundadores');
       expect(diagnosticoUrl(locale)).not.toMatch(/vercel/i);
     }
   });

@@ -111,11 +111,31 @@ export const es: Messages = {
   },
 
   pricing: {
-    label: 'Servicios y precios',
-    title: 'Valores a consultar.',
-    lead: 'Los proyectos a medida se cotizan por escrito, con alcance y plazo. La condición de octubre está en esta página, en este dominio.',
+    label: 'Suscripción',
+    title: 'Sitio por suscripción para pequeños negocios.',
+    lead: 'Tres planes mensuales, con alojamiento y SSL. Los valores están en esta página.',
     consultLabel: 'Inversión',
     consult: 'Valores a consultar',
+    plans: {
+      per: '/mes',
+      cta: 'Quiero este plan',
+      askMsg: 'Hola. Vine por el sitio de MX Studio Web y quiero el {plan}, {price} al mes.',
+      essencial: {
+        name: 'Plan Esencial',
+        alt: 'Plan Esencial de MX Studio Web, R$ 297 al mes',
+        bullets: ['Hasta 5 páginas', '2 ajustes al mes', 'Diseño adaptable', 'Formulario + WhatsApp', 'Alojamiento y SSL incluidos'],
+      },
+      profissional: {
+        name: 'Plan Profesional',
+        alt: 'Plan Profesional de MX Studio Web, R$ 447 al mes',
+        bullets: ['Hasta 8 páginas', '4 ajustes al mes', 'SEO básico + Analytics', 'Informe mensual', 'Alojamiento y SSL incluidos'],
+      },
+      completo: {
+        name: 'Plan Completo',
+        alt: 'Plan Completo de MX Studio Web, R$ 597 al mes',
+        bullets: ['Hasta 12 páginas', '6 ajustes al mes', 'Soporte prioritario', 'Más personalización', 'Alojamiento y SSL incluidos'],
+      },
+    },
     offer: {
       eyebrow: 'Octubre',
       title: 'Condición de lanzamiento por {price}.',
@@ -149,8 +169,8 @@ export const es: Messages = {
     payments: {
       title: 'Formas de pago',
       methods: ['PIX (Brasil)', 'Tarjeta de crédito, en cuotas', 'Wise, para clientes de otros países'],
-      terms: 'Contrato con alcance y plazo. Pago en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega.',
-      abroad: '¿Estás fuera de Brasil? Te envío el presupuesto en tu moneda y pagas por Wise.',
+      terms: 'Mensualidad por PIX o tarjeta.',
+      abroad: '¿Estás fuera de Brasil? La mensualidad se puede pagar por Wise.',
     },
   },
 
@@ -183,7 +203,7 @@ export const es: Messages = {
       },
       {
         q: '¿Cómo es el pago?',
-        a: 'Con contrato, en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega. Acepto PIX, tarjeta de crédito en cuotas y Wise para clientes fuera de Brasil.',
+        a: 'La mensualidad es por PIX o tarjeta. Los planes son Esencial, Profesional y Completo. Fuera de Brasil, el pago puede ser por Wise.',
       },
       {
         q: '¿Usas plantillas?',

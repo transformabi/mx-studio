@@ -113,11 +113,31 @@ export const pt = {
   },
 
   pricing: {
-    label: 'Serviços e preços',
-    title: 'Valores a consultar.',
-    lead: 'Projetos sob medida saem com orçamento por escrito, escopo e prazo. A condição de outubro está nesta página, no próprio site.',
+    label: 'Assinatura',
+    title: 'Site por assinatura para pequenos negócios.',
+    lead: 'Três planos mensais, com hospedagem e SSL. Os valores estão nesta página.',
     consultLabel: 'Investimento',
     consult: 'Valores a consultar',
+    plans: {
+      per: '/mês',
+      cta: 'Quero este plano',
+      askMsg: 'Olá! Vim pelo site da MX Studio Web e quero o {plan}, {price} por mês.',
+      essencial: {
+        name: 'Plano Essencial',
+        alt: 'Plano Essencial da MX Studio Web, R$ 297 por mês',
+        bullets: ['Até 5 páginas', '2 ajustes mensais', 'Design responsivo', 'Formulário + WhatsApp', 'Hospedagem e SSL inclusos'],
+      },
+      profissional: {
+        name: 'Plano Profissional',
+        alt: 'Plano Profissional da MX Studio Web, R$ 447 por mês',
+        bullets: ['Até 8 páginas', '4 ajustes mensais', 'SEO básico + Analytics', 'Relatório mensal', 'Hospedagem e SSL inclusos'],
+      },
+      completo: {
+        name: 'Plano Completo',
+        alt: 'Plano Completo da MX Studio Web, R$ 597 por mês',
+        bullets: ['Até 12 páginas', '6 ajustes mensais', 'Suporte prioritário', 'Mais personalização', 'Hospedagem e SSL inclusos'],
+      },
+    },
     offer: {
       eyebrow: 'Outubro',
       title: 'Condição de lançamento por {price}.',
@@ -151,9 +171,8 @@ export const pt = {
     payments: {
       title: 'Formas de pagamento',
       methods: ['PIX', 'Cartão de crédito, parcelado', 'Wise, para clientes de outros países'],
-      terms:
-        'Contrato com escopo e prazo. Pagamento em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega.',
-      abroad: 'Está fora do Brasil? Envio o orçamento na sua moeda e você paga pela Wise.',
+      terms: 'Mensalidade no PIX ou no cartão.',
+      abroad: 'Está fora do Brasil? A mensalidade pode ser paga pela Wise.',
     },
   },
 
@@ -186,7 +205,7 @@ export const pt = {
       },
       {
         q: 'Como é o pagamento?',
-        a: 'Com contrato, em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega. Aceito PIX, cartão de crédito parcelado e Wise para clientes de fora do Brasil.',
+        a: 'A mensalidade é no PIX ou no cartão. Os planos são Essencial, Profissional e Completo. Fora do Brasil, o pagamento pode ser pela Wise.',
       },
       {
         q: 'Você usa modelo pronto?',

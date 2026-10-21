@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { demos, fundadores, lcpSeconds, showcase, vagasRestantes } from '@/lib/estudio';
+import { demos, lcpSeconds, showcase } from '@/lib/estudio';
 import { nestedSegments } from '../../scripts/flatten-segments.mjs';
 
 const OUT = join(process.cwd(), 'out');
@@ -135,13 +135,21 @@ describe('home page', () => {
     }
   });
 
-  it('shows consultative prices and the October offer on this domain', () => {
+  it('shows only the three subscription plans on this domain', () => {
     const html = read('index.html').replace(/\s/g, ' ');
-    expect(html).toContain('Valores a consultar');
-    expect(html).toContain('R$ 497');
-    expect(html).toContain('href="/fundadores"');
-    expect(html).not.toMatch(/href="\/fundadores"[^>]*target="_blank"/);
+    expect(html).toContain('Site por assinatura para pequenos negócios.');
+    expect(html).toContain('R$ 297');
+    expect(html).toContain('R$ 447');
+    expect(html).toContain('R$ 597');
+    expect(html).toContain('/planos/essencial.jpg');
+    expect(html).toContain('/planos/profissional.jpg');
+    expect(html).toContain('/planos/completo.jpg');
+    expect(html).toContain('href="/#pricing"');
+    expect(html).not.toContain('R$ 497');
     expect(html).not.toContain('R$ 3.500');
+    expect(html).not.toContain('R$ 4.900');
+    expect(html).not.toContain('R$ 9.900');
+    expect(html).not.toContain('R$ 16.000');
     expect(html).not.toContain('mxstudioweb.vercel.app');
     expect(html).not.toContain('mx-studio-web.vercel.app');
   });
@@ -166,29 +174,15 @@ describe('home page', () => {
 });
 
 describe('/fundadores', () => {
-  it('is Portuguese only, out of search, and keeps the launch offer', () => {
+  it('is Portuguese only, out of search, and shows the three plans instead of the retired price', () => {
     const html = read('fundadores.html').replace(/\s/g, ' ');
     expect(html).toMatch(/<html[^>]*lang="pt-BR"/);
     expect(html).toMatch(/<meta name="robots" content="noindex, nofollow"/);
-    expect(html).toContain('R$ 497');
-    expect(html).toContain('R$ 149,90');
-    expect(html).toContain('sulamitaestetica.pt');
-  });
-
-  it('words the slots left in the right number, with a waiting list when sold out', () => {
-    const page = text(read('fundadores.html'));
-    expect(page).not.toMatch(/Restam 1 vagas|Resta \d{2,} vaga|Resta [02-9] vaga/);
-    if (fundadores.restantes > 0) {
-      const left = vagasRestantes(fundadores.restantes);
-      expect(page).toContain(`${left.verb} ${left.count}. ${left.tail}`);
-      expect(page).toContain('Quero minha vaga');
-      expect(page).not.toContain('lista de espera');
-    } else {
-      expect(page).toContain('As vagas de fundador acabaram.');
-      expect(page).toContain('Entrar na lista de espera');
-      expect(page).not.toContain('Quero minha vaga');
-    }
-    expect(page).toContain('Respondo em até 24 horas em dias úteis.');
+    expect(html).toContain('R$ 297');
+    expect(html).toContain('R$ 447');
+    expect(html).toContain('R$ 597');
+    expect(html).not.toContain('R$ 497');
+    expect(html).not.toContain('R$ 149,90');
   });
 
   it('has its own canonical and no language alternates', () => {

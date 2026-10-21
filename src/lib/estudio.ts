@@ -1,3 +1,4 @@
+import { localizedPath } from '@/i18n/paths';
 import type { Locale } from '@/i18n/config';
 
 /** Public address of this site; override per deploy with NEXT_PUBLIC_SITE_URL. */
@@ -18,11 +19,8 @@ export const estudio = {
   linkedin: 'https://www.linkedin.com/company/145009011/',
 } as const;
 
-/** Preview call-to-action stays on this domain: the October offer, same tab. */
-export const diagnosticoUrl = (locale: Locale) => {
-  void locale;
-  return '/fundadores';
-};
+/** Preview button stays on this domain and opens the plans, in the same tab. */
+export const diagnosticoUrl = (locale: Locale) => `${localizedPath(locale, '/')}#pricing`;
 
 export const whatsappMsgDefault = 'Olá! Vim pelo site da MX Studio Web e quero conversar sobre um site.';
 export const whatsappUrl = (msg = whatsappMsgDefault) =>
@@ -227,6 +225,14 @@ export const services = [
   { key: 'sistema', price: 16000 },
 ] as const;
 export type ServiceKey = (typeof services)[number]['key'];
+
+/** Monthly website plans. The only prices shown on the site. */
+export const planos = [
+  { id: 'essencial', price: 297, image: '/planos/essencial.jpg', width: 1152, height: 1712 },
+  { id: 'profissional', price: 447, image: '/planos/profissional.jpg', width: 1152, height: 1712 },
+  { id: 'completo', price: 597, image: '/planos/completo.jpg', width: 1152, height: 1712 },
+] as const;
+export type PlanoId = (typeof planos)[number]['id'];
 
 /** Real client sites that are live, shown in their niche ahead of the demos. */
 export type CaseSlug = 'sulamita-estetica';
