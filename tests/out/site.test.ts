@@ -135,16 +135,17 @@ describe('home page', () => {
     }
   });
 
-  it('shows only the three subscription plans on this domain', () => {
+  it('keeps consultative prices and adds the three subscription plans', () => {
     const html = read('index.html').replace(/\s/g, ' ');
+    expect(html).toContain('Valores a consultar');
     expect(html).toContain('Site por assinatura para pequenos negócios.');
+    expect(html).toContain('Consulte sites para pequenas empresas');
     expect(html).toContain('R$ 297');
     expect(html).toContain('R$ 447');
     expect(html).toContain('R$ 597');
-    expect(html).toContain('/planos/essencial.jpg');
-    expect(html).toContain('/planos/profissional.jpg');
-    expect(html).toContain('/planos/completo.jpg');
-    expect(html).toContain('href="/#pricing"');
+    expect(html).toContain('id="planos"');
+    expect(html).toContain('href="/#planos"');
+    expect(html).toContain('cta-call');
     expect(html).not.toContain('R$ 497');
     expect(html).not.toContain('R$ 3.500');
     expect(html).not.toContain('R$ 4.900');

@@ -15,7 +15,7 @@ export const pt = {
     pricing: 'Preços',
     about: 'Sobre',
     contact: 'Contato',
-    cta: 'Pedir prévia grátis',
+    cta: 'Consulte sites para pequenas empresas',
     home: 'MX Studio Web, página inicial',
     menuLabel: 'Navegação principal',
     menu: 'Abrir menu',
@@ -32,8 +32,8 @@ export const pt = {
     titleAccent: 'clientes',
     titleB: 'para o seu negócio.',
     lead: 'Sites sob medida para clínicas, escritórios, lojas e negócios locais: rápidos no celular e feitos para virar conversa no WhatsApp. Você fala direto com quem desenha e programa.',
-    primary: 'Pedir prévia grátis',
-    note: 'Diagnóstico de 5 minutos. A prévia chega no seu WhatsApp.',
+    primary: 'Consulte sites para pequenas empresas',
+    note: 'Três planos mensais para pequenas empresas e estabelecimentos, nesta página.',
     secondary: 'Falar no WhatsApp',
     caseLabel: 'Cliente real · sulamitaestetica.pt',
     desktopAlt: 'Página inicial do site da Sulamita Nascimento no computador',
@@ -113,12 +113,15 @@ export const pt = {
   },
 
   pricing: {
-    label: 'Assinatura',
-    title: 'Site por assinatura para pequenos negócios.',
-    lead: 'Três planos mensais, com hospedagem e SSL. Os valores estão nesta página.',
+    label: 'Serviços e preços',
+    title: 'Valores a consultar.',
+    lead: 'Projetos sob medida saem com orçamento por escrito, escopo e prazo.',
     consultLabel: 'Investimento',
     consult: 'Valores a consultar',
     plans: {
+      label: 'Assinatura',
+      title: 'Site por assinatura para pequenos negócios.',
+      lead: 'Para pequenas empresas e estabelecimentos. Três planos mensais, com hospedagem e SSL.',
       per: '/mês',
       cta: 'Quero este plano',
       askMsg: 'Olá! Vim pelo site da MX Studio Web e quero o {plan}, {price} por mês.',
@@ -171,8 +174,9 @@ export const pt = {
     payments: {
       title: 'Formas de pagamento',
       methods: ['PIX', 'Cartão de crédito, parcelado', 'Wise, para clientes de outros países'],
-      terms: 'Mensalidade no PIX ou no cartão.',
-      abroad: 'Está fora do Brasil? A mensalidade pode ser paga pela Wise.',
+      terms:
+        'Contrato com escopo e prazo. Pagamento em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega.',
+      abroad: 'Está fora do Brasil? Envio o orçamento na sua moeda e você paga pela Wise.',
     },
   },
 
@@ -205,7 +209,7 @@ export const pt = {
       },
       {
         q: 'Como é o pagamento?',
-        a: 'A mensalidade é no PIX ou no cartão. Os planos são Essencial, Profissional e Completo. Fora do Brasil, o pagamento pode ser pela Wise.',
+        a: 'Com contrato, em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega. Aceito PIX, cartão de crédito parcelado e Wise para clientes de fora do Brasil. Os sites por assinatura têm mensalidade própria.',
       },
       {
         q: 'Você usa modelo pronto?',

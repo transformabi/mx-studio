@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowDown, Menu, X } from 'lucide-react';
 import type { Locale } from '@/i18n/config';
 import type { Messages } from '@/i18n/messages';
 import { localizedPath } from '@/i18n/paths';
@@ -23,10 +23,10 @@ export function Header({ locale, t }: { locale: Locale; t: Messages['nav'] }) {
   const cta = (
     <Link
       href={diagnosticoUrl(locale)}
-      className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-lime px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-[#b8ff52]"
+      className="cta-call inline-flex min-h-10 max-w-full items-center gap-1.5 rounded-full px-4 py-2 text-center text-sm font-semibold text-ink"
     >
       {t.cta}
-      <ArrowUpRight className="h-4 w-4" aria-hidden />
+      <ArrowDown className="cta-call-arrow h-4 w-4 shrink-0" aria-hidden />
     </Link>
   );
 

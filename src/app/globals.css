@@ -114,6 +114,36 @@
   }
 }
 
+/* Lime call-to-action that points at the subscription plans. */
+.cta-call {
+  background-image: linear-gradient(100deg, #a4fe24 0%, #a4fe24 36%, #f4ffd8 50%, #a4fe24 64%, #a4fe24 100%);
+  background-size: 220% 100%;
+  animation: cta-call 2.2s ease-in-out infinite;
+}
+.cta-call-arrow {
+  animation: cta-call-arrow 1.4s ease-in-out infinite;
+}
+@keyframes cta-call {
+  0%,
+  100% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 0 0 rgb(164 254 36 / 0.65);
+  }
+  50% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 22px 4px rgb(164 254 36 / 0.45);
+  }
+}
+@keyframes cta-call-arrow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
 /*
  * Client case on the home page: the section holds still while the client's real site scrolls inside the frame
  * (class names in src/lib/scroll-scrub.ts; scrolling-site.tsx reads whether the stage is sticky).

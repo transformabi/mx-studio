@@ -13,7 +13,7 @@ export const en: Messages = {
     pricing: 'Pricing',
     about: 'About',
     contact: 'Contact',
-    cta: 'Get a free preview',
+    cta: 'Sites for small businesses',
     home: 'MX Studio Web, home page',
     menuLabel: 'Main navigation',
     menu: 'Open menu',
@@ -30,8 +30,8 @@ export const en: Messages = {
     titleAccent: 'customers',
     titleB: 'to your business.',
     lead: 'Custom websites for clinics, law firms, shops and local businesses: fast on mobile and built to turn visits into conversations. You talk directly to the person who designs and builds it.',
-    primary: 'Get a free preview',
-    note: 'A 5-minute questionnaire. The preview arrives on your WhatsApp.',
+    primary: 'Sites for small businesses',
+    note: 'Three monthly plans for small businesses and venues, on this page.',
     secondary: 'Message on WhatsApp',
     caseLabel: 'Real client · sulamitaestetica.pt',
     desktopAlt: "Home page of Sulamita Nascimento's website on a computer",
@@ -111,12 +111,15 @@ export const en: Messages = {
   },
 
   pricing: {
-    label: 'Subscription',
-    title: 'A website on subscription for small businesses.',
-    lead: 'Three monthly plans, with hosting and SSL. The prices are on this page.',
+    label: 'Services and pricing',
+    title: 'Pricing on request.',
+    lead: 'Custom projects are quoted in writing, with scope and timeline.',
     consultLabel: 'Investment',
     consult: 'Price on request',
     plans: {
+      label: 'Subscription',
+      title: 'A website on subscription for small businesses.',
+      lead: 'For small businesses and venues. Three monthly plans, with hosting and SSL.',
       per: '/mo',
       cta: 'I want this plan',
       askMsg: 'Hello! I came from the MX Studio Web site and I want the {plan}, {price} a month.',
@@ -169,8 +172,8 @@ export const en: Messages = {
     payments: {
       title: 'Payment methods',
       methods: ['PIX (Brazil)', 'Credit card, in instalments', 'Wise, for clients outside Brazil'],
-      terms: 'Monthly payment by PIX or card.',
-      abroad: 'Outside Brazil? The monthly fee can be paid through Wise.',
+      terms: 'Contract with scope and timeline. Payment in 3 stages: 40% upfront, 30% on design approval and 30% on delivery.',
+      abroad: 'Outside Brazil? I send the quote in your currency and you pay through Wise.',
     },
   },
 
@@ -203,7 +206,7 @@ export const en: Messages = {
       },
       {
         q: 'How does payment work?',
-        a: 'The monthly fee is by PIX or card. The plans are Essential, Professional and Complete. Outside Brazil, payment can be through Wise.',
+        a: 'With a contract, in 3 stages: 40% upfront, 30% on design approval and 30% on delivery. I accept PIX, credit card in instalments and Wise for clients outside Brazil. Subscription websites have their own monthly fee.',
       },
       {
         q: 'Do you use templates?',

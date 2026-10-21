@@ -19,8 +19,8 @@ export const estudio = {
   linkedin: 'https://www.linkedin.com/company/145009011/',
 } as const;
 
-/** Preview button stays on this domain and opens the plans, in the same tab. */
-export const diagnosticoUrl = (locale: Locale) => `${localizedPath(locale, '/')}#pricing`;
+/** Call-to-action stays on this page and scrolls to the subscription plans. */
+export const diagnosticoUrl = (locale: Locale) => `${localizedPath(locale, '/')}#planos`;
 
 export const whatsappMsgDefault = 'Olá! Vim pelo site da MX Studio Web e quero conversar sobre um site.';
 export const whatsappUrl = (msg = whatsappMsgDefault) =>

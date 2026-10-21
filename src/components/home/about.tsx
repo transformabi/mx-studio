@@ -27,7 +27,7 @@ export function About({ t }: { t: Messages['about'] }) {
         </Reveal>
         <Reveal delay={100} className="lg:col-span-7">
           <p className="font-label text-xs uppercase tracking-[0.16em] text-white/50">
-            <span className="text-lime">05</span> — {t.label}
+            <span className="text-lime">06</span> — {t.label}
           </p>
           <h2 className="mt-6 font-brand text-[clamp(2rem,3.2vw+1rem,3.5rem)] font-bold leading-[1.02] tracking-[-0.025em]">
             {t.title}

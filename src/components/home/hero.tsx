@@ -1,4 +1,4 @@
-import { ArrowUpRight, MessageCircle } from 'lucide-react';
+import { ArrowDown, MessageCircle } from 'lucide-react';
 import type { Locale } from '@/i18n/config';
 import type { Messages } from '@/i18n/messages';
 import { diagnosticoUrl, whatsappUrl } from '@/lib/estudio';
@@ -22,9 +22,9 @@ export function Hero({ locale, t, waMsg }: { locale: Locale; t: Messages['hero']
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">{t.lead}</p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <ButtonLink href={diagnosticoUrl(locale)}>
+            <ButtonLink href={diagnosticoUrl(locale)} className="cta-call">
               {t.primary}
-              <ArrowUpRight className="h-4 w-4" aria-hidden />
+              <ArrowDown className="cta-call-arrow h-4 w-4" aria-hidden />
             </ButtonLink>
             <ButtonLink href={whatsappUrl(waMsg)} external variant="outline">
               <MessageCircle className="h-4 w-4" aria-hidden />

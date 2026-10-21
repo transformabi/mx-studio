@@ -13,7 +13,7 @@ export const es: Messages = {
     pricing: 'Precios',
     about: 'Sobre mí',
     contact: 'Contacto',
-    cta: 'Pedir vista previa gratis',
+    cta: 'Sitios para pequeños negocios',
     home: 'MX Studio Web, página de inicio',
     menuLabel: 'Navegación principal',
     menu: 'Abrir menú',
@@ -30,8 +30,8 @@ export const es: Messages = {
     titleAccent: 'clientes',
     titleB: 'a tu negocio.',
     lead: 'Sitios a medida para clínicas, despachos, tiendas y negocios locales: rápidos en el móvil y hechos para convertir visitas en conversaciones. Hablas directamente con quien diseña y programa.',
-    primary: 'Pedir vista previa gratis',
-    note: 'Un cuestionario de 5 minutos. La vista previa llega a tu WhatsApp.',
+    primary: 'Sitios para pequeños negocios',
+    note: 'Tres planes mensuales para pequeños negocios y establecimientos, en esta página.',
     secondary: 'Escribir por WhatsApp',
     caseLabel: 'Cliente real · sulamitaestetica.pt',
     desktopAlt: 'Página de inicio del sitio de Sulamita Nascimento en un ordenador',
@@ -111,12 +111,15 @@ export const es: Messages = {
   },
 
   pricing: {
-    label: 'Suscripción',
-    title: 'Sitio por suscripción para pequeños negocios.',
-    lead: 'Tres planes mensuales, con alojamiento y SSL. Los valores están en esta página.',
+    label: 'Servicios y precios',
+    title: 'Valores a consultar.',
+    lead: 'Los proyectos a medida se cotizan por escrito, con alcance y plazo.',
     consultLabel: 'Inversión',
     consult: 'Valores a consultar',
     plans: {
+      label: 'Suscripción',
+      title: 'Sitio por suscripción para pequeños negocios.',
+      lead: 'Para pequeños negocios y establecimientos. Tres planes mensuales, con alojamiento y SSL.',
       per: '/mes',
       cta: 'Quiero este plan',
       askMsg: 'Hola. Vine por el sitio de MX Studio Web y quiero el {plan}, {price} al mes.',
@@ -169,8 +172,8 @@ export const es: Messages = {
     payments: {
       title: 'Formas de pago',
       methods: ['PIX (Brasil)', 'Tarjeta de crédito, en cuotas', 'Wise, para clientes de otros países'],
-      terms: 'Mensualidad por PIX o tarjeta.',
-      abroad: '¿Estás fuera de Brasil? La mensualidad se puede pagar por Wise.',
+      terms: 'Contrato con alcance y plazo. Pago en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega.',
+      abroad: '¿Estás fuera de Brasil? Te envío el presupuesto en tu moneda y pagas por Wise.',
     },
   },
 
@@ -203,7 +206,7 @@ export const es: Messages = {
       },
       {
         q: '¿Cómo es el pago?',
-        a: 'La mensualidad es por PIX o tarjeta. Los planes son Esencial, Profesional y Completo. Fuera de Brasil, el pago puede ser por Wise.',
+        a: 'Con contrato, en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega. Acepto PIX, tarjeta de crédito en cuotas y Wise para clientes fuera de Brasil. Los sitios por suscripción tienen su propia mensualidad.',
       },
       {
         q: '¿Usas plantillas?',
