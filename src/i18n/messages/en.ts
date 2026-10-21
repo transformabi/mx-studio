@@ -112,11 +112,16 @@ export const en: Messages = {
 
   pricing: {
     label: 'Services and pricing',
-    title: 'Clear pricing from the first conversation.',
-    lead: 'Starting prices. The final quote comes in writing, with scope and timeline, once I understand your project.',
-    from: 'from',
-    currency: 'Currency',
-    approx: 'Prices in other currencies are approximate, converted from Brazilian reais at the exchange rate on the day the site was published.',
+    title: 'Pricing on request.',
+    lead: 'Custom projects are quoted in writing, with scope and timeline. The October offer is on this page, on this domain.',
+    consultLabel: 'Investment',
+    consult: 'Price on request',
+    offer: {
+      eyebrow: 'October',
+      title: 'Launch offer at {price}.',
+      text: 'A one-page site for a small business, live within {days} days. {slots} places. The page opens here, on this site.',
+      cta: 'See what is included',
+    },
     items: {
       landing: {
         title: 'Landing page',

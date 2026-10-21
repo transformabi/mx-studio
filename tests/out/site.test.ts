@@ -135,8 +135,14 @@ describe('home page', () => {
     }
   });
 
-  it('shows prices in reais by default in Portuguese', () => {
-    expect(read('index.html').replace(/\s/g, ' ')).toContain('R$ 3.500');
+  it('shows consultative prices and the October offer on this domain', () => {
+    const html = read('index.html').replace(/\s/g, ' ');
+    expect(html).toContain('Valores a consultar');
+    expect(html).toContain('R$ 497');
+    expect(html).toContain('href="/fundadores"');
+    expect(html).not.toMatch(/href="\/fundadores"[^>]*target="_blank"/);
+    expect(html).not.toContain('R$ 3.500');
+    expect(html).not.toContain('mxstudioweb.vercel.app');
   });
 
   it('has no broken internal link or asset', () => {

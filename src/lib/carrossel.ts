@@ -108,7 +108,7 @@ export const slides: Slide[] = [
     n: 10,
     kind: 'cta',
     hook: 'Seu site pode ser\no próximo case.',
-    body: 'mxstudioweb.vercel.app',
+    body: 'R$ 497 · mxstudioweb.com.br/fundadores',
     hookTail: '3 vagas em outubro',
   },
 ];

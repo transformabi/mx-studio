@@ -64,7 +64,7 @@ export function StudioJsonLd({ locale }: { locale: Locale }) {
     sameAs: [estudio.instagram],
     founder: { '@type': 'Person', name: estudio.owner },
     address: { '@type': 'PostalAddress', addressLocality: 'Rio de Janeiro', addressRegion: 'RJ', addressCountry: 'BR' },
-    priceRange: 'R$ 3.500 – R$ 16.000',
+    priceRange: 'Sob consulta',
     // The languages the studio works in (inLanguage is for creative works, not businesses).
     knowsLanguage: locales.map((l) => localeInfo[l].htmlLang),
     areaServed: [

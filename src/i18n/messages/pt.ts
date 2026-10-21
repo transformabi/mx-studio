@@ -114,11 +114,16 @@ export const pt = {
 
   pricing: {
     label: 'Serviços e preços',
-    title: 'Preço claro desde a primeira conversa.',
-    lead: 'Valores de partida. O orçamento final vem por escrito, com escopo e prazo, depois de entender o seu projeto.',
-    from: 'a partir de',
-    currency: 'Moeda',
-    approx: 'Valores em outras moedas são aproximados, convertidos do real pela cotação do dia em que o site foi publicado.',
+    title: 'Valores a consultar.',
+    lead: 'Projetos sob medida saem com orçamento por escrito, escopo e prazo. A condição de outubro está nesta página, no próprio site.',
+    consultLabel: 'Investimento',
+    consult: 'Valores a consultar',
+    offer: {
+      eyebrow: 'Outubro',
+      title: 'Condição de lançamento por {price}.',
+      text: 'Site de uma página para pequenos negócios, no ar em até {days} dias. São {slots} vagas. A página abre aqui, sem sair do site.',
+      cta: 'Ver o que está incluso',
+    },
     items: {
       landing: {
         title: 'Landing page',

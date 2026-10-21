@@ -112,11 +112,16 @@ export const es: Messages = {
 
   pricing: {
     label: 'Servicios y precios',
-    title: 'Precios claros desde la primera conversación.',
-    lead: 'Precios de partida. El presupuesto final llega por escrito, con alcance y plazo, después de entender tu proyecto.',
-    from: 'desde',
-    currency: 'Moneda',
-    approx: 'Los precios en otras monedas son aproximados, convertidos desde el real brasileño al tipo de cambio del día en que se publicó el sitio.',
+    title: 'Valores a consultar.',
+    lead: 'Los proyectos a medida se cotizan por escrito, con alcance y plazo. La condición de octubre está en esta página, en este dominio.',
+    consultLabel: 'Inversión',
+    consult: 'Valores a consultar',
+    offer: {
+      eyebrow: 'Octubre',
+      title: 'Condición de lanzamiento por {price}.',
+      text: 'Sitio de una página para un negocio pequeño, en línea en hasta {days} días. Hay {slots} plazas. La página se abre aquí, en este sitio.',
+      cta: 'Ver lo que incluye',
+    },
     items: {
       landing: {
         title: 'Landing page',
