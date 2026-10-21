@@ -21,15 +21,13 @@ export function Header({ locale, t }: { locale: Locale; t: Messages['nav'] }) {
     { id: 'contact', label: t.contact },
   ];
   const cta = (
-    <a
+    <Link
       href={diagnosticoUrl(locale)}
-      target="_blank"
-      rel="noopener noreferrer"
       className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-lime px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-[#b8ff52]"
     >
       {t.cta}
       <ArrowUpRight className="h-4 w-4" aria-hidden />
-    </a>
+    </Link>
   );
 
   return (

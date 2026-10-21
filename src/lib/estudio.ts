@@ -16,13 +16,13 @@ export const estudio = {
   instagram: 'https://www.instagram.com/mxstudioweb/',
   instagramHandle: '@mxstudioweb',
   linkedin: 'https://www.linkedin.com/company/145009011/',
-  /** The free preview questionnaire (separate Vercel project with its own Supabase panel). */
-  diagnostico: 'https://mx-studio-web.vercel.app/',
 } as const;
 
-/** Link to the diagnosis questionnaire in the page's language: it opens in Portuguese unless given ?lang=en|es. */
-export const diagnosticoUrl = (locale: Locale) =>
-  locale === 'pt' ? estudio.diagnostico : `${estudio.diagnostico}?lang=${locale}`;
+/** Preview call-to-action stays on this domain: the October offer, same tab. */
+export const diagnosticoUrl = (locale: Locale) => {
+  void locale;
+  return '/fundadores';
+};
 
 export const whatsappMsgDefault = 'Olá! Vim pelo site da MX Studio Web e quero conversar sobre um site.';
 export const whatsappUrl = (msg = whatsappMsgDefault) =>

@@ -9,7 +9,7 @@ export function Contact({ locale, t, waMsg }: { locale: Locale; t: Messages['con
     { label: t.channels.whatsapp, value: estudio.whatsappDisplay, href: whatsappUrl(waMsg), external: true },
     { label: t.channels.email, value: estudio.email, href: `mailto:${estudio.email}`, external: false },
     { label: t.channels.instagram, value: estudio.instagramHandle, href: estudio.instagram, external: true },
-    { label: t.channels.preview, value: t.channels.previewText, href: diagnosticoUrl(locale), external: true },
+    { label: t.channels.preview, value: t.channels.previewText, href: diagnosticoUrl(locale), external: false },
   ];
 
   return (

@@ -44,12 +44,10 @@ describe('studio data', () => {
 });
 
 describe('diagnosis link', () => {
-  it('opens the questionnaire in the language of the page, on the same host', () => {
-    expect(diagnosticoUrl('pt')).toBe('https://mx-studio-web.vercel.app/');
-    expect(diagnosticoUrl('en')).toBe('https://mx-studio-web.vercel.app/?lang=en');
-    expect(diagnosticoUrl('es')).toBe('https://mx-studio-web.vercel.app/?lang=es');
+  it('stays on this domain, on the October offer', () => {
     for (const locale of ['pt', 'en', 'es'] as const) {
-      expect(new URL(diagnosticoUrl(locale)).host).toBe(new URL(estudio.diagnostico).host);
+      expect(diagnosticoUrl(locale)).toBe('/fundadores');
+      expect(diagnosticoUrl(locale)).not.toMatch(/vercel/i);
     }
   });
 });

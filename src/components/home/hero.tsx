@@ -22,7 +22,7 @@ export function Hero({ locale, t, waMsg }: { locale: Locale; t: Messages['hero']
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">{t.lead}</p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <ButtonLink href={diagnosticoUrl(locale)} external>
+            <ButtonLink href={diagnosticoUrl(locale)}>
               {t.primary}
               <ArrowUpRight className="h-4 w-4" aria-hidden />
             </ButtonLink>

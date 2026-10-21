@@ -143,6 +143,7 @@ describe('home page', () => {
     expect(html).not.toMatch(/href="\/fundadores"[^>]*target="_blank"/);
     expect(html).not.toContain('R$ 3.500');
     expect(html).not.toContain('mxstudioweb.vercel.app');
+    expect(html).not.toContain('mx-studio-web.vercel.app');
   });
 
   it('has no broken internal link or asset', () => {
