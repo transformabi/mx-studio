@@ -25,26 +25,32 @@ export async function createCheckoutSession(request: Request, env: CheckoutEnv):
   const plan = String(form.get('plan') ?? '');
   if (!isPlan(plan)) return new Response('Plano inválido.', { status: 400 });
 
-  const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
-    httpClient: Stripe.createFetchHttpClient(),
-  });
+  try {
+    const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
+      httpClient: Stripe.createFetchHttpClient(),
+    });
 
-  const session = await stripe.checkout.sessions.create({
-    ui_mode: 'hosted_page',
-    mode: 'subscription',
-    billing_address_collection: 'auto',
-    phone_number_collection: { enabled: false },
-    automatic_tax: { enabled: false },
-    allow_promotion_codes: false,
-    payment_method_collection: 'always',
-    submit_type: 'auto',
-    integration_identifier: 'hosted_web_0001',
-    origin_context: 'web',
-    success_url: `${SITE}/?assinatura=ok&session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${SITE}/#planos`,
-    line_items: [{ price: PRICES[plan], quantity: 1 }],
-  });
+    const session = await stripe.checkout.sessions.create({
+      ui_mode: 'hosted_page',
+      mode: 'subscription',
+      billing_address_collection: 'auto',
+      phone_number_collection: { enabled: false },
+      automatic_tax: { enabled: false },
+      allow_promotion_codes: false,
+      payment_method_collection: 'always',
+      submit_type: 'auto',
+      integration_identifier: 'hosted_web_0001',
+      origin_context: 'web',
+      success_url: `${SITE}/?assinatura=ok&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${SITE}/#planos`,
+      line_items: [{ price: PRICES[plan], quantity: 1 }],
+    });
 
-  if (!session.url) return new Response('A Stripe não devolveu o checkout.', { status: 502 });
-  return Response.redirect(session.url, 303);
+    if (!session.url) return new Response('A Stripe não devolveu o checkout.', { status: 502 });
+    return Response.redirect(session.url, 303);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Erro ao abrir o checkout.';
+    const safe = message.replace(/[sr]k_(live|test)_[A-Za-z0-9]+/g, '[chave]');
+    return new Response(safe.slice(0, 300), { status: 502 });
+  }
 }

@@ -2,6 +2,7 @@
   // Static files from out/, plus one Worker route that opens Stripe Checkout.
   "name": "mxstudioweb",
   "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
   // Production lives only on mxstudioweb.com.br (custom domains set in the Cloudflare dashboard), so search
   // engines never see a second copy on workers.dev. Wrangler leaves dashboard custom domains untouched.
   "workers_dev": false,
