@@ -6,7 +6,7 @@ import type { Messages } from '@/i18n/messages';
 import { useI18n } from '@/i18n/provider';
 import { estudio, planoCheckoutUrl, planos, planosCurrency, planosDeliveryDays, whatsappUrl } from '@/lib/estudio';
 import { CurrencySwitch } from '@/components/site/currency-switch';
-import { BoletoLogo, CardLogos, PixLogo } from '@/components/site/payment-logos';
+import { BoletoLogo, CardLogos, PixLogo, WiseLogo } from '@/components/site/payment-logos';
 import { SectionHeader } from '@/components/site/section-header';
 import { Reveal } from '@/components/reveal';
 import { cn } from '@/lib/utils';
@@ -15,8 +15,8 @@ import { cn } from '@/lib/utils';
  * Small-business plans: one-time setup + monthly maintenance, live in 14 days. Priced in EUR and shown
  * in the visitor's currency; converted amounts are marked "≈", and the WhatsApp/e-mail text uses them too.
  */
-// Brand marks in the same order as pricing.payments.methods: card, Pix, boleto.
-const methodLogos = [CardLogos, PixLogo, BoletoLogo];
+// Brand marks in the same order as pricing.payments.methods: card, Pix, boleto (all Stripe), then Wise (arranged directly).
+const methodLogos = [CardLogos, PixLogo, BoletoLogo, WiseLogo];
 
 export function Plans({ t, payments }: { t: Messages['pricing']['plans']; payments: Messages['pricing']['payments'] }) {
   const { convert, currency, locale } = useI18n();

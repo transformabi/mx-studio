@@ -16,16 +16,21 @@ describe('messages', () => {
     expect(shape(messages.es)).toEqual(shape(messages.pt));
   });
 
-  it.each(['pt', 'en', 'es'] as const)('%s lists the Stripe methods (card, Pix, boleto), no Wise and never Bitcoin', (locale) => {
+  it.each(['pt', 'en', 'es'] as const)('%s lists the Stripe methods (card, Pix, boleto) plus Wise by arrangement, never Bitcoin', (locale) => {
     const all = JSON.stringify(messages[locale]);
     expect(all).not.toMatch(/bitcoin|btc/i);
     const methods = messages[locale].pricing.payments.methods.join(' ');
     expect(methods).toMatch(/Pix/);
     expect(methods).toMatch(/Boleto/i);
     expect(methods).toMatch(/cart|card|tarjeta/i);
-    // Stripe replaced Wise, and Brazilian Stripe accounts have no card instalments.
-    expect(all).not.toMatch(/Wise/);
+    // Wise is off-site, arranged directly, and listed last; Brazilian Stripe accounts have no card instalments.
+    const list = messages[locale].pricing.payments.methods;
+    expect(list[list.length - 1]).toMatch(/Wise/);
+    expect(list.slice(0, -1).join(' ')).not.toMatch(/Wise/);
+    expect(messages[locale].pricing.payments.note).toMatch(/Wise.*(WhatsApp|e-mail|email)/);
     expect(methods).not.toMatch(/parcel|instal|cuotas/i);
+    // The plans replaced the old budget ranges in the contact form.
+    expect(Object.keys(messages[locale].contact.form)).not.toContain('budget');
   });
 
   it.each(['pt', 'en', 'es'] as const)('%s home description fits in a search result', (locale) => {

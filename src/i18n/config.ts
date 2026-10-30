@@ -4,7 +4,7 @@ export const defaultLocale: Locale = 'pt';
 /** Served under a prefix (/en, /es); Portuguese lives at the root. */
 export const prefixedLocales = ['en', 'es'] as const satisfies readonly Locale[];
 
-/** Currencies the studio is paid in (card, Pix and boleto in BRL through Stripe; Stripe converts for clients abroad). */
+/** Currencies the studio is paid in (card, Pix and boleto in BRL through Stripe, which converts for clients abroad; Wise by arrangement). */
 export const currencies = ['BRL', 'USD', 'EUR', 'GBP'] as const;
 export type Currency = (typeof currencies)[number];
 

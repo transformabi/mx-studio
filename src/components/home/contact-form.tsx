@@ -5,7 +5,6 @@ import { flushSync } from 'react-dom';
 import { Check, Send } from 'lucide-react';
 import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
-import { useI18n } from '@/i18n/provider';
 import { whatsappUrl } from '@/lib/estudio';
 import { cn } from '@/lib/utils';
 
@@ -19,19 +18,9 @@ const chip = (active: boolean) =>
 
 /** No backend: the lead goes to WhatsApp with the message already written. */
 export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
-  const { money } = useI18n();
-  const amount = (brl: number) => money(brl, { decimals: 0, round: true });
-  const budgets = [
-    fill(t.budgetUpTo, { amount: amount(5000) }),
-    fill(t.budgetUpTo, { amount: amount(10000) }),
-    fill(t.budgetUpTo, { amount: amount(20000) }),
-    fill(t.budgetAbove, { amount: amount(20000) }),
-  ];
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [project, setProject] = useState(0);
-  const [budget, setBudget] = useState(1);
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sentUrl, setSentUrl] = useState<string | null>(null);
@@ -62,7 +51,6 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
         `${t.name}: ${name.trim()}`,
         `${t.email}: ${email.trim()}`,
         `${t.waProject}: ${t.projects[project]}`,
-        `${t.waBudget}: ${budgets[budget]}`,
         '',
         message.trim(),
       ].join('\n'),
@@ -132,16 +120,6 @@ export function ContactForm({ t }: { t: Messages['contact']['form'] }) {
         </div>
       </fieldset>
 
-      <fieldset className="mt-6">
-        <legend className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50">{t.budget}</legend>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {budgets.map((b, i) => (
-            <button key={b} type="button" aria-pressed={budget === i} onClick={() => setBudget(i)} className={chip(budget === i)}>
-              {b}
-            </button>
-          ))}
-        </div>
-      </fieldset>
 
       <div className="mt-6">
         <Field id={ids.message} label={t.message} error={errors.message}>

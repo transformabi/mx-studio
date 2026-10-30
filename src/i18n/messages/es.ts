@@ -113,8 +113,8 @@ export const es: Messages = {
   pricing: {
     payments: {
       title: 'Formas de pago',
-      methods: ['Tarjeta de crédito, Apple Pay y Google Pay', 'Pix (Brasil), para la creación', 'Boleto (Brasil)'],
-      note: 'Todo pasa por Stripe. Con tarjeta contratas el plan completo: la creación en el primer pago y el mantenimiento cada mes. ¿Estás en Brasil y prefieres Pix o boleto? Paga la creación con el enlace de Pix del plan y luego activamos la cuota mensual con tarjeta o boleto. Fuera de Brasil, el checkout muestra el importe en tu moneda. El checkout no ofrece pago en cuotas.',
+      methods: ['Tarjeta de crédito, Apple Pay y Google Pay', 'Pix (Brasil), para la creación', 'Boleto (Brasil)', 'Wise, acordado directamente conmigo'],
+      note: 'En el sitio, todo pasa por Stripe. Con tarjeta contratas el plan completo: la creación en el primer pago y el mantenimiento cada mes. ¿Estás en Brasil y prefieres Pix o boleto? Paga la creación con el enlace de Pix del plan y luego activamos la cuota mensual con tarjeta o boleto. Fuera de Brasil, el checkout muestra el importe en tu moneda. El checkout no ofrece pago en cuotas. ¿Prefieres pagar por Wise? Acuérdalo directamente conmigo por WhatsApp o e-mail, fuera del checkout.',
     },
     plans: {
       label: 'Planes para pequeños negocios',
@@ -186,7 +186,7 @@ export const es: Messages = {
       },
       {
         q: '¿Cómo es el pago?',
-        a: 'Los planes Launch, Business y Growth tienen un pago de creación y una cuota mensual de mantenimiento. El pago es por Stripe: tarjeta de crédito, Apple Pay o Google Pay para el plan completo; en Brasil, también Pix o boleto para la creación, con la cuota mensual por tarjeta o boleto. Los proyectos a medida tienen contrato y pago en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega.',
+        a: 'Los planes Launch, Business y Growth tienen un pago de creación y una cuota mensual de mantenimiento. El pago es por Stripe: tarjeta de crédito, Apple Pay o Google Pay para el plan completo; en Brasil, también Pix o boleto para la creación, con la cuota mensual por tarjeta o boleto. Si prefieres pagar por Wise, basta con acordarlo directamente conmigo por WhatsApp o e-mail. Los proyectos a medida tienen contrato y pago en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega.',
       },
       {
         q: '¿Usas plantillas?',
@@ -194,11 +194,11 @@ export const es: Messages = {
       },
       {
         q: '¿Y después del lanzamiento?',
-        a: 'Recibes una guía de uso y 30 días de garantía para correcciones. Si quieres, contratas un plan mensual y yo me ocupo de los cambios.',
+        a: 'Recibes una guía de uso y 30 días de garantía para correcciones. Después, el mantenimiento mensual del plan cubre hosting, actualizaciones, seguridad, copias de seguridad y pequeños cambios de texto e imagen.',
       },
       {
         q: '¿Trabajas con clientes fuera de Brasil?',
-        a: 'Sí. Atiendo todo Brasil, Portugal y otros países, por videollamada y WhatsApp. Los clientes fuera de Brasil pagan por Stripe con tarjeta, en su propia moneda.',
+        a: 'Sí. Atiendo todo Brasil, Portugal y otros países, por videollamada y WhatsApp. Los clientes fuera de Brasil pagan por Stripe con tarjeta, en su propia moneda, o por Wise, acordándolo directamente conmigo.',
       },
     ],
   },
@@ -221,16 +221,12 @@ export const es: Messages = {
       emailPlaceholder: 'tu@empresa.com',
       project: 'Tipo de proyecto',
       projects: ['Plan Launch', 'Plan Business', 'Plan Growth', 'Otro / aún no lo sé'],
-      budget: 'Presupuesto',
-      budgetUpTo: 'Hasta {amount}',
-      budgetAbove: 'Más de {amount}',
       message: 'Sobre el proyecto',
       messagePlaceholder: 'Qué hace la empresa, qué necesita y para cuándo.',
       footnote: 'Al enviar, WhatsApp se abre con tu mensaje listo.',
       send: 'Enviar por WhatsApp',
       waIntro: '¡Hola! Llegué por el sitio de MX Studio Web.',
       waProject: 'Proyecto',
-      waBudget: 'Presupuesto',
       errorName: 'Escribe tu nombre.',
       errorEmail: 'Revisa el e-mail.',
       errorMessage: 'Cuéntame un poco más sobre el proyecto.',

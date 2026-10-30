@@ -111,7 +111,8 @@ describe('home page', () => {
     expect(html).toContain('contato@mxstudioweb.com.br');
     expect(html).toContain('sulamitaestetica.pt');
     expect(html).toContain('Stripe');
-    expect(html).not.toMatch(/Wise/);
+    expect(html).toMatch(/Wise/);
+    expect(html).not.toMatch(/Faixa de investimento|Presupuesto|>Budget</);
     expect(html).not.toMatch(/bitcoin|loremflickr|picsum/i);
   });
 
@@ -260,6 +261,8 @@ describe('/fundadores', () => {
     expect(html).not.toContain('R$ 597');
     expect(html).not.toContain('R$ 497');
     expect(html).not.toContain('R$ 149,90');
+    expect(html).not.toMatch(/parcelado|[> ]3 ?[x×] |em 3 vezes/);
+    expect(html).toContain('Wise');
   });
 
   it('has its own canonical and no language alternates', () => {
