@@ -18,7 +18,7 @@ export function Pricing({ t }: { t: Messages['pricing'] }) {
     <>
       <section id="pricing" className="py-24 sm:py-32">
         <div className="container-site">
-          <SectionHeader index="04" label={t.label} title={t.title} lead={t.lead} />
+          <SectionHeader index="05" label={t.label} title={t.title} lead={t.lead} />
 
           <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {services.map(({ key }) => {
@@ -76,7 +76,7 @@ export function Pricing({ t }: { t: Messages['pricing'] }) {
 
       <section id="planos" className="scroll-mt-24 border-t border-white/10 py-24 sm:py-32">
         <div className="container-site">
-          <SectionHeader index="05" label={t.plans.label} title={t.plans.title} lead={t.plans.lead} />
+          <SectionHeader index="06" label={t.plans.label} title={t.plans.title} lead={t.plans.lead} />
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {planos.map((plano, i) => {
               const item = t.plans[plano.id];

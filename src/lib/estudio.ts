@@ -234,6 +234,19 @@ export const planos = [
 ] as const;
 export type PlanoId = (typeof planos)[number]['id'];
 
+/**
+ * "Express" plans: a fixed one-time setup plus a monthly maintenance fee, in euros, live in 14 days.
+ * Priced in EUR on purpose (they are the international entry offer), so they never go through the
+ * BRL conversion used by the rest of the site. The BRL plans above stay as they are.
+ */
+export const expressPlans = [
+  { id: 'launch', setup: 150, monthly: 20 },
+  { id: 'business', setup: 350, monthly: 20, featured: true },
+  { id: 'growth', setup: 650, monthly: 30 },
+] as const;
+export type ExpressPlanId = (typeof expressPlans)[number]['id'];
+export const expressDeliveryDays = 14;
+
 /** Real client sites that are live, shown in their niche ahead of the demos. */
 export type CaseSlug = 'sulamita-estetica';
 

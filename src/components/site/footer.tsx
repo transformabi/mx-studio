@@ -15,7 +15,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Messages }) {
   const sections = [
     ['work', t.nav.work],
     ['process', t.nav.process],
-    ['pricing', t.nav.pricing],
+    ['express', t.nav.pricing],
     ['about', t.nav.about],
     ['contact', t.nav.contact],
   ] as const;

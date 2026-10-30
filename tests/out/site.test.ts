@@ -107,7 +107,7 @@ describe('home page', () => {
 
   it.each(Object.entries(pages))('%s has every section and the contact e-mail', (_, file) => {
     const html = read(file);
-    for (const id of ['case', 'work', 'process', 'pricing', 'about', 'faq', 'contact']) expect(html).toContain(`id="${id}"`);
+    for (const id of ['case', 'work', 'process', 'express', 'pricing', 'about', 'faq', 'contact']) expect(html).toContain(`id="${id}"`);
     expect(html).toContain('contato@mxstudioweb.com.br');
     expect(html).toContain('sulamitaestetica.pt');
     expect(html).toMatch(/Wise/);
@@ -156,6 +156,31 @@ describe('home page', () => {
     expect(html).not.toContain('R$ 16.000');
     expect(html).not.toContain('mxstudioweb.vercel.app');
     expect(html).not.toContain('mx-studio-web.vercel.app');
+  });
+
+  it('adds the euro express plans (setup + monthly, 14 days) in every language', () => {
+    const nbsp = (s: string) => s.replace(/\u00a0|&nbsp;/g, ' ');
+    const pt = nbsp(text(read('index.html')));
+    const en = nbsp(text(read('en.html')));
+    const es = nbsp(text(read('es.html')));
+    expect(read('index.html')).toContain('id="express"');
+    for (const [page, amounts] of [
+      [pt, ['€ 150', '€ 20', '€ 350', '€ 650', '€ 30']],
+      [en, ['€150', '€20', '€350', '€650', '€30']],
+      [es, ['150 €', '20 €', '350 €', '650 €', '30 €']],
+    ] as const) {
+      for (const a of amounts) expect(page).toContain(a);
+      for (const name of ['Launch', 'Business', 'Growth']) expect(page).toContain(name);
+    }
+    expect(en).toContain('Live in 14 days');
+    expect(pt).toContain('No ar em 14 dias');
+    // Each CTA opens WhatsApp with the chosen plan already named.
+    expect(read('en.html')).toContain(encodeURIComponent('I want the Launch plan'));
+    // The BRL subscription plans and quoted services stay.
+    expect(pt).toContain('R$ 297');
+    expect(pt).toContain('Valores a consultar');
+    // Structured data lists the euro offers.
+    expect(read('en.html')).toContain('"priceCurrency":"EUR"');
   });
 
   it('has no broken internal link or asset', () => {
