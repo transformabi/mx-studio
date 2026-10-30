@@ -81,7 +81,12 @@ export function Footer({ locale, t }: { locale: Locale; t: Messages }) {
           <p>
             © {new Date().getFullYear()} MX Studio Web. {t.footer.rights}
           </p>
-          <p>{t.footer.location}</p>
+          <p className="flex flex-wrap gap-x-4">
+            <Link href={localizedPath(locale, '/termos')} className="underline-offset-4 hover:text-bone hover:underline">
+              {t.footer.terms}
+            </Link>
+            <span>{t.footer.location}</span>
+          </p>
         </div>
       </div>
     </footer>

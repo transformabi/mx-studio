@@ -138,6 +138,7 @@ export const pt = {
       emailSubject: 'Plano {plan} — MX Studio Web',
       askMsg: 'Olá! Vim pelo site da MX Studio Web e quero o plano {plan}: {setup} de criação + {monthly}/mês de manutenção, site no ar em 14 dias.',
       maintenance: 'A manutenção mensal cobre hospedagem, atualizações, segurança, backups e pequenas alterações de texto e imagem.',
+      termsNotice: { before: 'Ao contratar, você aceita os ', link: 'Termos de Serviço', after: ' (licença de uso, renovação automática, atraso e cancelamento).' },
       plans: {
         launch: {
           name: 'Launch',
@@ -243,6 +244,7 @@ export const pt = {
     contactTitle: 'Contato',
     languagesTitle: 'Idiomas',
     rights: 'Todos os direitos reservados.',
+    terms: 'Termos de Serviço',
     location: 'Rio de Janeiro, Brasil',
   },
 

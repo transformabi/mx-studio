@@ -4,6 +4,7 @@ import { ArrowUpRight, Check, Clock, CreditCard, Mail, MessageCircle } from 'luc
 import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
 import { useI18n } from '@/i18n/provider';
+import { localizedPath } from '@/i18n/paths';
 import { estudio, planoCheckoutUrl, planos, planosCurrency, planosDeliveryDays, whatsappUrl } from '@/lib/estudio';
 import { CurrencySwitch } from '@/components/site/currency-switch';
 import { BoletoLogo, CardLogos, PixLogo, WiseLogo } from '@/components/site/payment-logos';
@@ -142,7 +143,15 @@ export function Plans({ t, payments }: { t: Messages['pricing']['plans']; paymen
           })}
         </div>
 
-        <p className="mt-8 max-w-3xl text-sm leading-relaxed text-white/60">{t.maintenance}</p>
+        {/* Every Stripe link requires ticking the same terms (v1.0) before paying. */}
+        <p data-terms-notice className="mt-8 max-w-3xl text-sm leading-relaxed text-white/75">
+          {t.termsNotice.before}
+          <a href={localizedPath(locale, '/termos')} className="font-semibold text-lime underline underline-offset-4 hover:text-bone">
+            {t.termsNotice.link}
+          </a>
+          {t.termsNotice.after}
+        </p>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/60">{t.maintenance}</p>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/60">{t.secure}</p>
 
         <div className="mt-10 grid gap-6 rounded-xl border border-white/10 p-7 lg:grid-cols-12 lg:items-center">
