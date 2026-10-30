@@ -85,26 +85,26 @@ export const en: Messages = {
   process: {
     label: 'How it works',
     title: 'From first contact to launch, with no surprises.',
-    lead: 'These stages apply to business websites, online stores and custom systems. A landing page goes live within 10 days.',
+    lead: 'On the Launch, Business and Growth plans, all four stages fit in 14 days.',
     steps: [
       {
         title: 'Discovery',
-        duration: '3 to 5 days',
+        duration: '1 to 2 days',
         text: 'A conversation to understand the business, the audience and what already works. I come out of it with the brief and the site structure.',
       },
       {
         title: 'Design',
-        duration: '1 to 2 weeks',
+        duration: '3 to 4 days',
         text: 'Visual direction and page designs. You approve everything before a single line of code.',
       },
       {
         title: 'Development',
-        duration: '2 to 4 weeks',
+        duration: '5 to 7 days',
         text: 'The site is built, with a preview link so you can follow along from day one.',
       },
       {
         title: 'Launch',
-        duration: '2 to 3 days',
+        duration: '1 day',
         text: 'The site goes live on your domain, with technical SEO, visit tracking and a user guide.',
       },
     ],
@@ -178,7 +178,7 @@ export const en: Messages = {
       },
       {
         q: 'How long does it take?',
-        a: 'Landing page: up to 10 days. Larger websites take 4 to 7 weeks, depending on the size of the project. The schedule comes in the proposal, with dates for each stage.',
+        a: 'On the Launch, Business and Growth plans, your website goes live in 14 days. Custom projects have their own timeline, with dates for each stage in the proposal.',
       },
       {
         q: 'How does payment work?',
@@ -216,7 +216,7 @@ export const en: Messages = {
       email: 'E-mail',
       emailPlaceholder: 'you@company.com',
       project: 'Project type',
-      projects: ['Business website', 'Online store', 'Landing page', 'Custom system', 'Not sure yet'],
+      projects: ['Launch plan', 'Business plan', 'Growth plan', 'Other / not sure yet'],
       budget: 'Budget',
       budgetUpTo: 'Up to {amount}',
       budgetAbove: 'Over {amount}',
