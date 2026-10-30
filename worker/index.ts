@@ -1,13 +1,10 @@
-import { createCheckoutSession, type CheckoutEnv } from './checkout';
-
-interface Env extends CheckoutEnv {
+interface Env {
   ASSETS: { fetch: typeof fetch };
 }
 
+/** Static site from out/. The old Stripe checkout route (/api/create-checkout-session) was retired with the BRL plans. */
 const worker = {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const { pathname } = new URL(request.url);
-    if (pathname === '/api/create-checkout-session') return createCheckoutSession(request, env);
     return env.ASSETS.fetch(request);
   },
 };

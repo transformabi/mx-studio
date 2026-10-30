@@ -33,7 +33,7 @@ export const pt = {
     titleB: 'para o seu negócio.',
     lead: 'Sites sob medida para clínicas, escritórios, lojas e negócios locais: rápidos no celular e feitos para virar conversa no WhatsApp. Você fala direto com quem desenha e programa.',
     primary: 'Consulte sites para pequenas empresas',
-    note: 'Três planos mensais para pequenas empresas e estabelecimentos, nesta página.',
+    note: 'Três planos com criação + mensalidade, site no ar em 14 dias, nesta página.',
     secondary: 'Falar no WhatsApp',
     caseLabel: 'Cliente real · sulamitaestetica.pt',
     desktopAlt: 'Página inicial do site da Sulamita Nascimento no computador',
@@ -118,35 +118,6 @@ export const pt = {
     lead: 'Projetos sob medida saem com orçamento por escrito, escopo e prazo.',
     consultLabel: 'Investimento',
     consult: 'Valores a consultar',
-    plans: {
-      label: 'Assinatura',
-      title: 'Site por assinatura para pequenos negócios.',
-      lead: 'Para pequenas empresas e estabelecimentos. Três planos mensais, com hospedagem e SSL.',
-      per: '/mês',
-      cta: 'Quero este plano',
-      askMsg: 'Olá! Vim pelo site da MX Studio Web e quero o {plan}, {price} por mês.',
-      essencial: {
-        name: 'Plano Essencial',
-        alt: 'Plano Essencial da MX Studio Web, R$ 297 por mês',
-        bullets: ['Até 5 páginas', '2 ajustes mensais', 'Design responsivo', 'Formulário + WhatsApp', 'Hospedagem e SSL inclusos'],
-      },
-      profissional: {
-        name: 'Plano Profissional',
-        alt: 'Plano Profissional da MX Studio Web, R$ 447 por mês',
-        bullets: ['Até 8 páginas', '4 ajustes mensais', 'SEO básico + Analytics', 'Relatório mensal', 'Hospedagem e SSL inclusos'],
-      },
-      completo: {
-        name: 'Plano Completo',
-        alt: 'Plano Completo da MX Studio Web, R$ 597 por mês',
-        bullets: ['Até 12 páginas', '6 ajustes mensais', 'Suporte prioritário', 'Mais personalização', 'Hospedagem e SSL inclusos'],
-      },
-    },
-    offer: {
-      eyebrow: 'Outubro',
-      title: 'Condição de lançamento por {price}.',
-      text: 'Site de uma página para pequenos negócios, no ar em até {days} dias. São {slots} vagas. A página abre aqui, sem sair do site.',
-      cta: 'Ver o que está incluso',
-    },
     items: {
       landing: {
         title: 'Landing page',
@@ -177,6 +148,41 @@ export const pt = {
       terms:
         'Contrato com escopo e prazo. Pagamento em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega.',
       abroad: 'Está fora do Brasil? Envio o orçamento na sua moeda e você paga pela Wise.',
+    },
+    plans: {
+      label: 'Planos para pequenos negócios',
+      title: 'Seu site no ar em 14 dias, a partir de {price}.',
+      lead: 'Valor fechado: um pagamento de criação e uma mensalidade de manutenção. Escolha a moeda para ver os valores.',
+      currencyLabel: 'Moeda',
+      approx: 'Valores convertidos pela cotação do dia da publicação; o preço de referência é em euro.',
+      setupLabel: 'Criação',
+      monthlyLabel: 'Manutenção',
+      per: '/mês',
+      plus: '+',
+      featured: 'Mais escolhido',
+      delivery: 'No ar em {days} dias',
+      cta: 'Quero o plano {plan}',
+      email: 'Prefere e-mail?',
+      emailSubject: 'Plano {plan} — MX Studio Web',
+      askMsg: 'Olá! Vim pelo site da MX Studio Web e quero o plano {plan}: {setup} de criação + {monthly}/mês de manutenção, site no ar em 14 dias.',
+      maintenance: 'A manutenção mensal cobre hospedagem, atualizações, segurança, backups e pequenas alterações de texto e imagem.',
+      plans: {
+        launch: {
+          name: 'Launch',
+          text: 'Uma página para apresentar o negócio e receber contatos.',
+          bullets: ['Página única com até 3 seções', 'Design responsivo', 'Formulário + WhatsApp', 'SEO básico', '1 rodada de ajustes'],
+        },
+        business: {
+          name: 'Business',
+          text: 'O site completo de um pequeno negócio.',
+          bullets: ['Até 5 páginas', 'Design sob medida para a marca', 'SEO on-page + Google Analytics', 'Formulário + WhatsApp', '3 rodadas de ajustes'],
+        },
+        growth: {
+          name: 'Growth',
+          text: 'Para quem quer gerar contatos todo mês.',
+          bullets: ['Até 10 páginas', 'Blog ou portfólio editável', 'Agendamento ou captura de contatos', 'SEO avançado + velocidade', 'Suporte prioritário'],
+        },
+      },
     },
   },
 

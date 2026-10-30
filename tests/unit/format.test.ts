@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { currencies } from '@/i18n/config';
-import { fill, formatMoney, type Rates } from '@/i18n/format';
+import { fill, formatConverted, formatMoney, type Rates } from '@/i18n/format';
 
 const rates: Rates = { BRL: 1, USD: 0.2, EUR: 0.17, GBP: 0.15 };
 const plain = (s: string) => s.replace(/\s/g, ' ');
@@ -42,5 +42,19 @@ describe('currencies', () => {
 describe('fill', () => {
   it('replaces placeholders', () => {
     expect(fill('Até {amount}', { amount: 'R$ 5.000' })).toBe('Até R$ 5.000');
+  });
+});
+
+describe('formatConverted', () => {
+  const opts = { decimals: 0, round: true } as const;
+  it('keeps a euro price exact when shown in euros', () => {
+    expect(plain(formatConverted(150, 'EUR', 'pt', 'EUR', rates, opts))).toBe('€ 150');
+    expect(formatConverted(20, 'EUR', 'en', 'EUR', rates, opts)).toBe('€20');
+    expect(plain(formatConverted(650, 'EUR', 'es', 'EUR', rates, opts))).toBe('650 €');
+  });
+  it('converts a euro price through the BRL-based rates and rounds it', () => {
+    expect(plain(formatConverted(150, 'EUR', 'pt', 'BRL', rates, opts))).toBe('R$ 880');
+    expect(formatConverted(20, 'EUR', 'en', 'USD', rates, opts)).toBe('$24');
+    expect(formatConverted(150, 'EUR', 'en', 'GBP', rates, opts)).toBe('£130');
   });
 });

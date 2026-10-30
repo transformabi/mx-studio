@@ -18,7 +18,7 @@ export type MoneyOptions = {
  */
 const narrowSymbol: ReadonlySet<Currency> = new Set(['BRL', 'GBP']);
 
-/** All prices in the codebase are written in BRL and converted at display time. */
+/** Most prices in the codebase are written in BRL and converted at display time. */
 export function formatMoney(
   brl: number,
   locale: Locale,
@@ -26,8 +26,24 @@ export function formatMoney(
   rates: Rates,
   opts: MoneyOptions = {},
 ) {
-  let value = brl * rates[currency];
-  if (opts.round && currency !== 'BRL' && value >= 100) value = Math.round(value / 10) * 10;
+  return formatConverted(brl, 'BRL', locale, currency, rates, opts);
+}
+
+/**
+ * A price written in `from` (e.g. the EUR small-business plans), shown in the visitor's currency.
+ * Rates are BRL-based, so the amount goes through BRL. Shown in its own currency it stays exact.
+ */
+export function formatConverted(
+  amount: number,
+  from: Currency,
+  locale: Locale,
+  currency: Currency,
+  rates: Rates,
+  opts: MoneyOptions = {},
+) {
+  let value = currency === from ? amount : (amount / rates[from]) * rates[currency];
+  if (opts.round && currency !== from && value >= 100) value = Math.round(value / 10) * 10;
+  else if (opts.round && currency !== from && opts.decimals === 0) value = Math.round(value);
   const digits = opts.compact ? undefined : (opts.decimals ?? 2);
 
   return new Intl.NumberFormat(localeInfo[locale].intl, {

@@ -3,7 +3,7 @@
 import { createContext, useContext, useMemo, useSyncExternalStore, type ReactNode } from 'react';
 import { defaultCurrency, localeInfo, type Currency, type Locale } from './config';
 import { readSavedCurrency, saveCurrency, subscribeCurrency } from './currency-store';
-import { formatMoney, type MoneyOptions, type Rates } from './format';
+import { formatConverted, formatMoney, type MoneyOptions, type Rates } from './format';
 
 type I18nValue = {
   locale: Locale;
@@ -11,6 +11,8 @@ type I18nValue = {
   /** BCP 47 tag for Intl / toLocaleDateString. */
   intl: string;
   money: (brl: number, opts?: MoneyOptions) => string;
+  /** A price written in another currency (e.g. EUR), shown in the visitor's currency. */
+  convert: (amount: number, from: Currency, opts?: MoneyOptions) => string;
   setCurrency: (currency: Currency) => void;
 };
 
@@ -28,6 +30,7 @@ export function I18nProvider({ locale, rates, children }: { locale: Locale; rate
       currency,
       intl: localeInfo[locale].intl,
       money: (brl, opts) => formatMoney(brl, locale, currency, rates, opts),
+      convert: (amount, from, opts) => formatConverted(amount, from, locale, currency, rates, opts),
       setCurrency: saveCurrency,
     }),
     [locale, currency, rates],

@@ -1,5 +1,5 @@
 {
-  // Static files from out/, plus one Worker route that opens Stripe Checkout.
+  // Static files from out/, served by a minimal Worker (the old Stripe checkout route under /api/ was retired).
   "name": "mxstudioweb",
   "compatibility_date": "2026-10-01",
   "compatibility_flags": ["nodejs_compat"],

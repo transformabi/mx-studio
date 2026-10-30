@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { localeInfo, locales, type Locale } from '@/i18n/config';
 import { messages } from '@/i18n/messages';
 import { alternates, localizedPath } from '@/i18n/paths';
-import { estudio, SITE_URL } from './estudio';
+import { estudio, planos, planosCurrency, SITE_URL } from './estudio';
 import { ogImage } from './images';
 
 /** Absolute URL without a trailing slash on the home page: https://mxstudioweb.com.br */
@@ -51,6 +51,7 @@ export const homeMetadata = (locale: Locale) =>
   pageMetadata({ locale, path: '/', title: messages[locale].meta.title, description: messages[locale].meta.description });
 
 export function StudioJsonLd({ locale }: { locale: Locale }) {
+  const plans = messages[locale].pricing.plans;
   const data = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
@@ -64,7 +65,30 @@ export function StudioJsonLd({ locale }: { locale: Locale }) {
     sameAs: [estudio.instagram],
     founder: { '@type': 'Person', name: estudio.owner },
     address: { '@type': 'PostalAddress', addressLocality: 'Rio de Janeiro', addressRegion: 'RJ', addressCountry: 'BR' },
-    priceRange: 'R$ 297–597/mês',
+    priceRange: '€150–650 + €20–30/mo',
+    // The small-business plans: one-time setup plus monthly maintenance, priced in euros.
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: plans.label,
+      itemListElement: planos.map((plan) => ({
+        '@type': 'Offer',
+        name: plans.plans[plan.id].name,
+        description: plans.plans[plan.id].text,
+        url: `${absoluteUrl(localizedPath(locale, '/'))}#planos`,
+        price: plan.setup,
+        priceCurrency: planosCurrency,
+        priceSpecification: [
+          { '@type': 'UnitPriceSpecification', price: plan.setup, priceCurrency: planosCurrency },
+          {
+            '@type': 'UnitPriceSpecification',
+            price: plan.monthly,
+            priceCurrency: planosCurrency,
+            referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' },
+          },
+        ],
+        itemOffered: { '@type': 'Service', name: `${estudio.name} ${plans.plans[plan.id].name}` },
+      })),
+    },
     // The languages the studio works in (inLanguage is for creative works, not businesses).
     knowsLanguage: locales.map((l) => localeInfo[l].htmlLang),
     areaServed: [

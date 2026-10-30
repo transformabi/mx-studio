@@ -19,7 +19,7 @@ export const estudio = {
   linkedin: 'https://www.linkedin.com/company/145009011/',
 } as const;
 
-/** Call-to-action stays on this page and scrolls to the subscription plans. */
+/** Call-to-action stays on this page and scrolls to the small-business plans. */
 export const diagnosticoUrl = (locale: Locale) => `${localizedPath(locale, '/')}#planos`;
 
 export const whatsappMsgDefault = 'Olá! Vim pelo site da MX Studio Web e quero conversar sobre um site.';
@@ -226,13 +226,19 @@ export const services = [
 ] as const;
 export type ServiceKey = (typeof services)[number]['key'];
 
-/** Monthly website plans. The only prices shown on the site. */
+/**
+ * Small-business plans: a one-time setup fee plus monthly maintenance, live in 14 days.
+ * Priced in EUR (`planosCurrency`); the page shows them in the visitor's currency through the
+ * same build-time rates as the rest of the site.
+ */
+export const planosCurrency = 'EUR' as const;
 export const planos = [
-  { id: 'essencial', price: 297, image: '/planos/essencial.jpg', width: 1152, height: 1712 },
-  { id: 'profissional', price: 447, image: '/planos/profissional.jpg', width: 1152, height: 1712 },
-  { id: 'completo', price: 597, image: '/planos/completo.jpg', width: 1152, height: 1712 },
+  { id: 'launch', setup: 150, monthly: 20 },
+  { id: 'business', setup: 350, monthly: 20, featured: true },
+  { id: 'growth', setup: 650, monthly: 30 },
 ] as const;
 export type PlanoId = (typeof planos)[number]['id'];
+export const planosDeliveryDays = 14;
 
 /** Real client sites that are live, shown in their niche ahead of the demos. */
 export type CaseSlug = 'sulamita-estetica';

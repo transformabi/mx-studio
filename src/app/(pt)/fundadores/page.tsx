@@ -2,12 +2,12 @@ import { pt } from '@/i18n/messages/pt';
 import { pageMetadata } from '@/lib/seo';
 import { Pricing } from '@/components/home/pricing';
 
-// Old launch URL. It stays out of search and now shows the three subscription plans, not the retired price.
+// Old launch URL. It stays out of search and now shows the services and the small-business plans.
 export const metadata = pageMetadata({
   locale: 'pt',
   path: '/fundadores',
-  title: 'Planos por assinatura · MX Studio Web',
-  description: 'Site por assinatura para pequenos negócios: Essencial, Profissional e Completo.',
+  title: 'Planos para pequenos negócios · MX Studio Web',
+  description: 'Site para pequenos negócios no ar em 14 dias: planos Launch, Business e Growth, com criação + mensalidade.',
   index: false,
   translated: false,
 });
