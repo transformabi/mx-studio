@@ -114,8 +114,8 @@ export const pt = {
   pricing: {
     payments: {
       title: 'Formas de pagamento',
-      methods: ['PIX', 'Cartão de crédito, parcelado', 'Wise, para clientes de outros países'],
-      abroad: 'Está fora do Brasil? Você paga na sua moeda pela Wise.',
+      methods: ['Cartão de crédito, Apple Pay e Google Pay', 'Pix, para a criação do site', 'Boleto bancário'],
+      note: 'Tudo pelo Stripe. No cartão você contrata o plano completo: a criação no primeiro pagamento e a manutenção todo mês. Prefere Pix ou boleto? Pague a criação pelo link de Pix do plano e, em seguida, ativamos a mensalidade no cartão ou no boleto. Fora do Brasil, o checkout mostra o valor na sua moeda. O checkout não oferece parcelamento.',
     },
     plans: {
       label: 'Planos para pequenos negócios',
@@ -131,6 +131,7 @@ export const pt = {
       delivery: 'No ar em {days} dias',
       cta: 'Quero o plano {plan}',
       checkout: 'Contratar o {plan} e pagar online',
+      pix: 'Prefere Pix ou boleto? Pague a criação aqui',
       whatsapp: 'Tirar dúvidas no WhatsApp',
       secure: 'Pagamento seguro pelo Stripe: a criação é cobrada no primeiro pagamento e a manutenção todo mês. Fora do Brasil, o checkout mostra o valor na sua moeda.',
       email: 'Prefere e-mail?',
@@ -186,7 +187,7 @@ export const pt = {
       },
       {
         q: 'Como é o pagamento?',
-        a: 'Os planos Launch, Business e Growth têm um valor de criação e uma mensalidade de manutenção. Aceito PIX, cartão de crédito parcelado e Wise para clientes de fora do Brasil. Projetos sob medida têm contrato e pagamento em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega.',
+        a: 'Os planos Launch, Business e Growth têm um valor de criação e uma mensalidade de manutenção. O pagamento é pelo Stripe: cartão de crédito, Apple Pay ou Google Pay para o plano completo, e Pix ou boleto para a criação, com a mensalidade no cartão ou no boleto. Projetos sob medida têm contrato e pagamento em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega.',
       },
       {
         q: 'Você usa modelo pronto?',
@@ -198,7 +199,7 @@ export const pt = {
       },
       {
         q: 'Atende fora do Rio de Janeiro?',
-        a: 'Sim. Atendo todo o Brasil, Portugal e outros países, por videochamada e WhatsApp. Clientes de fora do Brasil pagam pela Wise, na própria moeda.',
+        a: 'Sim. Atendo todo o Brasil, Portugal e outros países, por videochamada e WhatsApp. Clientes de fora do Brasil pagam pelo Stripe, com cartão, na própria moeda.',
       },
     ],
   },

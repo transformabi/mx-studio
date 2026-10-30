@@ -224,15 +224,18 @@ export const lcpSeconds: Record<ShowcaseSlug, number> = {
  */
 export const planosCurrency = 'EUR' as const;
 export const planos = [
-  { id: 'launch', setup: 150, monthly: 20, checkout: 'https://buy.stripe.com/9B6fZi4yA6DS37Mgp243S00' },
-  { id: 'business', setup: 350, monthly: 25, featured: true, checkout: 'https://buy.stripe.com/6oU14o3uw8M00ZEc8M43S01' },
-  { id: 'growth', setup: 650, monthly: 35, checkout: 'https://buy.stripe.com/eVq00k3uw7HWaAe3Cg43S02' },
+  { id: 'launch', setup: 150, monthly: 20, checkout: 'https://buy.stripe.com/9B6fZi4yA6DS37Mgp243S00', pixCheckout: 'https://buy.stripe.com/3cIdRad564vK9wa5Ko43S03' },
+  { id: 'business', setup: 350, monthly: 25, featured: true, checkout: 'https://buy.stripe.com/6oU14o3uw8M00ZEc8M43S01', pixCheckout: 'https://buy.stripe.com/00w6oI3uw0fu7o2b4I43S04' },
+  { id: 'growth', setup: 650, monthly: 35, checkout: 'https://buy.stripe.com/eVq00k3uw7HWaAe3Cg43S02', pixCheckout: 'https://buy.stripe.com/aFaaEY1mo7HWfUy2yc43S05' },
 ] as const;
 
 /**
  * Stripe Payment Links (live): each one is a subscription with the monthly BRL price plus the one-time
  * setup BRL price on the first invoice. Stripe's Adaptive Pricing shows foreign visitors their own
  * currency; `locale` sets the checkout language to the page's.
+ * `pixCheckout`: one-time BRL link for the setup fee only, by Pix, boleto or card, for Brazilian clients who
+ * prefer Pix. Pix can't renew a subscription for a Brazilian business on Stripe (no Pix Automático), so the
+ * monthly fee is then started by hand from the Stripe Dashboard, by card or boleto.
  */
 const checkoutLocale = { pt: 'pt-BR', en: 'en', es: 'es' } as const;
 export function planoCheckoutUrl(url: string, locale: keyof typeof checkoutLocale) {

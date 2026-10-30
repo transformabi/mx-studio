@@ -110,7 +110,8 @@ describe('home page', () => {
     for (const id of ['case', 'work', 'process', 'planos', 'about', 'faq', 'contact']) expect(html).toContain(`id="${id}"`);
     expect(html).toContain('contato@mxstudioweb.com.br');
     expect(html).toContain('sulamitaestetica.pt');
-    expect(html).toMatch(/Wise/);
+    expect(html).toContain('Stripe');
+    expect(html).not.toMatch(/Wise/);
     expect(html).not.toMatch(/bitcoin|loremflickr|picsum/i);
   });
 
@@ -196,10 +197,19 @@ describe('home page', () => {
       business: 'https://buy.stripe.com/6oU14o3uw8M00ZEc8M43S01',
       growth: 'https://buy.stripe.com/eVq00k3uw7HWaAe3Cg43S02',
     };
+    // One-time setup-fee links (Pix, boleto or card) for clients in Brazil.
+    const pixLinks = {
+      launch: 'https://buy.stripe.com/3cIdRad564vK9wa5Ko43S03',
+      business: 'https://buy.stripe.com/00w6oI3uw0fu7o2b4I43S04',
+      growth: 'https://buy.stripe.com/aFaaEY1mo7HWfUy2yc43S05',
+    };
     for (const [file, locale] of [['index.html', 'pt-BR'], ['en.html', 'en'], ['es.html', 'es']] as const) {
       const html = read(file);
       for (const [id, url] of Object.entries(links)) {
         expect(html).toMatch(new RegExp(`href="${url}\\?locale=${locale}"[^>]*data-checkout="${id}"`));
+      }
+      for (const [id, url] of Object.entries(pixLinks)) {
+        expect(html).toMatch(new RegExp(`href="${url}\\?locale=${locale}"[^>]*data-pix-checkout="${id}"`));
       }
     }
   });

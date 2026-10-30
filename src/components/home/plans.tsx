@@ -6,7 +6,7 @@ import type { Messages } from '@/i18n/messages';
 import { useI18n } from '@/i18n/provider';
 import { estudio, planoCheckoutUrl, planos, planosCurrency, planosDeliveryDays, whatsappUrl } from '@/lib/estudio';
 import { CurrencySwitch } from '@/components/site/currency-switch';
-import { CardLogos, PixLogo, WiseLogo } from '@/components/site/payment-logos';
+import { BoletoLogo, CardLogos, PixLogo } from '@/components/site/payment-logos';
 import { SectionHeader } from '@/components/site/section-header';
 import { Reveal } from '@/components/reveal';
 import { cn } from '@/lib/utils';
@@ -15,8 +15,8 @@ import { cn } from '@/lib/utils';
  * Small-business plans: one-time setup + monthly maintenance, live in 14 days. Priced in EUR and shown
  * in the visitor's currency; converted amounts are marked "≈", and the WhatsApp/e-mail text uses them too.
  */
-// Brand marks in the same order as pricing.payments.methods: PIX, card, Wise.
-const methodLogos = [PixLogo, CardLogos, WiseLogo];
+// Brand marks in the same order as pricing.payments.methods: card, Pix, boleto.
+const methodLogos = [CardLogos, PixLogo, BoletoLogo];
 
 export function Plans({ t, payments }: { t: Messages['pricing']['plans']; payments: Messages['pricing']['payments'] }) {
   const { convert, currency, locale } = useI18n();
@@ -107,6 +107,17 @@ export function Plans({ t, payments }: { t: Messages['pricing']['plans']; paymen
                       {fill(t.checkout, { plan: item.name })}
                       <ArrowUpRight className="h-4 w-4" aria-hidden />
                     </a>
+                    {/* One-time Stripe link for the setup fee only (Pix, boleto or card), for clients in Brazil. */}
+                    <a
+                      href={planoCheckoutUrl(plan.pixCheckout, locale)}
+                      data-pix-checkout={plan.id}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex w-full items-center justify-center gap-2 text-xs text-white/70 transition-colors hover:text-lime"
+                    >
+                      <PixLogo />
+                      {t.pix}
+                    </a>
                     <a
                       href={whatsappUrl(msg)}
                       target="_blank"
@@ -147,7 +158,7 @@ export function Plans({ t, payments }: { t: Messages['pricing']['plans']; paymen
               );
             })}
           </ul>
-          <p className="text-sm leading-relaxed text-white/60 lg:col-span-12">{payments.abroad}</p>
+          <p className="text-sm leading-relaxed text-white/60 lg:col-span-12">{payments.note}</p>
         </div>
       </div>
     </section>

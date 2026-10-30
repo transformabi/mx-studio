@@ -113,8 +113,8 @@ export const es: Messages = {
   pricing: {
     payments: {
       title: 'Formas de pago',
-      methods: ['PIX (Brasil)', 'Tarjeta de crédito, en cuotas', 'Wise, para clientes de otros países'],
-      abroad: '¿Estás fuera de Brasil? Pagas en tu moneda por Wise.',
+      methods: ['Tarjeta de crédito, Apple Pay y Google Pay', 'Pix (Brasil), para la creación', 'Boleto (Brasil)'],
+      note: 'Todo pasa por Stripe. Con tarjeta contratas el plan completo: la creación en el primer pago y el mantenimiento cada mes. ¿Estás en Brasil y prefieres Pix o boleto? Paga la creación con el enlace de Pix del plan y luego activamos la cuota mensual con tarjeta o boleto. Fuera de Brasil, el checkout muestra el importe en tu moneda. El checkout no ofrece pago en cuotas.',
     },
     plans: {
       label: 'Planes para pequeños negocios',
@@ -130,6 +130,7 @@ export const es: Messages = {
       delivery: 'En línea en {days} días',
       cta: 'Quiero el plan {plan}',
       checkout: 'Contratar {plan} y pagar online',
+      pix: '¿En Brasil? Paga la creación por Pix o boleto',
       whatsapp: '¿Dudas? Escríbeme por WhatsApp',
       secure: 'Pago seguro con Stripe: la creación se cobra en el primer pago y el mantenimiento cada mes. El checkout muestra el importe en tu moneda local.',
       email: '¿Prefieres correo?',
@@ -185,7 +186,7 @@ export const es: Messages = {
       },
       {
         q: '¿Cómo es el pago?',
-        a: 'Los planes Launch, Business y Growth tienen un pago de creación y una cuota mensual de mantenimiento. Acepto PIX, tarjeta de crédito en cuotas y Wise para clientes fuera de Brasil. Los proyectos a medida tienen contrato y pago en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega.',
+        a: 'Los planes Launch, Business y Growth tienen un pago de creación y una cuota mensual de mantenimiento. El pago es por Stripe: tarjeta de crédito, Apple Pay o Google Pay para el plan completo; en Brasil, también Pix o boleto para la creación, con la cuota mensual por tarjeta o boleto. Los proyectos a medida tienen contrato y pago en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega.',
       },
       {
         q: '¿Usas plantillas?',
@@ -197,7 +198,7 @@ export const es: Messages = {
       },
       {
         q: '¿Trabajas con clientes fuera de Brasil?',
-        a: 'Sí. Atiendo todo Brasil, Portugal y otros países, por videollamada y WhatsApp. Los clientes fuera de Brasil pagan por Wise, en su propia moneda.',
+        a: 'Sí. Atiendo todo Brasil, Portugal y otros países, por videollamada y WhatsApp. Los clientes fuera de Brasil pagan por Stripe con tarjeta, en su propia moneda.',
       },
     ],
   },
