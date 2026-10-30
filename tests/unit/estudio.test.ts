@@ -5,6 +5,8 @@ import {
   diagnosticoUrl,
   estudio,
   lcpSeconds,
+  planoCheckoutUrl,
+  planos,
   showcase,
   SITE_URL,
   vagasRestantes,
@@ -55,5 +57,15 @@ describe('founder slots wording', () => {
     expect(vagasRestantes(0)).toMatchObject({ verb: 'Restam', count: '0 vagas' });
     expect(text(1)).toBe('Resta 1 vaga. Ela pode ser sua.');
     expect(text(2)).toBe('Restam 2 vagas. Uma pode ser sua.');
+  });
+});
+
+describe('plan checkout links', () => {
+  it('points every plan at a live Stripe Payment Link with the page locale', () => {
+    for (const plan of planos) expect(plan.checkout).toMatch(/^https:\/\/buy\.stripe\.com\/[A-Za-z0-9]+$/);
+    expect(new Set(planos.map((p) => p.checkout)).size).toBe(3);
+    expect(planoCheckoutUrl('https://buy.stripe.com/x', 'pt')).toBe('https://buy.stripe.com/x?locale=pt-BR');
+    expect(planoCheckoutUrl('https://buy.stripe.com/x', 'en')).toBe('https://buy.stripe.com/x?locale=en');
+    expect(planoCheckoutUrl('https://buy.stripe.com/x', 'es')).toBe('https://buy.stripe.com/x?locale=es');
   });
 });

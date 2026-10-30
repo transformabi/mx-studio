@@ -1,10 +1,10 @@
 'use client';
 
-import { ArrowUpRight, Check, Clock, Mail } from 'lucide-react';
+import { ArrowUpRight, Check, Clock, CreditCard, Mail, MessageCircle } from 'lucide-react';
 import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
 import { useI18n } from '@/i18n/provider';
-import { estudio, planos, planosCurrency, planosDeliveryDays, whatsappUrl } from '@/lib/estudio';
+import { estudio, planoCheckoutUrl, planos, planosCurrency, planosDeliveryDays, whatsappUrl } from '@/lib/estudio';
 import { CurrencySwitch } from '@/components/site/currency-switch';
 import { CardLogos, PixLogo, WiseLogo } from '@/components/site/payment-logos';
 import { SectionHeader } from '@/components/site/section-header';
@@ -19,7 +19,7 @@ import { cn } from '@/lib/utils';
 const methodLogos = [PixLogo, CardLogos, WiseLogo];
 
 export function Plans({ t, payments }: { t: Messages['pricing']['plans']; payments: Messages['pricing']['payments'] }) {
-  const { convert, currency } = useI18n();
+  const { convert, currency, locale } = useI18n();
   const converted = currency !== planosCurrency;
   const price = (amount: number) => {
     const value = convert(amount, planosCurrency, { decimals: 0, round: true });
@@ -92,8 +92,10 @@ export function Plans({ t, payments }: { t: Messages['pricing']['plans']; paymen
                   </ul>
 
                   <div className="mt-auto pt-8">
+                    {/* Stripe Payment Link: monthly subscription + one-time setup on the first invoice. */}
                     <a
-                      href={whatsappUrl(msg)}
+                      href={planoCheckoutUrl(plan.checkout, locale)}
+                      data-checkout={plan.id}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={cn(
@@ -101,8 +103,19 @@ export function Plans({ t, payments }: { t: Messages['pricing']['plans']; paymen
                         featured ? 'bg-lime text-ink hover:bg-[#b8ff52]' : 'border border-white/20 text-bone hover:border-white/60',
                       )}
                     >
-                      {fill(t.cta, { plan: item.name })}
+                      <CreditCard className="h-4 w-4" aria-hidden />
+                      {fill(t.checkout, { plan: item.name })}
                       <ArrowUpRight className="h-4 w-4" aria-hidden />
+                    </a>
+                    <a
+                      href={whatsappUrl(msg)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={fill(t.cta, { plan: item.name })}
+                      className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/80 transition-colors duration-200 hover:border-white/50 hover:text-bone"
+                    >
+                      <MessageCircle className="h-4 w-4" aria-hidden />
+                      {t.whatsapp}
                     </a>
                     <a
                       href={`mailto:${estudio.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg)}`}
@@ -119,6 +132,7 @@ export function Plans({ t, payments }: { t: Messages['pricing']['plans']; paymen
         </div>
 
         <p className="mt-8 max-w-3xl text-sm leading-relaxed text-white/60">{t.maintenance}</p>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/60">{t.secure}</p>
 
         <div className="mt-10 grid gap-6 rounded-xl border border-white/10 p-7 lg:grid-cols-12 lg:items-center">
           <p className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50 lg:col-span-3">{payments.title}</p>
