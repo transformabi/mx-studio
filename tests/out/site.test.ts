@@ -107,7 +107,7 @@ describe('home page', () => {
 
   it.each(Object.entries(pages))('%s has every section and the contact e-mail', (_, file) => {
     const html = read(file);
-    for (const id of ['case', 'work', 'process', 'express', 'pricing', 'about', 'faq', 'contact']) expect(html).toContain(`id="${id}"`);
+    for (const id of ['case', 'work', 'process', 'pricing', 'planos', 'about', 'faq', 'contact']) expect(html).toContain(`id="${id}"`);
     expect(html).toContain('contato@mxstudioweb.com.br');
     expect(html).toContain('sulamitaestetica.pt');
     expect(html).toMatch(/Wise/);
@@ -135,20 +135,16 @@ describe('home page', () => {
     }
   });
 
-  it('keeps consultative prices and adds the three subscription plans', () => {
+  it('keeps consultative prices and replaces the old image plans with setup + monthly plans', () => {
     const html = read('index.html').replace(/\s/g, ' ');
     expect(html).toContain('Valores a consultar');
-    expect(html).toContain('Site por assinatura para pequenos negócios.');
     expect(html).toContain('Consulte sites para pequenas empresas');
-    expect(html).toContain('R$ 297');
-    expect(html).toContain('R$ 447');
-    expect(html).toContain('R$ 597');
-    expect(html).toContain('action="/api/create-checkout-session"');
-    expect(html).toContain('name="plan" value="essencial"');
-    expect(html).toContain('name="plan" value="profissional"');
-    expect(html).toContain('name="plan" value="completo"');
     expect(html).toContain('href="/#planos"');
     expect(html).toContain('cta-call');
+    // The retired BRL subscription cards (images + Stripe checkout) are gone.
+    for (const gone of ['R$ 297', 'R$ 447', 'R$ 597', '/planos/', 'create-checkout-session', 'Essencial', 'Site por assinatura']) {
+      expect(html).not.toContain(gone);
+    }
     expect(html).not.toContain('R$ 497');
     expect(html).not.toContain('R$ 3.500');
     expect(html).not.toContain('R$ 4.900');
@@ -158,29 +154,33 @@ describe('home page', () => {
     expect(html).not.toContain('mx-studio-web.vercel.app');
   });
 
-  it('adds the euro express plans (setup + monthly, 14 days) in every language', () => {
+  it('shows the small-business plans (setup + monthly, 14 days) in every language and currency', () => {
     const nbsp = (s: string) => s.replace(/\u00a0|&nbsp;/g, ' ');
     const pt = nbsp(text(read('index.html')));
     const en = nbsp(text(read('en.html')));
     const es = nbsp(text(read('es.html')));
-    expect(read('index.html')).toContain('id="express"');
-    for (const [page, amounts] of [
-      [pt, ['€ 150', '€ 20', '€ 350', '€ 650', '€ 30']],
-      [en, ['€150', '€20', '€350', '€650', '€30']],
-      [es, ['150 €', '20 €', '350 €', '650 €', '30 €']],
-    ] as const) {
-      for (const a of amounts) expect(page).toContain(a);
-      for (const name of ['Launch', 'Business', 'Growth']) expect(page).toContain(name);
+    for (const file of ['index.html', 'en.html', 'es.html']) {
+      const html = read(file);
+      expect(html).toContain('id="planos"');
+      for (const id of ['launch', 'business', 'growth']) expect(html).toContain(`data-plan="${id}"`);
+      // The site's currency selector sits on the plans.
+      expect(html).toContain('id="currency-label"');
+      expect(html.match(/role="radio"/g)?.length).toBe(4);
     }
+    for (const page of [pt, en, es]) for (const name of ['Launch', 'Business', 'Growth']) expect(page).toContain(name);
+    // Prerendered in the language's default currency (BRL / USD), converted from the euro price.
+    expect(pt).toMatch(/≈ R\$ \d+/);
+    expect(en).toMatch(/≈ \$\d+/);
+    expect(es).toMatch(/≈ \d+ US\$/);
     expect(en).toContain('Live in 14 days');
     expect(pt).toContain('No ar em 14 dias');
-    // Each CTA opens WhatsApp with the chosen plan already named.
+    // Each CTA opens WhatsApp with the chosen plan and the amounts shown on screen.
     expect(read('en.html')).toContain(encodeURIComponent('I want the Launch plan'));
-    // The BRL subscription plans and quoted services stay.
-    expect(pt).toContain('R$ 297');
+    expect(read('index.html')).toMatch(/wa\.me\/[^"]*%E2%89%88%20R%24/);
     expect(pt).toContain('Valores a consultar');
-    // Structured data lists the euro offers.
+    // Structured data lists the euro offers, without the retired BRL range.
     expect(read('en.html')).toContain('"priceCurrency":"EUR"');
+    expect(read('index.html')).toContain('"priceRange":"€150–650 + €20–30/mo"');
   });
 
   it('has no broken internal link or asset', () => {
@@ -203,13 +203,15 @@ describe('home page', () => {
 });
 
 describe('/fundadores', () => {
-  it('is Portuguese only, out of search, and shows the three plans instead of the retired price', () => {
+  it('is Portuguese only, out of search, and shows the small-business plans instead of the retired prices', () => {
     const html = read('fundadores.html').replace(/\s/g, ' ');
     expect(html).toMatch(/<html[^>]*lang="pt-BR"/);
     expect(html).toMatch(/<meta name="robots" content="noindex, nofollow"/);
-    expect(html).toContain('R$ 297');
-    expect(html).toContain('R$ 447');
-    expect(html).toContain('R$ 597');
+    expect(html).toContain('id="planos"');
+    for (const id of ['launch', 'business', 'growth']) expect(html).toContain(`data-plan="${id}"`);
+    expect(html).not.toContain('R$ 297');
+    expect(html).not.toContain('R$ 447');
+    expect(html).not.toContain('R$ 597');
     expect(html).not.toContain('R$ 497');
     expect(html).not.toContain('R$ 149,90');
   });

@@ -4,7 +4,6 @@ import { StudioJsonLd } from '@/lib/seo';
 import { About } from './about';
 import { ClientCase } from './client-case';
 import { Contact } from './contact';
-import { ExpressPlans } from './express-plans';
 import { Faq } from './faq';
 import { Hero } from './hero';
 import { Pricing } from './pricing';
@@ -19,7 +18,6 @@ export function HomePage({ locale }: { locale: Locale }) {
       <ClientCase t={t.case} />
       <Showcase locale={locale} t={t.work} />
       <Process t={t.process} />
-      <ExpressPlans locale={locale} t={t.pricing.express} />
       <Pricing t={t.pricing} />
       <About t={t.about} />
       <Faq t={t.faq} />
