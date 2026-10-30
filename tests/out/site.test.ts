@@ -190,6 +190,20 @@ describe('home page', () => {
     expect(read('index.html')).toContain('"priceRange":"€150–650 + €20–35/mo"');
   });
 
+  it('sends each plan button to its Stripe Payment Link in the page language', () => {
+    const links = {
+      launch: 'https://buy.stripe.com/9B6fZi4yA6DS37Mgp243S00',
+      business: 'https://buy.stripe.com/6oU14o3uw8M00ZEc8M43S01',
+      growth: 'https://buy.stripe.com/eVq00k3uw7HWaAe3Cg43S02',
+    };
+    for (const [file, locale] of [['index.html', 'pt-BR'], ['en.html', 'en'], ['es.html', 'es']] as const) {
+      const html = read(file);
+      for (const [id, url] of Object.entries(links)) {
+        expect(html).toMatch(new RegExp(`href="${url}\\?locale=${locale}"[^>]*data-checkout="${id}"`));
+      }
+    }
+  });
+
   it('offers the three plans in the contact form and the 14-day timeline in the FAQ', () => {
     const cases = [
       ['index.html', ['Plano Launch', 'Plano Business', 'Plano Growth', 'Outro / ainda não sei'], 'Sistema sob medida'],

@@ -224,10 +224,20 @@ export const lcpSeconds: Record<ShowcaseSlug, number> = {
  */
 export const planosCurrency = 'EUR' as const;
 export const planos = [
-  { id: 'launch', setup: 150, monthly: 20 },
-  { id: 'business', setup: 350, monthly: 25, featured: true },
-  { id: 'growth', setup: 650, monthly: 35 },
+  { id: 'launch', setup: 150, monthly: 20, checkout: 'https://buy.stripe.com/9B6fZi4yA6DS37Mgp243S00' },
+  { id: 'business', setup: 350, monthly: 25, featured: true, checkout: 'https://buy.stripe.com/6oU14o3uw8M00ZEc8M43S01' },
+  { id: 'growth', setup: 650, monthly: 35, checkout: 'https://buy.stripe.com/eVq00k3uw7HWaAe3Cg43S02' },
 ] as const;
+
+/**
+ * Stripe Payment Links (live): each one is a subscription with the monthly BRL price plus the one-time
+ * setup BRL price on the first invoice. Stripe's Adaptive Pricing shows foreign visitors their own
+ * currency; `locale` sets the checkout language to the page's.
+ */
+const checkoutLocale = { pt: 'pt-BR', en: 'en', es: 'es' } as const;
+export function planoCheckoutUrl(url: string, locale: keyof typeof checkoutLocale) {
+  return `${url}?locale=${checkoutLocale[locale]}`;
+}
 export type PlanoId = (typeof planos)[number]['id'];
 export const planosDeliveryDays = 14;
 
