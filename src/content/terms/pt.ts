@@ -1,6 +1,6 @@
 import type { Terms } from './types';
 
-// Generated from the approved v1.0 outline; keep the three languages in sync.
+// Generated from the approved v1.0 outline, updated to v1.1; keep the three languages in sync.
 export const termsPt: Terms = {
   "title": "Termos de Serviço, Licença e Manutenção",
   "description": "Condições dos planos Launch, Business e Growth da MX Studio Web: criação do site, licença de uso, mensalidade, atraso, cancelamento, arrependimento, dados e foro.",
@@ -21,10 +21,15 @@ export const termsPt: Terms = {
     },
     {
       "id": "prazo",
-      "title": "2. Prazo de entrega",
+      "title": "2. Prévia, prazo de entrega e atrasos",
       "body": [
-        "O site fica pronto em até 14 dias. O prazo começa a contar quando você me entrega todo o material necessário (textos, logo, fotos, acessos e informações pedidas no início do projeto).",
-        "Atrasos no envio do material ou nas aprovações adiam a entrega pelo mesmo período."
+        "Antes de contratar, você me procura e eu monto uma prévia GRÁTIS do seu site a partir das suas referências (Instagram, Facebook, Google Meu Negócio, TikTok, site antigo etc.) e apresento para você. A prévia não cria obrigação para nenhum dos lados: se você não contratar, ela continua sendo da MX Studio Web e não pode ser usada.",
+        "O site fica pronto em até 14 dias. O prazo começa a contar quando você aprova a prévia E o pagamento da primeira etapa é confirmado.",
+        "Você, ou um representante que você indicar, precisa estar disponível para os ajustes (textos, imagens, animações etc.) e responder em até 2 dias úteis. Enquanto o projeto espera por você, inclusive por uma etapa de pagamento vencida e não paga, o prazo fica pausado.",
+        [
+          "Atraso causado por você: depois de um aviso por escrito (WhatsApp ou e-mail), pode ser cobrada uma taxa de €5 por dia de trabalho do projeto parado por esse motivo (para clientes no Brasil, cobrada em reais pela cotação do dia), limitada a 30 dias.",
+          "Passados esses 30 dias, o projeto pode ser pausado ou publicado com o material que estiver disponível."
+        ]
       ]
     },
     {
@@ -43,12 +48,19 @@ export const termsPt: Terms = {
       "id": "pagamento",
       "title": "4. Preços, cobrança e renovação automática",
       "body": [
-        "A taxa de criação é paga na contratação. A mensalidade é cobrada de forma antecipada, todo mês, e se renova automaticamente até você cancelar.",
+        "A criação do site é paga em etapas, iguais no cartão, Pix, boleto e Wise:",
+        [
+          "Launch e Business: 50% na aprovação da prévia e 50% na entrega.",
+          "Growth: 40% na aprovação da prévia, 30% no dia 7 (com o layout das páginas internas aprovado) e 30% na entrega.",
+          "A primeira etapa é paga pelo botão do plano no site. As etapas seguintes são enviadas por fatura do Stripe para o seu e-mail; no boleto, a fatura sai cerca de 3 dias úteis antes de cada etapa e, na Wise, cerca de 2 dias antes.",
+          "O site é publicado depois que o pagamento final é confirmado. A mensalidade começa na publicação."
+        ],
+        "A mensalidade é cobrada de forma antecipada, todo mês, a partir da publicação, e se renova automaticamente até você cancelar.",
         [
           "Os valores são cobrados em reais (BRL). Se você paga com cartão em outra moeda, o Stripe mostra o valor convertido e pode aplicar uma taxa de conversão de cerca de 2% a 4%, que fica por sua conta.",
           "A mensalidade é reajustada uma vez por ano pelo IPCA (ou índice oficial que o substitua), com aviso de pelo menos 30 dias.",
           "Renovação automática: ao contratar, você autoriza a cobrança mensal no meio de pagamento informado até cancelar. O valor e a data de cada cobrança aparecem no checkout e nos recibos do Stripe. Você pode cancelar a qualquer momento, de forma simples, pelo WhatsApp ou por e-mail, sem precisar justificar.",
-          "Pix e boleto pelo site servem para pagar a taxa de criação. A mensalidade é então ativada no cartão ou no boleto.",
+          "A mensalidade pode ser paga no cartão (cobrança automática) ou por boleto/Pix em fatura mensal.",
           "Pagamento pela Wise só por combinação direta comigo. Nesse caso, você aceita estes termos por e-mail antes de pagar."
         ]
       ]
@@ -79,7 +91,7 @@ export const termsPt: Terms = {
       "id": "arrependimento",
       "title": "7. Direito de arrependimento e taxa de criação",
       "body": [
-        "O trabalho começa logo após a contratação. Mesmo assim:",
+        "O trabalho começa quando você aprova a prévia e o pagamento da primeira etapa é confirmado. Mesmo assim:",
         [
           "Consumidor no Brasil: você pode desistir em até 7 dias da contratação e recebe de volta todo o valor pago (art. 49 do Código de Defesa do Consumidor).",
           "Consumidor na União Europeia: você tem 14 dias para desistir. Se pediu que o trabalho começasse antes do fim desse prazo, a devolução é proporcional ao que já foi feito.",
@@ -113,6 +125,7 @@ export const termsPt: Terms = {
         [
           "Ter os direitos sobre o conteúdo que você envia (textos, imagens, marcas) e garantir que ele é legal.",
           "Enviar o material e as aprovações no prazo combinado.",
+          "Estar disponível, você ou um representante indicado, para os ajustes do projeto e responder em até 2 dias úteis (ver item 2).",
           "Ter a sua própria política de privacidade e de cookies, já que você é quem decide quais dados o site coleta dos seus clientes. Posso ajudar a publicá-las no site."
         ]
       ]

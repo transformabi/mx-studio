@@ -85,17 +85,17 @@ export const en: Messages = {
   process: {
     label: 'How it works',
     title: 'From first contact to launch, with no surprises.',
-    lead: 'On the Launch, Business and Growth plans, all four stages fit in 14 days.',
+    lead: 'First, a free preview of your website, built from your social profiles and current site. Approve it and pay the first stage, and the four stages below fit in 14 days.',
     steps: [
       {
         title: 'Discovery',
         duration: '1 to 2 days',
-        text: 'A conversation to understand the business, the audience and what already works. I come out of it with the brief and the site structure.',
+        text: 'Starting from the approved preview, we align audience, copy and structure. You, or someone you name, stay available for adjustments and reply within 2 business days.',
       },
       {
         title: 'Design',
         duration: '3 to 4 days',
-        text: 'Visual direction and page designs. You approve everything before a single line of code.',
+        text: 'Visual direction and inner page designs. You approve everything before a single line of code. On Growth, this approval is the second payment stage.',
       },
       {
         title: 'Development',
@@ -105,16 +105,39 @@ export const en: Messages = {
       {
         title: 'Launch',
         duration: '1 day',
-        text: 'The site goes live on your domain, with technical SEO, visit tracking and a user guide.',
+        text: 'Once the final payment is confirmed, the site goes live on your domain, with technical SEO, visit tracking and a user guide. The monthly fee starts here.',
       },
     ],
   },
 
   pricing: {
+    schedule: {
+      label: 'Staged payment',
+      title: 'How the setup fee is paid.',
+      lead: 'You only pay the first stage after you have seen and approved the free preview of your website. The rest follows the 14-day milestones, and the monthly fee only starts once the site is live.',
+      planCol: 'Plan',
+      setupCol: 'Setup',
+      monthlyCol: 'Monthly fee',
+      monthlyWhen: 'From launch',
+      per: '/mo',
+      day: 'Day {day}',
+      noStage: 'No payment at this stage',
+      stages: { approval: 'Preview approved', layout: 'Inner pages approved', delivery: 'Website delivered' },
+      notes: [
+        'Before day 0: I build a free preview from your Instagram, Facebook, Google Business, TikTok or current website. No commitment.',
+        'The 14 days start when you approve the preview and the first-stage payment is confirmed.',
+        'The percentages are the same by card, Pix, boleto or Wise. For boleto and Wise, the invoice arrives a few days before each stage.',
+        'The site goes live once the final payment is confirmed. The clock pauses while we wait for your reply or a payment.',
+      ],
+      termsBefore: 'Full rules in section 4 of the ',
+      termsLink: 'Terms of Service',
+      termsAfter: '.',
+      termsAnchor: 'payment',
+    },
     payments: {
       title: 'Payment methods',
-      methods: ['Credit card, Apple Pay and Google Pay', 'Pix (Brazil), for the setup fee', 'Boleto (Brazil)', 'Wise, arranged directly with me'],
-      note: 'On the site, everything runs through Stripe. By card you get the full plan: the setup fee with the first payment and maintenance every month. In Brazil and prefer Pix or boleto? Pay the setup fee with the plan\'s Pix link and we then start the monthly fee by card or boleto. Outside Brazil, checkout shows the amount in your currency. Checkout does not offer instalments. Prefer to pay by Wise? Arrange it directly with me on WhatsApp or by email, outside checkout.',
+      methods: ['Credit card, Apple Pay and Google Pay', 'Pix (Brazil)', 'Boleto (Brazil)', 'Wise, arranged directly with me'],
+      note: 'On the site, everything runs through Stripe. Each plan button pays the first stage of the setup fee (50% on Launch and Business, 40% on Growth) by card, or Pix or boleto in Brazil, and the 14-day timeline starts then. The next stages arrive as Stripe invoices by email. The monthly fee only starts once the site is live. Outside Brazil, checkout shows the amount in your currency. Prefer to pay by Wise? Arrange it directly with me on WhatsApp or by email, outside checkout.',
     },
     plans: {
       label: 'Small business plans',
@@ -129,10 +152,9 @@ export const en: Messages = {
       featured: 'Most popular',
       delivery: 'Live in {days} days',
       cta: 'Get the {plan} plan',
-      checkout: 'Get {plan} and pay online',
-      pix: 'In Brazil? Pay the setup fee by Pix or boleto',
+      checkout: 'Get {plan}: pay first stage',
       whatsapp: 'Questions? Ask on WhatsApp',
-      secure: 'Secure payment by Stripe: the setup fee is charged with the first payment and maintenance every month. Checkout shows the amount in your local currency.',
+      secure: 'Secure payment by Stripe: today you pay only the first stage of the setup fee; the rest comes by invoice and the monthly fee starts at launch. Checkout shows the amount in your local currency.',
       email: 'Prefer email?',
       emailSubject: '{plan} plan — MX Studio Web',
       askMsg: 'Hi! I came across the MX Studio Web website and I want the {plan} plan: {setup} setup + {monthly}/mo maintenance, live in 14 days.',
@@ -179,7 +201,7 @@ export const en: Messages = {
     items: [
       {
         q: 'How does the free preview work?',
-        a: 'You answer a 5-minute questionnaire and send your logo and a few photos. I put together a preview of a website for your business and send it on WhatsApp. No commitment.',
+        a: 'You get in touch and I build a preview of your website from what your business already has: Instagram, Facebook, Google Business, TikTok, your old site. I present it with no commitment. If you approve it, the 14-day clock starts with the first-stage payment.',
       },
       {
         q: 'How long does it take?',
@@ -187,7 +209,7 @@ export const en: Messages = {
       },
       {
         q: 'How does payment work?',
-        a: 'The Launch, Business and Growth plans have a setup fee and a monthly maintenance fee. Payment runs through Stripe: credit card, Apple Pay or Google Pay for the full plan; in Brazil, also Pix or boleto for the setup fee, with the monthly fee by card or boleto. If you prefer to pay by Wise, just arrange it directly with me on WhatsApp or by email. Custom projects come with a contract and payment in 3 stages: 40% upfront, 30% on design approval and 30% on delivery.',
+        a: 'The Launch, Business and Growth plans have a setup fee and a monthly maintenance fee. The setup fee is paid in stages through Stripe, by credit card, Apple Pay or Google Pay (and Pix or boleto in Brazil): 50% when you approve the preview and 50% on delivery for Launch and Business; 40%, 30% (day 7) and 30% (delivery) for Growth. You pay the first stage with the plan button and the others arrive as invoices by email. The monthly fee only starts once the site is live. If you prefer to pay by Wise, just arrange it directly with me on WhatsApp or by email. Custom projects come with a contract and payment in 3 stages: 40% upfront, 30% on design approval and 30% on delivery.',
       },
       {
         q: 'Do you use templates?',

@@ -41,11 +41,19 @@ export function formatConverted(
   rates: Rates,
   opts: MoneyOptions = {},
 ) {
+  return formatValue(convertedValue(amount, from, currency, rates, opts), locale, currency, opts);
+}
+
+/** The converted number behind formatConverted, with the same rounding. */
+export function convertedValue(amount: number, from: Currency, currency: Currency, rates: Rates, opts: MoneyOptions = {}) {
   let value = currency === from ? amount : (amount / rates[from]) * rates[currency];
   if (opts.round && currency !== from && value >= 100) value = Math.round(value / 10) * 10;
   else if (opts.round && currency !== from && opts.decimals === 0) value = Math.round(value);
-  const digits = opts.compact ? undefined : (opts.decimals ?? 2);
+  return value;
+}
 
+function formatValue(value: number, locale: Locale, currency: Currency, opts: MoneyOptions) {
+  const digits = opts.compact ? undefined : (opts.decimals ?? 2);
   return new Intl.NumberFormat(localeInfo[locale].intl, {
     style: 'currency',
     currency,
@@ -54,6 +62,29 @@ export function formatConverted(
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,
   }).format(value);
+}
+
+/**
+ * Splits `amount` by `percents` and shows each part in the visitor's currency. The parts are cut from the
+ * converted total shown on the plan (rounded to whole units, not tens), and the last one takes the
+ * difference, so they always add up to that total. In BRL this gives the exact Stripe stage amounts.
+ */
+export function formatSplit(
+  amount: number,
+  percents: number[],
+  from: Currency,
+  locale: Locale,
+  currency: Currency,
+  rates: Rates,
+  opts: MoneyOptions = {},
+) {
+  const total = convertedValue(amount, from, currency, rates, opts);
+  let used = 0;
+  return percents.map((pct, i) => {
+    const value = i === percents.length - 1 ? total - used : Math.round((total * pct) / 100);
+    used += value;
+    return formatValue(value, locale, currency, opts);
+  });
 }
 
 /** Replaces {placeholders} in a message. */

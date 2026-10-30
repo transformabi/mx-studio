@@ -7,6 +7,8 @@ import {
   lcpSeconds,
   planoCheckoutUrl,
   planos,
+  planoSchedule,
+  planoStageDay,
   showcase,
   SITE_URL,
 } from '@/lib/estudio';
@@ -49,16 +51,31 @@ describe('plan checkout links', () => {
   it('has its own Stripe links per plan and language, with the checkout language set', () => {
     const all: string[] = [];
     for (const plan of planos) {
-      for (const urls of [plan.checkout, plan.pixCheckout]) {
-        expect(Object.keys(urls).sort()).toEqual(['en', 'es', 'pt']);
-        for (const url of Object.values(urls)) expect(url).toMatch(/^https:\/\/buy\.stripe\.com\/[A-Za-z0-9]+$/);
-        all.push(...Object.values(urls));
-      }
+      const urls = plan.checkout;
+      expect(Object.keys(urls).sort()).toEqual(['en', 'es', 'pt']);
+      for (const url of Object.values(urls)) expect(url).toMatch(/^https:\/\/buy\.stripe\.com\/[A-Za-z0-9]+$/);
+      all.push(...Object.values(urls));
+      expect(plan).not.toHaveProperty('pixCheckout');
     }
-    expect(new Set(all).size).toBe(18);
+    expect(new Set(all).size).toBe(9);
     const urls = { pt: 'https://buy.stripe.com/p', en: 'https://buy.stripe.com/e', es: 'https://buy.stripe.com/s' };
     expect(planoCheckoutUrl(urls, 'pt')).toBe('https://buy.stripe.com/p?locale=pt-BR');
     expect(planoCheckoutUrl(urls, 'en')).toBe('https://buy.stripe.com/e?locale=en');
     expect(planoCheckoutUrl(urls, 'es')).toBe('https://buy.stripe.com/s?locale=es');
+  });
+});
+
+describe('setup payment schedule (Terms v1.1, section 4)', () => {
+  it('splits each plan setup into stages that add up to 100%', () => {
+    for (const plan of planos) {
+      const stages = planoSchedule[plan.id];
+      expect(Object.values(stages).reduce((a, b) => a + (b ?? 0), 0)).toBe(100);
+      expect(stages.approval).toBeGreaterThan(0);
+      expect(stages.delivery).toBeGreaterThan(0);
+    }
+    expect(planoSchedule.launch).toEqual({ approval: 50, delivery: 50 });
+    expect(planoSchedule.business).toEqual({ approval: 50, delivery: 50 });
+    expect(planoSchedule.growth).toEqual({ approval: 40, layout: 30, delivery: 30 });
+    expect(planoStageDay).toEqual({ approval: 0, layout: 7, delivery: 14 });
   });
 });

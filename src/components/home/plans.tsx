@@ -10,6 +10,7 @@ import { CurrencySwitch } from '@/components/site/currency-switch';
 import { BoletoLogo, CardLogos, PixLogo, WiseLogo } from '@/components/site/payment-logos';
 import { SectionHeader } from '@/components/site/section-header';
 import { Reveal } from '@/components/reveal';
+import { PaymentSchedule } from './payment-schedule';
 import { cn } from '@/lib/utils';
 
 /**
@@ -19,7 +20,15 @@ import { cn } from '@/lib/utils';
 // Brand marks in the same order as pricing.payments.methods: card, Pix, boleto (all Stripe), then Wise (arranged directly).
 const methodLogos = [CardLogos, PixLogo, BoletoLogo, WiseLogo];
 
-export function Plans({ t, payments }: { t: Messages['pricing']['plans']; payments: Messages['pricing']['payments'] }) {
+export function Plans({
+  t,
+  payments,
+  schedule,
+}: {
+  t: Messages['pricing']['plans'];
+  payments: Messages['pricing']['payments'];
+  schedule: Messages['pricing']['schedule'];
+}) {
   const { convert, currency, locale } = useI18n();
   const converted = currency !== planosCurrency;
   const price = (amount: number) => {
@@ -93,7 +102,7 @@ export function Plans({ t, payments }: { t: Messages['pricing']['plans']; paymen
                   </ul>
 
                   <div className="mt-auto pt-8">
-                    {/* Stripe Payment Link: monthly subscription + one-time setup on the first invoice. */}
+                    {/* Stripe Payment Link (one-time): the first stage of the setup fee, by card, Pix or boleto. */}
                     <a
                       href={planoCheckoutUrl(plan.checkout, locale)}
                       data-checkout={plan.id}
@@ -107,17 +116,6 @@ export function Plans({ t, payments }: { t: Messages['pricing']['plans']; paymen
                       <CreditCard className="h-4 w-4" aria-hidden />
                       {fill(t.checkout, { plan: item.name })}
                       <ArrowUpRight className="h-4 w-4" aria-hidden />
-                    </a>
-                    {/* One-time Stripe link for the setup fee only (Pix, boleto or card), for clients in Brazil. */}
-                    <a
-                      href={planoCheckoutUrl(plan.pixCheckout, locale)}
-                      data-pix-checkout={plan.id}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 inline-flex w-full items-center justify-center gap-2 text-xs text-white/70 transition-colors hover:text-lime"
-                    >
-                      <PixLogo />
-                      {t.pix}
                     </a>
                     <a
                       href={whatsappUrl(msg)}
@@ -143,7 +141,7 @@ export function Plans({ t, payments }: { t: Messages['pricing']['plans']; paymen
           })}
         </div>
 
-        {/* Every Stripe link requires ticking the same terms (v1.0) before paying. */}
+        {/* Every Stripe link requires ticking the same terms before paying. */}
         <p data-terms-notice className="mt-8 max-w-3xl text-sm leading-relaxed text-white/75">
           {t.termsNotice.before}
           <a href={localizedPath(locale, '/termos')} className="font-semibold text-lime underline underline-offset-4 hover:text-bone">
@@ -153,6 +151,9 @@ export function Plans({ t, payments }: { t: Messages['pricing']['plans']; paymen
         </p>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/60">{t.maintenance}</p>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/60">{t.secure}</p>
+
+        {/* Right after the prices and before the payment methods: how the setup fee is split over the 14 days. */}
+        <PaymentSchedule t={schedule} plans={t.plans} />
 
         <div className="mt-10 grid gap-6 rounded-xl border border-white/10 p-7 lg:grid-cols-12 lg:items-center">
           <p className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50 lg:col-span-3">{payments.title}</p>

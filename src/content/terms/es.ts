@@ -1,6 +1,6 @@
 import type { Terms } from './types';
 
-// Generated from the approved v1.0 outline; keep the three languages in sync.
+// Generated from the approved v1.0 outline, updated to v1.1; keep the three languages in sync.
 export const termsEs: Terms = {
   "title": "Términos de Servicio, Licencia y Mantenimiento",
   "description": "Condiciones de los planes Launch, Business y Growth de MX Studio Web: creación del sitio, licencia de uso, cuota mensual, atrasos, cancelación, desistimiento, datos y jurisdicción.",
@@ -21,10 +21,15 @@ export const termsEs: Terms = {
     },
     {
       "id": "plazo",
-      "title": "2. Plazo de entrega",
+      "title": "2. Vista previa, plazo de entrega y atrasos",
       "body": [
-        "El sitio está listo en un máximo de 14 días. El plazo empieza a contar cuando me entregas todo el material necesario (textos, logo, fotos, accesos y la información pedida al inicio del proyecto).",
-        "Los retrasos en el envío del material o en las aprobaciones aplazan la entrega por el mismo período."
+        "Antes de contratar, me contactas y preparo una vista previa GRATIS de tu sitio a partir de tus referencias (Instagram, Facebook, Perfil de Empresa en Google, TikTok, sitio antiguo, etc.) y te la presento. La vista previa no crea obligación para ninguna de las partes: si no contratas, sigue siendo de MX Studio Web y no puede usarse.",
+        "El sitio está listo en hasta 14 días. El plazo empieza a contar cuando apruebas la vista previa Y se confirma el pago de la primera etapa.",
+        "Tú, o un representante que indiques, debes estar disponible para los ajustes (textos, imágenes, animaciones, etc.) y responder en hasta 2 días hábiles. Mientras el proyecto espera por ti, incluso por una etapa de pago vencida y no pagada, el plazo queda en pausa.",
+        [
+          "Atraso causado por ti: tras un aviso por escrito (WhatsApp o e-mail), puede cobrarse una tasa de €5 por cada día de trabajo del proyecto detenido por ese motivo (para clientes en Brasil, cobrada en reales al cambio del día), con un límite de 30 días.",
+          "Pasados esos 30 días, el proyecto puede pausarse o publicarse con el material disponible."
+        ]
       ]
     },
     {
@@ -43,12 +48,19 @@ export const termsEs: Terms = {
       "id": "pago",
       "title": "4. Precios, cobro y renovación automática",
       "body": [
-        "La tarifa de creación se paga al contratar. La cuota mensual se cobra por adelantado cada mes y se renueva automáticamente hasta que canceles.",
+        "La creación del sitio se paga por etapas, iguales con tarjeta, Pix, boleto y Wise:",
+        [
+          "Launch y Business: 50% al aprobar la vista previa y 50% en la entrega.",
+          "Growth: 40% al aprobar la vista previa, 30% el día 7 (con el diseño de las páginas internas aprobado) y 30% en la entrega.",
+          "La primera etapa se paga con el botón del plan en el sitio. Las siguientes etapas se envían por factura de Stripe a tu e-mail; con boleto, la factura sale unos 3 días hábiles antes de cada etapa y, con Wise, unos 2 días antes.",
+          "El sitio se publica después de confirmado el pago final. La cuota mensual empieza en la publicación."
+        ],
+        "La cuota mensual se cobra por adelantado cada mes, a partir de la publicación, y se renueva automáticamente hasta que canceles.",
         [
           "Los importes se cobran en reales brasileños (BRL). Si pagas con tarjeta en otra moneda, Stripe muestra el importe convertido y puede aplicar una comisión de conversión de aproximadamente el 2% al 4%, que corre por tu cuenta.",
           "La cuota mensual se actualiza una vez al año según el IPCA (índice oficial de inflación de Brasil, o el índice oficial que lo sustituya), con al menos 30 días de aviso.",
           "Renovación automática: al contratar, autorizas el cobro mensual en tu medio de pago hasta que canceles. El importe y la fecha de cada cobro aparecen en el checkout y en los recibos de Stripe. Puedes cancelar en cualquier momento, de forma sencilla, por WhatsApp o por correo, sin necesidad de justificarlo.",
-          "Pix y boleto en el sitio sirven para pagar la tarifa de creación. La cuota mensual se activa después con tarjeta o boleto.",
+          "La cuota mensual puede pagarse con tarjeta (cobro automático) o por boleto/Pix en una factura mensual.",
           "El pago por Wise solo se hace por acuerdo directo conmigo. En ese caso, aceptas estos términos por correo antes de pagar."
         ]
       ]
@@ -79,7 +91,7 @@ export const termsEs: Terms = {
       "id": "desistimiento",
       "title": "7. Derecho de desistimiento y tarifa de creación",
       "body": [
-        "El trabajo empieza justo después de la contratación. Aun así:",
+        "El trabajo empieza cuando apruebas la vista previa y se confirma el pago de la primera etapa. Aun así:",
         [
           "Consumidores en Brasil: puedes desistir en un plazo de 7 días desde la contratación y recibir el reembolso total (art. 49 del Código de Defensa del Consumidor de Brasil).",
           "Consumidores en la Unión Europea: tienes 14 días para desistir. Si pediste que el trabajo empezara antes de que terminara ese plazo, el reembolso es proporcional al trabajo ya realizado.",
@@ -113,6 +125,7 @@ export const termsEs: Terms = {
         [
           "Tener los derechos sobre el contenido que envías (textos, imágenes, marcas) y garantizar que es lícito.",
           "Enviar el material y las aprobaciones en el plazo acordado.",
+          "Estar disponible, tú o un representante indicado, para los ajustes del proyecto y responder en hasta 2 días hábiles (ver punto 2).",
           "Tener tu propia política de privacidad y de cookies, ya que eres tú quien decide qué datos recoge el sitio de tus clientes. Puedo ayudarte a publicarlas en el sitio."
         ]
       ]
