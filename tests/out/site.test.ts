@@ -93,6 +93,8 @@ describe('static export', () => {
   it('keeps the internal tools out of search', () => {
     expect(read('carrossel.html')).toMatch(/<meta name="robots" content="noindex, nofollow"/);
     expect(read('brand-kit.html')).toMatch(/<meta name="robots" content="noindex, nofollow"/);
+    expect(read('brand-kit.html')).toContain('mxstudioweb.com.br');
+    expect(read('brand-kit.html')).not.toMatch(/mxstudioweb\.vercel\.app|max-costa-estudio\.vercel\.app/);
   });
 
   it('has a flat copy of every nested segment-prefetch file', () => {
