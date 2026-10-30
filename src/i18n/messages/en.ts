@@ -113,8 +113,8 @@ export const en: Messages = {
   pricing: {
     payments: {
       title: 'Payment methods',
-      methods: ['PIX (Brazil)', 'Credit card, in instalments', 'Wise, for clients outside Brazil'],
-      abroad: 'Outside Brazil? You pay in your currency through Wise.',
+      methods: ['Credit card, Apple Pay and Google Pay', 'Pix (Brazil), for the setup fee', 'Boleto (Brazil)'],
+      note: 'Everything runs through Stripe. By card you get the full plan: the setup fee with the first payment and maintenance every month. In Brazil and prefer Pix or boleto? Pay the setup fee with the plan\'s Pix link and we then start the monthly fee by card or boleto. Outside Brazil, checkout shows the amount in your currency. Checkout does not offer instalments.',
     },
     plans: {
       label: 'Small business plans',
@@ -130,6 +130,7 @@ export const en: Messages = {
       delivery: 'Live in {days} days',
       cta: 'Get the {plan} plan',
       checkout: 'Get {plan} and pay online',
+      pix: 'In Brazil? Pay the setup fee by Pix or boleto',
       whatsapp: 'Questions? Ask on WhatsApp',
       secure: 'Secure payment by Stripe: the setup fee is charged with the first payment and maintenance every month. Checkout shows the amount in your local currency.',
       email: 'Prefer email?',
@@ -185,7 +186,7 @@ export const en: Messages = {
       },
       {
         q: 'How does payment work?',
-        a: 'The Launch, Business and Growth plans have a setup fee and a monthly maintenance fee. I accept PIX, credit card in instalments and Wise for clients outside Brazil. Custom projects come with a contract and payment in 3 stages: 40% upfront, 30% on design approval and 30% on delivery.',
+        a: 'The Launch, Business and Growth plans have a setup fee and a monthly maintenance fee. Payment runs through Stripe: credit card, Apple Pay or Google Pay for the full plan; in Brazil, also Pix or boleto for the setup fee, with the monthly fee by card or boleto. Custom projects come with a contract and payment in 3 stages: 40% upfront, 30% on design approval and 30% on delivery.',
       },
       {
         q: 'Do you use templates?',
@@ -197,7 +198,7 @@ export const en: Messages = {
       },
       {
         q: 'Do you work with clients outside Brazil?',
-        a: 'Yes. I work with clients across Brazil, Portugal and other countries, over video calls and WhatsApp. Clients outside Brazil pay through Wise, in their own currency.',
+        a: 'Yes. I work with clients across Brazil, Portugal and other countries, over video calls and WhatsApp. Clients outside Brazil pay through Stripe by card, in their own currency.',
       },
     ],
   },

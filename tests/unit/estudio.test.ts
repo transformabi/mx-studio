@@ -64,6 +64,8 @@ describe('plan checkout links', () => {
   it('points every plan at a live Stripe Payment Link with the page locale', () => {
     for (const plan of planos) expect(plan.checkout).toMatch(/^https:\/\/buy\.stripe\.com\/[A-Za-z0-9]+$/);
     expect(new Set(planos.map((p) => p.checkout)).size).toBe(3);
+    for (const plan of planos) expect(plan.pixCheckout).toMatch(/^https:\/\/buy\.stripe\.com\/[A-Za-z0-9]+$/);
+    expect(new Set([...planos.map((p) => p.checkout), ...planos.map((p) => p.pixCheckout)]).size).toBe(6);
     expect(planoCheckoutUrl('https://buy.stripe.com/x', 'pt')).toBe('https://buy.stripe.com/x?locale=pt-BR');
     expect(planoCheckoutUrl('https://buy.stripe.com/x', 'en')).toBe('https://buy.stripe.com/x?locale=en');
     expect(planoCheckoutUrl('https://buy.stripe.com/x', 'es')).toBe('https://buy.stripe.com/x?locale=es');

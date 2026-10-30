@@ -16,13 +16,16 @@ describe('messages', () => {
     expect(shape(messages.es)).toEqual(shape(messages.pt));
   });
 
-  it.each(['pt', 'en', 'es'] as const)('%s lists PIX, card and Wise and never Bitcoin', (locale) => {
+  it.each(['pt', 'en', 'es'] as const)('%s lists the Stripe methods (card, Pix, boleto), no Wise and never Bitcoin', (locale) => {
     const all = JSON.stringify(messages[locale]);
     expect(all).not.toMatch(/bitcoin|btc/i);
     const methods = messages[locale].pricing.payments.methods.join(' ');
-    expect(methods).toMatch(/PIX/);
-    expect(methods).toMatch(/Wise/);
+    expect(methods).toMatch(/Pix/);
+    expect(methods).toMatch(/Boleto/i);
     expect(methods).toMatch(/cart|card|tarjeta/i);
+    // Stripe replaced Wise, and Brazilian Stripe accounts have no card instalments.
+    expect(all).not.toMatch(/Wise/);
+    expect(methods).not.toMatch(/parcel|instal|cuotas/i);
   });
 
   it.each(['pt', 'en', 'es'] as const)('%s home description fits in a search result', (locale) => {
