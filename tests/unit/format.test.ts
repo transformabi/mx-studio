@@ -49,7 +49,8 @@ describe('formatConverted', () => {
   const opts = { decimals: 0, round: true } as const;
   it('keeps a euro price exact when shown in euros', () => {
     expect(plain(formatConverted(150, 'EUR', 'pt', 'EUR', rates, opts))).toBe('€ 150');
-    expect(formatConverted(20, 'EUR', 'en', 'EUR', rates, opts)).toBe('€20');
+    expect(formatConverted(25, 'EUR', 'en', 'EUR', rates, opts)).toBe('€25');
+    expect(plain(formatConverted(35, 'EUR', 'pt', 'EUR', rates, opts))).toBe('€ 35');
     expect(plain(formatConverted(650, 'EUR', 'es', 'EUR', rates, opts))).toBe('650 €');
   });
   it('converts a euro price through the BRL-based rates and rounds it', () => {

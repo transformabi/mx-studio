@@ -108,8 +108,8 @@ export const slides: Slide[] = [
     n: 10,
     kind: 'cta',
     hook: 'Seu site pode ser\no próximo case.',
-    body: 'R$ 297, R$ 447 e R$ 597/mês',
-    hookTail: 'Essencial, Profissional e Completo',
+    body: 'a partir de €150',
+    hookTail: 'Launch, Business e Growth · criação + mensalidade · no ar em 14 dias',
   },
 ];
 

@@ -234,8 +234,8 @@ export type ServiceKey = (typeof services)[number]['key'];
 export const planosCurrency = 'EUR' as const;
 export const planos = [
   { id: 'launch', setup: 150, monthly: 20 },
-  { id: 'business', setup: 350, monthly: 20, featured: true },
-  { id: 'growth', setup: 650, monthly: 30 },
+  { id: 'business', setup: 350, monthly: 25, featured: true },
+  { id: 'growth', setup: 650, monthly: 35 },
 ] as const;
 export type PlanoId = (typeof planos)[number]['id'];
 export const planosDeliveryDays = 14;
