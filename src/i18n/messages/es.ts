@@ -85,26 +85,26 @@ export const es: Messages = {
   process: {
     label: 'Cómo funciona',
     title: 'Del primer contacto al sitio en línea, sin sorpresas.',
-    lead: 'Estas etapas se aplican a sitios corporativos, tiendas online y sistemas a medida. Una landing page queda en línea en 10 días como máximo.',
+    lead: 'En los planes Launch, Business y Growth, las cuatro etapas caben en 14 días.',
     steps: [
       {
         title: 'Descubrimiento',
-        duration: '3 a 5 días',
+        duration: '1 a 2 días',
         text: 'Una conversación para entender el negocio, el público y lo que ya funciona. Salgo de ella con el brief y la estructura del sitio.',
       },
       {
         title: 'Diseño',
-        duration: '1 a 2 semanas',
+        duration: '3 a 4 días',
         text: 'Dirección visual y pantallas del sitio. Apruebas todo antes de cualquier línea de código.',
       },
       {
         title: 'Desarrollo',
-        duration: '2 a 4 semanas',
+        duration: '5 a 7 días',
         text: 'Programación del sitio, con un enlace de vista previa para que lo sigas desde el primer día.',
       },
       {
         title: 'Lanzamiento',
-        duration: '2 a 3 días',
+        duration: '1 día',
         text: 'El sitio en línea en tu dominio, con SEO técnico, medición de visitas y una guía de uso.',
       },
     ],
@@ -178,7 +178,7 @@ export const es: Messages = {
       },
       {
         q: '¿Cuánto tarda el sitio?',
-        a: 'Landing page: hasta 10 días. Sitios más grandes, de 4 a 7 semanas, según el tamaño del proyecto. El calendario va en la propuesta, con las fechas de cada etapa.',
+        a: 'En los planes Launch, Business y Growth, tu sitio queda en línea en 14 días. Los proyectos a medida tienen su propio plazo, con las fechas de cada etapa en la propuesta.',
       },
       {
         q: '¿Cómo es el pago?',
@@ -216,7 +216,7 @@ export const es: Messages = {
       email: 'E-mail',
       emailPlaceholder: 'tu@empresa.com',
       project: 'Tipo de proyecto',
-      projects: ['Sitio corporativo', 'Tienda online', 'Landing page', 'Sistema a medida', 'Aún no lo sé'],
+      projects: ['Plan Launch', 'Plan Business', 'Plan Growth', 'Otro / aún no lo sé'],
       budget: 'Presupuesto',
       budgetUpTo: 'Hasta {amount}',
       budgetAbove: 'Más de {amount}',

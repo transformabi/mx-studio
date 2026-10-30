@@ -190,6 +190,21 @@ describe('home page', () => {
     expect(read('index.html')).toContain('"priceRange":"€150–650 + €20–35/mo"');
   });
 
+  it('offers the three plans in the contact form and the 14-day timeline in the FAQ', () => {
+    const cases = [
+      ['index.html', ['Plano Launch', 'Plano Business', 'Plano Growth', 'Outro / ainda não sei'], 'Sistema sob medida'],
+      ['en.html', ['Launch plan', 'Business plan', 'Growth plan', 'Other / not sure yet'], 'Custom system'],
+      ['es.html', ['Plan Launch', 'Plan Business', 'Plan Growth', 'Otro / aún no lo sé'], 'Sistema a medida'],
+    ] as const;
+    for (const [file, chips, gone] of cases) {
+      const page = text(read(file)).replace(/\u00a0/g, ' ');
+      for (const c of chips) expect(page).toContain(c);
+      expect(page).not.toContain(gone);
+      expect(page).not.toMatch(/4 (a|to) 7 (semanas|weeks)|10 (dias|days|días)/);
+      expect(page).toMatch(/14 (dias|days|días)/);
+    }
+  });
+
   it('has no broken internal link or asset', () => {
     // Includes the four hidden demos: they render stand-in art instead of requesting photos that don't exist yet.
     const broken: string[] = [];

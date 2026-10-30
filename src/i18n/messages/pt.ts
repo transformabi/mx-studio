@@ -86,26 +86,26 @@ export const pt = {
   process: {
     label: 'Como funciona',
     title: 'Do primeiro contato ao site no ar, sem surpresa.',
-    lead: 'Estas etapas valem para sites institucionais, lojas virtuais e sistemas. Uma landing page fica no ar em até 10 dias.',
+    lead: 'Nos planos Launch, Business e Growth, as quatro etapas cabem em 14 dias.',
     steps: [
       {
         title: 'Descoberta',
-        duration: '3 a 5 dias',
+        duration: '1 a 2 dias',
         text: 'Uma conversa para entender o negócio, o público e o que já funciona. Saio dela com o briefing e a estrutura do site.',
       },
       {
         title: 'Design',
-        duration: '1 a 2 semanas',
+        duration: '3 a 4 dias',
         text: 'Direção visual e telas do site. Você aprova tudo antes de qualquer linha de código.',
       },
       {
         title: 'Desenvolvimento',
-        duration: '2 a 4 semanas',
+        duration: '5 a 7 dias',
         text: 'Programação do site, com um link de prévia para você acompanhar desde o primeiro dia.',
       },
       {
         title: 'Lançamento',
-        duration: '2 a 3 dias',
+        duration: '1 dia',
         text: 'Site no ar no seu domínio, com SEO técnico, medição de visitas e um guia de uso.',
       },
     ],
@@ -179,7 +179,7 @@ export const pt = {
       },
       {
         q: 'Em quanto tempo o site fica pronto?',
-        a: 'Landing page: até 10 dias. Sites maiores, de 4 a 7 semanas, conforme o tamanho do projeto. O cronograma vem na proposta, com as datas de cada etapa.',
+        a: 'Nos planos Launch, Business e Growth, o site fica no ar em 14 dias. Projetos sob medida têm prazo próprio, com as datas de cada etapa na proposta.',
       },
       {
         q: 'Como é o pagamento?',
@@ -217,7 +217,7 @@ export const pt = {
       email: 'E-mail',
       emailPlaceholder: 'voce@empresa.com',
       project: 'Tipo de projeto',
-      projects: ['Site institucional', 'Loja virtual', 'Landing page', 'Sistema sob medida', 'Ainda não sei'],
+      projects: ['Plano Launch', 'Plano Business', 'Plano Growth', 'Outro / ainda não sei'],
       budget: 'Faixa de investimento',
       budgetUpTo: 'Até {amount}',
       budgetAbove: 'Acima de {amount}',

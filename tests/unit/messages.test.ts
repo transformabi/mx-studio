@@ -34,10 +34,14 @@ describe('messages', () => {
 
   it.each(['pt', 'en', 'es'] as const)('%s FAQ timeline matches the process steps', (locale) => {
     const all = JSON.stringify(messages[locale].faq);
-    // Discovery + design + development + launch add up to roughly 4 to 7 weeks.
-    expect(all).toMatch(/4 (a|to) 7 (semanas|weeks)/);
-    expect(all).not.toMatch(/3 (a|to) 7/);
-    expect(messages[locale].process.lead).toMatch(/10/);
+    // The plans go live in 14 days: discovery + design + development + launch fit inside that.
+    expect(all).toMatch(/14 (dias|days|días)/);
+    expect(all).not.toMatch(/4 (a|to) 7|10 (dias|days|días)|semanas|weeks/);
+    expect(messages[locale].process.lead).toMatch(/14/);
+    const maxDays = messages[locale].process.steps
+      .map((s) => Number(s.duration.match(/(\d+)\D*$/)?.[1]))
+      .reduce((a, b) => a + b, 0);
+    expect(maxDays).toBeLessThanOrEqual(14);
   });
 
   it.each(['pt', 'en', 'es'] as const)('%s makes no claim about agencies or years of experience', (locale) => {
