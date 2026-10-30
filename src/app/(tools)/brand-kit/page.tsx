@@ -27,12 +27,12 @@ const bios = [
   {
     tag: 'Curta · 150 caracteres',
     where: 'Instagram · Twitter · perfis compactos',
-    text: 'Fazemos sites e produtos digitais em Next.js. Do brief ao pós-lançamento, um humano só. Vem ver → mxstudioweb.vercel.app',
+    text: 'Fazemos sites e produtos digitais em Next.js. Do brief ao pós-lançamento, um humano só. Vem ver → mxstudioweb.com.br',
   },
   {
     tag: 'Média · 300 caracteres',
     where: 'Workana · 99Freelas · Fiverr · Upwork',
-    text: 'Somos a MX Studio Web — estúdio digital no Rio. Fazemos sites, e-commerces e produtos digitais sob medida em Next.js/React. 8+ anos de mercado, do brief ao pós-lançamento sem intermediário. Portfólio: mxstudioweb.vercel.app · Respondemos em até 24h.',
+    text: 'Somos a MX Studio Web — estúdio digital no Rio. Fazemos sites, e-commerces e produtos digitais sob medida em Next.js/React. 8+ anos de mercado, do brief ao pós-lançamento sem intermediário. Portfólio: mxstudioweb.com.br · Respondemos em até 24h.',
   },
   {
     tag: 'Longa · para o "sobre" do LinkedIn',
@@ -49,7 +49,7 @@ Ramos que costumamos atender: moda autoral, gastronomia, saúde, jurídico, imob
 • Código no seu GitHub, sem lock-in
 • 30 dias de garantia
 
-Portfólio com 10 demos funcionais: mxstudioweb.vercel.app
+Portfólio com 10 demos funcionais: https://mxstudioweb.com.br
 Fale com a gente: (21) 99319-6171 (WhatsApp)`,
   },
 ];
@@ -208,13 +208,10 @@ export default function BrandKitPage() {
                 style={{ fontFamily: 'var(--font-instrument-serif)' }}
                 className="text-3xl italic text-white"
               >
-                mxstudioweb.vercel.app
+                mxstudioweb.com.br
               </div>
               <p className="mt-3 text-sm text-white/70">
-                Assim que o deploy estiver no ar (passo a passo abaixo), esse será o link a colocar em todas as bios.
-              </p>
-              <p className="mt-4 text-xs text-white/50">
-                Enquanto isso, use o subdomínio da Vercel: <code className="rounded-sm bg-white/10 px-2 py-0.5 font-mono text-[11px]">max-costa-estudio.vercel.app/estudio</code>
+                Este é o link a colocar em todas as bios: <code className="rounded-sm bg-white/10 px-2 py-0.5 font-mono text-[11px]">https://mxstudioweb.com.br</code>
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-black/40 p-6 text-sm text-white/70">
