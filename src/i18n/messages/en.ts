@@ -113,8 +113,8 @@ export const en: Messages = {
   pricing: {
     payments: {
       title: 'Payment methods',
-      methods: ['Credit card, Apple Pay and Google Pay', 'Pix (Brazil), for the setup fee', 'Boleto (Brazil)'],
-      note: 'Everything runs through Stripe. By card you get the full plan: the setup fee with the first payment and maintenance every month. In Brazil and prefer Pix or boleto? Pay the setup fee with the plan\'s Pix link and we then start the monthly fee by card or boleto. Outside Brazil, checkout shows the amount in your currency. Checkout does not offer instalments.',
+      methods: ['Credit card, Apple Pay and Google Pay', 'Pix (Brazil), for the setup fee', 'Boleto (Brazil)', 'Wise, arranged directly with me'],
+      note: 'On the site, everything runs through Stripe. By card you get the full plan: the setup fee with the first payment and maintenance every month. In Brazil and prefer Pix or boleto? Pay the setup fee with the plan\'s Pix link and we then start the monthly fee by card or boleto. Outside Brazil, checkout shows the amount in your currency. Checkout does not offer instalments. Prefer to pay by Wise? Arrange it directly with me on WhatsApp or by email, outside checkout.',
     },
     plans: {
       label: 'Small business plans',
@@ -186,7 +186,7 @@ export const en: Messages = {
       },
       {
         q: 'How does payment work?',
-        a: 'The Launch, Business and Growth plans have a setup fee and a monthly maintenance fee. Payment runs through Stripe: credit card, Apple Pay or Google Pay for the full plan; in Brazil, also Pix or boleto for the setup fee, with the monthly fee by card or boleto. Custom projects come with a contract and payment in 3 stages: 40% upfront, 30% on design approval and 30% on delivery.',
+        a: 'The Launch, Business and Growth plans have a setup fee and a monthly maintenance fee. Payment runs through Stripe: credit card, Apple Pay or Google Pay for the full plan; in Brazil, also Pix or boleto for the setup fee, with the monthly fee by card or boleto. If you prefer to pay by Wise, just arrange it directly with me on WhatsApp or by email. Custom projects come with a contract and payment in 3 stages: 40% upfront, 30% on design approval and 30% on delivery.',
       },
       {
         q: 'Do you use templates?',
@@ -194,11 +194,11 @@ export const en: Messages = {
       },
       {
         q: 'What happens after launch?',
-        a: 'You get a user guide and a 30-day warranty for fixes. If you like, you can hire a monthly plan and I take care of the changes.',
+        a: 'You get a user guide and a 30-day warranty for fixes. After that, the plan\'s monthly maintenance covers hosting, updates, security, backups and small text and image changes.',
       },
       {
         q: 'Do you work with clients outside Brazil?',
-        a: 'Yes. I work with clients across Brazil, Portugal and other countries, over video calls and WhatsApp. Clients outside Brazil pay through Stripe by card, in their own currency.',
+        a: 'Yes. I work with clients across Brazil, Portugal and other countries, over video calls and WhatsApp. Clients outside Brazil pay through Stripe by card, in their own currency, or by Wise, arranged directly with me.',
       },
     ],
   },
@@ -221,16 +221,12 @@ export const en: Messages = {
       emailPlaceholder: 'you@company.com',
       project: 'Project type',
       projects: ['Launch plan', 'Business plan', 'Growth plan', 'Other / not sure yet'],
-      budget: 'Budget',
-      budgetUpTo: 'Up to {amount}',
-      budgetAbove: 'Over {amount}',
       message: 'About the project',
       messagePlaceholder: 'What the company does, what it needs and by when.',
       footnote: 'Sending opens WhatsApp with your message ready.',
       send: 'Send via WhatsApp',
       waIntro: 'Hi! I came across the MX Studio Web website.',
       waProject: 'Project',
-      waBudget: 'Budget',
       errorName: 'Please enter your name.',
       errorEmail: 'Please check the e-mail.',
       errorMessage: 'Tell me a bit more about the project.',

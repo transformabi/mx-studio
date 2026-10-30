@@ -44,7 +44,7 @@ Passamos por agências, produto e consultoria antes de virar um estúdio indepen
 Ramos que costumamos atender: moda autoral, gastronomia, saúde, jurídico, imobiliária, infoprodutos.
 
 • Contrato + escopo fechado
-• Pagamento parcelado
+• Pagamento pelo Stripe (cartão, Pix ou boleto) ou Wise
 • Staging desde o dia 1
 • Código no seu GitHub, sem lock-in
 • 30 dias de garantia

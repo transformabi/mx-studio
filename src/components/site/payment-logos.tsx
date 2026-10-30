@@ -1,5 +1,5 @@
 import { Barcode } from 'lucide-react';
-import { CARD_MARKS, PIX_COLOR, PIX_PATH } from './payment-marks';
+import { CARD_MARKS, PIX_COLOR, PIX_PATH, WISE_COLOR, WISE_PATH } from './payment-marks';
 
 function BrandSymbol({ path, color }: { path: string; color: string }) {
   return (
@@ -11,6 +11,9 @@ function BrandSymbol({ path, color }: { path: string; color: string }) {
 
 /** Pix symbol in its official color. */
 export const PixLogo = () => <BrandSymbol path={PIX_PATH} color={PIX_COLOR} />;
+
+/** Wise flag symbol in its official color. */
+export const WiseLogo = () => <BrandSymbol path={WISE_PATH} color={WISE_COLOR} />;
 
 /** Boleto bancário: a barcode, the way Brazilian payers recognise it. */
 export const BoletoLogo = () => <Barcode aria-hidden className="h-[18px] w-[18px] shrink-0 text-bone" />;

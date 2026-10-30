@@ -114,8 +114,8 @@ export const pt = {
   pricing: {
     payments: {
       title: 'Formas de pagamento',
-      methods: ['Cartão de crédito, Apple Pay e Google Pay', 'Pix, para a criação do site', 'Boleto bancário'],
-      note: 'Tudo pelo Stripe. No cartão você contrata o plano completo: a criação no primeiro pagamento e a manutenção todo mês. Prefere Pix ou boleto? Pague a criação pelo link de Pix do plano e, em seguida, ativamos a mensalidade no cartão ou no boleto. Fora do Brasil, o checkout mostra o valor na sua moeda. O checkout não oferece parcelamento.',
+      methods: ['Cartão de crédito, Apple Pay e Google Pay', 'Pix, para a criação do site', 'Boleto bancário', 'Wise, combinado direto comigo'],
+      note: 'No site, tudo passa pelo Stripe. No cartão você contrata o plano completo: a criação no primeiro pagamento e a manutenção todo mês. Prefere Pix ou boleto? Pague a criação pelo link de Pix do plano e, em seguida, ativamos a mensalidade no cartão ou no boleto. Fora do Brasil, o checkout mostra o valor na sua moeda. O checkout não oferece parcelamento. Prefere pagar pela Wise? Combine direto comigo pelo WhatsApp ou e-mail, fora do checkout.',
     },
     plans: {
       label: 'Planos para pequenos negócios',
@@ -187,7 +187,7 @@ export const pt = {
       },
       {
         q: 'Como é o pagamento?',
-        a: 'Os planos Launch, Business e Growth têm um valor de criação e uma mensalidade de manutenção. O pagamento é pelo Stripe: cartão de crédito, Apple Pay ou Google Pay para o plano completo, e Pix ou boleto para a criação, com a mensalidade no cartão ou no boleto. Projetos sob medida têm contrato e pagamento em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega.',
+        a: 'Os planos Launch, Business e Growth têm um valor de criação e uma mensalidade de manutenção. O pagamento é pelo Stripe: cartão de crédito, Apple Pay ou Google Pay para o plano completo, e Pix ou boleto para a criação, com a mensalidade no cartão ou no boleto. Se preferir pagar pela Wise, é só combinar direto comigo pelo WhatsApp ou e-mail. Projetos sob medida têm contrato e pagamento em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega.',
       },
       {
         q: 'Você usa modelo pronto?',
@@ -195,11 +195,11 @@ export const pt = {
       },
       {
         q: 'E depois que o site estiver no ar?',
-        a: 'Você recebe um guia de uso e 30 dias de garantia para correções. Se quiser, contrata um plano mensal para eu cuidar das alterações.',
+        a: 'Você recebe um guia de uso e 30 dias de garantia para correções. Depois, a manutenção mensal do plano cobre hospedagem, atualizações, segurança, backups e pequenas alterações de texto e imagem.',
       },
       {
         q: 'Atende fora do Rio de Janeiro?',
-        a: 'Sim. Atendo todo o Brasil, Portugal e outros países, por videochamada e WhatsApp. Clientes de fora do Brasil pagam pelo Stripe, com cartão, na própria moeda.',
+        a: 'Sim. Atendo todo o Brasil, Portugal e outros países, por videochamada e WhatsApp. Clientes de fora do Brasil pagam pelo Stripe, com cartão, na própria moeda, ou pela Wise, combinando direto comigo.',
       },
     ],
   },
@@ -222,16 +222,12 @@ export const pt = {
       emailPlaceholder: 'voce@empresa.com',
       project: 'Tipo de projeto',
       projects: ['Plano Launch', 'Plano Business', 'Plano Growth', 'Outro / ainda não sei'],
-      budget: 'Faixa de investimento',
-      budgetUpTo: 'Até {amount}',
-      budgetAbove: 'Acima de {amount}',
       message: 'Sobre o projeto',
       messagePlaceholder: 'O que a empresa faz, o que precisa e para quando.',
       footnote: 'Ao enviar, o WhatsApp abre com a sua mensagem pronta.',
       send: 'Enviar pelo WhatsApp',
       waIntro: 'Olá! Vim pelo site da MX Studio Web.',
       waProject: 'Projeto',
-      waBudget: 'Investimento',
       errorName: 'Escreva seu nome.',
       errorEmail: 'Confira o e-mail.',
       errorMessage: 'Conte um pouco mais sobre o projeto.',
