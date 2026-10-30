@@ -3,7 +3,7 @@
 import { createContext, useContext, useMemo, useSyncExternalStore, type ReactNode } from 'react';
 import { defaultCurrency, localeInfo, type Currency, type Locale } from './config';
 import { readSavedCurrency, saveCurrency, subscribeCurrency } from './currency-store';
-import { formatConverted, formatMoney, type MoneyOptions, type Rates } from './format';
+import { formatConverted, formatMoney, formatSplit, type MoneyOptions, type Rates } from './format';
 
 type I18nValue = {
   locale: Locale;
@@ -13,6 +13,8 @@ type I18nValue = {
   money: (brl: number, opts?: MoneyOptions) => string;
   /** A price written in another currency (e.g. EUR), shown in the visitor's currency. */
   convert: (amount: number, from: Currency, opts?: MoneyOptions) => string;
+  /** `amount` split by `percents`, in the visitor's currency; the parts add up to convert(amount). */
+  split: (amount: number, percents: number[], from: Currency, opts?: MoneyOptions) => string[];
   setCurrency: (currency: Currency) => void;
 };
 
@@ -31,6 +33,7 @@ export function I18nProvider({ locale, rates, children }: { locale: Locale; rate
       intl: localeInfo[locale].intl,
       money: (brl, opts) => formatMoney(brl, locale, currency, rates, opts),
       convert: (amount, from, opts) => formatConverted(amount, from, locale, currency, rates, opts),
+      split: (amount, percents, from, opts) => formatSplit(amount, percents, from, locale, currency, rates, opts),
       setCurrency: saveCurrency,
     }),
     [locale, currency, rates],

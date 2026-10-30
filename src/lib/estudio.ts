@@ -228,34 +228,30 @@ export const planos = [
     id: 'launch',
     setup: 150,
     monthly: 20,
-    checkout: { pt: 'https://buy.stripe.com/fZuaEYghi1jy23I5Ko43S06', en: 'https://buy.stripe.com/aFa8wQ8OQ2nC37M0q443S09', es: 'https://buy.stripe.com/aFaaEYghifaoeQugp243S0c' },
-    pixCheckout: { pt: 'https://buy.stripe.com/eVq3cw0ik9Q4fUy2yc43S0f', en: 'https://buy.stripe.com/5kQ8wQaWYgesbEifkY43S0i', es: 'https://buy.stripe.com/28EaEY8OQ9Q4fUy8WA43S0l' },
+    checkout: { pt: 'https://buy.stripe.com/8x2bJ26GI5zOdMq6Os43S0o', en: 'https://buy.stripe.com/7sY00k1mo3rG37Mgp243S0r', es: 'https://buy.stripe.com/3cIdRa1moaU8dMq7Sw43S0u' },
   },
   {
     id: 'business',
     setup: 350,
     monthly: 25,
     featured: true,
-    checkout: { pt: 'https://buy.stripe.com/7sYaEY6GI8M0dMqc8M43S07', en: 'https://buy.stripe.com/00w00k5CE0fu37MegU43S0a', es: 'https://buy.stripe.com/bJeeVeaWYfao6jYa0E43S0d' },
-    pixCheckout: { pt: 'https://buy.stripe.com/14A5kE0ik6DS6jY3Cg43S0g', en: 'https://buy.stripe.com/4gM7sM2qs6DScImc8M43S0j', es: 'https://buy.stripe.com/aFa28s8OQd2g0ZE3Cg43S0m' },
+    checkout: { pt: 'https://buy.stripe.com/28EfZifdebYc37M8WA43S0p', en: 'https://buy.stripe.com/bJe14oaWY6DS23I1u843S0s', es: 'https://buy.stripe.com/bJecN67KM9Q40ZEegU43S0v' },
   },
   {
     id: 'growth',
     setup: 650,
     monthly: 35,
-    checkout: { pt: 'https://buy.stripe.com/bJedRa2qsaU8aAea0E43S08', en: 'https://buy.stripe.com/9B63cwe9a6DSfUy4Gk43S0b', es: 'https://buy.stripe.com/7sY3cw8OQ2nC6jY8WA43S0e' },
-    pixCheckout: { pt: 'https://buy.stripe.com/8x214o3uw0fu6jY0q443S0h', en: 'https://buy.stripe.com/14A00kfdeaU86jYgp243S0k', es: 'https://buy.stripe.com/fZu5kEd56aU8cIm5Ko43S0n' },
+    checkout: { pt: 'https://buy.stripe.com/5kQ28s8OQfaoaAe6Os43S0q', en: 'https://buy.stripe.com/7sYbJ29SUaU87o25Ko43S0t', es: 'https://buy.stripe.com/00w7sM7KM9Q4dMqdcQ43S0w' },
   },
 ] as const;
 
 /**
- * Stripe Payment Links (live): each one is a subscription with the monthly BRL price plus the one-time
- * setup BRL price on the first invoice. Stripe's Adaptive Pricing shows foreign visitors their own
- * currency; `locale` sets the checkout language to the page's. There is one link per language because each
- * requires accepting the Terms of Service (v1.0) with a checkbox text that links to that language's terms page.
- * `pixCheckout`: one-time BRL link for the setup fee only, by Pix, boleto or card, for Brazilian clients who
- * prefer Pix. Pix can't renew a subscription for a Brazilian business on Stripe (no Pix Automático), so the
- * monthly fee is then started by hand from the Stripe Dashboard, by card or boleto.
+ * Stripe Payment Links (live), one-time BRL: the FIRST stage of the setup fee only (50% on Launch and
+ * Business, 40% on Growth; see `planoSchedule`), by card, Pix or boleto. Stripe's Adaptive Pricing shows
+ * foreign visitors their own currency; `locale` sets the checkout language to the page's. There is one link
+ * per language because each requires accepting the Terms of Service (v1.1) with a checkbox text that links
+ * to that language's terms page. The remaining stages are sent as Stripe invoices, and the monthly fee is
+ * started as a subscription from the Stripe Dashboard when the site is published.
  */
 const checkoutLocale = { pt: 'pt-BR', en: 'en', es: 'es' } as const;
 export function planoCheckoutUrl(urls: Record<keyof typeof checkoutLocale, string>, locale: keyof typeof checkoutLocale) {
@@ -263,6 +259,20 @@ export function planoCheckoutUrl(urls: Record<keyof typeof checkoutLocale, strin
 }
 export type PlanoId = (typeof planos)[number]['id'];
 export const planosDeliveryDays = 14;
+
+/**
+ * How each plan's setup fee is split across the 14 days (Terms of Service v1.1, section 4). The clock starts
+ * on day 0, when the client approves the free preview and the first stage is paid; the site goes live after
+ * the final stage, and the monthly fee starts on publication. Same split for card, Pix, boleto and Wise.
+ */
+export const planoStages = ['approval', 'layout', 'delivery'] as const;
+export type PlanoStage = (typeof planoStages)[number];
+export const planoStageDay: Record<PlanoStage, number> = { approval: 0, layout: 7, delivery: 14 };
+export const planoSchedule: Record<PlanoId, Partial<Record<PlanoStage, number>>> = {
+  launch: { approval: 50, delivery: 50 },
+  business: { approval: 50, delivery: 50 },
+  growth: { approval: 40, layout: 30, delivery: 30 },
+};
 
 /** Real client sites that are live, shown in their niche ahead of the demos. */
 export type CaseSlug = 'sulamita-estetica';

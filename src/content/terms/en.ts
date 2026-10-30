@@ -1,6 +1,6 @@
 import type { Terms } from './types';
 
-// Generated from the approved v1.0 outline; keep the three languages in sync.
+// Generated from the approved v1.0 outline, updated to v1.1; keep the three languages in sync.
 export const termsEn: Terms = {
   "title": "Terms of Service, License and Maintenance",
   "description": "Terms for MX Studio Web's Launch, Business and Growth plans: website build, license, monthly fee, late payment, cancellation, withdrawal, data protection and jurisdiction.",
@@ -21,10 +21,15 @@ export const termsEn: Terms = {
     },
     {
       "id": "timeline",
-      "title": "2. Delivery time",
+      "title": "2. Preview, delivery timeline and delays",
       "body": [
-        "The website is ready within 14 days. The clock starts when you have delivered all the required material (texts, logo, photos, access and the information requested at kickoff).",
-        "Delays in sending material or approvals push delivery back by the same amount of time."
+        "Before you sign up, you get in touch and I build a FREE preview of your website from your references (Instagram, Facebook, Google Business Profile, TikTok, old website, etc.) and present it to you. The preview creates no obligation for either side: if you don't sign up, it remains the property of MX Studio Web and may not be used.",
+        "The website is ready within 14 days. The timeline starts when you approve the preview AND payment of the first stage is confirmed.",
+        "You, or a representative you name, must be available for adjustments (texts, images, animations, etc.) and reply within 2 business days. While the project is waiting on you, including on a payment stage that is due and unpaid, the timeline is paused.",
+        [
+          "Delays caused by you: after written notice (WhatsApp or email), a fee of €5 may be charged per day of project work held up for that reason (for clients in Brazil, charged in reais at the day's exchange rate), capped at 30 days.",
+          "After those 30 days, the project may be paused or published with the material available."
+        ]
       ]
     },
     {
@@ -43,12 +48,19 @@ export const termsEn: Terms = {
       "id": "payment",
       "title": "4. Prices, billing and automatic renewal",
       "body": [
-        "The setup fee is paid at signup. The monthly fee is charged in advance every month and renews automatically until you cancel.",
+        "The website setup fee is paid in stages, the same for card, Pix, boleto and Wise:",
+        [
+          "Launch and Business: 50% when you approve the preview and 50% on delivery.",
+          "Growth: 40% when you approve the preview, 30% on day 7 (once the inner-page layout is approved) and 30% on delivery.",
+          "You pay the first stage with the plan button on the website. The next stages are sent as Stripe invoices to your email; for boleto, the invoice goes out about 3 business days before each stage and, for Wise, about 2 days before.",
+          "The website goes live after the final payment is confirmed. The monthly fee starts at launch."
+        ],
+        "The monthly fee is charged in advance every month, starting at launch, and renews automatically until you cancel.",
         [
           "Amounts are charged in Brazilian reais (BRL). If you pay by card in another currency, Stripe shows the converted amount and may add a conversion fee of about 2% to 4%, which you bear.",
           "The monthly fee is adjusted once a year by the IPCA (Brazil's official inflation index, or its official replacement), with at least 30 days' notice.",
           "Automatic renewal: by signing up, you authorize the monthly charge to your payment method until you cancel. The amount and date of each charge are shown at checkout and on your Stripe receipts. You can cancel at any time, easily, via WhatsApp or email, with no need to give a reason.",
-          "Pix and boleto on the website are for paying the setup fee. The monthly fee is then set up on card or boleto.",
+          "The monthly fee can be paid by card (automatic charge) or by boleto/Pix on a monthly invoice.",
           "Payment via Wise is only by direct arrangement with me. In that case, you accept these terms by email before paying."
         ]
       ]
@@ -79,7 +91,7 @@ export const termsEn: Terms = {
       "id": "withdrawal",
       "title": "7. Right of withdrawal and setup fee",
       "body": [
-        "Work starts right after signup. Even so:",
+        "Work starts once you approve the preview and payment of the first stage is confirmed. Even so:",
         [
           "Consumers in Brazil: you can withdraw within 7 days of signing up and get a full refund (art. 49 of the Brazilian Consumer Protection Code).",
           "Consumers in the European Union: you have 14 days to withdraw. If you asked for work to start before that period ends, the refund is proportional to the work already done.",
@@ -113,6 +125,7 @@ export const termsEn: Terms = {
         [
           "Holding the rights to the content you send (texts, images, trademarks) and making sure it is lawful.",
           "Sending material and approvals on the agreed schedule.",
+          "Be available, yourself or through a named representative, for project adjustments and reply within 2 business days (see section 2).",
           "Having your own privacy and cookie policy, since you decide what data the website collects from your customers. I can help publish them on the website."
         ]
       ]

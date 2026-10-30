@@ -85,17 +85,17 @@ export const es: Messages = {
   process: {
     label: 'Cómo funciona',
     title: 'Del primer contacto al sitio en línea, sin sorpresas.',
-    lead: 'En los planes Launch, Business y Growth, las cuatro etapas caben en 14 días.',
+    lead: 'Primero, una vista previa gratuita de tu sitio, hecha a partir de tus redes y de tu sitio actual. ¿La apruebas y pagas la primera etapa? Las cuatro etapas de abajo caben en 14 días.',
     steps: [
       {
         title: 'Descubrimiento',
         duration: '1 a 2 días',
-        text: 'Una conversación para entender el negocio, el público y lo que ya funciona. Salgo de ella con el brief y la estructura del sitio.',
+        text: 'A partir de la vista previa aprobada, alineamos público, textos y estructura. Tú, o alguien que designes, estás disponible para los ajustes y respondes en un máximo de 2 días hábiles.',
       },
       {
         title: 'Diseño',
         duration: '3 a 4 días',
-        text: 'Dirección visual y pantallas del sitio. Apruebas todo antes de cualquier línea de código.',
+        text: 'Dirección visual y pantallas internas del sitio. Apruebas todo antes de cualquier línea de código. En Growth, esta aprobación marca la segunda etapa de pago.',
       },
       {
         title: 'Desarrollo',
@@ -105,16 +105,39 @@ export const es: Messages = {
       {
         title: 'Lanzamiento',
         duration: '1 día',
-        text: 'El sitio en línea en tu dominio, con SEO técnico, medición de visitas y una guía de uso.',
+        text: 'Con el pago final confirmado, el sitio se publica en tu dominio, con SEO técnico, medición de visitas y una guía de uso. La cuota mensual empieza aquí.',
       },
     ],
   },
 
   pricing: {
+    schedule: {
+      label: 'Pago por etapas',
+      title: 'Cómo se paga la creación.',
+      lead: 'Solo pagas la primera etapa después de ver y aprobar la vista previa gratuita de tu sitio. El resto acompaña las entregas de los 14 días, y la cuota mensual empieza cuando el sitio está en línea.',
+      planCol: 'Plan',
+      setupCol: 'Creación',
+      monthlyCol: 'Cuota mensual',
+      monthlyWhen: 'Al publicar',
+      per: '/mes',
+      day: 'Día {day}',
+      noStage: 'Sin pago en esta etapa',
+      stages: { approval: 'Vista previa aprobada', layout: 'Páginas internas aprobadas', delivery: 'Entrega del sitio' },
+      notes: [
+        'Antes del día 0: preparo una vista previa gratuita a partir de tu Instagram, Facebook, Google Business, TikTok o sitio actual. Sin compromiso.',
+        'Los 14 días empiezan cuando apruebas la vista previa y se confirma el pago de la primera etapa.',
+        'Los porcentajes son los mismos con tarjeta, Pix, boleto o Wise. Con boleto y Wise, el cobro llega unos días antes de cada etapa.',
+        'El sitio se publica cuando se confirma el pago final. El plazo se pausa mientras esperamos tu respuesta o un pago.',
+      ],
+      termsBefore: 'Reglas completas en el punto 4 de los ',
+      termsLink: 'Términos de Servicio',
+      termsAfter: '.',
+      termsAnchor: 'pago',
+    },
     payments: {
       title: 'Formas de pago',
-      methods: ['Tarjeta de crédito, Apple Pay y Google Pay', 'Pix (Brasil), para la creación', 'Boleto (Brasil)', 'Wise, acordado directamente conmigo'],
-      note: 'En el sitio, todo pasa por Stripe. Con tarjeta contratas el plan completo: la creación en el primer pago y el mantenimiento cada mes. ¿Estás en Brasil y prefieres Pix o boleto? Paga la creación con el enlace de Pix del plan y luego activamos la cuota mensual con tarjeta o boleto. Fuera de Brasil, el checkout muestra el importe en tu moneda. El checkout no ofrece pago en cuotas. ¿Prefieres pagar por Wise? Acuérdalo directamente conmigo por WhatsApp o e-mail, fuera del checkout.',
+      methods: ['Tarjeta de crédito, Apple Pay y Google Pay', 'Pix (Brasil)', 'Boleto (Brasil)', 'Wise, acordado directamente conmigo'],
+      note: 'En el sitio, todo pasa por Stripe. El botón de cada plan paga la primera etapa de la creación (50% en Launch y Business, 40% en Growth) con tarjeta, o Pix o boleto en Brasil, y el plazo de 14 días empieza ahí. Las siguientes etapas llegan por factura de Stripe a tu e-mail. La cuota mensual solo empieza cuando el sitio esté en línea. Fuera de Brasil, el checkout muestra el importe en tu moneda. ¿Prefieres pagar por Wise? Acuérdalo directamente conmigo por WhatsApp o e-mail, fuera del checkout.',
     },
     plans: {
       label: 'Planes para pequeños negocios',
@@ -129,10 +152,9 @@ export const es: Messages = {
       featured: 'El más elegido',
       delivery: 'En línea en {days} días',
       cta: 'Quiero el plan {plan}',
-      checkout: 'Contratar {plan} y pagar online',
-      pix: '¿En Brasil? Paga la creación por Pix o boleto',
+      checkout: 'Contratar {plan}: pagar 1.ª etapa',
       whatsapp: '¿Dudas? Escríbeme por WhatsApp',
-      secure: 'Pago seguro con Stripe: la creación se cobra en el primer pago y el mantenimiento cada mes. El checkout muestra el importe en tu moneda local.',
+      secure: 'Pago seguro con Stripe: hoy pagas solo la primera etapa de la creación; el resto llega por factura y la cuota mensual empieza al publicar. El checkout muestra el importe en tu moneda local.',
       email: '¿Prefieres correo?',
       emailSubject: 'Plan {plan} — MX Studio Web',
       askMsg: '¡Hola! Llegué por el sitio de MX Studio Web y quiero el plan {plan}: {setup} de creación + {monthly}/mes de mantenimiento, en línea en 14 días.',
@@ -179,7 +201,7 @@ export const es: Messages = {
     items: [
       {
         q: '¿Cómo funciona la vista previa gratis?',
-        a: 'Respondes un cuestionario de 5 minutos y envías tu logo y algunas fotos. Preparo una vista previa del sitio para tu negocio y te la mando por WhatsApp. Sin compromiso.',
+        a: 'Me contactas y preparo una vista previa del sitio con lo que tu negocio ya tiene: Instagram, Facebook, Google Business, TikTok, sitio antiguo. Te la presento sin compromiso. Si la apruebas, el plazo de 14 días empieza con el pago de la primera etapa.',
       },
       {
         q: '¿Cuánto tarda el sitio?',
@@ -187,7 +209,7 @@ export const es: Messages = {
       },
       {
         q: '¿Cómo es el pago?',
-        a: 'Los planes Launch, Business y Growth tienen un pago de creación y una cuota mensual de mantenimiento. El pago es por Stripe: tarjeta de crédito, Apple Pay o Google Pay para el plan completo; en Brasil, también Pix o boleto para la creación, con la cuota mensual por tarjeta o boleto. Si prefieres pagar por Wise, basta con acordarlo directamente conmigo por WhatsApp o e-mail. Los proyectos a medida tienen contrato y pago en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega.',
+        a: 'Los planes Launch, Business y Growth tienen un pago de creación y una cuota mensual de mantenimiento. La creación se paga por etapas con Stripe, con tarjeta de crédito, Apple Pay o Google Pay (y Pix o boleto en Brasil): 50% al aprobar la vista previa y 50% en la entrega en Launch y Business; 40%, 30% (día 7) y 30% (entrega) en Growth. La primera etapa se paga con el botón del plan y las demás llegan por factura a tu e-mail. La cuota mensual solo empieza cuando el sitio esté en línea. Si prefieres pagar por Wise, basta con acordarlo directamente conmigo por WhatsApp o e-mail. Los proyectos a medida tienen contrato y pago en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega.',
       },
       {
         q: '¿Usas plantillas?',

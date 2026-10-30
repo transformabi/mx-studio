@@ -14,6 +14,6 @@ export type Terms = {
   contact: { title: string; text: string; whatsapp: string; email: string };
 };
 
-export const TERMS_VERSION = 'v1.0';
+export const TERMS_VERSION = 'v1.1';
 /** ISO date the current version took effect. */
 export const TERMS_DATE = '2026-10-30';

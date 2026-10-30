@@ -196,27 +196,26 @@ describe('home page', () => {
 
   it('sends each plan button to its own Stripe Payment Link for the page language', () => {
     const B = 'https://buy.stripe.com/';
-    // Subscription links (setup + monthly), one per language: each requires accepting that language's terms.
+    // One-time links for the first stage of the setup fee (card, Pix or boleto), one per language:
+    // each requires accepting that language's terms (v1.1).
     const links = {
-      pt: { launch: 'fZuaEYghi1jy23I5Ko43S06', business: '7sYaEY6GI8M0dMqc8M43S07', growth: 'bJedRa2qsaU8aAea0E43S08' },
-      en: { launch: 'aFa8wQ8OQ2nC37M0q443S09', business: '00w00k5CE0fu37MegU43S0a', growth: '9B63cwe9a6DSfUy4Gk43S0b' },
-      es: { launch: 'aFaaEYghifaoeQugp243S0c', business: 'bJeeVeaWYfao6jYa0E43S0d', growth: '7sY3cw8OQ2nC6jY8WA43S0e' },
+      pt: { launch: '8x2bJ26GI5zOdMq6Os43S0o', business: '28EfZifdebYc37M8WA43S0p', growth: '5kQ28s8OQfaoaAe6Os43S0q' },
+      en: { launch: '7sY00k1mo3rG37Mgp243S0r', business: 'bJe14oaWY6DS23I1u843S0s', growth: '7sYbJ29SUaU87o25Ko43S0t' },
+      es: { launch: '3cIdRa1moaU8dMq7Sw43S0u', business: 'bJecN67KM9Q40ZEegU43S0v', growth: '00w7sM7KM9Q4dMqdcQ43S0w' },
     };
-    // One-time setup-fee links (Pix, boleto or card).
-    const pixLinks = {
-      pt: { launch: 'eVq3cw0ik9Q4fUy2yc43S0f', business: '14A5kE0ik6DS6jY3Cg43S0g', growth: '8x214o3uw0fu6jY0q443S0h' },
-      en: { launch: '5kQ8wQaWYgesbEifkY43S0i', business: '4gM7sM2qs6DScImc8M43S0j', growth: '14A00kfdeaU86jYgp243S0k' },
-      es: { launch: '28EaEY8OQ9Q4fUy8WA43S0l', business: 'aFa28s8OQd2g0ZE3Cg43S0m', growth: 'fZu5kEd56aU8cIm5Ko43S0n' },
-    };
-    const retired = ['9B6fZi4yA6DS37Mgp243S00', '6oU14o3uw8M00ZEc8M43S01', 'eVq00k3uw7HWaAe3Cg43S02', '3cIdRad564vK9wa5Ko43S03', '00w6oI3uw0fu7o2b4I43S04', 'aFaaEY1mo7HWfUy2yc43S05'];
+    const retired = [
+      '9B6fZi4yA6DS37Mgp243S00', '6oU14o3uw8M00ZEc8M43S01', 'eVq00k3uw7HWaAe3Cg43S02', '3cIdRad564vK9wa5Ko43S03', '00w6oI3uw0fu7o2b4I43S04', 'aFaaEY1mo7HWfUy2yc43S05',
+      // v1.0 subscription and Pix links, replaced by the staged first-payment links.
+      'fZuaEYghi1jy23I5Ko43S06', '7sYaEY6GI8M0dMqc8M43S07', 'bJedRa2qsaU8aAea0E43S08', 'aFa8wQ8OQ2nC37M0q443S09', '00w00k5CE0fu37MegU43S0a', '9B63cwe9a6DSfUy4Gk43S0b',
+      'aFaaEYghifaoeQugp243S0c', 'bJeeVeaWYfao6jYa0E43S0d', '7sY3cw8OQ2nC6jY8WA43S0e', 'eVq3cw0ik9Q4fUy2yc43S0f', '14A5kE0ik6DS6jY3Cg43S0g', '8x214o3uw0fu6jY0q443S0h',
+      '5kQ8wQaWYgesbEifkY43S0i', '4gM7sM2qs6DScImc8M43S0j', '14A00kfdeaU86jYgp243S0k', '28EaEY8OQ9Q4fUy8WA43S0l', 'aFa28s8OQd2g0ZE3Cg43S0m', 'fZu5kEd56aU8cIm5Ko43S0n',
+    ];
     for (const [file, lang, locale] of [['index.html', 'pt', 'pt-BR'], ['en.html', 'en', 'en'], ['es.html', 'es', 'es']] as const) {
       const html = read(file);
       for (const [id, code] of Object.entries(links[lang])) {
         expect(html).toMatch(new RegExp(`href="${B}${code}\\?locale=${locale}"[^>]*data-checkout="${id}"`));
       }
-      for (const [id, code] of Object.entries(pixLinks[lang])) {
-        expect(html).toMatch(new RegExp(`href="${B}${code}\\?locale=${locale}"[^>]*data-pix-checkout="${id}"`));
-      }
+      expect(html).not.toContain('data-pix-checkout');
       for (const code of retired) expect(html).not.toContain(code);
     }
   });
@@ -236,9 +235,9 @@ describe('home page', () => {
 
   it('publishes the terms in pt, en and es with version and key clauses', () => {
     const cases = [
-      ['termos.html', 'pt-BR', 'Termos de Serviço, Licença e Manutenção', ['Versão v1.0', '30/10/2026', 'multa de 2%', 'art. 49', '€240', 'Rio de Janeiro']],
-      ['en/terms.html', 'en', 'Terms of Service, License and Maintenance', ['Version v1.0', 'October 30, 2026', '2% late fee', '14 days', '€300', 'Rio de Janeiro']],
-      ['es/terminos.html', 'es', 'Términos de Servicio, Licencia y Mantenimiento', ['Versión v1.0', '30 de octubre de 2026', 'multa del 2%', '14 días', '€420', 'Río de Janeiro']],
+      ['termos.html', 'pt-BR', 'Termos de Serviço, Licença e Manutenção', ['Versão v1.1', '30/10/2026', 'multa de 2%', 'art. 49', '€240', 'Rio de Janeiro', 'prévia GRÁTIS', '€5 por dia', '2 dias úteis', 'Growth: 40%']],
+      ['en/terms.html', 'en', 'Terms of Service, License and Maintenance', ['Version v1.1', 'October 30, 2026', '2% late fee', '14 days', '€300', 'Rio de Janeiro', 'FREE preview', 'fee of €5', '2 business days', 'Growth: 40%']],
+      ['es/terminos.html', 'es', 'Términos de Servicio, Licencia y Mantenimiento', ['Versión v1.1', '30 de octubre de 2026', 'multa del 2%', '14 días', '€420', 'Río de Janeiro', 'vista previa GRATIS', 'tasa de €5', '2 días hábiles', 'Growth: 40%']],
     ] as const;
     for (const [file, lang, title, snippets] of cases) {
       const html = read(file);
