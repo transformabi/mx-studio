@@ -111,40 +111,10 @@ export const en: Messages = {
   },
 
   pricing: {
-    label: 'Services and pricing',
-    title: 'Pricing on request.',
-    lead: 'Custom projects are quoted in writing, with scope and timeline.',
-    consultLabel: 'Investment',
-    consult: 'Price on request',
-    items: {
-      landing: {
-        title: 'Landing page',
-        text: 'One page focused on one offer or service.',
-        bullets: ['Copy written to sell', 'WhatsApp and contact form', 'Visit and ad tracking', 'Live within 10 days'],
-      },
-      institucional: {
-        title: 'Business website',
-        text: 'The complete website for your company.',
-        bullets: ['4 to 8 pages', 'Custom design', 'Technical SEO', 'Text editing (optional)'],
-      },
-      ecommerce: {
-        title: 'Online store',
-        text: 'To sell online.',
-        bullets: ['Catalogue and cart', 'Card and PIX payments', 'Customer area', 'Store dashboard'],
-      },
-      sistema: {
-        title: 'Custom system',
-        text: 'When the website needs to do more.',
-        bullets: ['Login and access levels', 'Admin dashboard', 'Integrations', 'Tailored scope'],
-      },
-    },
-    ask: 'Request a quote',
-    askMsg: 'Hi! I came across the MX Studio Web website and would like a quote for: {service}.',
     payments: {
       title: 'Payment methods',
       methods: ['PIX (Brazil)', 'Credit card, in instalments', 'Wise, for clients outside Brazil'],
-      terms: 'Contract with scope and timeline. Payment in 3 stages: 40% upfront, 30% on design approval and 30% on delivery.',
-      abroad: 'Outside Brazil? I send the quote in your currency and you pay through Wise.',
+      abroad: 'Outside Brazil? You pay in your currency through Wise.',
     },
     plans: {
       label: 'Small business plans',
@@ -212,7 +182,7 @@ export const en: Messages = {
       },
       {
         q: 'How does payment work?',
-        a: 'With a contract, in 3 stages: 40% upfront, 30% on design approval and 30% on delivery. I accept PIX, credit card in instalments and Wise for clients outside Brazil. Subscription websites have their own monthly fee.',
+        a: 'The Launch, Business and Growth plans have a setup fee and a monthly maintenance fee. I accept PIX, credit card in instalments and Wise for clients outside Brazil. Custom projects come with a contract and payment in 3 stages: 40% upfront, 30% on design approval and 30% on delivery.',
       },
       {
         q: 'Do you use templates?',

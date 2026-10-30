@@ -107,7 +107,7 @@ describe('home page', () => {
 
   it.each(Object.entries(pages))('%s has every section and the contact e-mail', (_, file) => {
     const html = read(file);
-    for (const id of ['case', 'work', 'process', 'pricing', 'planos', 'about', 'faq', 'contact']) expect(html).toContain(`id="${id}"`);
+    for (const id of ['case', 'work', 'process', 'planos', 'about', 'faq', 'contact']) expect(html).toContain(`id="${id}"`);
     expect(html).toContain('contato@mxstudioweb.com.br');
     expect(html).toContain('sulamitaestetica.pt');
     expect(html).toMatch(/Wise/);
@@ -135,9 +135,14 @@ describe('home page', () => {
     }
   });
 
-  it('keeps consultative prices and replaces the old image plans with setup + monthly plans', () => {
+  it('keeps only the priced plans: no image cards, no price-on-request services', () => {
     const html = read('index.html').replace(/\s/g, ' ');
-    expect(html).toContain('Valores a consultar');
+    expect(html).not.toContain('Valores a consultar');
+    expect(html).not.toContain('id="pricing"');
+    expect(html).not.toContain('Serviços e preços');
+    expect(html).not.toContain('Pedir orçamento');
+    expect(html).not.toContain('href="/#pricing"');
+    expect(html).toContain('href="/#planos"');
     expect(html).toContain('Consulte sites para pequenas empresas');
     expect(html).toContain('href="/#planos"');
     expect(html).toContain('cta-call');
@@ -168,18 +173,18 @@ describe('home page', () => {
       expect(html.match(/role="radio"/g)?.length).toBe(4);
     }
     for (const page of [pt, en, es]) for (const name of ['Launch', 'Business', 'Growth']) expect(page).toContain(name);
-    // Prerendered in the language's default currency: BRL (converted, "≈") in Portuguese, exact euros in English and Spanish.
+    // Prerendered in the language's default currency: BRL in Portuguese and USD in English (converted, "≈"), exact euros in Spanish.
     expect(pt).toMatch(/≈ R\$ \d+/);
-    for (const a of ['€150', '€20', '€350', '€25', '€650', '€35']) expect(en).toContain(a);
+    expect(en).toMatch(/≈ \$\d+/);
     for (const a of ['150 €', '20 €', '350 €', '25 €', '650 €', '35 €']) expect(es).toContain(a);
-    expect(en).not.toMatch(/≈ \$\d+/);
-    expect(read('en.html')).toContain(encodeURIComponent('Business plan: €350 setup + €25/mo'));
+    expect(read('es.html')).toContain(encodeURIComponent('plan Business: 350\u00a0€ de creación + 25\u00a0€/mes'));
     expect(en).toContain('Live in 14 days');
     expect(pt).toContain('No ar em 14 dias');
     // Each CTA opens WhatsApp with the chosen plan and the amounts shown on screen.
     expect(read('en.html')).toContain(encodeURIComponent('I want the Launch plan'));
     expect(read('index.html')).toMatch(/wa\.me\/[^"]*%E2%89%88%20R%24/);
-    expect(pt).toContain('Valores a consultar');
+    expect(nbsp(text(read('en.html')))).not.toContain('Price on request');
+    expect(nbsp(text(read('es.html')))).not.toContain('Valores a consultar');
     // Structured data lists the euro offers, without the retired BRL range.
     expect(read('en.html')).toContain('"priceCurrency":"EUR"');
     expect(read('index.html')).toContain('"priceRange":"€150–650 + €20–35/mo"');

@@ -2,7 +2,7 @@ import { pt } from '@/i18n/messages/pt';
 import { pageMetadata } from '@/lib/seo';
 import { Pricing } from '@/components/home/pricing';
 
-// Old launch URL. It stays out of search and now shows the services and the small-business plans.
+// Old launch URL. It stays out of search and now shows the small-business plans.
 export const metadata = pageMetadata({
   locale: 'pt',
   path: '/fundadores',

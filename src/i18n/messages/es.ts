@@ -111,40 +111,10 @@ export const es: Messages = {
   },
 
   pricing: {
-    label: 'Servicios y precios',
-    title: 'Valores a consultar.',
-    lead: 'Los proyectos a medida se cotizan por escrito, con alcance y plazo.',
-    consultLabel: 'Inversión',
-    consult: 'Valores a consultar',
-    items: {
-      landing: {
-        title: 'Landing page',
-        text: 'Una página centrada en una oferta o servicio.',
-        bullets: ['Textos pensados para vender', 'WhatsApp y formulario', 'Medición de visitas y anuncios', 'En línea en 10 días como máximo'],
-      },
-      institucional: {
-        title: 'Sitio corporativo',
-        text: 'El sitio completo de tu empresa.',
-        bullets: ['De 4 a 8 páginas', 'Diseño exclusivo', 'SEO técnico', 'Edición de textos (opcional)'],
-      },
-      ecommerce: {
-        title: 'Tienda online',
-        text: 'Para vender por internet.',
-        bullets: ['Catálogo y carrito', 'Pago con tarjeta y PIX', 'Área del cliente', 'Panel de la tienda'],
-      },
-      sistema: {
-        title: 'Sistema a medida',
-        text: 'Cuando el sitio necesita hacer más.',
-        bullets: ['Login y niveles de acceso', 'Panel de administración', 'Integraciones', 'Alcance a medida'],
-      },
-    },
-    ask: 'Pedir presupuesto',
-    askMsg: '¡Hola! Llegué por el sitio de MX Studio Web y quiero un presupuesto de: {service}.',
     payments: {
       title: 'Formas de pago',
       methods: ['PIX (Brasil)', 'Tarjeta de crédito, en cuotas', 'Wise, para clientes de otros países'],
-      terms: 'Contrato con alcance y plazo. Pago en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega.',
-      abroad: '¿Estás fuera de Brasil? Te envío el presupuesto en tu moneda y pagas por Wise.',
+      abroad: '¿Estás fuera de Brasil? Pagas en tu moneda por Wise.',
     },
     plans: {
       label: 'Planes para pequeños negocios',
@@ -212,7 +182,7 @@ export const es: Messages = {
       },
       {
         q: '¿Cómo es el pago?',
-        a: 'Con contrato, en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega. Acepto PIX, tarjeta de crédito en cuotas y Wise para clientes fuera de Brasil. Los sitios por suscripción tienen su propia mensualidad.',
+        a: 'Los planes Launch, Business y Growth tienen un pago de creación y una cuota mensual de mantenimiento. Acepto PIX, tarjeta de crédito en cuotas y Wise para clientes fuera de Brasil. Los proyectos a medida tienen contrato y pago en 3 etapas: 40% al inicio, 30% al aprobar el diseño y 30% en la entrega.',
       },
       {
         q: '¿Usas plantillas?',
