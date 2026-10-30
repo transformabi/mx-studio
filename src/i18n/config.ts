@@ -27,7 +27,7 @@ export const currencySymbol: Record<Currency, string> = {
 };
 
 /** Currency shown until the visitor picks one. */
-export const defaultCurrency: Record<Locale, Currency> = { pt: 'BRL', en: 'EUR', es: 'EUR' };
+export const defaultCurrency: Record<Locale, Currency> = { pt: 'BRL', en: 'USD', es: 'EUR' };
 
 export const isLocale = (v: unknown): v is Locale =>
   typeof v === 'string' && (locales as readonly string[]).includes(v);

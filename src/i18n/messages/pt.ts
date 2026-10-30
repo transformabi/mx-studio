@@ -1,6 +1,5 @@
-import type { DemoNiche, ServiceKey, ShowcaseSlug } from '@/lib/estudio';
+import type { DemoNiche, ShowcaseSlug } from '@/lib/estudio';
 
-type Service = { title: string; text: string; bullets: string[] };
 
 export const pt = {
   meta: {
@@ -113,41 +112,10 @@ export const pt = {
   },
 
   pricing: {
-    label: 'Serviços e preços',
-    title: 'Valores a consultar.',
-    lead: 'Projetos sob medida saem com orçamento por escrito, escopo e prazo.',
-    consultLabel: 'Investimento',
-    consult: 'Valores a consultar',
-    items: {
-      landing: {
-        title: 'Landing page',
-        text: 'Uma página focada em uma oferta ou serviço.',
-        bullets: ['Texto pensado para vender', 'WhatsApp e formulário', 'Medição de visitas e anúncios', 'No ar em até 10 dias'],
-      },
-      institucional: {
-        title: 'Site institucional',
-        text: 'O site completo da sua empresa.',
-        bullets: ['De 4 a 8 páginas', 'Design exclusivo', 'SEO técnico', 'Edição de textos (opcional)'],
-      },
-      ecommerce: {
-        title: 'Loja virtual',
-        text: 'Para vender pela internet.',
-        bullets: ['Catálogo e carrinho', 'Pagamento por PIX e cartão', 'Área do cliente', 'Painel do lojista'],
-      },
-      sistema: {
-        title: 'Sistema sob medida',
-        text: 'Quando o site precisa fazer mais.',
-        bullets: ['Login e níveis de acesso', 'Painel administrativo', 'Integrações', 'Escopo sob medida'],
-      },
-    } as Record<ServiceKey, Service>,
-    ask: 'Pedir orçamento',
-    askMsg: 'Olá! Vim pelo site da MX Studio Web e quero um orçamento de: {service}.',
     payments: {
       title: 'Formas de pagamento',
       methods: ['PIX', 'Cartão de crédito, parcelado', 'Wise, para clientes de outros países'],
-      terms:
-        'Contrato com escopo e prazo. Pagamento em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega.',
-      abroad: 'Está fora do Brasil? Envio o orçamento na sua moeda e você paga pela Wise.',
+      abroad: 'Está fora do Brasil? Você paga na sua moeda pela Wise.',
     },
     plans: {
       label: 'Planos para pequenos negócios',
@@ -215,7 +183,7 @@ export const pt = {
       },
       {
         q: 'Como é o pagamento?',
-        a: 'Com contrato, em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega. Aceito PIX, cartão de crédito parcelado e Wise para clientes de fora do Brasil. Os sites por assinatura têm mensalidade própria.',
+        a: 'Os planos Launch, Business e Growth têm um valor de criação e uma mensalidade de manutenção. Aceito PIX, cartão de crédito parcelado e Wise para clientes de fora do Brasil. Projetos sob medida têm contrato e pagamento em 3 etapas: 40% no início, 30% na aprovação do design e 30% na entrega.',
       },
       {
         q: 'Você usa modelo pronto?',

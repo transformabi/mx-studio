@@ -5,7 +5,6 @@ import {
   diagnosticoUrl,
   estudio,
   lcpSeconds,
-  services,
   showcase,
   SITE_URL,
   vagasRestantes,
@@ -19,15 +18,6 @@ describe('studio data', () => {
 
   it('shows Sulamita as the only real client', () => {
     expect(clientCases.map((c) => c.clientName)).toEqual(['Sulamita Nascimento']);
-  });
-
-  it('keeps the agreed starting prices', () => {
-    expect(services).toEqual([
-      { key: 'landing', price: 3500 },
-      { key: 'institucional', price: 4900 },
-      { key: 'ecommerce', price: 9900 },
-      { key: 'sistema', price: 16000 },
-    ]);
   });
 
   it('showcases only the six demos with real photography', () => {

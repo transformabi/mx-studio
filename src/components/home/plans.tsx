@@ -6,6 +6,7 @@ import type { Messages } from '@/i18n/messages';
 import { useI18n } from '@/i18n/provider';
 import { estudio, planos, planosCurrency, planosDeliveryDays, whatsappUrl } from '@/lib/estudio';
 import { CurrencySwitch } from '@/components/site/currency-switch';
+import { CardLogos, PixLogo, WiseLogo } from '@/components/site/payment-logos';
 import { SectionHeader } from '@/components/site/section-header';
 import { Reveal } from '@/components/reveal';
 import { cn } from '@/lib/utils';
@@ -14,7 +15,10 @@ import { cn } from '@/lib/utils';
  * Small-business plans: one-time setup + monthly maintenance, live in 14 days. Priced in EUR and shown
  * in the visitor's currency; converted amounts are marked "≈", and the WhatsApp/e-mail text uses them too.
  */
-export function Plans({ t }: { t: Messages['pricing']['plans'] }) {
+// Brand marks in the same order as pricing.payments.methods: PIX, card, Wise.
+const methodLogos = [PixLogo, CardLogos, WiseLogo];
+
+export function Plans({ t, payments }: { t: Messages['pricing']['plans']; payments: Messages['pricing']['payments'] }) {
   const { convert, currency } = useI18n();
   const converted = currency !== planosCurrency;
   const price = (amount: number) => {
@@ -23,9 +27,9 @@ export function Plans({ t }: { t: Messages['pricing']['plans'] }) {
   };
 
   return (
-    <section id="planos" className="scroll-mt-24 border-t border-white/10 py-24 sm:py-32">
+    <section id="planos" className="scroll-mt-24 py-24 sm:py-32">
       <div className="container-site">
-        <SectionHeader index="05" label={t.label} title={fill(t.title, { price: price(planos[0].setup) })} lead={t.lead} />
+        <SectionHeader index="04" label={t.label} title={fill(t.title, { price: price(planos[0].setup) })} lead={t.lead} />
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4 lg:pl-[25%]">
           <CurrencySwitch label={t.currencyLabel} />
@@ -115,6 +119,22 @@ export function Plans({ t }: { t: Messages['pricing']['plans'] }) {
         </div>
 
         <p className="mt-8 max-w-3xl text-sm leading-relaxed text-white/60">{t.maintenance}</p>
+
+        <div className="mt-10 grid gap-6 rounded-xl border border-white/10 p-7 lg:grid-cols-12 lg:items-center">
+          <p className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50 lg:col-span-3">{payments.title}</p>
+          <ul className="flex flex-wrap gap-3 lg:col-span-9">
+            {payments.methods.map((m, i) => {
+              const Logo = methodLogos[i];
+              return (
+                <li key={m} className="inline-flex items-center gap-2.5 rounded-full border border-white/15 px-4 py-2 text-sm">
+                  <Logo />
+                  {m}
+                </li>
+              );
+            })}
+          </ul>
+          <p className="text-sm leading-relaxed text-white/60 lg:col-span-12">{payments.abroad}</p>
+        </div>
       </div>
     </section>
   );

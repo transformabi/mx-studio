@@ -7,7 +7,7 @@ export function Faq({ t }: { t: Messages['faq'] }) {
   return (
     <section id="faq" className="border-t border-white/10 py-24 sm:py-32">
       <div className="container-site">
-        <SectionHeader index="07" label={t.label} title={t.title} />
+        <SectionHeader index="06" label={t.label} title={t.title} />
         <div className="mt-14 divide-y divide-white/10 border-y border-white/10 lg:ml-[25%]">
           {t.items.map((item, i) => (
             <details key={item.q} open={i === 0}>

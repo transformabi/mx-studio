@@ -217,15 +217,6 @@ export const lcpSeconds: Record<ShowcaseSlug, number> = {
   'rota-clara': 3.4,
 };
 
-/** Starting prices in BRL; other currencies are converted at display time. */
-export const services = [
-  { key: 'landing', price: 3500 },
-  { key: 'institucional', price: 4900 },
-  { key: 'ecommerce', price: 9900 },
-  { key: 'sistema', price: 16000 },
-] as const;
-export type ServiceKey = (typeof services)[number]['key'];
-
 /**
  * Small-business plans: a one-time setup fee plus monthly maintenance, live in 14 days.
  * Priced in EUR (`planosCurrency`); the page shows them in the visitor's currency through the
