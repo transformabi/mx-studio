@@ -65,7 +65,7 @@ export function StudioJsonLd({ locale }: { locale: Locale }) {
     sameAs: [estudio.instagram],
     founder: { '@type': 'Person', name: estudio.owner },
     address: { '@type': 'PostalAddress', addressLocality: 'Rio de Janeiro', addressRegion: 'RJ', addressCountry: 'BR' },
-    priceRange: '€150–650 + €20–30/mo',
+    priceRange: '€150–650 + €20–35/mo',
     // The small-business plans: one-time setup plus monthly maintenance, priced in euros.
     hasOfferCatalog: {
       '@type': 'OfferCatalog',

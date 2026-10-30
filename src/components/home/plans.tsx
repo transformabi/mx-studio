@@ -57,23 +57,20 @@ export function Plans({ t }: { t: Messages['pricing']['plans'] }) {
                   <h3 className="font-brand text-2xl font-bold tracking-tight">{item.name}</h3>
                   <p className="mt-1 min-h-10 text-sm text-white/55">{item.text}</p>
 
-                  <div className="mt-7 flex flex-wrap items-end gap-x-3 gap-y-2">
-                    <div>
-                      <p className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50">{t.setupLabel}</p>
-                      <p className="mt-1 whitespace-nowrap font-brand text-4xl font-bold leading-none tracking-tight text-lime">
-                        {setup}
-                      </p>
-                    </div>
-                    <p className="pb-1 font-brand text-xl font-bold text-white/40" aria-hidden>
-                      {t.plus}
+                  {/* Setup and maintenance on their own lines, so long converted amounts never wrap unevenly. */}
+                  <div className="mt-7">
+                    <p className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50">{t.setupLabel}</p>
+                    <p className="mt-1 whitespace-nowrap font-brand text-4xl font-bold leading-none tracking-tight text-lime">
+                      {setup}
                     </p>
-                    <div>
-                      <p className="font-label text-[11px] uppercase tracking-[0.14em] text-white/50">{t.monthlyLabel}</p>
-                      <p className="mt-1 whitespace-nowrap font-brand text-2xl font-bold leading-none tracking-tight">
-                        {monthly}
-                        <span className="ml-0.5 text-sm font-semibold text-white/55">{t.per}</span>
-                      </p>
-                    </div>
+                    <p className="mt-4 font-label text-[11px] uppercase tracking-[0.14em] text-white/50">
+                      <span aria-hidden>{t.plus} </span>
+                      {t.monthlyLabel}
+                    </p>
+                    <p className="mt-1 whitespace-nowrap font-brand text-2xl font-bold leading-none tracking-tight">
+                      {monthly}
+                      <span className="ml-0.5 text-sm font-semibold text-white/55">{t.per}</span>
+                    </p>
                   </div>
 
                   <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-lime">

@@ -168,10 +168,12 @@ describe('home page', () => {
       expect(html.match(/role="radio"/g)?.length).toBe(4);
     }
     for (const page of [pt, en, es]) for (const name of ['Launch', 'Business', 'Growth']) expect(page).toContain(name);
-    // Prerendered in the language's default currency (BRL / USD), converted from the euro price.
+    // Prerendered in the language's default currency: BRL (converted, "≈") in Portuguese, exact euros in English and Spanish.
     expect(pt).toMatch(/≈ R\$ \d+/);
-    expect(en).toMatch(/≈ \$\d+/);
-    expect(es).toMatch(/≈ \d+ US\$/);
+    for (const a of ['€150', '€20', '€350', '€25', '€650', '€35']) expect(en).toContain(a);
+    for (const a of ['150 €', '20 €', '350 €', '25 €', '650 €', '35 €']) expect(es).toContain(a);
+    expect(en).not.toMatch(/≈ \$\d+/);
+    expect(read('en.html')).toContain(encodeURIComponent('Business plan: €350 setup + €25/mo'));
     expect(en).toContain('Live in 14 days');
     expect(pt).toContain('No ar em 14 dias');
     // Each CTA opens WhatsApp with the chosen plan and the amounts shown on screen.
@@ -180,7 +182,7 @@ describe('home page', () => {
     expect(pt).toContain('Valores a consultar');
     // Structured data lists the euro offers, without the retired BRL range.
     expect(read('en.html')).toContain('"priceCurrency":"EUR"');
-    expect(read('index.html')).toContain('"priceRange":"€150–650 + €20–30/mo"');
+    expect(read('index.html')).toContain('"priceRange":"€150–650 + €20–35/mo"');
   });
 
   it('has no broken internal link or asset', () => {
