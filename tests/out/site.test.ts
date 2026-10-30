@@ -194,27 +194,64 @@ describe('home page', () => {
     expect(read('index.html')).toContain('"priceRange":"€150–650 + €20–35/mo"');
   });
 
-  it('sends each plan button to its Stripe Payment Link in the page language', () => {
+  it('sends each plan button to its own Stripe Payment Link for the page language', () => {
+    const B = 'https://buy.stripe.com/';
+    // Subscription links (setup + monthly), one per language: each requires accepting that language's terms.
     const links = {
-      launch: 'https://buy.stripe.com/9B6fZi4yA6DS37Mgp243S00',
-      business: 'https://buy.stripe.com/6oU14o3uw8M00ZEc8M43S01',
-      growth: 'https://buy.stripe.com/eVq00k3uw7HWaAe3Cg43S02',
+      pt: { launch: 'fZuaEYghi1jy23I5Ko43S06', business: '7sYaEY6GI8M0dMqc8M43S07', growth: 'bJedRa2qsaU8aAea0E43S08' },
+      en: { launch: 'aFa8wQ8OQ2nC37M0q443S09', business: '00w00k5CE0fu37MegU43S0a', growth: '9B63cwe9a6DSfUy4Gk43S0b' },
+      es: { launch: 'aFaaEYghifaoeQugp243S0c', business: 'bJeeVeaWYfao6jYa0E43S0d', growth: '7sY3cw8OQ2nC6jY8WA43S0e' },
     };
-    // One-time setup-fee links (Pix, boleto or card) for clients in Brazil.
+    // One-time setup-fee links (Pix, boleto or card).
     const pixLinks = {
-      launch: 'https://buy.stripe.com/3cIdRad564vK9wa5Ko43S03',
-      business: 'https://buy.stripe.com/00w6oI3uw0fu7o2b4I43S04',
-      growth: 'https://buy.stripe.com/aFaaEY1mo7HWfUy2yc43S05',
+      pt: { launch: 'eVq3cw0ik9Q4fUy2yc43S0f', business: '14A5kE0ik6DS6jY3Cg43S0g', growth: '8x214o3uw0fu6jY0q443S0h' },
+      en: { launch: '5kQ8wQaWYgesbEifkY43S0i', business: '4gM7sM2qs6DScImc8M43S0j', growth: '14A00kfdeaU86jYgp243S0k' },
+      es: { launch: '28EaEY8OQ9Q4fUy8WA43S0l', business: 'aFa28s8OQd2g0ZE3Cg43S0m', growth: 'fZu5kEd56aU8cIm5Ko43S0n' },
     };
-    for (const [file, locale] of [['index.html', 'pt-BR'], ['en.html', 'en'], ['es.html', 'es']] as const) {
+    const retired = ['9B6fZi4yA6DS37Mgp243S00', '6oU14o3uw8M00ZEc8M43S01', 'eVq00k3uw7HWaAe3Cg43S02', '3cIdRad564vK9wa5Ko43S03', '00w6oI3uw0fu7o2b4I43S04', 'aFaaEY1mo7HWfUy2yc43S05'];
+    for (const [file, lang, locale] of [['index.html', 'pt', 'pt-BR'], ['en.html', 'en', 'en'], ['es.html', 'es', 'es']] as const) {
       const html = read(file);
-      for (const [id, url] of Object.entries(links)) {
-        expect(html).toMatch(new RegExp(`href="${url}\\?locale=${locale}"[^>]*data-checkout="${id}"`));
+      for (const [id, code] of Object.entries(links[lang])) {
+        expect(html).toMatch(new RegExp(`href="${B}${code}\\?locale=${locale}"[^>]*data-checkout="${id}"`));
       }
-      for (const [id, url] of Object.entries(pixLinks)) {
-        expect(html).toMatch(new RegExp(`href="${url}\\?locale=${locale}"[^>]*data-pix-checkout="${id}"`));
+      for (const [id, code] of Object.entries(pixLinks[lang])) {
+        expect(html).toMatch(new RegExp(`href="${B}${code}\\?locale=${locale}"[^>]*data-pix-checkout="${id}"`));
       }
+      for (const code of retired) expect(html).not.toContain(code);
     }
+  });
+
+  it('links the Terms of Service from the plans and the footer, in each language', () => {
+    for (const [file, href, label] of [
+      ['index.html', '/termos', 'Termos de Serviço'],
+      ['en.html', '/en/terms', 'Terms of Service'],
+      ['es.html', '/es/terminos', 'Términos de Servicio'],
+    ] as const) {
+      const html = read(file);
+      expect(html).toMatch(new RegExp(`data-terms-notice[^>]*>[^<]*<a href="${href}"`));
+      expect(html.split(`href="${href}"`).length - 1).toBeGreaterThanOrEqual(2);
+      expect(html).toContain(label);
+    }
+  });
+
+  it('publishes the terms in pt, en and es with version and key clauses', () => {
+    const cases = [
+      ['termos.html', 'pt-BR', 'Termos de Serviço, Licença e Manutenção', ['Versão v1.0', '30/10/2026', 'multa de 2%', 'art. 49', '€240', 'Rio de Janeiro']],
+      ['en/terms.html', 'en', 'Terms of Service, License and Maintenance', ['Version v1.0', 'October 30, 2026', '2% late fee', '14 days', '€300', 'Rio de Janeiro']],
+      ['es/terminos.html', 'es', 'Términos de Servicio, Licencia y Mantenimiento', ['Versión v1.0', '30 de octubre de 2026', 'multa del 2%', '14 días', '€420', 'Río de Janeiro']],
+    ] as const;
+    for (const [file, lang, title, snippets] of cases) {
+      const html = read(file);
+      expect(html).toContain(`<html lang="${lang}"`);
+      expect(html).toContain(`<h1`);
+      const body = text(html).replace(/\u00a0|&nbsp;/g, ' ');
+      expect(body).toContain(title);
+      for (const s of snippets) expect(body).toContain(s);
+      expect(html).toContain('hrefLang="en" href="https://mxstudioweb.com.br/en/terms"');
+      expect(html).toContain('hrefLang="es" href="https://mxstudioweb.com.br/es/terminos"');
+    }
+    // Wrong-language slugs are not generated.
+    for (const gone of ['en/terminos.html', 'es/terms.html', 'en/termos.html', 'es/termos.html']) expect(existsSync(join(OUT, gone))).toBe(false);
   });
 
   it('offers the three plans in the contact form and the 14-day timeline in the FAQ', () => {

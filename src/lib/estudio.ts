@@ -224,22 +224,42 @@ export const lcpSeconds: Record<ShowcaseSlug, number> = {
  */
 export const planosCurrency = 'EUR' as const;
 export const planos = [
-  { id: 'launch', setup: 150, monthly: 20, checkout: 'https://buy.stripe.com/9B6fZi4yA6DS37Mgp243S00', pixCheckout: 'https://buy.stripe.com/3cIdRad564vK9wa5Ko43S03' },
-  { id: 'business', setup: 350, monthly: 25, featured: true, checkout: 'https://buy.stripe.com/6oU14o3uw8M00ZEc8M43S01', pixCheckout: 'https://buy.stripe.com/00w6oI3uw0fu7o2b4I43S04' },
-  { id: 'growth', setup: 650, monthly: 35, checkout: 'https://buy.stripe.com/eVq00k3uw7HWaAe3Cg43S02', pixCheckout: 'https://buy.stripe.com/aFaaEY1mo7HWfUy2yc43S05' },
+  {
+    id: 'launch',
+    setup: 150,
+    monthly: 20,
+    checkout: { pt: 'https://buy.stripe.com/fZuaEYghi1jy23I5Ko43S06', en: 'https://buy.stripe.com/aFa8wQ8OQ2nC37M0q443S09', es: 'https://buy.stripe.com/aFaaEYghifaoeQugp243S0c' },
+    pixCheckout: { pt: 'https://buy.stripe.com/eVq3cw0ik9Q4fUy2yc43S0f', en: 'https://buy.stripe.com/5kQ8wQaWYgesbEifkY43S0i', es: 'https://buy.stripe.com/28EaEY8OQ9Q4fUy8WA43S0l' },
+  },
+  {
+    id: 'business',
+    setup: 350,
+    monthly: 25,
+    featured: true,
+    checkout: { pt: 'https://buy.stripe.com/7sYaEY6GI8M0dMqc8M43S07', en: 'https://buy.stripe.com/00w00k5CE0fu37MegU43S0a', es: 'https://buy.stripe.com/bJeeVeaWYfao6jYa0E43S0d' },
+    pixCheckout: { pt: 'https://buy.stripe.com/14A5kE0ik6DS6jY3Cg43S0g', en: 'https://buy.stripe.com/4gM7sM2qs6DScImc8M43S0j', es: 'https://buy.stripe.com/aFa28s8OQd2g0ZE3Cg43S0m' },
+  },
+  {
+    id: 'growth',
+    setup: 650,
+    monthly: 35,
+    checkout: { pt: 'https://buy.stripe.com/bJedRa2qsaU8aAea0E43S08', en: 'https://buy.stripe.com/9B63cwe9a6DSfUy4Gk43S0b', es: 'https://buy.stripe.com/7sY3cw8OQ2nC6jY8WA43S0e' },
+    pixCheckout: { pt: 'https://buy.stripe.com/8x214o3uw0fu6jY0q443S0h', en: 'https://buy.stripe.com/14A00kfdeaU86jYgp243S0k', es: 'https://buy.stripe.com/fZu5kEd56aU8cIm5Ko43S0n' },
+  },
 ] as const;
 
 /**
  * Stripe Payment Links (live): each one is a subscription with the monthly BRL price plus the one-time
  * setup BRL price on the first invoice. Stripe's Adaptive Pricing shows foreign visitors their own
- * currency; `locale` sets the checkout language to the page's.
+ * currency; `locale` sets the checkout language to the page's. There is one link per language because each
+ * requires accepting the Terms of Service (v1.0) with a checkbox text that links to that language's terms page.
  * `pixCheckout`: one-time BRL link for the setup fee only, by Pix, boleto or card, for Brazilian clients who
  * prefer Pix. Pix can't renew a subscription for a Brazilian business on Stripe (no Pix Automático), so the
  * monthly fee is then started by hand from the Stripe Dashboard, by card or boleto.
  */
 const checkoutLocale = { pt: 'pt-BR', en: 'en', es: 'es' } as const;
-export function planoCheckoutUrl(url: string, locale: keyof typeof checkoutLocale) {
-  return `${url}?locale=${checkoutLocale[locale]}`;
+export function planoCheckoutUrl(urls: Record<keyof typeof checkoutLocale, string>, locale: keyof typeof checkoutLocale) {
+  return `${urls[locale]}?locale=${checkoutLocale[locale]}`;
 }
 export type PlanoId = (typeof planos)[number]['id'];
 export const planosDeliveryDays = 14;

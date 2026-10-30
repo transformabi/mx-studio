@@ -137,6 +137,7 @@ export const es: Messages = {
       emailSubject: 'Plan {plan} — MX Studio Web',
       askMsg: '¡Hola! Llegué por el sitio de MX Studio Web y quiero el plan {plan}: {setup} de creación + {monthly}/mes de mantenimiento, en línea en 14 días.',
       maintenance: 'El mantenimiento mensual incluye alojamiento, actualizaciones, seguridad, copias de seguridad y pequeños cambios de texto e imagen.',
+      termsNotice: { before: 'Al contratar, aceptas los ', link: 'Términos de Servicio', after: ' (licencia de uso, renovación automática, atrasos y cancelación).' },
       plans: {
         launch: {
           name: 'Launch',
@@ -242,6 +243,7 @@ export const es: Messages = {
     contactTitle: 'Contacto',
     languagesTitle: 'Idiomas',
     rights: 'Todos los derechos reservados.',
+    terms: 'Términos de Servicio',
     location: 'Río de Janeiro, Brasil',
   },
 

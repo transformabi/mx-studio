@@ -34,6 +34,24 @@ describe('switchLocalePath', () => {
   });
 });
 
+describe('translated slugs', () => {
+  it('maps the terms page to each language slug and back', () => {
+    expect(localizedPath('pt', '/termos')).toBe('/termos');
+    expect(localizedPath('en', '/termos')).toBe('/en/terms');
+    expect(localizedPath('es', '/termos')).toBe('/es/terminos');
+    expect(splitLocale('/en/terms')).toEqual({ locale: 'en', path: '/termos' });
+    expect(splitLocale('/es/terminos/')).toEqual({ locale: 'es', path: '/termos' });
+    expect(switchLocalePath('/en/terms', 'es')).toBe('/es/terminos');
+    expect(switchLocalePath('/es/terminos', 'pt')).toBe('/termos');
+    expect(alternates('/termos')).toEqual({
+      'pt-BR': '/termos',
+      en: '/en/terms',
+      es: '/es/terminos',
+      'x-default': '/termos',
+    });
+  });
+});
+
 describe('alternates', () => {
   it('lists every language plus x-default', () => {
     expect(alternates('/demo/x')).toEqual({
