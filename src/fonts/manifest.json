@@ -1,0 +1,63 @@
+{
+  "bricolage-grotesque": [
+    {
+      "file": "bricolage-grotesque-500800-normal.woff2",
+      "weight": "500 800",
+      "style": "normal",
+      "sha256": "a97804dc9fbe5fc972a08018c5eda4dab7ef2346f64c57e61419d05e6de4ea1c",
+      "bytes": 41344
+    }
+  ],
+  "figtree": [
+    {
+      "file": "figtree-400700-normal.woff2",
+      "weight": "400 700",
+      "style": "normal",
+      "sha256": "4ba7d3d096695818fe0686be4f1e82c6b05134e18a22260336130335027462dd",
+      "bytes": 20156
+    }
+  ],
+  "jetbrains-mono": [
+    {
+      "file": "jetbrains-mono-400500-normal.woff2",
+      "weight": "400 500",
+      "style": "normal",
+      "sha256": "83c005d49d8a6a50474c73a5a36ac0468076e9c4a29da7bdb14995d80560a5be",
+      "bytes": 31432
+    }
+  ],
+  "space-grotesk": [
+    {
+      "file": "space-grotesk-300700-normal.woff2",
+      "weight": "300 700",
+      "style": "normal",
+      "sha256": "0640890476fc1198ab4de571fb658de443c4d85b66466ec09534a8737ab1ce9d",
+      "bytes": 22288
+    }
+  ],
+  "instrument-serif": [
+    {
+      "file": "instrument-serif-400-italic.woff2",
+      "weight": "400",
+      "style": "italic",
+      "sha256": "5a51946dfffa82972bc98745359c46761515641fda557c25116459a9f83da4a7",
+      "bytes": 22128
+    },
+    {
+      "file": "instrument-serif-400-normal.woff2",
+      "weight": "400",
+      "style": "normal",
+      "sha256": "5eb09b5ac0e28b67c2f041c8ba6d244604ca0c0980d65912ab2d47fed84ddc31",
+      "bytes": 21032
+    }
+  ],
+  "instrument-sans": [
+    {
+      "file": "instrument-sans-400700-normal.woff2",
+      "weight": "400 700",
+      "style": "normal",
+      "sha256": "2ee17598a98d8a59e4df8152d015bec9ab8e4d5672cc0ab42bef806b568e3971",
+      "bytes": 30092
+    }
+  ]
+}
