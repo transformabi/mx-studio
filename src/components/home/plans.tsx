@@ -39,7 +39,7 @@ export function Plans({
   return (
     <section id="planos" className="scroll-mt-24 py-24 sm:py-32">
       <div className="container-site">
-        <SectionHeader index="04" label={t.label} title={fill(t.title, { price: price(planos[0].setup) })} lead={t.lead} />
+        <SectionHeader index="05" label={t.label} title={fill(t.title, { price: price(planos[0].setup) })} lead={t.lead} />
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4 lg:pl-[25%]">
           <CurrencySwitch label={t.currencyLabel} />

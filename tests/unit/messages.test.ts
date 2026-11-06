@@ -57,3 +57,18 @@ describe('messages', () => {
     expect(all).not.toMatch(/ag[eê]ncia|agency|anos de experi|years of experience|años de experiencia/i);
   });
 });
+
+  it.each(['pt', 'en', 'es'] as const)('%s googlePresence stays conservative (no guaranteed ranking/Discover/API)', (locale) => {
+    const g = messages[locale].googlePresence;
+    expect(g.pillars).toHaveLength(3);
+    expect(g.caveats.length).toBeGreaterThanOrEqual(3);
+    const blob = JSON.stringify(g);
+    // Explicit non-promise language must remain.
+    expect(blob).toMatch(/N[aã]o garantimos|do not guarantee|No garantizamos/i);
+    expect(blob).toMatch(/10.?000|10 mil|10,000/);
+    expect(blob).toMatch(/API/);
+    expect(blob).toMatch(/eleg[ií]vel|eligible|elegible/i);
+    expect(g.ctaPlans.length).toBeGreaterThan(0);
+    expect(g.ctaWhatsapp).toMatch(/WhatsApp/);
+    expect(g.waMsg).toMatch(/Google/);
+  });

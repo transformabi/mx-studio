@@ -12,6 +12,7 @@ export const pt = {
     work: 'Trabalhos',
     process: 'Processo',
     pricing: 'Preços',
+    googlePresence: 'Google',
     about: 'Sobre',
     contact: 'Contato',
     cta: 'Consulte sites para pequenas empresas',
@@ -109,6 +110,47 @@ export const pt = {
         text: 'Com o pagamento final confirmado, o site vai ao ar no seu domínio, com SEO técnico, medição de visitas e um guia de uso. A mensalidade começa aqui.',
       },
     ],
+  },
+
+
+  googlePresence: {
+    label: 'Presença no Google',
+    title: 'Site, Maps e, quando elegível, Perfil na Pesquisa.',
+    lead:
+      'A base digital do seu negócio não é só um site bonito: é domínio próprio, presença no Google onde o cliente procura, e links prontos para o próximo passo quando as regras do Google permitirem.',
+    pillars: [
+      {
+        title: 'Site + domínio',
+        tag: 'Assinatura mensal',
+        text:
+          'Site profissional no ar, com domínio incluso, hospedagem, design e suporte. Rápido no celular e feito para transformar visita em conversa no WhatsApp.',
+      },
+      {
+        title: 'Google Meu Negócio',
+        tag: 'Maps e Busca local',
+        text:
+          'Para negócios elegíveis (atendimento presencial ou área de serviço), configuramos e otimizamos o Perfil da Empresa no Google: dados, categorias, site e WhatsApp. Empresas só online podem não se qualificar.',
+      },
+      {
+        title: 'Perfil na Pesquisa',
+        tag: 'Quando elegível',
+        text:
+          'Os Perfis na Pesquisa do Google são um recurso separado do Meu Negócio. Quando o cliente for elegível, deixamos bio e links do site prontos para reivindicar ou completar o perfil — sem inventar integração automática.',
+      },
+    ],
+    noteLabel: 'O que isso não promete',
+    note:
+      'Não garantimos verificação, posição no Maps, ranking na Busca nem aparição no Discover. O Perfil na Pesquisa depende das regras atuais do Google e muda com o tempo.',
+    caveats: [
+      'No Brasil, o Google anunciou os Perfis na Pesquisa em outubro de 2026; a elegibilidade e os critérios oficiais podem evoluir.',
+      'A Ajuda do Google indica um mínimo tipicamente de 10 mil seguidores ou inscritos em uma única plataforma compatível (Instagram, YouTube, X ou TikTok), além de idade e políticas de conteúdo.',
+      'Seguir um perfil pode aumentar as chances de ver conteúdo no Discover — não é garantia de distribuição.',
+      'Não existe, neste projeto, integração via API oficial para reivindicar Perfis na Pesquisa automaticamente.',
+    ],
+    ctaPlans: 'Ver planos',
+    ctaWhatsapp: 'Falar no WhatsApp',
+    waMsg:
+      'Olá! Vim pelo site da MX Studio Web e quero saber mais sobre presença no Google (site, domínio e Google Meu Negócio).',
   },
 
   pricing: {

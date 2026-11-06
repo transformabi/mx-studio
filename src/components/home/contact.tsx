@@ -17,7 +17,7 @@ export function Contact({ locale, t, waMsg }: { locale: Locale; t: Messages['con
       <div className="container-site grid gap-14 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <p className="font-label text-xs uppercase tracking-[0.16em] text-white/50">
-            <span className="text-lime">07</span> — {t.label}
+            <span className="text-lime">08</span> — {t.label}
           </p>
           <h2 className="mt-6 text-balance font-brand text-[clamp(2rem,3.2vw+1rem,3.5rem)] font-bold leading-[1.02] tracking-[-0.025em]">
             {t.title}

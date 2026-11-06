@@ -11,6 +11,7 @@ export const en: Messages = {
     work: 'Work',
     process: 'Process',
     pricing: 'Pricing',
+    googlePresence: 'Google',
     about: 'About',
     contact: 'Contact',
     cta: 'Sites for small businesses',
@@ -108,6 +109,47 @@ export const en: Messages = {
         text: 'Once the final payment is confirmed, the site goes live on your domain, with technical SEO, visit tracking and a user guide. The monthly fee starts here.',
       },
     ],
+  },
+
+
+  googlePresence: {
+    label: 'Presence on Google',
+    title: 'Website, Maps and, when eligible, a Search Profile.',
+    lead:
+      'Your digital foundation is more than a pretty site: it is your own domain, presence on Google where customers look, and links ready for the next step when Google’s rules allow it.',
+    pillars: [
+      {
+        title: 'Website + domain',
+        tag: 'Monthly subscription',
+        text:
+          'A professional site live on the web, with domain included, hosting, design and support. Fast on mobile and built to turn visits into WhatsApp conversations.',
+      },
+      {
+        title: 'Google Business Profile',
+        tag: 'Maps and local Search',
+        text:
+          'For eligible businesses (in-person or service-area), we set up and optimize the Google Business Profile: details, categories, website and WhatsApp. Online-only businesses may not qualify.',
+      },
+      {
+        title: 'Search Profile',
+        tag: 'When eligible',
+        text:
+          'Google Search Profiles are separate from Business Profile. When a client becomes eligible, we leave bio and site links ready to claim or complete the profile — with no invented automatic integration.',
+      },
+    ],
+    noteLabel: 'What this does not promise',
+    note:
+      'We do not guarantee verification, Maps placement, Search ranking or Discover distribution. Search Profiles depend on Google’s current rules and can change.',
+    caveats: [
+      'In Brazil, Google announced Search Profiles in October 2026; eligibility and official criteria may evolve.',
+      'Google Help typically requires about 10,000 followers or subscribers on a single supported platform (Instagram, YouTube, X or TikTok), plus age and content policies.',
+      'Following a profile may increase the chance of seeing content in Discover — it is not a distribution guarantee.',
+      'This project has no official API integration to claim Search Profiles automatically.',
+    ],
+    ctaPlans: 'See plans',
+    ctaWhatsapp: 'Message on WhatsApp',
+    waMsg:
+      'Hi! I found MX Studio Web and want to learn more about presence on Google (website, domain and Google Business Profile).',
   },
 
   pricing: {
