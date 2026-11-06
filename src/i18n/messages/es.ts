@@ -11,6 +11,7 @@ export const es: Messages = {
     work: 'Trabajos',
     process: 'Proceso',
     pricing: 'Precios',
+    googlePresence: 'Google',
     about: 'Sobre mí',
     contact: 'Contacto',
     cta: 'Sitios para pequeños negocios',
@@ -108,6 +109,47 @@ export const es: Messages = {
         text: 'Con el pago final confirmado, el sitio se publica en tu dominio, con SEO técnico, medición de visitas y una guía de uso. La cuota mensual empieza aquí.',
       },
     ],
+  },
+
+
+  googlePresence: {
+    label: 'Presencia en Google',
+    title: 'Sitio, Maps y, cuando sea elegible, Perfil en la Búsqueda.',
+    lead:
+      'La base digital de tu negocio no es solo un sitio bonito: es dominio propio, presencia en Google donde el cliente busca, y enlaces listos para el siguiente paso cuando las reglas de Google lo permitan.',
+    pillars: [
+      {
+        title: 'Sitio + dominio',
+        tag: 'Suscripción mensual',
+        text:
+          'Sitio profesional en línea, con dominio incluido, alojamiento, diseño y soporte. Rápido en el móvil y hecho para convertir visitas en conversaciones de WhatsApp.',
+      },
+      {
+        title: 'Perfil de Empresa',
+        tag: 'Maps y Búsqueda local',
+        text:
+          'Para negocios elegibles (atención presencial o área de servicio), configuramos y optimizamos el Perfil de Empresa en Google: datos, categorías, sitio y WhatsApp. Los negocios solo online pueden no calificar.',
+      },
+      {
+        title: 'Perfil en la Búsqueda',
+        tag: 'Cuando sea elegible',
+        text:
+          'Los Perfiles en la Búsqueda de Google son un recurso aparte del Perfil de Empresa. Cuando el cliente sea elegible, dejamos la bio y los enlaces del sitio listos para reclamar o completar el perfil — sin inventar una integración automática.',
+      },
+    ],
+    noteLabel: 'Lo que esto no promete',
+    note:
+      'No garantizamos verificación, posición en Maps, ranking en la Búsqueda ni aparición en Discover. El Perfil en la Búsqueda depende de las reglas actuales de Google y puede cambiar.',
+    caveats: [
+      'En Brasil, Google anunció los Perfiles en la Búsqueda en octubre de 2026; la elegibilidad y los criterios oficiales pueden evolucionar.',
+      'La Ayuda de Google indica tipicamente un mínimo de 10 mil seguidores o suscriptores en una sola plataforma compatible (Instagram, YouTube, X o TikTok), además de edad y políticas de contenido.',
+      'Seguir un perfil puede aumentar las chances de ver contenido en Discover — no es una garantía de distribución.',
+      'En este proyecto no hay integración por API oficial para reclamar Perfiles en la Búsqueda automáticamente.',
+    ],
+    ctaPlans: 'Ver planes',
+    ctaWhatsapp: 'Escribir por WhatsApp',
+    waMsg:
+      '¡Hola! Llegué por el sitio de MX Studio Web y quiero saber más sobre presencia en Google (sitio, dominio y Perfil de Empresa).',
   },
 
   pricing: {

@@ -16,6 +16,7 @@ export function Header({ locale, t }: { locale: Locale; t: Messages['nav'] }) {
   const links = [
     { id: 'work', label: t.work },
     { id: 'process', label: t.process },
+    { id: 'presenca-google', label: t.googlePresence },
     { id: 'planos', label: t.pricing },
     { id: 'about', label: t.about },
     { id: 'contact', label: t.contact },

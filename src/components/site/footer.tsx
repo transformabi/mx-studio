@@ -15,6 +15,7 @@ export function Footer({ locale, t }: { locale: Locale; t: Messages }) {
   const sections = [
     ['work', t.nav.work],
     ['process', t.nav.process],
+    ['presenca-google', t.nav.googlePresence],
     ['planos', t.nav.pricing],
     ['about', t.nav.about],
     ['contact', t.nav.contact],
