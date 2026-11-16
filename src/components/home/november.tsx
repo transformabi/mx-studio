@@ -1,11 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import type { Messages } from '@/i18n/messages';
 import { campaignOpen } from '@/lib/black-friday';
 
-/** Home block for November 2026. Does not mention or change plan prices. */
+/** Home block for the November 2026 promotion. Plan prices in the table below stay as they are. */
 export function November({ t }: { t: Messages['campaign'] }) {
   const [on, setOn] = useState(true);
 
@@ -44,12 +43,12 @@ export function November({ t }: { t: Messages['campaign'] }) {
           </div>
           <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-6 py-4 sm:px-10 lg:px-12">
             <p className="text-sm text-white/55">{t.note}</p>
-            <Link
-              href="#planos"
-              className="cta-call inline-flex min-h-10 items-center rounded-full px-4 py-2 text-sm font-semibold text-ink"
+            <a
+              href="#lista"
+              className="inline-flex min-h-11 items-center rounded-full bg-[#FFE500] px-4 text-sm font-bold text-[#111]"
             >
               {t.cta}
-            </Link>
+            </a>
           </div>
         </div>
       </div>

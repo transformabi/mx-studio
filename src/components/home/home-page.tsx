@@ -8,6 +8,7 @@ import { Faq } from './faq';
 import { GooglePresence } from './google-presence';
 import { Hero } from './hero';
 import { November } from './november';
+import { Waitlist } from './waitlist';
 import { Pricing } from './pricing';
 import { Process } from './process';
 import { Showcase } from './showcase';
@@ -22,6 +23,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <Process t={t.process} />
       <GooglePresence locale={locale} t={t.googlePresence} waMsg={t.googlePresence.waMsg} />
       <November t={t.campaign} />
+      <Waitlist t={t.campaign.waitlist} />
       <Pricing t={t.pricing} />
       <About t={t.about} />
       <Faq t={t.faq} />

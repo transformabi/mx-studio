@@ -42,7 +42,7 @@ export function Header({
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/85 font-body backdrop-blur-md">
-      <CampaignBar t={campaign} />
+      <CampaignBar locale={locale} t={campaign} />
       {/* First stop for keyboard users; every page's <main> carries id="conteudo". */}
       <a
         href="#conteudo"

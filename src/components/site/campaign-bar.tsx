@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import type { Locale } from '@/i18n/config';
 import type { Messages } from '@/i18n/messages';
+import { localizedPath } from '@/i18n/paths';
 import { campaignOpen, countdownToBlackFriday, saoPauloDate, type Countdown } from '@/lib/black-friday';
 
 /**
@@ -9,7 +11,7 @@ import { campaignOpen, countdownToBlackFriday, saoPauloDate, type Countdown } fr
  * 00:00 on 27 Nov 2026 (São Paulo). The first paint matches the server (`--`)
  * so hydration does not tear the bar down. Prices are not part of this component.
  */
-export function CampaignBar({ t }: { t: Messages['campaign'] }) {
+export function CampaignBar({ locale, t }: { locale: Locale; t: Messages['campaign'] }) {
   const [on, setOn] = useState(true);
   const [clock, setClock] = useState<Countdown | null>(null);
 
@@ -46,27 +48,35 @@ export function CampaignBar({ t }: { t: Messages['campaign'] }) {
           <p className="text-[13px] font-semibold leading-tight sm:mt-0.5">{t.bar}</p>
         </div>
 
-        {clock?.done ? (
-          <p className="font-label text-sm font-bold uppercase tracking-[0.14em]">
-            {saoPauloDate() === '2026-11-27' ? t.countdown.today : t.countdown.late}
-          </p>
-        ) : (
-          <ol aria-label={t.countdown.live} className="flex justify-center gap-1.5">
-            {units.map(([value, label]) => (
-              <li
-                key={label}
-                className="grid min-w-[3.15rem] place-items-center rounded-md bg-[#111] px-1.5 py-1 text-[#FFE500]"
-              >
-                <span suppressHydrationWarning className="font-label text-lg font-bold tabular-nums leading-none">
-                  {value == null ? '--' : String(value).padStart(2, '0')}
-                </span>
-                <span className="mt-1 font-label text-[10px] uppercase tracking-[0.12em] text-[#FFE500]/75">
-                  {label}
-                </span>
-              </li>
-            ))}
-          </ol>
-        )}
+        <div className="flex flex-col items-center gap-2.5 sm:flex-row sm:gap-4">
+          {clock?.done ? (
+            <p className="font-label text-sm font-bold uppercase tracking-[0.14em]">
+              {saoPauloDate() === '2026-11-27' ? t.countdown.today : t.countdown.late}
+            </p>
+          ) : (
+            <ol aria-label={t.countdown.live} className="flex justify-center gap-1.5">
+              {units.map(([value, label]) => (
+                <li
+                  key={label}
+                  className="grid min-w-[3.15rem] place-items-center rounded-md bg-[#111] px-1.5 py-1 text-[#FFE500]"
+                >
+                  <span suppressHydrationWarning className="font-label text-lg font-bold tabular-nums leading-none">
+                    {value == null ? '--' : String(value).padStart(2, '0')}
+                  </span>
+                  <span className="mt-1 font-label text-[10px] uppercase tracking-[0.12em] text-[#FFE500]/75">
+                    {label}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          )}
+          <a
+            href={`${localizedPath(locale, '/')}#lista`}
+            className="inline-flex min-h-11 items-center rounded-full bg-[#111] px-4 text-sm font-bold text-[#FFE500]"
+          >
+            {t.cta}
+          </a>
+        </div>
       </div>
     </div>
   );
