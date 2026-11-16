@@ -38,7 +38,7 @@ export function TermsPage({ locale }: { locale: Locale }) {
   const t = terms[locale];
   return (
     <main id="conteudo" className="font-body">
-      <article className="container-site max-w-3xl pb-20 pt-40 sm:pb-28 sm:pt-44">
+      <article className="container-site max-w-3xl pb-20 pt-48 sm:pb-28 sm:pt-40">
         <h1 className="font-brand text-4xl font-bold tracking-tight sm:text-5xl">{t.title}</h1>
         <p className="mt-4 font-label text-[11px] uppercase tracking-[0.14em] text-white/50">
           {fill(t.versionLabel, { version: TERMS_VERSION, date: termsDate(locale) })}

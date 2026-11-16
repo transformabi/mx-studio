@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { campaignOpen, daysUntilBlackFriday, saoPauloDate } from '@/lib/black-friday';
+import { campaignOpen, countdownToBlackFriday, daysUntilBlackFriday, saoPauloDate } from '@/lib/black-friday';
 
 const at = (iso: string) => new Date(iso);
 
@@ -17,5 +17,23 @@ describe('black friday campaign', () => {
     expect(daysUntilBlackFriday(at('2026-11-28T15:00:00Z'))).toBe(-1);
     expect(campaignOpen(at('2026-11-16T15:00:00Z'))).toBe(true);
     expect(campaignOpen(at('2026-11-30T15:00:00Z'))).toBe(true);
+  });
+
+  it('ticks down to midnight at the start of 27 November in São Paulo', () => {
+    expect(countdownToBlackFriday(Date.parse('2026-11-16T08:00:00-03:00'))).toEqual({
+      days: 10,
+      hours: 16,
+      minutes: 0,
+      seconds: 0,
+      done: false,
+    });
+    expect(countdownToBlackFriday(Date.parse('2026-11-26T23:59:59-03:00'))).toEqual({
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 1,
+      done: false,
+    });
+    expect(countdownToBlackFriday(Date.parse('2026-11-27T00:00:00-03:00')).done).toBe(true);
   });
 });

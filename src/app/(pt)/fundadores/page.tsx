@@ -14,7 +14,7 @@ export const metadata = pageMetadata({
 
 export default function FundadoresPage() {
   return (
-    <main id="conteudo" className="font-body pt-16">
+    <main id="conteudo" className="font-body pt-24">
       <Pricing t={pt.pricing} />
     </main>
   );

@@ -36,7 +36,7 @@ export function DemoFrame({ children, siteName, bg = '#0a0a0a' }: { children: Re
   // The page's <main> (target of the skip link), so the demo's own header and footer
   // are not taken for the page's banner and contentinfo landmarks.
   return (
-    <main id="conteudo" className="min-h-dvh w-full bg-ink pb-8 pt-36 font-body sm:pt-32">
+    <main id="conteudo" className="min-h-dvh w-full bg-ink pb-8 pt-44 font-body sm:pt-36">
       <ImgFallback />
       <div className="mx-auto max-w-[1360px] px-3 sm:px-6">
         {/* The badge stays on phones too: it is what tells a visitor the business is fictional. */}

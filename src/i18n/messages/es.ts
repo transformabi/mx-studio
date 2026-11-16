@@ -24,6 +24,7 @@ export const es: Messages = {
   },
 
   campaign: {
+    banner: 'Black Friday',
     kicker: 'Black Friday · noviembre',
     bar: 'Precios de lista. Sin descuento.',
     title: 'Sin precio tachado.',
@@ -36,11 +37,13 @@ export const es: Messages = {
     note: 'El valor de cada plan está justo debajo, igual que el resto del año.',
     cta: 'Ver los planes',
     countdown: {
-      until: 'Hasta el 30 de noviembre',
-      many: 'Faltan {n} días para el 27 de noviembre',
-      one: 'Falta 1 día para el 27 de noviembre',
-      today: 'Hoy, 27 de noviembre',
-      late: 'Sigue hasta el 30 de noviembre',
+      days: 'días',
+      hours: 'hrs',
+      minutes: 'min',
+      seconds: 'seg',
+      live: 'Cuenta regresiva en vivo hasta el 27 de noviembre',
+      today: 'Hoy es Black Friday',
+      late: 'Hasta el 30 de noviembre',
     },
   },
 

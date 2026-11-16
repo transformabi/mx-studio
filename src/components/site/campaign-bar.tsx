@@ -1,57 +1,87 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import type { Locale } from '@/i18n/config';
-import { fill } from '@/i18n/format';
 import type { Messages } from '@/i18n/messages';
 import { localizedPath } from '@/i18n/paths';
-import { campaignOpen, daysUntilBlackFriday } from '@/lib/black-friday';
+import { campaignOpen, countdownToBlackFriday, saoPauloDate, type Countdown } from '@/lib/black-friday';
 
 /**
- * November 2026 strip. Prices are not part of this component.
- * Rendered in the static HTML, then removed on the client after 30 Nov so a
- * build from mid-November does not keep the bar into December.
+ * Yellow-and-black Black Friday strip. The clock ticks every second until
+ * 00:00 on 27 Nov 2026 (São Paulo). Prices are not part of this component.
+ * The bar leaves the page after 30 Nov.
  */
+function subscribe(onChange: () => void) {
+  const id = window.setInterval(onChange, 1000);
+  return () => window.clearInterval(id);
+}
+
+let cachedSecond = -1;
+let cachedSnap = '';
+
+function clockSnapshot() {
+  const second = Math.floor(Date.now() / 1000);
+  if (second === cachedSecond) return cachedSnap;
+  cachedSecond = second;
+  cachedSnap = campaignOpen() ? JSON.stringify(countdownToBlackFriday()) : 'off';
+  return cachedSnap;
+}
+
 export function CampaignBar({ locale, t }: { locale: Locale; t: Messages['campaign'] }) {
-  const [on, setOn] = useState(true);
-  const [status, setStatus] = useState(t.countdown.until);
+  const snap = useSyncExternalStore(subscribe, clockSnapshot, () => '');
+  if (snap === 'off') return null;
 
-  useEffect(() => {
-    const id = window.setTimeout(() => {
-      if (!campaignOpen()) {
-        setOn(false);
-        return;
-      }
-      const days = daysUntilBlackFriday();
-      if (days > 1) setStatus(fill(t.countdown.many, { n: days }));
-      else if (days === 1) setStatus(t.countdown.one);
-      else if (days === 0) setStatus(t.countdown.today);
-      else setStatus(t.countdown.late);
-    }, 0);
-    return () => window.clearTimeout(id);
-  }, [t]);
-
-  if (!on) return null;
+  const clock: Countdown | null = snap ? (JSON.parse(snap) as Countdown) : null;
+  const units = [
+    [clock?.days, t.countdown.days],
+    [clock?.hours, t.countdown.hours],
+    [clock?.minutes, t.countdown.minutes],
+    [clock?.seconds, t.countdown.seconds],
+  ] as const;
 
   return (
-    <div className="border-b border-lime/30 bg-[#10140c]">
-      <div className="container-site flex flex-wrap items-center justify-between gap-x-5 gap-y-1 py-2">
-        <p className="font-label text-[11px] uppercase tracking-[0.16em] text-lime">
-          {t.kicker}
-          <span className="mt-1 block normal-case tracking-normal text-white/55 sm:mt-0 sm:ml-3 sm:inline">
-            {status}
-          </span>
-        </p>
-        <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-bone">
-          <span>{t.bar}</span>
+    <div data-bf-bar className="bg-[#FFE500] text-[#111]">
+      <div className="container-site grid items-center gap-2 py-2.5 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:gap-x-6 sm:py-2">
+        <div className="flex items-center justify-between gap-3 sm:block">
+          <p className="font-label text-xs font-bold uppercase tracking-[0.18em]">{t.banner}</p>
+          <p className="text-[13px] font-semibold leading-tight sm:mt-0.5">{t.bar}</p>
           <Link
             href={`${localizedPath(locale, '/')}#planos`}
-            className="inline-flex min-h-10 items-center font-semibold text-lime underline-offset-4 hover:underline"
+            className="inline-flex min-h-10 shrink-0 items-center rounded-full bg-[#111] px-3.5 text-sm font-bold text-[#FFE500] sm:hidden"
           >
             {t.cta}
           </Link>
-        </p>
+        </div>
+
+        {clock?.done ? (
+          <p className="font-label text-sm font-bold uppercase tracking-[0.14em] sm:justify-self-end">
+            {saoPauloDate() === '2026-11-27' ? t.countdown.today : t.countdown.late}
+          </p>
+        ) : (
+          <ol aria-label={t.countdown.live} className="flex justify-center gap-1.5 sm:justify-self-end">
+            {units.map(([value, label]) => (
+              <li
+                key={label}
+                className="grid min-w-[3.15rem] place-items-center rounded-md bg-[#111] px-1.5 py-1 text-[#FFE500]"
+              >
+                <span data-bf-part className="font-label text-lg font-bold tabular-nums leading-none">
+                  {value == null ? '--' : String(value).padStart(2, '0')}
+                </span>
+                <span className="mt-1 font-label text-[10px] uppercase tracking-[0.12em] text-[#FFE500]/75">
+                  {label}
+                </span>
+              </li>
+            ))}
+          </ol>
+        )}
+
+        <Link
+          href={`${localizedPath(locale, '/')}#planos`}
+          className="hidden min-h-10 items-center rounded-full bg-[#111] px-3.5 text-sm font-bold text-[#FFE500] sm:inline-flex"
+        >
+          {t.cta}
+        </Link>
       </div>
     </div>
   );

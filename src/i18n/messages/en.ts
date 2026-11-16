@@ -24,6 +24,7 @@ export const en: Messages = {
   },
 
   campaign: {
+    banner: 'Black Friday',
     kicker: 'Black Friday · November',
     bar: 'List prices. No discount.',
     title: 'No crossed-out prices.',
@@ -36,10 +37,12 @@ export const en: Messages = {
     note: 'Each plan’s price is just below, the same as the rest of the year.',
     cta: 'See the plans',
     countdown: {
-      until: 'Through November 30',
-      many: '{n} days to November 27',
-      one: '1 day to November 27',
-      today: 'Today, November 27',
+      days: 'days',
+      hours: 'hrs',
+      minutes: 'min',
+      seconds: 'sec',
+      live: 'Live countdown to November 27',
+      today: 'Today is Black Friday',
       late: 'Through November 30',
     },
   },

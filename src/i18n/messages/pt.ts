@@ -25,6 +25,7 @@ export const pt = {
   },
 
   campaign: {
+    banner: 'Black Friday',
     kicker: 'Black Friday · novembro',
     bar: 'Preços de tabela. Sem desconto.',
     title: 'Sem preço riscado.',
@@ -37,11 +38,13 @@ export const pt = {
     note: 'O valor de cada plano está logo abaixo, igual ao resto do ano.',
     cta: 'Ver os planos',
     countdown: {
-      until: 'Até 30 de novembro',
-      many: 'Faltam {n} dias para 27 de novembro',
-      one: 'Falta 1 dia para 27 de novembro',
-      today: 'Hoje, 27 de novembro',
-      late: 'Segue até 30 de novembro',
+      days: 'dias',
+      hours: 'hrs',
+      minutes: 'min',
+      seconds: 'seg',
+      live: 'Contagem ao vivo até 27 de novembro',
+      today: 'Hoje é Black Friday',
+      late: 'Até 30 de novembro',
     },
   },
 
