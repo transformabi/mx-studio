@@ -58,7 +58,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 8.5rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -172,8 +172,8 @@
     align-items: safe center;
     height: 100vh;
     height: 100svh;
-    /* Clears the fixed studio header (h-16). */
-    padding-top: 4rem;
+    /* Clears the fixed studio header: nav (h-16) plus the November campaign bar. */
+    padding-top: 7.5rem;
   }
 }
 /*

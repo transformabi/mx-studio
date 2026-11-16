@@ -12,7 +12,7 @@ export async function SiteChrome({ locale, children }: { locale: Locale; childre
   const t = messages[locale];
   return (
     <I18nProvider locale={locale} rates={rates}>
-      <Header locale={locale} t={t.nav} />
+      <Header locale={locale} t={t.nav} campaign={t.campaign} />
       {children}
       <Footer locale={locale} t={t} />
     </I18nProvider>

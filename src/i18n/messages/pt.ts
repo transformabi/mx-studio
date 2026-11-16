@@ -24,6 +24,27 @@ export const pt = {
     skip: 'Pular para o conteúdo',
   },
 
+  campaign: {
+    kicker: 'Black Friday · novembro',
+    bar: 'Preços de tabela. Sem desconto.',
+    title: 'Sem preço riscado.',
+    lead: 'É mês de Black Friday e os planos Launch, Business e Growth continuam exatamente os mesmos. Quem aprova a prévia neste mês entra na fila de 14 dias e chega ao fim do ano com o site no ar.',
+    points: [
+      'Criação e mensalidade sem alteração',
+      'Prévia grátis antes de qualquer pagamento',
+      'Poucos projetos por vez, direto com quem faz',
+    ],
+    note: 'O valor de cada plano está logo abaixo, igual ao resto do ano.',
+    cta: 'Ver os planos',
+    countdown: {
+      until: 'Até 30 de novembro',
+      many: 'Faltam {n} dias para 27 de novembro',
+      one: 'Falta 1 dia para 27 de novembro',
+      today: 'Hoje, 27 de novembro',
+      late: 'Segue até 30 de novembro',
+    },
+  },
+
   whatsappMsg: 'Olá! Vim pelo site da MX Studio Web e quero conversar sobre um site.',
 
   hero: {

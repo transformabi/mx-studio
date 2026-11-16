@@ -23,6 +23,27 @@ export const es: Messages = {
     skip: 'Saltar al contenido',
   },
 
+  campaign: {
+    kicker: 'Black Friday · noviembre',
+    bar: 'Precios de lista. Sin descuento.',
+    title: 'Sin precio tachado.',
+    lead: 'Es el mes del Black Friday y los planes Launch, Business y Growth siguen exactamente iguales. Quien aprueba la vista previa este mes entra en la fila de 14 días y llega a fin de año con el sitio en línea.',
+    points: [
+      'Creación y cuota mensual sin cambios',
+      'Vista previa gratis antes de cualquier pago',
+      'Pocos proyectos a la vez, directo con quien lo hace',
+    ],
+    note: 'El valor de cada plan está justo debajo, igual que el resto del año.',
+    cta: 'Ver los planes',
+    countdown: {
+      until: 'Hasta el 30 de noviembre',
+      many: 'Faltan {n} días para el 27 de noviembre',
+      one: 'Falta 1 día para el 27 de noviembre',
+      today: 'Hoy, 27 de noviembre',
+      late: 'Sigue hasta el 30 de noviembre',
+    },
+  },
+
   whatsappMsg: '¡Hola! Llegué por el sitio de MX Studio Web y quiero hablar sobre un sitio web.',
 
   hero: {

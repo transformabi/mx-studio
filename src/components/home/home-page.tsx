@@ -7,6 +7,7 @@ import { Contact } from './contact';
 import { Faq } from './faq';
 import { GooglePresence } from './google-presence';
 import { Hero } from './hero';
+import { November } from './november';
 import { Pricing } from './pricing';
 import { Process } from './process';
 import { Showcase } from './showcase';
@@ -20,6 +21,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <Showcase locale={locale} t={t.work} />
       <Process t={t.process} />
       <GooglePresence locale={locale} t={t.googlePresence} waMsg={t.googlePresence.waMsg} />
+      <November t={t.campaign} />
       <Pricing t={t.pricing} />
       <About t={t.about} />
       <Faq t={t.faq} />

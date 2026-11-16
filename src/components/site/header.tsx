@@ -9,8 +9,17 @@ import { localizedPath } from '@/i18n/paths';
 import { diagnosticoUrl } from '@/lib/estudio';
 import { LangSwitch } from './lang-switch';
 import { Logo } from './logo';
+import { CampaignBar } from './campaign-bar';
 
-export function Header({ locale, t }: { locale: Locale; t: Messages['nav'] }) {
+export function Header({
+  locale,
+  t,
+  campaign,
+}: {
+  locale: Locale;
+  t: Messages['nav'];
+  campaign: Messages['campaign'];
+}) {
   const [open, setOpen] = useState(false);
   const home = localizedPath(locale, '/');
   const links = [
@@ -33,6 +42,7 @@ export function Header({ locale, t }: { locale: Locale; t: Messages['nav'] }) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/85 font-body backdrop-blur-md">
+      <CampaignBar locale={locale} t={campaign} />
       {/* First stop for keyboard users; every page's <main> carries id="conteudo". */}
       <a
         href="#conteudo"

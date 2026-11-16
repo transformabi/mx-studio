@@ -9,7 +9,7 @@ import { PhoneFrame } from '@/components/site/phone-frame';
 
 export function Hero({ locale, t, waMsg }: { locale: Locale; t: Messages['hero']; waMsg: string }) {
   return (
-    <section className="relative overflow-hidden pb-24 pt-32 sm:pb-32 sm:pt-40">
+    <section className="relative overflow-hidden pb-16 pt-44 sm:pb-24 sm:pt-52">
       <div
         aria-hidden
         className="grid-lines pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_70%_30%,black,transparent)]"
