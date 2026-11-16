@@ -1,35 +1,36 @@
 'use client';
 
-import { useSyncExternalStore } from 'react';
+import { useEffect, useState } from 'react';
 import type { Messages } from '@/i18n/messages';
 import { campaignOpen, countdownToBlackFriday, saoPauloDate, type Countdown } from '@/lib/black-friday';
 
 /**
  * Yellow-and-black Black Friday strip. The clock ticks every second until
- * 00:00 on 27 Nov 2026 (São Paulo). Prices are not part of this component.
- * The bar leaves the page after 30 Nov.
+ * 00:00 on 27 Nov 2026 (São Paulo). The first paint matches the server (`--`)
+ * so hydration does not tear the bar down. Prices are not part of this component.
  */
-function subscribe(onChange: () => void) {
-  const id = window.setInterval(onChange, 1000);
-  return () => window.clearInterval(id);
-}
-
-let cachedSecond = -1;
-let cachedSnap = '';
-
-function clockSnapshot() {
-  const second = Math.floor(Date.now() / 1000);
-  if (second === cachedSecond) return cachedSnap;
-  cachedSecond = second;
-  cachedSnap = campaignOpen() ? JSON.stringify(countdownToBlackFriday()) : 'off';
-  return cachedSnap;
-}
-
 export function CampaignBar({ t }: { t: Messages['campaign'] }) {
-  const snap = useSyncExternalStore(subscribe, clockSnapshot, () => '');
-  if (snap === 'off') return null;
+  const [on, setOn] = useState(true);
+  const [clock, setClock] = useState<Countdown | null>(null);
 
-  const clock: Countdown | null = snap ? (JSON.parse(snap) as Countdown) : null;
+  useEffect(() => {
+    const tick = () => {
+      if (!campaignOpen()) {
+        setOn(false);
+        return;
+      }
+      setClock(countdownToBlackFriday());
+    };
+    const kick = window.setTimeout(tick, 0);
+    const id = window.setInterval(tick, 1000);
+    return () => {
+      window.clearTimeout(kick);
+      window.clearInterval(id);
+    };
+  }, []);
+
+  if (!on) return null;
+
   const units = [
     [clock?.days, t.countdown.days],
     [clock?.hours, t.countdown.hours],
@@ -38,7 +39,7 @@ export function CampaignBar({ t }: { t: Messages['campaign'] }) {
   ] as const;
 
   return (
-    <div data-bf-bar className="bg-[#FFE500] text-[#111]">
+    <div className="bg-[#FFE500] text-[#111]">
       <div className="container-site flex flex-col items-center gap-2 py-2.5 sm:flex-row sm:justify-between sm:gap-6 sm:py-2">
         <div className="text-center sm:text-left">
           <p className="font-label text-xs font-bold uppercase tracking-[0.18em]">{t.banner}</p>
@@ -56,7 +57,7 @@ export function CampaignBar({ t }: { t: Messages['campaign'] }) {
                 key={label}
                 className="grid min-w-[3.15rem] place-items-center rounded-md bg-[#111] px-1.5 py-1 text-[#FFE500]"
               >
-                <span data-bf-part className="font-label text-lg font-bold tabular-nums leading-none">
+                <span suppressHydrationWarning className="font-label text-lg font-bold tabular-nums leading-none">
                   {value == null ? '--' : String(value).padStart(2, '0')}
                 </span>
                 <span className="mt-1 font-label text-[10px] uppercase tracking-[0.12em] text-[#FFE500]/75">
